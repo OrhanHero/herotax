@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* ── Self-hosted Google Fonts (via @fontsource, no external requests) ── */
+@import "@fontsource/archivo/500.css";
+@import "@fontsource/archivo/600.css";
+@import "@fontsource/archivo/700.css";
+@import "@fontsource/archivo/900.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/noto-sans-arabic/400.css";
+@import "@fontsource/noto-sans-arabic/500.css";
+@import "@fontsource/noto-sans-arabic/700.css";
+@import "@fontsource/noto-sans-arabic/900.css";
+
+body {
+  font-family: "Inter", "Noto Sans Arabic", sans-serif;
+}
+
+/* RTL-Sprachen (AR/KU-Sorani): arabische Glyphen für alle Font-Rollen */
+[dir="rtl"] * {
+  font-family: "Noto Sans Arabic", "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Newsticker-Laufband ── */
+.ticker-track {
+  width: max-content;
+  animation: hero-ticker 45s linear infinite;
+}
+.ticker-viewport:hover .ticker-track,
+.ticker-viewport:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+@keyframes hero-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ticker-ping {
+  animation: hero-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes hero-ping {
+  75%,
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  /* Ticker bleibt nutzbar: statisch & horizontal scrollbar */
+  .ticker-track {
+    animation: none;
+  }
+  .ticker-viewport {
+    overflow-x: auto;
+  }
+}
