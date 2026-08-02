@@ -10,7 +10,6 @@ import NewsHub from "./components/sections/NewsHub";
 import ToolsSection from "./components/sections/ToolsSection";
 import SocialWall from "./components/sections/SocialWall";
 import PrivacySection from "./components/sections/PrivacySection";
-import NewsletterSection from "./components/sections/NewsletterSection";
 import Footer from "./components/sections/Footer";
 import DatenschutzPage from "./components/pages/DatenschutzPage";
 
@@ -70,7 +69,6 @@ export default function HeroTaxPlatform() {
               <ToolsSection />
               <SocialWall />
               <PrivacySection />
-              <NewsletterSection />
             </>
           )}
         </main>

@@ -10,7 +10,7 @@ export const PRIVACY_PRINCIPLES = [
   {
     icon: Lock,
     title: "Datenminimierung",
-    text: "Wir erheben nur, was für den Dienst nötig ist: Für den Newsletter genügt deine E-Mail-Adresse — bestätigt per Double-Opt-in, jederzeit widerrufbar.",
+    text: "Wir erheben nur, was für den Dienst nötig ist. Kein Konto, kein Formular, keine Pflichtangaben, um die Inhalte dieser Seite zu nutzen.",
   },
   {
     icon: ShieldCheck,
@@ -20,7 +20,7 @@ export const PRIVACY_PRINCIPLES = [
   {
     icon: FileText,
     title: "Transparente Drittdienste",
-    text: "Externe Inhalte (Social-Feeds, Newsletter-Dienst) werden erst nach Klick geladen bzw. in der Datenschutzerklärung mit Rechtsgrundlage aufgeführt.",
+    text: "Externe Inhalte (Social-Media-Links, eingebundene Behörden-Feeds) sind in der Datenschutzerklärung mit ihrer jeweiligen Rechtsgrundlage aufgeführt.",
   },
 ];
 
