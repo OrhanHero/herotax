@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, cardBase } from "../../config/tokens";
 import { ARTICLES } from "../../data/articles";
+import { getArticles } from "../../services/articleService";
 import Eyebrow from "../atoms/Eyebrow";
 import CategoryTag from "../atoms/CategoryTag";
 import Meta from "../atoms/Meta";
@@ -12,13 +13,22 @@ import SourceLink from "../atoms/SourceLink";
 const NewsHub = () => {
   const { t } = useLang();
   const [filter, setFilter] = useState("Alle");
+  const [articles, setArticles] = useState(ARTICLES);
+
+  // Lade Artikel beim Mount (mit Caching & automatischem Update)
+  useEffect(() => {
+    getArticles("ai").then((data) => {
+      setArticles(data);
+    });
+  }, []);
+
   /* Interne Filter-Werte bleiben stabil (matchen die cat-Felder);
      nur das Label von "Alle" wird übersetzt. "Berlin Fokus" und
      "Bund & Steuer" sind Marken-Rubriken und bleiben in allen
      Sprachen gleich — wie Eigennamen. */
   const filters = ["Alle", "Berlin Fokus", "Bund & Steuer"];
   const filterLabel = (f) => (f === "Alle" ? t("news.all") : f);
-  const visible = ARTICLES.filter((a) => filter === "Alle" || a.cat === filter);
+  const visible = articles.filter((a) => filter === "Alle" || a.cat === filter);
   const featured = visible.find((a) => a.featured) || visible[0];
   const rest = visible.filter((a) => a !== featured);
 

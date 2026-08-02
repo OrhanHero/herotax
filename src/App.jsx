@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { LangContext, LANGUAGES, I18N, readStoredLang, storeLang } from "./i18n";
 import { ARTICLES } from "./data/articles";
+import { getArticles } from "./services/articleService";
 import NewsTicker from "./components/atoms/NewsTicker";
 import Header from "./components/sections/Header";
 import HeroSection from "./components/sections/HeroSection";
@@ -17,6 +18,7 @@ export default function HeroTaxPlatform() {
      Initialwert kommt aus localStorage (bzw. In-Memory-Fallback),
      jede Änderung wird sofort persistiert. */
   const [lang, setLang] = useState(readStoredLang);
+  const [articles, setArticles] = useState(ARTICLES);
   const activeLang = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0];
 
   /** t(key): Übersetzung mit Fallback-Kette gewählte Sprache → Deutsch → Key */
@@ -25,6 +27,13 @@ export default function HeroTaxPlatform() {
     const base = I18N.de;
     return (key) => dict[key] ?? base[key] ?? key;
   }, [lang]);
+
+  // Lade Artikel mit Caching & Update-Logik
+  useEffect(() => {
+    getArticles("ai").then((data) => {
+      setArticles(data);
+    });
+  }, []);
 
   useEffect(() => {
     storeLang(lang);
@@ -42,7 +51,7 @@ export default function HeroTaxPlatform() {
     <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
       <div className="min-h-screen antialiased" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
         <Header />
-        <NewsTicker items={ARTICLES} />
+        <NewsTicker items={articles} />
 
         <main>
           <HeroSection />

@@ -5,6 +5,7 @@ import { T, fontDisplay, fontMono } from "../../config/tokens";
 import WhatsAppGlyph from "../atoms/WhatsAppGlyph";
 import TikTokGlyph from "../atoms/TikTokGlyph";
 import InstagramGlyph from "../atoms/InstagramGlyph";
+import AILabel from "../atoms/AILabel";
 
 /** Footer mit Impressum */
 const Footer = () => {
@@ -56,6 +57,10 @@ const Footer = () => {
         <p className="text-center text-xs mt-8 uppercase tracking-widest" style={{ ...fontMono, color: T.faint }}>
           {t("footer.legal")}
         </p>
+
+        <div className="mt-8 max-w-2xl mx-auto">
+          <AILabel />
+        </div>
       </div>
     </footer>
   );

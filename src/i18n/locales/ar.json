@@ -45,5 +45,7 @@
   "footer.imprint": "بيانات الناشر:",
   "footer.privacy": "حماية البيانات",
   "footer.contact": "اتصال",
-  "footer.legal": "محتوى تحريري · لا يغني عن الاستشارة الضريبية (§ 5 StBerG) · © 2026 HERO Tax"
+  "footer.legal": "محتوى تحريري · لا يغني عن الاستشارة الضريبية (§ 5 StBerG) · © 2026 HERO Tax",
+  "ai_label.text": "تم إنشاء هذا الموقع باستخدام الذكاء الاصطناعي.",
+  "ai_label.link": "العلامات الأوروبية"
 }

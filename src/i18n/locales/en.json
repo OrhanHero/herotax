@@ -45,5 +45,7 @@
   "footer.imprint": "Imprint:",
   "footer.privacy": "Privacy",
   "footer.contact": "Contact",
-  "footer.legal": "Editorial content · No substitute for tax advice (§ 5 StBerG, Germany) · © 2026 HERO Tax"
+  "footer.legal": "Editorial content · No substitute for tax advice (§ 5 StBerG, Germany) · © 2026 HERO Tax",
+  "ai_label.text": "This website was generated with AI.",
+  "ai_label.link": "EU labeling"
 }
