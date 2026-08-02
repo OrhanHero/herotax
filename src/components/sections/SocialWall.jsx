@@ -8,13 +8,13 @@ import InstagramGlyph from "../atoms/InstagramGlyph";
 import YouTubeGlyph from "../atoms/YouTubeGlyph";
 import XGlyph from "../atoms/XGlyph";
 
-/** Säule 04 · Social Wall */
+/** Säule 05 · Social Wall */
 const SocialWall = () => {
   const { t } = useLang();
   return (
     <section className="py-24" id="live">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <Eyebrow index="04">{t("live.eyebrow")}</Eyebrow>
+        <Eyebrow index="05">{t("live.eyebrow")}</Eyebrow>
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
           <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight" style={{ ...fontDisplay, color: T.text }}>
             {t("live.t1")}

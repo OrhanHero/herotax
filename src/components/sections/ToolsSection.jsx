@@ -5,7 +5,7 @@ import UStRechner from "../tools/UStRechner";
 import FristenCheck from "../tools/FristenCheck";
 import GuideTool from "../tools/GuideTool";
 
-/** Säule 03 · HERO-Tools (Zero-Friction) */
+/** Säule 04 · HERO-Tools (Zero-Friction) */
 const ToolsSection = () => {
   const { t } = useLang();
   return (
@@ -15,7 +15,7 @@ const ToolsSection = () => {
       id="tools"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <Eyebrow index="03">{t("tools.eyebrow")}</Eyebrow>
+        <Eyebrow index="04">{t("tools.eyebrow")}</Eyebrow>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight" style={{ ...fontDisplay, color: T.text }}>
             {t("tools.t1")}

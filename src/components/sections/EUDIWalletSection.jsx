@@ -3,14 +3,14 @@ import { T, fontDisplay, fontMono } from "../../config/tokens";
 import { EUDI_TIMELINE } from "../../data/eudiWallet";
 import Eyebrow from "../atoms/Eyebrow";
 
-/** Säule 06 · EUDI-Wallet (Digitale Identität der EU)
+/** Säule 03 · EUDI-Wallet (Digitale Identität der EU)
     Eigener Bereich für Stand & Zeitplan des European Digital Identity
     Wallet — hochrelevant für Unternehmer:innen (KYC, Vertragsunterschrift,
     künftig ggf. Behördengänge), Frist läuft EU-weit Ende 2026. */
 const EUDIWalletSection = () => (
   <section className="py-24" style={{ borderTop: `1px solid ${T.lineSoft}` }} id="eudi-wallet">
     <div className="max-w-7xl mx-auto px-5 sm:px-8">
-      <Eyebrow index="06">EUDI-Wallet · Digitale Identität der EU</Eyebrow>
+      <Eyebrow index="03">EUDI-Wallet · Digitale Identität der EU</Eyebrow>
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
         <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-2xl" style={{ ...fontDisplay, color: T.text }}>
           Ein Ausweis fürs Smartphone.

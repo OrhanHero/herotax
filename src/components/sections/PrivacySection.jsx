@@ -5,7 +5,7 @@ import { PRIVACY_PRINCIPLES, BFDI_ITEMS } from "../../data/privacy";
 import Eyebrow from "../atoms/Eyebrow";
 import SourceLink from "../atoms/SourceLink";
 
-/** Säule 05 · Datenschutz & Compliance
+/** Säule 06 · Datenschutz & Compliance
     Linke Karte: DSGVO-Selbstverpflichtung der Plattform.
     Rechte Spalte: "Datenschutz-Radar" mit BfDI-Themen inkl. Quellen-Links.
     HINWEIS für den Betreiber: Dieser Block ersetzt KEINE vollständige
@@ -16,7 +16,7 @@ const PrivacySection = () => {
   return (
     <section className="py-24" style={{ borderTop: `1px solid ${T.lineSoft}` }} id="datenschutz">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <Eyebrow index="05">{t("privacy.eyebrow")}</Eyebrow>
+        <Eyebrow index="06">{t("privacy.eyebrow")}</Eyebrow>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-2xl" style={{ ...fontDisplay, color: T.text }}>
             {t("privacy.t1")}

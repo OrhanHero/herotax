@@ -67,10 +67,10 @@ export default function HeroTaxPlatform() {
               <HeroSection />
               <AISection />
               <NewsHub />
+              <EUDIWalletSection />
               <ToolsSection />
               <SocialWall />
               <PrivacySection />
-              <EUDIWalletSection />
             </>
           )}
         </main>
