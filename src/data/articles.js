@@ -148,4 +148,49 @@ export const ARTICLES = [
     date: "27. Juni 2026",
     source: { label: "Gesetze im Internet (§ 19 UStG)", href: "https://www.gesetze-im-internet.de/ustg_1980/__19.html" },
   },
+  {
+    cat: "Berlin Fokus",
+    title: "Investitionsrekord: 1,4 Milliarden Euro für Berlin im ersten Halbjahr 2026",
+    excerpt:
+      "Berlin Partner meldet einen Rekordwert bei Unternehmensinvestitionen im ersten Halbjahr — ein starkes Signal für den Standort, während gleichzeitig die neue Innovationsstrategie InnoBB 2035 vorgestellt wird.",
+    read: "4 Min",
+    date: "02. August 2026",
+    source: { label: "Berlin Partner für Wirtschaft und Technologie", href: "https://www.berlin-partner.de/" },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Handwerk digitalisiert sich — aber die Landes-Fördertöpfe sind leer",
+    excerpt:
+      "95 % der Berliner Handwerksbetriebe haben eine eigene Website, ein Viertel nutzt bereits 3D-Druck. Wegen der angespannten Haushaltslage sind viele Digitalisierungs-Förderprogramme von Bund und Land aber ausgelaufen — die Handwerkskammer verweist auf Alternativen wie den Berlin Kredit Transformation.",
+    read: "4 Min",
+    date: "02. August 2026",
+    source: { label: "Handwerkskammer Berlin", href: "https://www.hwk-berlin.de/artikel/foerdermittel-fuer-digitalisierung-und-innovation-91,0,372.html" },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Berlins Umsatzsteuer-Aufkommen 2024: 168.149 Voranmelder, Einnahmen +13 %",
+    excerpt:
+      "Die amtliche Umsatzsteuerstatistik zeigt: Berlin hatte 2024 rund 168.000 umsatzsteuerpflichtige Voranmelder — ein Plus von 13 % beim Steueraufkommen gegenüber dem Vorjahr. Ein Indikator dafür, wie robust die Berliner Wirtschaft aktuell wirklich läuft.",
+    read: "3 Min",
+    date: "02. August 2026",
+    source: { label: "Amt für Statistik Berlin-Brandenburg", href: "https://www.statistik-berlin-brandenburg.de/gesellschaft/staat/steuern" },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Finanzämter prüften 89 wohlhabende Berliner — knapp 6 Millionen Euro zu wenig gezahlt",
+    excerpt:
+      "Eine Recherche zeigt: Bei gezielten Prüfungen vermögender Privatpersonen deckten Berliner Finanzämter erhebliche Steuerdifferenzen auf. Ein Erinnerung daran, dass Betriebsprüfungen längst nicht nur kleine Gewerbetreibende treffen.",
+    read: "4 Min",
+    date: "31. Januar 2026",
+    source: { label: "Tagesspiegel", href: "https://www.tagesspiegel.de/berlin/finanzamter-uberprufen-reiche-berliner-wohlhabende-zahlten-knapp-sechs-millionen-euro-zu-wenig-steuern-15205002.html" },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Rechtsänderungen im Überblick: Was sich für Berliner Unternehmen ändert",
+    excerpt:
+      "Die IHK Berlin fasst aktuelle Gesetzesänderungen mit Relevanz für Unternehmen laufend zusammen — von Steuerrecht bis Arbeitsrecht. Praktisch, um nichts Wichtiges zu verpassen, ohne jedes Gesetzblatt selbst zu wälzen.",
+    read: "3 Min",
+    date: "02. August 2026",
+    source: { label: "IHK Berlin — Rechtsänderungen im Überblick", href: "https://www.ihk.de/berlin/service-und-beratung/recht-und-steuern/rechtsaenderungen-ueberblick-4993712" },
+  },
 ];
