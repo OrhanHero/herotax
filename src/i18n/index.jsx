@@ -26,8 +26,8 @@ export const LANGUAGES = [
   { code: "de", label: "Deutsch", dir: "ltr" },
   { code: "en", label: "English", dir: "ltr" },
   { code: "tr", label: "Türkçe", dir: "ltr" },
-  { code: "ar", label: "العربية", dir: "rtl" },
   { code: "ku", label: "Kurdî", dir: "ltr" },
+  { code: "ar", label: "العربية", dir: "rtl" },
 ];
 
 export const I18N = { de, en, tr, ar, ku };
