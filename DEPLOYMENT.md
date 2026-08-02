@@ -97,22 +97,29 @@ npm run build
 # Upload dist/ wieder zu IONOS
 ```
 
-### Dynamische Daten (API-Integration)
-Später: Kommentar in `/src/services/articleService.js` aktivieren:
-```javascript
-export const fetchArticlesFromAPI = async (type = "ai") => {
-  const apiUrl = type === "ai" ? process.env.VITE_API_AI_ARTICLES : process.env.VITE_API_BMDS_ITEMS;
-  if (!apiUrl) return null;
-  const response = await fetch(apiUrl);
-  return response.json();
-};
-```
+### Dynamische Daten (automatischer Feed-Import)
+Der NewsTicker, News-Hub ("Bund & Steuer") und das KI-Sicherheit-Panel
+(BMDS/BSI) laden ihre Meldungen automatisch über den serverseitigen
+Feed-Proxy `public/api/feed.php`. Der Proxy holt die offiziellen
+RSS-Feeds von BMF, BMDS und BSI, cached sie 30 Minuten und liefert
+sie als JSON aus — das umgeht die CORS-Sperre dieser Behörden-Domains
+für direkte Browser-Zugriffe.
 
-Umgebungsvariablen in `.env`:
-```
-VITE_API_AI_ARTICLES=https://api.example.com/articles/ai
-VITE_API_BMDS_ITEMS=https://api.example.com/articles/bmds
-```
+**Voraussetzung:** IONOS-Webspace mit PHP (Standard bei IONOS
+Webhosting-Paketen). `feed.php` liegt in `dist/api/feed.php` und wird
+beim Upload automatisch mit hochgeladen.
+
+**Cache-Ordner:** Der Proxy legt `api/cache/*.json` selbst an — dieser
+Ordner muss vom Webserver beschreibbar sein (Standard bei IONOS).
+Ist er es nicht, funktioniert der Proxy trotzdem, nur ohne Server-Cache.
+
+Fällt der Live-Abruf aus (Feed down, PHP nicht verfügbar, o.ä.), fällt
+die Seite automatisch auf die kuratierten Daten in `/src/data/articles.js`
+zurück — es gibt also nie einen Totalausfall der Inhalte.
+
+Neue Quellen hinzufügen: `SOURCES`-Array in `public/api/feed.php`
+erweitern (nur echte, geprüfte RSS-Feed-URLs eintragen) und in
+`src/services/articleService.js` unter `FEED_SOURCE` verdrahten.
 
 ## Troubleshooting
 
