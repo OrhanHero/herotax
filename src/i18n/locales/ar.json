@@ -1,9 +1,11 @@
 {
   "nav.ki": "الذكاء الاصطناعي والعمليات",
   "nav.news": "مركز الأخبار",
+  "nav.eudiWallet": "محفظة EUDI",
   "nav.tools": "الأدوات",
   "nav.live": "HERO مباشر",
   "nav.privacy": "حماية البيانات",
+  "nav.publications": "المنشورات",
   "cta.join": "انضم إلى قناة واتساب",
   "cta.joinShort": "انضم",
   "cta.note": "مجاني · مجهول الهوية · تحديثات حصرية في 30 ثانية",
@@ -36,7 +38,6 @@
   "footer.made": "· صُنع في برلين",
   "footer.imprint": "بيانات الناشر:",
   "footer.privacy": "حماية البيانات",
-  "footer.contact": "اتصال",
   "footer.legal": "محتوى تحريري · لا يغني عن الاستشارة الضريبية (§ 5 StBerG) · © 2026 HERO Tax",
   "ai_label.text": "تم إنشاء هذا الموقع باستخدام الذكاء الاصطناعي.",
   "ai_label.link": "العلامات الأوروبية"

@@ -1,9 +1,11 @@
 {
   "nav.ki": "Zîrekiya Sûnî & Pêvajo",
   "nav.news": "Navenda Nûçeyan",
+  "nav.eudiWallet": "Cizdana EUDI",
   "nav.tools": "Amûr",
   "nav.live": "HERO Zindî",
   "nav.privacy": "Nihênî",
+  "nav.publications": "Weşan",
   "cta.join": "Tevlî kanala WhatsAppê bibe",
   "cta.joinShort": "Tevlî bibe",
   "cta.note": "Belaş · Nenas · Nûvekirinên taybet ên 30-çirkeyî",
@@ -36,7 +38,6 @@
   "footer.made": "· Li Berlînê hatiye çêkirin",
   "footer.imprint": "Naşir:",
   "footer.privacy": "Nihênî",
-  "footer.contact": "Têkilî",
   "footer.legal": "Naveroka edîtoriyê · Ne şûna şêwirmendiya bacê ye (§ 5 StBerG) · © 2026 HERO Tax",
   "ai_label.text": "Ev malper bi zîrekiya sûnî hatiye çêkirin.",
   "ai_label.link": "Nîşankirina YE"

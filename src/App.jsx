@@ -3,6 +3,7 @@ import { LangContext, LANGUAGES, I18N, readStoredLang, storeLang } from "./i18n"
 import { ARTICLES } from "./data/articles";
 import { getArticles } from "./services/articleService";
 import NewsTicker from "./components/atoms/NewsTicker";
+import BackToTop from "./components/atoms/BackToTop";
 import Header from "./components/sections/Header";
 import HeroSection from "./components/sections/HeroSection";
 import AISection from "./components/sections/AISection";
@@ -76,6 +77,7 @@ export default function HeroTaxPlatform() {
         </main>
 
         <Footer />
+        <BackToTop />
       </div>
     </LangContext.Provider>
   );

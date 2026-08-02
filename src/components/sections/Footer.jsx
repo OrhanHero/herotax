@@ -8,6 +8,7 @@ import InstagramGlyph from "../atoms/InstagramGlyph";
 import YouTubeGlyph from "../atoms/YouTubeGlyph";
 import XGlyph from "../atoms/XGlyph";
 import LinkedInGlyph from "../atoms/LinkedInGlyph";
+import GithubGlyph from "../atoms/GithubGlyph";
 import AILabel from "../atoms/AILabel";
 
 /** Footer mit Impressum */
@@ -17,10 +18,25 @@ const Footer = () => {
     <footer style={{ backgroundColor: T.card, borderTop: `1px solid ${T.line}` }}>
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-          <p className="font-bold text-sm" style={{ ...fontDisplay, color: T.text }}>
-            HERO <span style={{ color: T.blue }}>Tax</span> 🛡️{" "}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm" style={{ ...fontDisplay }}>
+            <a href="/" className="font-bold hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded" style={{ color: T.text }}>
+              HERO <span style={{ color: T.blue }}>Tax</span> 🛡️
+            </a>
             <span className="font-normal" style={{ color: T.faint }}>{t("footer.made")}</span>
-          </p>
+            <a
+              href={CONFIG.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-normal hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded"
+              style={{ color: T.faint }}
+            >
+              <span className="inline-flex" style={{ color: T.text }}>
+                <GithubGlyph size={13} />
+              </span>
+              GitHub
+            </a>
+            <span className="font-normal" style={{ color: T.faint }}>— Nichts zu verstecken — auch nicht im Code.</span>
+          </div>
           <div className="flex items-center gap-5" aria-label="Social Media">
             <a href={CONFIG.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-70" style={{ color: T.muted }}>
               <InstagramGlyph size={18} />
@@ -68,7 +84,6 @@ const Footer = () => {
           </a>
           <nav className="flex gap-6" aria-label="Rechtliches">
             <a href="/datenschutz" className="hover:underline underline-offset-4" style={{ color: T.muted }}>{t("footer.privacy")}</a>
-            <a href="#" className="hover:underline underline-offset-4" style={{ color: T.muted }}>{t("footer.contact")}</a>
           </nav>
         </div>
 

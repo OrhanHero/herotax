@@ -1,7 +1,7 @@
-import { ShieldCheck, Scale, FileText } from "lucide-react";
+import { ShieldCheck, Scale, FileText, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
-import { PRIVACY_PRINCIPLES, BFDI_ITEMS } from "../../data/privacy";
+import { PRIVACY_PRINCIPLES, BFDI_ITEMS, BFDI_PUBLICATIONS, BFDI_BUERGER_THEMES } from "../../data/privacy";
 import Eyebrow from "../atoms/Eyebrow";
 import SourceLink from "../atoms/SourceLink";
 
@@ -67,6 +67,37 @@ const PrivacySection = () => {
               ))}
             </div>
 
+            <div className="mt-9 pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+              <p className="text-xs mb-4" style={{ ...fontMono, color: "rgba(250,250,248,0.5)" }}>
+                BfDI für Bürger:innen — weitere Themen
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {BFDI_BUERGER_THEMES.map(({ icon: Icon, title, text, href }) => (
+                  <a
+                    key={title}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group rounded-2xl p-4 flex flex-col transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2"
+                    style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)" }}
+                  >
+                    <span
+                      className="w-9 h-9 rounded-xl flex items-center justify-center mb-3"
+                      style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+                    >
+                      <Icon size={17} style={{ color: "#8FA0FF" }} />
+                    </span>
+                    <h4 className="font-bold text-sm mb-1" style={{ ...fontDisplay, color: T.paper }}>
+                      {title}
+                    </h4>
+                    <p className="text-xs leading-relaxed" style={{ color: "rgba(250,250,248,0.65)" }}>
+                      {text}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
+
             <div
               className="mt-9 pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
@@ -114,6 +145,51 @@ const PrivacySection = () => {
                 </p>
                 <SourceLink href={item.source.href} label={item.source.label} />
               </article>
+            ))}
+          </div>
+        </div>
+
+        {/* BfDI-Publikationen: eigener Bereich für Broschüren, Flyer & Lernmaterial */}
+        <div id="publikationen" className="mt-10 rounded-3xl p-8 sm:p-10 scroll-mt-24" style={{ backgroundColor: T.wash, border: `1px solid ${T.lineSoft}` }}>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <p className="text-xs uppercase tracking-widest mb-2" style={{ ...fontMono, color: T.faint }}>
+                BfDI · Publikationen
+              </p>
+              <h3 className="text-2xl font-black tracking-tight" style={{ ...fontDisplay, color: T.text }}>
+                Broschüren, Flyer & Lernmaterial
+              </h3>
+            </div>
+            <a
+              href="https://www.bfdi.bund.de/DE/Service/Publikationen/publikationen_node.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded"
+              style={{ color: T.blue }}
+            >
+              Alle Publikationen
+              <ExternalLink size={14} />
+            </a>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {BFDI_PUBLICATIONS.map(({ icon: Icon, title, text, href }) => (
+              <a
+                key={title}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-2xl p-5 flex flex-col transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2"
+                style={cardBase}
+              >
+                <Icon size={20} className="mb-3" style={{ color: T.blue }} />
+                <h4 className="font-bold text-sm mb-1.5" style={{ ...fontDisplay, color: T.text }}>
+                  {title}
+                </h4>
+                <p className="text-xs leading-relaxed" style={{ color: T.muted }}>
+                  {text}
+                </p>
+              </a>
             ))}
           </div>
         </div>

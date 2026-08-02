@@ -1,9 +1,11 @@
 {
   "nav.ki": "AI & Processes",
   "nav.news": "News Hub",
+  "nav.eudiWallet": "EUDI Wallet",
   "nav.tools": "Tools",
   "nav.live": "HERO Live",
   "nav.privacy": "Privacy",
+  "nav.publications": "Publications",
   "cta.join": "Join the WhatsApp channel",
   "cta.joinShort": "Join",
   "cta.note": "Free · Anonymous · Exclusive 30-second updates",
@@ -36,7 +38,6 @@
   "footer.made": "· Made in Berlin",
   "footer.imprint": "Imprint:",
   "footer.privacy": "Privacy",
-  "footer.contact": "Contact",
   "footer.legal": "Editorial content · No substitute for tax advice (§ 5 StBerG, Germany) · © 2026 HERO Tax",
   "ai_label.text": "This website was generated with AI.",
   "ai_label.link": "EU labeling"

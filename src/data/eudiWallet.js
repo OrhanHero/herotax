@@ -1,8 +1,8 @@
-import { CalendarClock, Landmark, Smartphone, ShieldAlert } from "lucide-react";
+import { CalendarClock, Landmark, Smartphone, Code } from "lucide-react";
 
 /** EUDI-Wallet: Status & Zeitplan — Stand 02. August 2026.
-    Quellen: BMDS, Europäische Kommission, Verbraucherzentrale.
-    Bei Aktualisierung: Daten gegen die drei Quellen unten neu prüfen,
+    Quellen: BMDS, Europäische Kommission, Verbraucherzentrale, BMI/Open Code.
+    Bei Aktualisierung: Daten gegen die Quellen unten neu prüfen,
     der Zeitplan verschiebt sich laut BMDS erfahrungsgemäß. */
 export const EUDI_TIMELINE = [
   {
@@ -19,14 +19,14 @@ export const EUDI_TIMELINE = [
   },
   {
     icon: Smartphone,
-    title: "Was du damit machen kannst",
-    text: "Ausweisen (online & offline), Führerschein, Zeugnisse oder Versicherungskarte verschlüsselt aufs Smartphone, Dokumente digital unterschreiben, gezielt nur einzelne Daten preisgeben (Selective Disclosure). Für Unternehmer:innen relevant: Kontoeröffnung, SIM-Karten-Registrierung, Vertragsunterschrift — ohne Papierkram. Nutzung ist freiwillig und kostenlos, analoge Wege bleiben bestehen.",
+    title: "Nutzen & kritische Einordnung",
+    text: "Ausweisen (online & offline), Führerschein, Zeugnisse oder Versicherungskarte verschlüsselt aufs Smartphone, Dokumente digital unterschreiben, gezielt nur einzelne Daten preisgeben (Selective Disclosure) — für Unternehmer:innen relevant bei Kontoeröffnung, SIM-Karten-Registrierung oder Vertragsunterschrift. Die Verbraucherzentrale weist aber auch auf offene Fragen hin: Trotz Verschlüsselung bleiben Datenschutzbedenken zur Serverarchitektur bestehen, und Nutzer:innen selbst werden durch den Umgang mit ihren Zugangsdaten zum Sicherheitsrisiko.",
     source: { label: "Verbraucherzentrale", href: "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/eudiwallet-was-sie-zur-digitalen-brieftasche-wissen-muessen-95821" },
   },
   {
-    icon: ShieldAlert,
-    title: "Kritische Einordnung",
-    text: "Die Verbraucherzentrale weist auf offene Fragen hin: Trotz Verschlüsselung bleiben Datenschutzbedenken zur Serverarchitektur bestehen, und Nutzer:innen selbst werden durch den Umgang mit ihren Zugangsdaten zum Sicherheitsrisiko. Die technischen Spezifikationen können sich bis zum Starttermin noch ändern.",
-    source: { label: "Verbraucherzentrale", href: "https://www.verbraucherzentrale.de/wissen/digitale-welt/datenschutz/eudiwallet-was-sie-zur-digitalen-brieftasche-wissen-muessen-95821" },
+    icon: Code,
+    title: "Referenz-Implementierung: Der offene Quellcode des Bundes",
+    text: "Der Bund entwickelt die deutsche EUDI-Wallet öffentlich einsehbar auf der Open-Code-Plattform — technische Spezifikation und Fortschritt zum Nachvollziehen für alle, die tiefer einsteigen wollen.",
+    source: { label: "BMI — EUDI-Wallet eIDAS2 (Open Code)", href: "https://bmi.usercontent.opencode.de/eudi-wallet/eidas2/" },
   },
 ];

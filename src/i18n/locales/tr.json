@@ -1,9 +1,11 @@
 {
   "nav.ki": "Yapay Zekâ & Süreçler",
   "nav.news": "Haber Merkezi",
+  "nav.eudiWallet": "EUDI Cüzdanı",
   "nav.tools": "Araçlar",
   "nav.live": "HERO Canlı",
   "nav.privacy": "Gizlilik",
+  "nav.publications": "Yayınlar",
   "cta.join": "WhatsApp kanalına katıl",
   "cta.joinShort": "Katıl",
   "cta.note": "Ücretsiz · Anonim · Özel 30 saniyelik güncellemeler",
@@ -36,7 +38,6 @@
   "footer.made": "· Berlin'de üretildi",
   "footer.imprint": "Künye:",
   "footer.privacy": "Gizlilik",
-  "footer.contact": "İletişim",
   "footer.legal": "Editoryal içerik · Vergi danışmanlığının yerini tutmaz (§ 5 StBerG) · © 2026 HERO Tax",
   "ai_label.text": "Bu web sitesi yapay zekâ ile oluşturuldu.",
   "ai_label.link": "AB etiketlemesi"

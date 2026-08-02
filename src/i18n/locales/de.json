@@ -1,9 +1,11 @@
 {
   "nav.ki": "KI & Prozesse",
   "nav.news": "News-Hub",
+  "nav.eudiWallet": "EUDI-Wallet",
   "nav.tools": "Tools",
   "nav.live": "HERO Live",
   "nav.privacy": "Datenschutz",
+  "nav.publications": "Publikationen",
   "cta.join": "WhatsApp-Channel beitreten",
   "cta.joinShort": "Beitreten",
   "cta.note": "Kostenlos · Anonym · Exklusive 30-Sekunden-Updates",
@@ -36,7 +38,6 @@
   "footer.made": "· Made in Berlin",
   "footer.imprint": "Impressum:",
   "footer.privacy": "Datenschutz",
-  "footer.contact": "Kontakt",
   "footer.legal": "Redaktionelle Inhalte · Kein Steuerberatungs-Ersatz (§ 5 StBerG) · © 2026 HERO Tax",
   "ai_label.text": "Diese Website wurde mit KI generiert.",
   "ai_label.link": "EU-Kennzeichnung"

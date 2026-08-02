@@ -19,9 +19,11 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium" aria-label="Hauptnavigation">
           <a href="#ki" className="hover:underline underline-offset-8" style={{ color: T.muted }}>{t("nav.ki")}</a>
           <a href="#news" className="hover:underline underline-offset-8" style={{ color: T.muted }}>{t("nav.news")}</a>
+          <a href="#eudi-wallet" className="hover:underline underline-offset-8" style={{ color: T.muted }}>{t("nav.eudiWallet")}</a>
           <a href="#tools" className="hover:underline underline-offset-8" style={{ color: T.muted }}>{t("nav.tools")}</a>
           <a href="#live" className="hover:underline underline-offset-8" style={{ color: T.muted }}>{t("nav.live")}</a>
           <a href="#datenschutz" className="hover:underline underline-offset-8" style={{ color: T.muted }}>{t("nav.privacy")}</a>
+          <a href="#publikationen" className="hover:underline underline-offset-8" style={{ color: T.muted }}>{t("nav.publications")}</a>
         </nav>
         <div className="flex items-center gap-2">
           <LanguageSwitcher />

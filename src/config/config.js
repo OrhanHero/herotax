@@ -6,6 +6,7 @@ export const CONFIG = {
   youtube: "https://www.youtube.com/@herotaxberlin",
   x: "https://x.com/HeroTaxBerlin",
   linkedin: "https://www.linkedin.com/in/orhankahraman/",
+  github: "https://github.com/OrhanHero/herotax",
   handle: "@herotaxberlin",
   impressumName: "Orhan Kahraman",
   contactEmail: "orhanhero@outlook.de",
