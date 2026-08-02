@@ -14,6 +14,7 @@ import PrivacySection from "./components/sections/PrivacySection";
 import EUDIWalletSection from "./components/sections/EUDIWalletSection";
 import Footer from "./components/sections/Footer";
 import DatenschutzPage from "./components/pages/DatenschutzPage";
+import ImpressumPage from "./components/pages/ImpressumPage";
 
 export default function HeroTaxPlatform() {
   /* ── Sprach-State (global) ──
@@ -23,10 +24,14 @@ export default function HeroTaxPlatform() {
   const [articles, setArticles] = useState(ARTICLES);
   const activeLang = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0];
 
-  /* Minimal-Routing ohne Router-Bibliothek: nur die Datenschutzerklärung
-     ist eine eigene "Seite" (eigener Pfad, per .htaccess/Vite-SPA-Fallback
-     auf index.html gemappt). Alles andere bleibt die klassische One-Pager. */
-  const isDatenschutzPage = typeof window !== "undefined" && window.location.pathname.replace(/\/$/, "") === "/datenschutz";
+  /* Minimal-Routing ohne Router-Bibliothek: nur Datenschutzerklärung und
+     Impressum sind eigene "Seiten" (eigener Pfad, per .htaccess/Vite-SPA-
+     Fallback auf index.html gemappt). Alles andere bleibt die klassische
+     One-Pager. */
+  const pathname = typeof window !== "undefined" ? window.location.pathname.replace(/\/$/, "") : "";
+  const isDatenschutzPage = pathname === "/datenschutz";
+  const isImpressumPage = pathname === "/impressum";
+  const isLegalPage = isDatenschutzPage || isImpressumPage;
 
   /** t(key): Übersetzung mit Fallback-Kette gewählte Sprache → Deutsch → Key */
   const t = useMemo(() => {
@@ -58,11 +63,13 @@ export default function HeroTaxPlatform() {
     <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
       <div className="min-h-screen antialiased" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
         <Header />
-        {!isDatenschutzPage && <NewsTicker items={articles} />}
+        {!isLegalPage && <NewsTicker items={articles} />}
 
         <main>
           {isDatenschutzPage ? (
             <DatenschutzPage />
+          ) : isImpressumPage ? (
+            <ImpressumPage />
           ) : (
             <>
               <HeroSection />

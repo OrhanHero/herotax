@@ -62,7 +62,13 @@ const Footer = () => {
           style={{ backgroundColor: T.wash, border: `1px solid ${T.lineSoft}` }}
         >
           <p style={{ color: T.muted }}>
-            <span className="font-semibold" style={{ color: T.text }}>{t("footer.imprint")}</span>{" "}
+            <a
+              href="/impressum"
+              className="font-semibold hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded"
+              style={{ color: T.text }}
+            >
+              {t("footer.imprint")}
+            </a>{" "}
             <a
               href={CONFIG.linkedin}
               target="_blank"
