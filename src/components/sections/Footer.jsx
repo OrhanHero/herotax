@@ -49,7 +49,7 @@ const Footer = () => {
             {CONFIG.contactEmail}
           </a>
           <nav className="flex gap-6" aria-label="Rechtliches">
-            <a href="#" className="hover:underline underline-offset-4" style={{ color: T.muted }}>{t("footer.privacy")}</a>
+            <a href="/datenschutz" className="hover:underline underline-offset-4" style={{ color: T.muted }}>{t("footer.privacy")}</a>
             <a href="#" className="hover:underline underline-offset-4" style={{ color: T.muted }}>{t("footer.contact")}</a>
           </nav>
         </div>

@@ -12,6 +12,7 @@ import SocialWall from "./components/sections/SocialWall";
 import PrivacySection from "./components/sections/PrivacySection";
 import NewsletterSection from "./components/sections/NewsletterSection";
 import Footer from "./components/sections/Footer";
+import DatenschutzPage from "./components/pages/DatenschutzPage";
 
 export default function HeroTaxPlatform() {
   /* ── Sprach-State (global) ──
@@ -20,6 +21,11 @@ export default function HeroTaxPlatform() {
   const [lang, setLang] = useState(readStoredLang);
   const [articles, setArticles] = useState(ARTICLES);
   const activeLang = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0];
+
+  /* Minimal-Routing ohne Router-Bibliothek: nur die Datenschutzerklärung
+     ist eine eigene "Seite" (eigener Pfad, per .htaccess/Vite-SPA-Fallback
+     auf index.html gemappt). Alles andere bleibt die klassische One-Pager. */
+  const isDatenschutzPage = typeof window !== "undefined" && window.location.pathname.replace(/\/$/, "") === "/datenschutz";
 
   /** t(key): Übersetzung mit Fallback-Kette gewählte Sprache → Deutsch → Key */
   const t = useMemo(() => {
@@ -51,16 +57,22 @@ export default function HeroTaxPlatform() {
     <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
       <div className="min-h-screen antialiased" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
         <Header />
-        <NewsTicker items={articles} />
+        {!isDatenschutzPage && <NewsTicker items={articles} />}
 
         <main>
-          <HeroSection />
-          <AISection />
-          <NewsHub />
-          <ToolsSection />
-          <SocialWall />
-          <PrivacySection />
-          <NewsletterSection />
+          {isDatenschutzPage ? (
+            <DatenschutzPage />
+          ) : (
+            <>
+              <HeroSection />
+              <AISection />
+              <NewsHub />
+              <ToolsSection />
+              <SocialWall />
+              <PrivacySection />
+              <NewsletterSection />
+            </>
+          )}
         </main>
 
         <Footer />

@@ -17,6 +17,7 @@ public/api/cache/
 # Lokale Referenzordner (nicht Teil des Repos)
 /_old-reference/
 /LABEL_AI_GENERATED_PNG/
+/datenschutzerklaerung_herotax_de_de.pdf
 
 # Editor directories and files
 .vscode/*

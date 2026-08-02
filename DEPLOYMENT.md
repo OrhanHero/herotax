@@ -37,9 +37,10 @@ dist/
 
 ### 4. Test
 ```
-https://herotax.de           ← sollte die App laden
-https://herotax.de/news      ← sollte auch die App laden (SPA-Routing)
-https://herotax.de/tools     ← sollte auch die App laden
+https://herotax.de                ← sollte die App laden
+https://herotax.de/news           ← sollte auch die App laden (SPA-Routing)
+https://herotax.de/tools          ← sollte auch die App laden
+https://herotax.de/datenschutz    ← Datenschutzerklärung (eigene "Seite", kein Scroll-Anchor)
 ```
 
 ### 5. Browser-Caching prüfen
