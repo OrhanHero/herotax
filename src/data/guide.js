@@ -20,6 +20,11 @@ export const GUIDE_STEPS = [
     source: { label: "IHK Berlin", href: "https://www.ihk.de/berlin" },
   },
   {
+    title: "Steuerberater:in finden (optional, aber empfohlen)",
+    text: "Über das amtliche Verzeichnis der Steuerberaterkammer Berlin findest du zugelassene Steuerberater:innen in deiner Nähe — wichtig, sobald es komplexer wird als die eigene Buchhaltung.",
+    source: { label: "Steuerberaterkammer Berlin", href: "https://stbk-berlin.de/steuerberater-innen/" },
+  },
+  {
     title: "Fristen-System einrichten",
     text: "USt-VA, EÜR/Bilanz, Gewerbesteuer-Vorauszahlungen: alles in einen Kalender mit Vorlauf-Erinnerung. Oder: unserem WhatsApp-Channel folgen.",
     source: { label: "Bundesfinanzministerium — Steuertermine", href: "https://www.bundesfinanzministerium.de" },
