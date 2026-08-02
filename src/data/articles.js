@@ -4,28 +4,28 @@ export const AI_ARTICLES = [
   {
     title: "KI-gestützte Belegverarbeitung: Vom Schuhkarton zum Echtzeit-Reporting",
     excerpt:
-      "OCR + Kategorisierungs-Modelle nehmen der Buchhaltung 80 % der Handarbeit ab. Welche Workflows sich 2026 für Solo-Gründer wirklich lohnen — und wo menschliche Kontrolle Pflicht bleibt.",
+      "OCR- und Kategorisierungs-Modelle nehmen der Buchhaltung einen Großteil der Handarbeit ab. Welche Workflows sich für Solo-Gründer wirklich lohnen — und wo menschliche Kontrolle Pflicht bleibt.",
     read: "7 Min",
-    date: "05. Juli 2026",
-    source: { label: "Bundesfinanzministerium", href: "https://www.bundesfinanzministerium.de" },
+    date: "02. August 2026",
+    source: { label: "IHK Berlin — Digitalisierung", href: "https://www.ihk.de/berlin" },
     tag: "Automatisierung",
   },
   {
     title: "Risikomanagementsysteme im Finanzamt: So prüft der Algorithmus deine Erklärung",
     excerpt:
-      "Die Steuerverwaltung setzt zunehmend auf automatisierte Fallauswahl. Was das für Abgabe-Qualität und Plausibilität deiner Zahlen bedeutet.",
+      "Nach § 88 Abs. 5 AO dürfen Finanzämter automationsgestützte Systeme zur Fallauswahl einsetzen. Was das für Abgabe-Qualität und Plausibilität deiner Zahlen bedeutet.",
     read: "5 Min",
-    date: "03. Juli 2026",
-    source: { label: "Bundeszentralamt für Steuern", href: "https://www.bzst.de" },
+    date: "02. August 2026",
+    source: { label: "§ 88 Abs. 5 AO — Gesetze im Internet", href: "https://www.gesetze-im-internet.de/ao_1977/__88.html" },
     tag: "Steuerverwaltung",
   },
   {
     title: "Prozess-Intelligence: Monatsabschluss in 2 Stunden statt 2 Tagen",
     excerpt:
-      "Ein wiederholbarer Ablauf aus Bank-Sync, Regelwerk und KI-Vorkontierung. Der Effizienz-Blueprint zum Nachbauen.",
+      "Ein wiederholbarer Ablauf aus Bank-Sync, GoBD-konformer Ablage und KI-Vorkontierung. Der Effizienz-Blueprint zum Nachbauen.",
     read: "6 Min",
-    date: "01. Juli 2026",
-    source: { label: "IHK Berlin", href: "https://www.ihk.de/berlin" },
+    date: "02. August 2026",
+    source: { label: "Bundesfinanzministerium — GoBD", href: "https://www.bundesfinanzministerium.de" },
     tag: "Effizienz",
   },
 ];
@@ -36,28 +36,28 @@ export const AI_ARTICLES = [
     Meldungen aus https://bmds.bund.de/aktuelles übernehmen. */
 export const BMDS_ITEMS = [
   {
-    title: "KI-Regulierung: Der Rahmen für verlässliche KI in Deutschland",
-    text: "AI Act & Co.: Was der Bund an Leitplanken setzt, damit KI innovationsfreundlich und zugleich sicher eingesetzt werden kann — Pflichtlektüre, bevor du KI in deine Prozesse holst.",
-    date: "Themenseite",
-    source: { label: "BMDS · KI-Regulierung", href: "https://bmds.bund.de/themen/kuenstliche-intelligenz/ki-regulierung" },
+    title: "Neues KI-Gesetz tritt in Kraft",
+    text: "Das KI-Marktüberwachungs- und Innovationsgesetz (KI-MIG) regelt jetzt verbindlich, wie der AI Act in Deutschland umgesetzt wird — relevant für jeden, der KI-Tools in seinen Prozessen einsetzt.",
+    date: "29. Juli 2026",
+    source: { label: "BMDS · Pressemitteilung", href: "https://bmds.bund.de/aktuelles/aktuelle-meldungen/detail/neues-ki-gesetz-tritt-in-kraft" },
   },
   {
-    title: "Agentic AI Hub: Pilotierung erfolgreich abgeschlossen",
-    text: "Kommunen und Start-ups zeigen, wie die Verwaltung KI-Agenten schon heute sicher einsetzen kann. Ein Signal auch für Unternehmen: Der Bund testet, was bald Standard wird.",
-    date: "15. Juni 2026",
-    source: { label: "BMDS · Pressemitteilung", href: "https://bmds.bund.de/aktuelles/pressemitteilungen/detail/agentic-ai-hub-pilotierung-erfolgreich-abgeschlossen" },
+    title: "Agentic AI Hub: Start der 2. Bewerbungsrunde",
+    text: "Kommunen und Start-ups können sich erneut bewerben, um KI-Agenten in der Verwaltung sicher zu erproben. Ein Signal auch für Unternehmen: Der Bund testet, was bald Standard wird.",
+    date: "29. Juli 2026",
+    source: { label: "BMDS · Pressemitteilung", href: "https://bmds.bund.de/aktuelles/pressemitteilungen/detail/agentic-ai-hub-start-der-2-bewerbungsrunde" },
   },
   {
-    title: "SPARK: Neue KI-Software halbiert Genehmigungszeiten",
-    text: "Das BMDS veröffentlicht Module der KI-Software SPARK als Open Source — Planungs- und Genehmigungsverfahren werden drastisch beschleunigt. Gut für alle, die auf Ämter warten.",
-    date: "16. Juni 2026",
-    source: { label: "BMDS · Pressemitteilung", href: "https://bmds.bund.de/aktuelles/pressemitteilungen/detail/neue-ki-software-halbiert-genehmigungszeiten-bei-grossen-infrastrukturprojekten" },
+    title: "Offene Daten stärken: Neuer strategischer Rahmen für Open Data",
+    text: "Der Bund startet einen Konsultationsprozess für eine neue Open-Data-Strategie — relevant für alle, die öffentliche Datenquellen in eigene Tools und Auswertungen einbinden.",
+    date: "28. Juli 2026",
+    source: { label: "BMDS · Pressemitteilung", href: "https://bmds.bund.de/aktuelles/pressemitteilungen/detail/offene-daten-staerken-start-fuer-einen-neuen-strategischen-rahmen-fuer-open-data" },
   },
   {
-    title: "„Schneller Gründen“: Bund modernisiert den Gründungsprozess",
-    text: "Bund, Länder und Kommunen digitalisieren gemeinsam die Unternehmensgründung. Direkt relevant für jeden, der in Berlin gerade startet.",
-    date: "Themenseite",
-    source: { label: "BMDS · Schneller Gründen", href: "https://bmds.bund.de/themen/staatsmodernisierung/digitale-verwaltung/schneller-gruenden" },
+    title: "Digitale Wehrhaftigkeit des Staates stärken",
+    text: "Mit dem Programm „CyberGovSecure“ baut der Bund die Cybersicherheit der Verwaltung aus — ein Trend, der auch für IT-Sicherheitsanforderungen an Unternehmen im Behördenkontakt relevant wird.",
+    date: "22. Juli 2026",
+    source: { label: "BMDS · Pressemitteilung", href: "https://bmds.bund.de/aktuelles/pressemitteilungen/detail/digitale-wehrhaftigkeit-des-staates-staerken" },
   },
 ];
 
@@ -67,40 +67,40 @@ export const BMDS_ITEMS = [
     Meldungen aus dem Presse-/Meldungsbereich übernehmen. */
 export const BSI_ITEMS = [
   {
-    title: "KI-Sicherheit für Unternehmen: Das Kompetenzzentrum KI des BSI",
-    text: "Robustheit, Verlässlichkeit, Prüfkriterien: Die zentrale Anlaufstelle, wenn du KI-Systeme sicher einsetzen oder bewerten willst — von der Buchhaltungs-Automation bis zum Chatbot.",
-    date: "Themenseite",
-    source: { label: "BSI · Künstliche Intelligenz", href: "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Kuenstliche-Intelligenz/kuenstliche-intelligenz_node.html" },
+    title: "Sichere Ladeinfrastruktur: BSI veröffentlicht Eckpunktepapier",
+    text: "Gemeinsam mit den beteiligten Ressorts treibt das BSI Sicherheitsstandards für Ladeinfrastruktur voran — relevant für jeden Betrieb mit eigenem Fuhrpark oder Ladepunkten.",
+    date: "28. Juli 2026",
+    source: { label: "BSI · Pressemitteilung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/260728_Sichere_Ladeinfrastruktur.html" },
   },
   {
-    title: "Sicherheitshinweis: KI verändert die Bedrohungslage für Organisationen",
-    text: "Das BSI stuft die Auswirkungen der KI-Entwicklung auf die Cybersicherheit von Organisationen als hoch ein — Deepfakes, KI-gestütztes Phishing & Co. treffen auch kleine Unternehmen.",
-    date: "22. Juni 2026 · Kritikalität: Hoch",
-    source: { label: "BSI · IT-Sicherheitsmitteilungen", href: "https://www.bsi.bund.de/" },
+    title: "„CyberGovSecure“: Bundeskabinett stärkt Cybersicherheit der Bundesverwaltung",
+    text: "Ein neues Programm soll die IT-Sicherheit der Bundesverwaltung ausbauen — ein Vorbote für strengere Sicherheitsanforderungen auch bei Zulieferern und Dienstleistern der Verwaltung.",
+    date: "22. Juli 2026",
+    source: { label: "BSI · Pressemitteilung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/260722_Bundeskabinett_staerkt_CGS.html" },
   },
   {
-    title: "BSI-Magazin: NIS-2 und BSI-Gesetz stärken Cybersicherheit in Unternehmen",
-    text: "Registrierungspflichten, KI in der Praxis, Cybersicherheitsmonitor 2026: Rund ein Drittel der Befragten hinterfragt KI-generierte Inhalte nicht — die Ausgabe zeigt, was Unternehmen jetzt tun.",
-    date: "11. Juni 2026",
-    source: { label: "BSI · Pressemitteilung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Alle-Meldungen-News/Meldungen/2026/BSI-Magazin_NIS-2_BSIG_260611.html" },
+    title: "Projekt „Windows seziert“: Sicherheitsanalyse von Windows Hello for Business",
+    text: "Das BSI veröffentlicht eine detaillierte Sicherheitsanalyse der biometrischen Windows-Anmeldung — praktisch relevant, wenn du Firmengeräte mit Windows Hello absicherst.",
+    date: "15. Juli 2026",
+    source: { label: "BSI · Pressemitteilung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/260715_Projekt_Windows_seziert.html" },
   },
   {
-    title: "AIC4: KI-Cloud-Dienste vor dem Einkauf auf Sicherheit prüfen",
-    text: "Der Kriterienkatalog des BSI für KI-Cloud-Dienste — dein Werkzeug, um Anbieter von KI-Buchhaltung, OCR & Co. vor Vertragsabschluss auf Robustheit und Datenqualität abzuklopfen.",
-    date: "Kriterienkatalog",
-    source: { label: "BSI · AIC4", href: "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Kuenstliche-Intelligenz/AIC4/aic4_node.html" },
+    title: "Cyberangriffe auf Praxen: BSI unterstützt bei neuen IT-Sicherheitsvorgaben",
+    text: "Arztpraxen und ähnliche Kleinbetriebe geraten verstärkt ins Visier von Cyberkriminellen. Das BSI zeigt, wie die neuen IT-Sicherheitsvorgaben in der Praxis umgesetzt werden.",
+    date: "14. Juli 2026",
+    source: { label: "BSI · Pressemitteilung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/260714_Cyberangriffe_auf_Praxen.html" },
   },
 ];
 
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    title: "Gewerbeanmeldung 2.0: Berlins digitales Amt im Praxistest",
+    title: "Gewerbeanmeldung online: 15 € statt 26 € — und was der Systemwechsel gerade bedeutet",
     excerpt:
-      "Das Einheitliche Unternehmensportal verspricht die Anmeldung in unter 20 Minuten. Wir haben den Prozess durchgespielt — inklusive der drei Stolperfallen, die niemand erwähnt.",
-    read: "6 Min",
-    date: "04. Juli 2026",
-    source: { label: "Service-Portal Berlin", href: "https://service.berlin.de" },
+      "Über den Einheitlichen Ansprechpartner Berlin ist die Online-Anmeldung günstiger als vor Ort. Wegen laufender Systemumstellungen kann es aktuell trotzdem länger dauern — Bestätigungen kommen teils noch postalisch.",
+    read: "5 Min",
+    date: "02. August 2026",
+    source: { label: "Einheitlicher Ansprechpartner Berlin", href: "https://www.berlin.de/ea/" },
     featured: true,
   },
   {
@@ -113,11 +113,12 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "IBB-Förderprogramme im Q3: Diese Töpfe sind noch offen",
-    excerpt: "Von Digitalprämie bis GründungsBONUS — welche Anträge sich jetzt noch lohnen.",
+    title: "IBB-Förderprogramme: Die Digitalprämie ist Geschichte — das ist der Nachfolger",
+    excerpt:
+      "Die Digitalprämie Berlin nimmt keine Anträge mehr an; Digitalisierungsprojekte laufen jetzt über den Berliner InvestitionsBONUS. Der GründungsBONUS Plus bringt bis zu 50.000 € — bei frauengeführten Gründungen seit April zusätzlich 10.000 €.",
     read: "5 Min",
-    date: "02. Juli 2026",
-    source: { label: "Investitionsbank Berlin", href: "https://www.ibb.de" },
+    date: "16. Januar 2026",
+    source: { label: "Investitionsbank Berlin — GründungsBONUS Plus", href: "https://www.ibb.de/de/foerderprogramme/gruendungsbonus-plus.html" },
   },
   {
     cat: "Bund & Steuer",
@@ -129,11 +130,15 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "KassenSichV-Kontrollen in Berlin: So läuft der unangekündigte Besuch",
-    excerpt: "Was das Finanzamt prüft, was du bereithalten musst — und was eine fehlende TSE kostet.",
+    title: "KassenSichV-Novelle seit Januar 2026: Das ändert sich für Kassen in Berlin",
+    excerpt:
+      "Die 2. Änderungsverordnung ist seit 19. Januar 2026 in Kraft — E-Rechnungen können jetzt den Kassenbeleg ersetzen. Gleichzeitig verschärfen Finanzämter die unangekündigten Kassen-Nachschauen: Bei über der Hälfte der geprüften Kassen fanden Prüfer Mängel.",
     read: "5 Min",
-    date: "29. Juni 2026",
-    source: { label: "Berlin.de / Finanzämter", href: "https://www.berlin.de/sen/finanzen" },
+    date: "19. Januar 2026",
+    source: {
+      label: "Bundesfinanzministerium — 2. VO zur Änderung der KassenSichV",
+      href: "https://www.bundesfinanzministerium.de/Content/DE/Gesetzestexte/Gesetze_Gesetzesvorhaben/Abteilungen/Abteilung_IV/21_Legislaturperiode/2025-11-05-2-VO-Aenderung-KassenSichV/0-Verordnung.html",
+    },
   },
   {
     cat: "Bund & Steuer",
