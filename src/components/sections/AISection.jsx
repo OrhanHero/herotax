@@ -1,7 +1,9 @@
+import { useState, useEffect } from "react";
 import { Cpu, ArrowUpRight, ShieldCheck, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
 import { AI_ARTICLES, BMDS_ITEMS, BSI_ITEMS } from "../../data/articles";
+import { getArticles } from "../../services/articleService";
 import Eyebrow from "../atoms/Eyebrow";
 import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
@@ -9,6 +11,15 @@ import SourceLink from "../atoms/SourceLink";
 /** Säule 01 · KI im Steuerrecht & Prozess-Intelligence */
 const AISection = () => {
   const { t } = useLang();
+  const [bmdsItems, setBmdsItems] = useState(BMDS_ITEMS);
+  const [bsiItems, setBsiItems] = useState(BSI_ITEMS);
+
+  // Lade BMDS- & BSI-Meldungen live (mit Caching & Fallback auf kuratierte Daten)
+  useEffect(() => {
+    getArticles("bmds").then(setBmdsItems);
+    getArticles("bsi").then(setBsiItems);
+  }, []);
+
   return (
     <section className="max-w-7xl mx-auto px-5 sm:px-8 py-24" id="ki">
       <Eyebrow index="01">{t("ai.eyebrow")}</Eyebrow>
@@ -100,7 +111,7 @@ const AISection = () => {
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          {BMDS_ITEMS.map((item) => (
+          {bmdsItems.map((item) => (
             <a
               key={item.title}
               href={item.source.href}
@@ -157,7 +168,7 @@ const AISection = () => {
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          {BSI_ITEMS.map((item) => (
+          {bsiItems.map((item) => (
             <a
               key={item.title}
               href={item.source.href}

@@ -30,7 +30,7 @@ export default function HeroTaxPlatform() {
 
   // Lade Artikel mit Caching & Update-Logik
   useEffect(() => {
-    getArticles("ai").then((data) => {
+    getArticles("general").then((data) => {
       setArticles(data);
     });
   }, []);

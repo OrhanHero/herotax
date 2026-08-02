@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 *.zip
+public/api/cache/
+
+# Lokale Referenzordner (nicht Teil des Repos)
+/_old-reference/
+/LABEL_AI_GENERATED_PNG/
 
 # Editor directories and files
 .vscode/*

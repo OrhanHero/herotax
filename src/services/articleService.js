@@ -1,107 +1,121 @@
-/* ── Article-Service: Automatisches Laden & Caching ─────────────── */
+/* ── Article-Service: Automatisches Laden & Caching ───────────────
+   Holt aktuelle Meldungen über /api/feed.php (serverseitiger RSS-
+   Proxy, siehe public/api/feed.php) und cached sie im localStorage.
+   Schlägt der Live-Abruf fehl (z.B. lokale Entwicklung ohne PHP,
+   Netzwerkfehler, Feed down), fällt jeder Typ auf die kuratierten
+   statischen Daten aus data/articles.js zurück — die Seite bleibt
+   in jedem Fall funktionsfähig. ─────────────────────────────────── */
 
-import { AI_ARTICLES, BMDS_ITEMS } from "../data/articles";
+import { BMDS_ITEMS, BSI_ITEMS, ARTICLES } from "../data/articles";
 
-const CACHE_KEYS = {
-  AI_ARTICLES: "herotax_ai_articles",
-  BMDS_ITEMS: "herotax_bmds_items",
-  CACHE_TIMESTAMP: "herotax_cache_timestamp",
+const CACHE_PREFIX = "herotax_feed_";
+const CACHE_DURATION = 30 * 60 * 1000; // 30 Minuten — spiegelt den PHP-Cache
+
+/** type → welcher Feed-Proxy-Quellname abgefragt wird (siehe SOURCES in feed.php) */
+const FEED_SOURCE = {
+  general: "bmf-steuern",
+  bmds: "bmds",
+  bsi: "bsi",
 };
 
-const CACHE_DURATION = 60 * 60 * 1000; // 1 Stunde
-
-/** Artikel aus localStorage laden (mit Fallback zu statischen Daten) */
-export const loadArticles = (type = "ai") => {
-  const key = type === "ai" ? CACHE_KEYS.AI_ARTICLES : CACHE_KEYS.BMDS_ITEMS;
-  const staticData = type === "ai" ? AI_ARTICLES : BMDS_ITEMS;
-
-  try {
-    const cached = localStorage.getItem(key);
-    if (cached) {
-      return JSON.parse(cached);
-    }
-  } catch (e) {
-    console.warn(`Failed to load ${key} from cache:`, e);
-  }
-
-  return staticData;
+const STATIC_DATA = {
+  general: ARTICLES,
+  bmds: BMDS_ITEMS,
+  bsi: BSI_ITEMS,
 };
 
-/** Artikel in localStorage speichern */
-export const saveArticles = (type, articles) => {
-  const key = type === "ai" ? CACHE_KEYS.AI_ARTICLES : CACHE_KEYS.BMDS_ITEMS;
+const cacheKey = (type) => `${CACHE_PREFIX}${type}`;
+const cacheTimestampKey = (type) => `${CACHE_PREFIX}${type}_ts`;
 
+const loadCache = (type) => {
   try {
-    localStorage.setItem(key, JSON.stringify(articles));
-    localStorage.setItem(CACHE_KEYS.CACHE_TIMESTAMP, Date.now().toString());
-  } catch (e) {
-    console.warn(`Failed to save articles to cache:`, e);
+    const raw = localStorage.getItem(cacheKey(type));
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
   }
 };
 
-/** Cache-Status prüfen (ist Aktualisierung nötig?) */
-export const isCacheStale = () => {
+const saveCache = (type, data) => {
   try {
-    const timestamp = localStorage.getItem(CACHE_KEYS.CACHE_TIMESTAMP);
-    if (!timestamp) return true;
+    localStorage.setItem(cacheKey(type), JSON.stringify(data));
+    localStorage.setItem(cacheTimestampKey(type), Date.now().toString());
+  } catch {
+    /* z.B. Privater Modus / Speicher voll — Cache ist nur ein Optimierung */
+  }
+};
 
-    const age = Date.now() - parseInt(timestamp, 10);
-    return age > CACHE_DURATION;
+const isCacheStale = (type) => {
+  try {
+    const ts = localStorage.getItem(cacheTimestampKey(type));
+    if (!ts) return true;
+    return Date.now() - parseInt(ts, 10) > CACHE_DURATION;
   } catch {
     return true;
   }
 };
 
-/** Cache leeren */
-export const clearCache = () => {
+/** Ruft den serverseitigen Feed-Proxy ab. Gibt null zurück, wenn nicht verfügbar
+    (kein Fehler-Throw — der Aufrufer entscheidet über den Fallback). */
+const fetchLiveItems = async (type) => {
+  const source = FEED_SOURCE[type];
+  if (!source) return null;
+
   try {
-    localStorage.removeItem(CACHE_KEYS.AI_ARTICLES);
-    localStorage.removeItem(CACHE_KEYS.BMDS_ITEMS);
-    localStorage.removeItem(CACHE_KEYS.CACHE_TIMESTAMP);
-  } catch (e) {
-    console.warn("Failed to clear cache:", e);
+    const res = await fetch(`/api/feed.php?source=${source}`, {
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return Array.isArray(data.items) && data.items.length > 0 ? data.items : null;
+  } catch {
+    return null;
   }
 };
 
-/**
- * Externe Artikel-Quelle abrufen (Platzhalter für zukünftige API-Integration)
- * Beispiel: NewsAPI, RSS-Feed, Custom-Backend, etc.
- */
-export const fetchArticlesFromAPI = async (type = "ai") => {
-  // TODO: Hier API-Endpoint eintragen, wenn verfügbar
-  // const apiUrl = type === "ai" ? process.env.VITE_API_AI_ARTICLES : process.env.VITE_API_BMDS_ITEMS;
-  // if (!apiUrl) return null;
-  // const response = await fetch(apiUrl);
-  // return response.json();
-
-  return null; // Derzeit deaktiviert, nutze statische Daten
+/** Bettet Live-Meldungen des BMF-Feeds ("Bund & Steuer") in die
+    kuratierten "Berlin Fokus"-Artikel ein, statt sie zu ersetzen. */
+const mergeGeneral = (liveItems) => {
+  const berlinFokus = ARTICLES.filter((a) => a.cat === "Berlin Fokus");
+  const bundSteuer = liveItems.map((item) => ({
+    cat: "Bund & Steuer",
+    title: item.title,
+    excerpt: item.excerpt,
+    read: "4 Min",
+    date: item.date,
+    source: item.source,
+  }));
+  return [...berlinFokus, ...bundSteuer];
 };
 
 /**
- * Artikel mit Caching & Update-Logik laden
- * - Nutzt Cache wenn gültig
- * - Holt neue Daten async wenn Cache alt
+ * Artikel laden — nutzt Cache wenn frisch, holt sonst live nach.
+ * type: "general" (News-Hub/Ticker) | "bmds" | "bsi"
  */
-export const getArticles = async (type = "ai") => {
-  const cached = loadArticles(type);
-  const stale = isCacheStale();
-
-  // Cache ist gültig, nutze ihn
-  if (!stale) {
+export const getArticles = async (type = "general") => {
+  const cached = loadCache(type);
+  if (cached && !isCacheStale(type)) {
     return cached;
   }
 
-  // Cache ist alt, versuche neue Daten zu laden
-  try {
-    const fresh = await fetchArticlesFromAPI(type);
-    if (fresh) {
-      saveArticles(type, fresh);
-      return fresh;
-    }
-  } catch (e) {
-    console.warn(`Failed to fetch fresh articles (${type}):`, e);
+  const live = await fetchLiveItems(type);
+  if (live) {
+    const result = type === "general" ? mergeGeneral(live) : live;
+    saveCache(type, result);
+    return result;
   }
 
-  // Fallback: Cache oder statische Daten
-  return cached;
+  return cached || STATIC_DATA[type] || [];
+};
+
+/** Cache leeren (z.B. für einen manuellen "Neu laden"-Button) */
+export const clearCache = () => {
+  try {
+    Object.keys(FEED_SOURCE).forEach((type) => {
+      localStorage.removeItem(cacheKey(type));
+      localStorage.removeItem(cacheTimestampKey(type));
+    });
+  } catch {
+    /* noop */
+  }
 };

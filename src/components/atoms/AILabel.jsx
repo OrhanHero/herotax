@@ -1,7 +1,7 @@
 /* EU AI Act Labeling (Digital Strategy) — Offizielles Icon */
 import { useLang } from "../../i18n";
 import { T } from "../../config/tokens";
-import aiGeneratedIcon from "../../assets/eu-ai-icons/ai-generated-black.svg";
+import aiGeneratedIcon from "../../assets/eu-ai-icons/ai-generated-black.png";
 
 export default function AILabel() {
   const { t, isRTL } = useLang();

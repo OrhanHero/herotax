@@ -17,7 +17,7 @@ const NewsHub = () => {
 
   // Lade Artikel beim Mount (mit Caching & automatischem Update)
   useEffect(() => {
-    getArticles("ai").then((data) => {
+    getArticles("general").then((data) => {
       setArticles(data);
     });
   }, []);
