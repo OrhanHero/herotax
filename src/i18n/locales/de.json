@@ -45,5 +45,7 @@
   "footer.imprint": "Impressum:",
   "footer.privacy": "Datenschutz",
   "footer.contact": "Kontakt",
-  "footer.legal": "Redaktionelle Inhalte · Kein Steuerberatungs-Ersatz (§ 5 StBerG) · © 2026 HERO Tax"
+  "footer.legal": "Redaktionelle Inhalte · Kein Steuerberatungs-Ersatz (§ 5 StBerG) · © 2026 HERO Tax",
+  "ai_label.text": "Diese Website wurde mit KI generiert.",
+  "ai_label.link": "EU-Kennzeichnung"
 }
