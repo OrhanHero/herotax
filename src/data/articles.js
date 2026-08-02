@@ -92,6 +92,48 @@ export const BSI_ITEMS = [
   },
 ];
 
+/** DE-Ökosystem · DeutschlandGPT — DSGVO-konforme KI-Plattform für den
+    deutschen Mittelstand. Kuratierte Verlinkung als ergänzende Ressource
+    neben den redaktionellen News. Quelle: https://www.deutschlandgpt.de/ */
+export const DEUTSCHLANDGPT_LINKS = [
+  {
+    id: "home",
+    title: "DeutschlandGPT",
+    desc: "DSGVO-konforme KI-Plattform für den Mittelstand — ChatGPT, Claude & Gemini, gehostet in Deutschland.",
+    href: "https://www.deutschlandgpt.de/",
+  },
+  {
+    id: "blog",
+    title: "Blog",
+    desc: "KI-Wissen für den deutschen Mittelstand — praktische Guides und Insights zur sicheren KI-Einführung.",
+    href: "https://www.deutschlandgpt.de/blog",
+  },
+  {
+    id: "case-studies",
+    title: "Case Studies",
+    desc: "Erfolgreiche KI-Implementierungen deutscher Unternehmen und Organisationen im Überblick.",
+    href: "https://www.deutschlandgpt.de/case-studies",
+  },
+  {
+    id: "ressourcen",
+    title: "Ressourcen",
+    desc: "Kostenlose Materialien und Leitfäden zur strukturierten KI-Einführung im Unternehmen.",
+    href: "https://www.deutschlandgpt.de/ressourcen",
+  },
+  {
+    id: "vergleich",
+    title: "Vergleich",
+    desc: "Fairer Vergleich mit ChatGPT, Copilot, Langdock und weiteren KI-Lösungen.",
+    href: "https://www.deutschlandgpt.de/vergleich",
+  },
+  {
+    id: "ki-starter-check",
+    title: "KI-Starter-Check",
+    desc: "In 2 Minuten zum persönlichen KI-Starter-Plan — kostenlos und unverbindlich.",
+    href: "https://www.deutschlandgpt.de/ki-starter-check",
+  },
+];
+
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",

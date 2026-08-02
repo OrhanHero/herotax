@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck } from "lucide-react";
 import { useLang } from "../../i18n";
-import { T, fontDisplay, cardBase } from "../../config/tokens";
-import { ARTICLES } from "../../data/articles";
+import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
+import { ARTICLES, DEUTSCHLANDGPT_LINKS } from "../../data/articles";
 import { getArticles } from "../../services/articleService";
 import Eyebrow from "../atoms/Eyebrow";
 import CategoryTag from "../atoms/CategoryTag";
 import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
+
+const DE_ICONS = {
+  home: Home,
+  blog: Newspaper,
+  "case-studies": Trophy,
+  ressourcen: FileText,
+  vergleich: Scale,
+  "ki-starter-check": ClipboardCheck,
+};
 
 /** Säule 02 · News-Hub mit Kategorie-Filter */
 const NewsHub = () => {
@@ -116,6 +125,77 @@ const NewsHub = () => {
               </div>
             </article>
           ))}
+        </div>
+
+        {/* ── DE-Ökosystem · DeutschlandGPT ──
+            Kuratierte Verlinkung zur DSGVO-konformen KI-Plattform für den
+            deutschen Mittelstand — als ergänzende Ressource neben den News. */}
+        <div className="mt-16 pt-12" style={{ borderTop: `1px solid ${T.lineSoft}` }}>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+            <div>
+              <span
+                className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full uppercase tracking-wider mb-4"
+                style={{ ...fontMono, color: T.blue, backgroundColor: T.blueDim, border: `1px solid ${T.blueBorder}` }}
+              >
+                <Sparkles size={11} />
+                DE · KI-Ökosystem
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight" style={{ ...fontDisplay, color: T.text }}>
+                DeutschlandGPT
+              </h3>
+              <p className="text-sm mt-2 max-w-md" style={{ color: T.muted }}>
+                DSGVO-konforme KI-Plattform für den deutschen Mittelstand — ChatGPT, Claude & Gemini, gehostet in Deutschland.
+              </p>
+            </div>
+            <a
+              href="https://www.deutschlandgpt.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 self-start px-5 py-2.5 rounded-full text-sm font-bold transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2"
+              style={{ ...fontDisplay, backgroundColor: T.blue, color: T.blueInk }}
+            >
+              Zur Plattform
+              <ExternalLink size={14} />
+            </a>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {DEUTSCHLANDGPT_LINKS.map((item) => {
+              const Icon = DE_ICONS[item.id];
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-3xl p-6 flex flex-col gap-8 transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2"
+                  style={cardBase}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: T.blueDim, border: `1px solid ${T.blueBorder}` }}
+                    >
+                      <Icon size={18} style={{ color: T.blue }} />
+                    </span>
+                    <ArrowUpRight
+                      size={18}
+                      className="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{ color: T.blue }}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold tracking-tight leading-snug mb-2" style={{ ...fontDisplay, color: T.text }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-sm leading-relaxed" style={{ color: T.muted }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
