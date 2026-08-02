@@ -7,6 +7,7 @@ import TikTokGlyph from "../atoms/TikTokGlyph";
 import InstagramGlyph from "../atoms/InstagramGlyph";
 import YouTubeGlyph from "../atoms/YouTubeGlyph";
 import XGlyph from "../atoms/XGlyph";
+import LinkedInGlyph from "../atoms/LinkedInGlyph";
 import AILabel from "../atoms/AILabel";
 
 /** Footer mit Impressum */
@@ -46,7 +47,16 @@ const Footer = () => {
         >
           <p style={{ color: T.muted }}>
             <span className="font-semibold" style={{ color: T.text }}>{t("footer.imprint")}</span>{" "}
-            {CONFIG.impressumName}
+            <a
+              href={CONFIG.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded"
+              style={{ color: T.muted }}
+            >
+              {CONFIG.impressumName}
+              <LinkedInGlyph size={14} />
+            </a>
           </p>
           <a
             href={`mailto:${CONFIG.contactEmail}`}
