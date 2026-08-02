@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck, Building2, Landmark } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
 import { ARTICLES, DEUTSCHLANDGPT_LINKS } from "../../data/articles";
@@ -79,14 +79,29 @@ const NewsHub = () => {
         <div className="grid lg:grid-cols-3 gap-5">
           {featured && (
             <article
-              className="lg:col-span-2 lg:row-span-2 group rounded-3xl p-8 sm:p-12 flex flex-col justify-between min-h-96 transition-all duration-300"
+              className="relative lg:col-span-2 lg:row-span-2 group rounded-3xl p-8 sm:p-12 flex flex-col justify-between min-h-96 overflow-hidden transition-all duration-300"
               style={cardBase}
             >
-              <div className="flex items-center justify-between gap-4">
+              {/* Dezentes Rubrik-Wasserzeichen füllt die Fläche zwischen Kopfzeile
+                  und Text — passt sich automatisch an die Rubrik des jeweils
+                  featured Artikels an (Berlin Fokus vs. Bund & Steuer). */}
+              {(() => {
+                const FeaturedIcon = featured.cat === "Berlin Fokus" ? Building2 : Landmark;
+                return (
+                  <FeaturedIcon
+                    size={280}
+                    strokeWidth={1}
+                    className="absolute -right-8 top-1/2 -translate-y-1/2 pointer-events-none"
+                    style={{ color: T.blueDim }}
+                    aria-hidden="true"
+                  />
+                );
+              })()}
+              <div className="relative flex items-center justify-between gap-4">
                 <CategoryTag cat={featured.cat} />
                 <ArrowUpRight size={22} style={{ color: T.blue }} />
               </div>
-              <div>
+              <div className="relative">
                 <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight mt-16 mb-5" style={{ ...fontDisplay, color: T.text }}>
                   {featured.title}
                 </h3>
