@@ -150,6 +150,15 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
+    title: "Abgeordnetenhauswahl am 20. September 2026: Das fordert die Wirtschaft",
+    excerpt:
+      "18 Berliner Kammern und Verbände, darunter die IHK Berlin, haben gemeinsame Positionen zur Wahl veröffentlicht: keine neuen Steuern oder Abgaben, weniger Bürokratie, mehr Tempo bei Verwaltung, Stadtentwicklung, Infrastruktur und Innovation. Eine rein sachliche Zusammenfassung der Forderungen — keine Wahlempfehlung.",
+    read: "4 Min",
+    date: "02. August 2026",
+    source: { label: "IHK Berlin — Abgeordnetenhauswahl 2026", href: "https://www.ihk.de/berlin/politische-positionen-und-statistiken-channel/wahlen/abgeordnetenhauswahl" },
+  },
+  {
+    cat: "Berlin Fokus",
     title: "Investitionsrekord: 1,4 Milliarden Euro für Berlin im ersten Halbjahr 2026",
     excerpt:
       "Berlin Partner meldet einen Rekordwert bei Unternehmensinvestitionen im ersten Halbjahr — ein starkes Signal für den Standort, während gleichzeitig die neue Innovationsstrategie InnoBB 2035 vorgestellt wird.",
