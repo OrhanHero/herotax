@@ -3,6 +3,7 @@ export const CONFIG = {
   whatsappUrl: "https://whatsapp.com/channel/0029VbBwfND4o7qDJ1Wi6N2d",
   instagram: "https://instagram.com/herotaxberlin",
   tiktok: "https://tiktok.com/@herotaxberlin",
+  youtube: "https://www.youtube.com/@herotaxberlin",
   handle: "@herotaxberlin",
   impressumName: "Orhan Kahraman",
   contactEmail: "orhanhero@outlook.de",

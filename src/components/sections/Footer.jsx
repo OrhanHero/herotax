@@ -5,6 +5,7 @@ import { T, fontDisplay, fontMono } from "../../config/tokens";
 import WhatsAppGlyph from "../atoms/WhatsAppGlyph";
 import TikTokGlyph from "../atoms/TikTokGlyph";
 import InstagramGlyph from "../atoms/InstagramGlyph";
+import YouTubeGlyph from "../atoms/YouTubeGlyph";
 import AILabel from "../atoms/AILabel";
 
 /** Footer mit Impressum */
@@ -24,6 +25,9 @@ const Footer = () => {
             </a>
             <a href={CONFIG.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="hover:opacity-70" style={{ color: T.muted }}>
               <TikTokGlyph size={17} />
+            </a>
+            <a href={CONFIG.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:opacity-70" style={{ color: T.muted }}>
+              <YouTubeGlyph size={18} />
             </a>
             <a href={CONFIG.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Channel" className="hover:opacity-70" style={{ color: T.muted }}>
               <WhatsAppGlyph size={17} />
