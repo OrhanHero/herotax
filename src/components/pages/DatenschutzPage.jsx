@@ -1,11 +1,13 @@
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 
 /* ── Datenschutzerklärung ──────────────────────────────────────────
-   Rechtstext erstellt mit dem Generator von e-recht24.de auf Basis
-   der vom Betreiber gemachten Angaben. Der Wortlaut wird hier
-   unverändert übernommen — Änderungen an diesem Text sollten über
-   den e-recht24-Generator erfolgen, damit die Erklärung weiterhin
-   dem dortigen Stand entspricht.
+   Rechtstext-Basis erstellt mit dem Generator von e-recht24.de.
+   Auf die tatsächlich eingesetzten Dienste zugeschnitten: Abschnitte
+   zu Tools, die auf herotax.de (noch) nicht laufen (Instagram-Embed,
+   IONOS WebAnalytics, Newsletter-Versand, YouTube), wurden entfernt.
+   Wird eines dieser Tools später eingebaut, MUSS der passende
+   Abschnitt hier wieder ergänzt werden (am besten erneut über den
+   e-recht24-Generator, dann hierher übertragen).
    ────────────────────────────────────────────────────────────────── */
 
 const H2 = ({ children }) => (
@@ -110,10 +112,9 @@ export default function DatenschutzPage() {
           Wofür nutzen wir Ihre Daten?
         </p>
         <P>
-          Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere
-          Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge
-          geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote,
-          Bestellungen oder sonstige Auftragsanfragen verarbeitet.
+          Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Sofern
+          über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten
+          auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.
         </P>
         <p className="font-semibold text-sm mb-2" style={{ color: T.text }}>
           Welche Rechte haben Sie bezüglich Ihrer Daten?
@@ -138,11 +139,7 @@ export default function DatenschutzPage() {
         </P>
         <P>
           Die Verwendung von IONOS erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes
-          Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Sofern eine entsprechende
-          Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a
-          DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf
-          Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die
-          Einwilligung ist jederzeit widerrufbar.
+          Interesse an einer möglichst zuverlässigen Darstellung unserer Website.
         </P>
         <p className="font-semibold text-sm mb-2" style={{ color: T.text }}>
           Auftragsverarbeitung
@@ -208,17 +205,13 @@ export default function DatenschutzPage() {
         <P>
           Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf
           Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien
-          nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung
-          personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49
-          Abs. 1 lit. a DSGVO. Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen in Ihr
-          Endgerät (z. B. via Device-Fingerprinting) eingewilligt haben, erfolgt die Datenverarbeitung zusätzlich auf
-          Grundlage von § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar. Sind Ihre Daten zur
-          Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre
-          Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese
-          zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind, auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO.
-          Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f
-          DSGVO erfolgen. Über die jeweils im Einzelfall einschlägigen Rechtsgrundlagen wird in den folgenden
-          Absätzen dieser Datenschutzerklärung informiert.
+          nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung
+          vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b
+          DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung
+          erforderlich sind, auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf
+          Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen. Über die jeweils im
+          Einzelfall einschlägigen Rechtsgrundlagen wird in den folgenden Absätzen dieser Datenschutzerklärung
+          informiert.
         </P>
 
         <H3>Empfänger von personenbezogenen Daten</H3>
@@ -230,8 +223,7 @@ export default function DatenschutzPage() {
           an Steuerbehörden), wenn wir ein berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO an der Weitergabe
           haben oder wenn eine sonstige Rechtsgrundlage die Datenweitergabe erlaubt. Beim Einsatz von
           Auftragsverarbeitern geben wir personenbezogene Daten unserer Kunden nur auf Grundlage eines gültigen
-          Vertrags über Auftragsverarbeitung weiter. Im Falle einer gemeinsamen Verarbeitung wird ein Vertrag über
-          gemeinsame Verarbeitung geschlossen.
+          Vertrags über Auftragsverarbeitung weiter.
         </P>
 
         <H3>Widerruf Ihrer Einwilligung zur Datenverarbeitung</H3>
@@ -325,9 +317,9 @@ export default function DatenschutzPage() {
         <H3>SSL- bzw. TLS-Verschlüsselung</H3>
         <P>
           Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum
-          Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw.
-          TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers
-          von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+          Beispiel Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine
+          verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf
+          „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
         </P>
         <P>
           Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht
@@ -342,236 +334,28 @@ export default function DatenschutzPage() {
           von Werbeinformationen, etwa durch Spam-E-Mails, vor.
         </P>
 
-        <H2>4. Datenerfassung auf dieser Website</H2>
-        <H3>Cookies</H3>
+        <H2>4. Lokale Speicherung im Browser</H2>
         <P>
-          Unsere Internetseiten verwenden so genannte „Cookies". Cookies sind kleine Datenpakete und richten auf
-          Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung
-          (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies
-          werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät
-          gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.
-        </P>
-        <P>
-          Cookies können von uns (First-Party-Cookies) oder von Drittunternehmen stammen (sog.
-          Third-Party-Cookies). Third-Party-Cookies ermöglichen die Einbindung bestimmter Dienstleistungen von
-          Drittunternehmen innerhalb von Webseiten (z. B. Cookies zur Abwicklung von Zahlungsdienstleistungen).
-        </P>
-        <P>
-          Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind technisch notwendig, da bestimmte
-          Webseitenfunktionen ohne diese nicht funktionieren würden (z. B. die Warenkorbfunktion oder die Anzeige
-          von Videos). Andere Cookies können zur Auswertung des Nutzerverhaltens oder zu Werbezwecken
-          verwendet werden.
-        </P>
-        <P>
-          Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs, zur Bereitstellung
-          bestimmter, von Ihnen erwünschter Funktionen (z. B. für die Warenkorbfunktion) oder zur Optimierung der
-          Website (z. B. Cookies zur Messung des Webpublikums) erforderlich sind (notwendige Cookies), werden auf
-          Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert, sofern keine andere Rechtsgrundlage angegeben wird.
-          Der Websitebetreiber hat ein berechtigtes Interesse an der Speicherung von notwendigen Cookies zur
-          technisch fehlerfreien und optimierten Bereitstellung seiner Dienste. Sofern eine Einwilligung zur
-          Speicherung von Cookies und vergleichbaren Wiedererkennungstechnologien abgefragt wurde, erfolgt die
-          Verarbeitung ausschließlich auf Grundlage dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1
-          TDDDG); die Einwilligung ist jederzeit widerrufbar.
-        </P>
-        <P>
-          Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und
-          Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell
-          ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der
-          Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.
-        </P>
-        <P>
-          Sofern weitere Cookies und Dienste auf dieser Website eingesetzt werden, können Sie dies dieser
-          Datenschutzerklärung entnehmen.
-        </P>
-
-        <H2>5. Soziale Medien</H2>
-        <H3>Instagram</H3>
-        <P>
-          Auf dieser Website sind Funktionen des Dienstes Instagram eingebunden. Diese Funktionen werden
-          angeboten durch die Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland.
-        </P>
-        <P>
-          Wenn das Social-Media-Element aktiv ist, wird eine direkte Verbindung zwischen Ihrem Endgerät und dem
-          Instagram-Server hergestellt. Instagram erhält dadurch Informationen über den Besuch dieser Website
-          durch Sie.
-        </P>
-        <P>
-          Wenn Sie in Ihrem Instagram-Account eingeloggt sind, können Sie durch Anklicken des Instagram-Buttons
-          die Inhalte dieser Website mit Ihrem Instagram-Profil verlinken. Dadurch kann Instagram den Besuch dieser
-          Website Ihrem Benutzerkonto zuordnen. Wir weisen darauf hin, dass wir als Anbieter der Seiten keine
-          Kenntnis vom Inhalt der übermittelten Daten sowie deren Nutzung durch Instagram erhalten.
-        </P>
-        <P>
-          Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und §
-          25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
-        </P>
-        <P>
-          Soweit mit Hilfe des hier beschriebenen Tools personenbezogene Daten auf unserer Website erfasst und an
-          Facebook bzw. Instagram weitergeleitet werden, sind wir und die Meta Platforms Ireland Limited, Merrion
-          Road Dublin 4, Dublin, D04 X2K5, Irland gemeinsam für diese Datenverarbeitung verantwortlich (Art. 26
-          DSGVO). Die gemeinsame Verantwortlichkeit beschränkt sich dabei ausschließlich auf die Erfassung der
-          Daten und deren Weitergabe an Facebook bzw. Instagram. Die nach der Weiterleitung erfolgende
-          Verarbeitung durch Facebook bzw. Instagram ist nicht Teil der gemeinsamen Verantwortung. Die uns
-          gemeinsam obliegenden Verpflichtungen wurden in einer Vereinbarung über gemeinsame Verarbeitung
-          festgehalten. Den Wortlaut der Vereinbarung finden Sie unter:{" "}
-          <A href="https://www.facebook.com/legal/controller_addendum">https://www.facebook.com/legal/controller_addendum</A>.
-          Laut dieser Vereinbarung sind wir für die Erteilung der Datenschutzinformationen beim Einsatz des
-          Facebook- bzw. Instagram-Tools und für die datenschutzrechtlich sichere Implementierung des Tools auf
-          unserer Website verantwortlich. Für die Datensicherheit der Facebook bzw. Instagram-Produkte ist
-          Facebook verantwortlich. Betroffenenrechte (z. B. Auskunftsersuchen) hinsichtlich der bei Facebook bzw.
-          Instagram verarbeiteten Daten können Sie direkt bei Facebook geltend machen. Wenn Sie die
-          Betroffenenrechte bei uns geltend machen, sind wir verpflichtet, diese an Facebook weiterzuleiten.
-        </P>
-        <P>
-          Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt.
-          Details finden Sie hier:{" "}
-          <A href="https://www.facebook.com/legal/EU_data_transfer_addendum">https://www.facebook.com/legal/EU_data_transfer_addendum</A>,{" "}
-          <A href="https://privacycenter.instagram.com/policy/">https://privacycenter.instagram.com/policy/</A> und{" "}
-          <A href="https://de-de.facebook.com/help/566994660333381">https://de-de.facebook.com/help/566994660333381</A>.
-        </P>
-        <P>
-          Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von Instagram:{" "}
-          <A href="https://privacycenter.instagram.com/policy/">https://privacycenter.instagram.com/policy/</A>.
-        </P>
-        <P>
-          Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Der
-          DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung
-          europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach
-          dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere
-          Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{" "}
-          <A href="https://www.dataprivacyframework.gov/participant/4452">https://www.dataprivacyframework.gov/participant/4452</A>.
-        </P>
-
-        <H2>6. Analyse-Tools und Werbung</H2>
-        <H3>IONOS WebAnalytics</H3>
-        <P>
-          Diese Website nutzt die Analysedienste von IONOS WebAnalytics (im Folgenden: IONOS). Anbieter ist die
-          1&amp;1 IONOS SE, Elgendorfer Straße 57, D – 56410 Montabaur. Im Rahmen der Analysen mit IONOS können
-          u. a. Besucherzahlen und -verhalten (z. B. Anzahl der Seitenaufrufe, Dauer eines Webseitenbesuchs,
-          Absprungraten), Besucherquellen (d. h., von welcher Seite der Besucher kommt), Besucherstandorte sowie
-          technische Daten (Browser- und Betriebssystemversionen) analysiert werden. Zu diesem Zweck speichert
-          IONOS insbesondere folgende Daten:
+          Diese Website setzt keine Cookies und keine Analyse- oder Marketing-Tools ein. Für einige technische
+          Funktionen speichert die Seite jedoch kleine Datenmengen im „Local Storage" Ihres Browsers ab —
+          direkt auf Ihrem Gerät, nicht auf unseren Servern:
         </P>
         <Ul>
-          <li>Referrer (zuvor besuchte Webseite)</li>
-          <li>angeforderte Webseite oder Datei</li>
-          <li>Browsertyp und Browserversion</li>
-          <li>verwendetes Betriebssystem</li>
-          <li>verwendeter Gerätetyp</li>
-          <li>Uhrzeit des Zugriffs</li>
-          <li>IP-Adresse in anonymisierter Form (wird nur zur Feststellung des Orts des Zugriffs verwendet)</li>
+          <li>Ihre gewählte Sprache, damit die Seite beim nächsten Besuch in der richtigen Sprache angezeigt wird.</li>
+          <li>
+            Ein kurzzeitiger Zwischenspeicher (30 Minuten) der öffentlichen Behörden-Meldungen im Newsticker und
+            im KI-Sicherheit-Bereich, damit diese schneller laden.
+          </li>
         </Ul>
         <P>
-          Die Datenerfassung erfolgt laut IONOS vollständig anonymisiert, sodass sie nicht zu einzelnen Personen
-          zurückverfolgt werden kann. Cookies werden von IONOS WebAnalytics nicht gespeichert.
-        </P>
-        <P>
-          Die Speicherung und Analyse der Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der
-          Websitebetreiber hat ein berechtigtes Interesse an der statistischen Analyse des Nutzerverhaltens, um
-          sowohl sein Webangebot als auch seine Werbung zu optimieren. Sofern eine entsprechende Einwilligung
-          abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und §
-          25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen
-          im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist
-          jederzeit widerrufbar.
-        </P>
-        <P>
-          Weitere Informationen zur Datenerfassung und Verarbeitung durch IONOS WebAnalytics entnehmen Sie der
-          Datenschutzerklärung von IONOS unter folgendem Link:{" "}
-          <A href="https://www.ionos.de/terms-gtc/datenschutzerklaerung/">https://www.ionos.de/terms-gtc/datenschutzerklaerung/</A>
-        </P>
-        <p className="font-semibold text-sm mb-2" style={{ color: T.text }}>
-          Auftragsverarbeitung
-        </p>
-        <P>
-          Wir haben einen Vertrag über Auftragsverarbeitung (AVV) zur Nutzung des oben genannten Dienstes
-          geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der
-          gewährleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren
-          Weisungen und unter Einhaltung der DSGVO verarbeitet.
+          Diese Daten enthalten keine personenbezogenen Angaben und werden nicht an uns oder Dritte übertragen.
+          Sie sind technisch notwendig, um die von Ihnen genutzten Funktionen der Website bereitzustellen, und
+          werden daher auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO bzw. § 25 Abs. 2 Nr. 2 TDDDG ohne separate
+          Einwilligung gespeichert. Sie können diese Daten jederzeit selbst über die Einstellungen Ihres Browsers
+          löschen.
         </P>
 
-        <H2>7. Newsletter</H2>
-        <H3>Newsletterdaten</H3>
-        <P>
-          Wenn Sie den auf der Website angebotenen Newsletter beziehen möchten, benötigen wir von Ihnen eine
-          E-Mail-Adresse sowie Informationen, welche uns die Überprüfung gestatten, dass Sie der Inhaber der
-          angegebenen E-Mail-Adresse sind und mit dem Empfang des Newsletters einverstanden sind. Weitere
-          Daten werden nicht bzw. nur auf freiwilliger Basis erhoben. Diese Daten verwenden wir ausschließlich für
-          den Versand der angeforderten Informationen und geben diese nicht an Dritte weiter.
-        </P>
-        <P>
-          Die Verarbeitung der in das Newsletteranmeldeformular eingegebenen Daten erfolgt ausschließlich auf
-          Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Die erteilte Einwilligung zur Speicherung der
-          Daten, der E-Mail-Adresse sowie deren Nutzung zum Versand des Newsletters können Sie jederzeit
-          widerrufen, etwa über den „Austragen"-Link im Newsletter. Die Rechtmäßigkeit der bereits erfolgten
-          Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.
-        </P>
-        <P>
-          Die von Ihnen zum Zwecke des Newsletter-Bezugs bei uns hinterlegten Daten werden von uns bis zu Ihrer
-          Austragung aus dem Newsletter bei uns bzw. dem Newsletterdiensteanbieter gespeichert und nach der
-          Abbestellung des Newsletters oder nach Zweckfortfall aus der Newsletterverteilerliste gelöscht. Wir
-          behalten uns vor, E-Mail-Adressen aus unserem Newsletterverteiler nach eigenem Ermessen im Rahmen
-          unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO zu löschen oder zu sperren.
-        </P>
-        <P>Daten, die zu anderen Zwecken bei uns gespeichert wurden, bleiben hiervon unberührt.</P>
-        <P>
-          Nach Ihrer Austragung aus der Newsletterverteilerliste wird Ihre E-Mail-Adresse bei uns bzw. dem
-          Newsletterdiensteanbieter ggf. in einer Blacklist gespeichert, sofern dies zur Verhinderung künftiger
-          Mailings erforderlich ist. Die Daten aus der Blacklist werden nur für diesen Zweck verwendet und nicht mit
-          anderen Daten zusammengeführt. Dies dient sowohl Ihrem Interesse als auch unserem Interesse an der
-          Einhaltung der gesetzlichen Vorgaben beim Versand von Newslettern (berechtigtes Interesse im Sinne des
-          Art. 6 Abs. 1 lit. f DSGVO). Die Speicherung in der Blacklist ist zeitlich nicht befristet. Sie können der
-          Speicherung widersprechen, sofern Ihre Interessen unser berechtigtes Interesse überwiegen.
-        </P>
-
-        <H2>8. Plugins und Tools</H2>
-        <H3>YouTube mit erweitertem Datenschutz</H3>
-        <P>
-          Diese Website bindet Videos der Website YouTube ein. Betreiber der Website ist die Google Ireland Limited
-          („Google"), Gordon House, Barrow Street, Dublin 4, Irland.
-        </P>
-        <P>
-          Wenn Sie eine dieser Website besuchen, auf denen YouTube eingebunden ist, wird eine Verbindung zu den
-          Servern von YouTube hergestellt. Dabei wird dem YouTube-Server mitgeteilt, welche unserer Seiten Sie
-          besucht haben. Wenn Sie in Ihrem YouTube-Account eingeloggt sind, ermöglichen Sie YouTube, Ihr
-          Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus
-          Ihrem YouTube-Account ausloggen.
-        </P>
-        <P>
-          Wir nutzen YouTube im erweiterten Datenschutzmodus. Videos, die im erweiterten Datenschutzmodus
-          abgespielt werden, werden nach Aussage von YouTube nicht zur Personalisierung des Surfens auf YouTube
-          eingesetzt. Anzeigen, die im erweiterten Datenschutzmodus ausgespielt werden, sind ebenfalls nicht
-          personalisiert. Im erweiterten Datenschutzmodus werden keine Cookies gesetzt. Stattdessen werden
-          jedoch sogenannte Local Storage Elemente im Browser des Users gespeichert, die ähnlich wie Cookies
-          personenbezogene Daten beinhalten und zur Wiedererkennung eingesetzt werden können. Details zum
-          erweiterten Datenschutzmodus finden Sie hier:{" "}
-          <A href="https://support.google.com/youtube/answer/171780">https://support.google.com/youtube/answer/171780</A>.
-        </P>
-        <P>
-          Gegebenenfalls können nach der Aktivierung eines YouTube-Videos weitere Datenverarbeitungsvorgänge
-          ausgelöst werden, auf die wir keinen Einfluss haben.
-        </P>
-        <P>
-          Die Nutzung von YouTube erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote.
-          Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende
-          Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a
-          DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf
-          Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die
-          Einwilligung ist jederzeit widerrufbar.
-        </P>
-        <P>
-          Weitere Informationen über Datenschutz bei YouTube finden Sie in deren Datenschutzerklärung unter:{" "}
-          <A href="https://policies.google.com/privacy?hl=de">https://policies.google.com/privacy?hl=de</A>.
-        </P>
-        <P>
-          Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Der
-          DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung
-          europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach
-          dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere
-          Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{" "}
-          <A href="https://www.dataprivacyframework.gov/participant/5780">https://www.dataprivacyframework.gov/participant/5780</A>.
-        </P>
-
-        <H3>Google Fonts (lokales Hosting)</H3>
+        <H2>5. Google Fonts (lokales Hosting)</H2>
         <P>
           Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google
           bereitgestellt werden. Die Google Fonts sind lokal installiert. Eine Verbindung zu Servern von Google
@@ -583,8 +367,23 @@ export default function DatenschutzPage() {
           Datenschutzerklärung von Google: <A href="https://policies.google.com/privacy?hl=de">https://policies.google.com/privacy?hl=de</A>.
         </P>
 
+        <H2>6. Hinweis: KI-generierte Inhalte</H2>
+        <P>
+          Diese Website wurde vollständig mithilfe Künstlicher Intelligenz erstellt (Konzeption, Design, Texte und
+          Programmierung), auf Basis von Anweisungen (Prompts) des Websitebetreibers. Es kam keine menschliche
+          Erstellung im klassischen Sinn zum Einsatz.
+        </P>
+        <P>
+          Diese Kennzeichnung erfolgt in Übereinstimmung mit den Transparenzvorgaben der Europäischen
+          Kommission für als KI-generiert gekennzeichnete Inhalte. Weitere Informationen finden Sie unter:{" "}
+          <A href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content">
+            digital-strategy.ec.europa.eu — EU Icons for Labelling AI-Generated Content
+          </A>
+          . Das entsprechende Kennzeichen finden Sie auch im Footer dieser Website.
+        </P>
+
         <p className="text-xs mt-14 pt-8" style={{ ...fontMono, color: T.faint, borderTop: `1px solid ${T.lineSoft}` }}>
-          Erstellt mit dem Datenschutz-Generator von{" "}
+          Rechtstext-Basis erstellt mit dem Datenschutz-Generator von{" "}
           <A href="https://www.e-recht24.de">e-recht24.de</A>.
         </p>
       </div>
