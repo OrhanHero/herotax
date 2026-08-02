@@ -6,7 +6,7 @@ Das Projekt ist öffentlich, weil Transparenz Teil des Anspruchs ist: Wer über 
 
 ## Was die Seite macht
 
-- **News-Hub** — kuratierte Meldungen zu Steuern, KI-Regulierung und Digitalisierung, jede mit Primärquelle (BMF, BMDS, BSI, IHK Berlin, …)
+- **News-Hub** — kuratierte Meldungen zu Steuern, KI-Regulierung und Digitalisierung, jede mit Primärquelle (BMF, BMDS, BSI, IHK Berlin, …); dazu ein DE-Ökosystem-Bereich mit kuratierter Verlinkung zu [DeutschlandGPT](https://www.deutschlandgpt.de/) (`DEUTSCHLANDGPT_LINKS` in `src/data/articles.js`)
 - **Live-Feeds** — ein serverseitiger PHP-Proxy (`public/api/feed.php`) holt RSS-Feeds offizieller Behörden, cached sie 30 Minuten und liefert sie CORS-frei aus; fällt der Live-Abruf aus, greift automatisch die kuratierte Fallback-Liste in `src/data/articles.js`
 - **Tools** — Umsatzsteuer-Rechner, Fristen-Check, ein interaktiver Gründungs-Guide für Berlin
 - **EUDI-Wallet-Bereich** — Stand & Zeitplan der europäischen digitalen Brieftasche, mit offiziellen Quellen (EU-Kommission, BMDS, Verbraucherzentrale, Open-Code-Referenzimplementierung des Bundes)
