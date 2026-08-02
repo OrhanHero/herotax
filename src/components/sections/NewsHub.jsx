@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck, Building2, Landmark } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
 import { ARTICLES, DEUTSCHLANDGPT_LINKS } from "../../data/articles";
@@ -79,30 +79,45 @@ const NewsHub = () => {
         <div className="grid lg:grid-cols-3 gap-5">
           {featured && (
             <article
-              className="relative lg:col-span-2 lg:row-span-2 group rounded-3xl p-8 sm:p-12 flex flex-col justify-between min-h-96 overflow-hidden transition-all duration-300"
+              className="lg:col-span-2 lg:row-span-2 group rounded-3xl p-8 sm:p-12 flex flex-col transition-all duration-300"
               style={cardBase}
             >
-              {/* Dezentes Rubrik-Wasserzeichen füllt die Fläche zwischen Kopfzeile
-                  und Text — passt sich automatisch an die Rubrik des jeweils
-                  featured Artikels an (Berlin Fokus vs. Bund & Steuer). */}
-              {(() => {
-                const FeaturedIcon = featured.cat === "Berlin Fokus" ? Building2 : Landmark;
-                return (
-                  <FeaturedIcon
-                    size={280}
-                    strokeWidth={1}
-                    className="absolute -right-8 top-1/2 -translate-y-1/2 pointer-events-none"
-                    style={{ color: T.blueDim }}
-                    aria-hidden="true"
-                  />
-                );
-              })()}
-              <div className="relative flex items-center justify-between gap-4">
+              <div className="flex items-center justify-between gap-4">
                 <CategoryTag cat={featured.cat} />
                 <ArrowUpRight size={22} style={{ color: T.blue }} />
               </div>
-              <div className="relative">
-                <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight mt-16 mb-5" style={{ ...fontDisplay, color: T.text }}>
+
+              {/* Kernzahl der Meldung als Blickfang — füllt die Fläche zwischen
+                  Kopfzeile und Titel mit echtem Inhalt statt Leerraum. */}
+              {featured.highlight && (
+                <div className="flex-1 flex items-center gap-6 sm:gap-8 py-8">
+                  <div className="shrink-0">
+                    <div className="text-6xl sm:text-7xl font-black tracking-tight" style={{ ...fontDisplay, color: T.blue }}>
+                      {featured.highlight.value}
+                    </div>
+                    {featured.highlight.compare && (
+                      <div className="flex items-baseline gap-2 mt-1">
+                        <span className="text-sm" style={{ color: T.faint }}>
+                          statt
+                        </span>
+                        <span
+                          className="text-xl sm:text-2xl font-bold line-through"
+                          style={{ ...fontDisplay, color: T.faint, textDecorationColor: T.faint }}
+                        >
+                          {featured.highlight.compare}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="h-14 w-px shrink-0" style={{ backgroundColor: T.line }} />
+                  <p className="text-sm sm:text-base leading-relaxed max-w-xs" style={{ color: T.muted }}>
+                    {featured.highlight.label}
+                  </p>
+                </div>
+              )}
+
+              <div className={featured.highlight ? "" : "mt-16"}>
+                <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight mb-5" style={{ ...fontDisplay, color: T.text }}>
                   {featured.title}
                 </h3>
                 <p className="text-base sm:text-lg leading-relaxed mb-6 max-w-2xl" style={{ color: T.muted }}>

@@ -144,12 +144,21 @@ export const ARTICLES = [
     date: "02. August 2026",
     source: { label: "Einheitlicher Ansprechpartner Berlin", href: "https://www.berlin.de/ea/" },
     featured: true,
+    highlight: {
+      value: "15 €",
+      compare: "26 €",
+      label: "Online-Anmeldung über den Einheitlichen Ansprechpartner Berlin — statt Vor-Ort-Termin.",
+    },
   },
   {
     cat: "Bund & Steuer",
     title: "E-Rechnungspflicht: Was ab 2027 wirklich auf GmbHs zukommt",
     excerpt: "Die Übergangsfristen laufen aus. Der kompakte Fahrplan für deine Buchhaltung.",
     read: "4 Min",
+    highlight: {
+      value: "2027",
+      label: "Ab diesem Jahr greift die E-Rechnungspflicht verbindlich für alle GmbHs.",
+    },
     date: "03. Juli 2026",
     source: { label: "Bundesfinanzministerium", href: "https://www.bundesfinanzministerium.de" },
   },
