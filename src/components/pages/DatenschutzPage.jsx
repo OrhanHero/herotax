@@ -336,9 +336,9 @@ export default function DatenschutzPage() {
 
         <H2>4. Lokale Speicherung im Browser</H2>
         <P>
-          Diese Website setzt keine Cookies und keine Analyse- oder Marketing-Tools ein. Für einige technische
-          Funktionen speichert die Seite jedoch kleine Datenmengen im „Local Storage" Ihres Browsers ab —
-          direkt auf Ihrem Gerät, nicht auf unseren Servern:
+          Diese Website setzt keine Cookies ein. Für einige technische Funktionen speichert die Seite jedoch
+          kleine Datenmengen im „Local Storage" Ihres Browsers ab — direkt auf Ihrem Gerät, nicht auf unseren
+          Servern:
         </P>
         <Ul>
           <li>Ihre gewählte Sprache, damit die Seite beim nächsten Besuch in der richtigen Sprache angezeigt wird.</li>
@@ -355,7 +355,50 @@ export default function DatenschutzPage() {
           löschen.
         </P>
 
-        <H2>5. Google Fonts (lokales Hosting)</H2>
+        <H2>5. Analyse-Tools</H2>
+        <H3>IONOS WebAnalytics</H3>
+        <P>
+          Diese Website nutzt die Analysedienste von IONOS WebAnalytics (im Folgenden: IONOS). Anbieter ist die
+          1&amp;1 IONOS SE, Elgendorfer Straße 57, D – 56410 Montabaur. Im Rahmen der Analysen mit IONOS können
+          u. a. Besucherzahlen und -verhalten (z. B. Anzahl der Seitenaufrufe, Dauer eines Webseitenbesuchs,
+          Absprungraten), Besucherquellen (d. h., von welcher Seite der Besucher kommt), Besucherstandorte sowie
+          technische Daten (Browser- und Betriebssystemversionen) analysiert werden. Zu diesem Zweck speichert
+          IONOS insbesondere folgende Daten:
+        </P>
+        <Ul>
+          <li>Referrer (zuvor besuchte Webseite)</li>
+          <li>angeforderte Webseite oder Datei</li>
+          <li>Browsertyp und Browserversion</li>
+          <li>verwendetes Betriebssystem</li>
+          <li>verwendeter Gerätetyp</li>
+          <li>Uhrzeit des Zugriffs</li>
+          <li>IP-Adresse in anonymisierter Form (wird nur zur Feststellung des Orts des Zugriffs verwendet)</li>
+        </Ul>
+        <P>
+          Die Datenerfassung erfolgt laut IONOS vollständig anonymisiert, sodass sie nicht zu einzelnen Personen
+          zurückverfolgt werden kann. Cookies werden von IONOS WebAnalytics nicht gespeichert.
+        </P>
+        <P>
+          Die Speicherung und Analyse der Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der
+          Websitebetreiber hat ein berechtigtes Interesse an der statistischen Analyse des Nutzerverhaltens, um
+          sein Webangebot zu optimieren.
+        </P>
+        <P>
+          Weitere Informationen zur Datenerfassung und Verarbeitung durch IONOS WebAnalytics entnehmen Sie der
+          Datenschutzerklärung von IONOS unter folgendem Link:{" "}
+          <A href="https://www.ionos.de/terms-gtc/datenschutzerklaerung/">https://www.ionos.de/terms-gtc/datenschutzerklaerung/</A>
+        </P>
+        <p className="font-semibold text-sm mb-2" style={{ color: T.text }}>
+          Auftragsverarbeitung
+        </p>
+        <P>
+          Wir haben einen Vertrag über Auftragsverarbeitung (AVV) zur Nutzung des oben genannten Dienstes
+          geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der
+          gewährleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren
+          Weisungen und unter Einhaltung der DSGVO verarbeitet.
+        </P>
+
+        <H2>6. Google Fonts (lokales Hosting)</H2>
         <P>
           Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google
           bereitgestellt werden. Die Google Fonts sind lokal installiert. Eine Verbindung zu Servern von Google
@@ -367,7 +410,7 @@ export default function DatenschutzPage() {
           Datenschutzerklärung von Google: <A href="https://policies.google.com/privacy?hl=de">https://policies.google.com/privacy?hl=de</A>.
         </P>
 
-        <H2>6. Hinweis: KI-generierte Inhalte</H2>
+        <H2>7. Hinweis: KI-generierte Inhalte</H2>
         <P>
           Diese Website wurde vollständig mithilfe Künstlicher Intelligenz erstellt (Konzeption, Design, Texte und
           Programmierung), auf Basis von Anweisungen (Prompts) des Websitebetreibers. Es kam keine menschliche
