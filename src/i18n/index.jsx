@@ -17,17 +17,17 @@ import ku from "./locales/ku.json";
                        Abstürze. Im echten Deployment (herotax.de)
                        greift localStorage normal und die Sprachwahl
                        übersteht jeden Reload.
-   · HINWEIS Kurdisch: umgesetzt als Sorani (کوردی, arabische Schrift,
-     RTL). Kurmancî wäre lateinisch & LTR — bei Bedarf als "kmr"
-     zusätzlich anlegen. AR/KU-Texte vor Launch von Muttersprachler:innen
-     prüfen lassen.                                                    */
+   · HINWEIS Kurdisch: umgesetzt als Kurmancî (Nordkurdisch, lateinische
+     Schrift, LTR) — die meistgesprochene kurdische Variante unter den
+     Communities in Berlin/Deutschland. AR/KU-Texte vor Launch von
+     Muttersprachler:innen prüfen lassen.                              */
 
 export const LANGUAGES = [
   { code: "de", label: "Deutsch", dir: "ltr" },
   { code: "en", label: "English", dir: "ltr" },
   { code: "tr", label: "Türkçe", dir: "ltr" },
   { code: "ar", label: "العربية", dir: "rtl" },
-  { code: "ku", label: "کوردی", dir: "rtl" },
+  { code: "ku", label: "Kurdî", dir: "ltr" },
 ];
 
 export const I18N = { de, en, tr, ar, ku };
