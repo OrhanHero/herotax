@@ -6,6 +6,7 @@ import WhatsAppGlyph from "../atoms/WhatsAppGlyph";
 import TikTokGlyph from "../atoms/TikTokGlyph";
 import InstagramGlyph from "../atoms/InstagramGlyph";
 import YouTubeGlyph from "../atoms/YouTubeGlyph";
+import XGlyph from "../atoms/XGlyph";
 import AILabel from "../atoms/AILabel";
 
 /** Footer mit Impressum */
@@ -28,6 +29,9 @@ const Footer = () => {
             </a>
             <a href={CONFIG.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:opacity-70" style={{ color: T.muted }}>
               <YouTubeGlyph size={18} />
+            </a>
+            <a href={CONFIG.x} target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="hover:opacity-70" style={{ color: T.muted }}>
+              <XGlyph size={16} />
             </a>
             <a href={CONFIG.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Channel" className="hover:opacity-70" style={{ color: T.muted }}>
               <WhatsAppGlyph size={17} />

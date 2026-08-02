@@ -6,6 +6,7 @@ import Eyebrow from "../atoms/Eyebrow";
 import TikTokGlyph from "../atoms/TikTokGlyph";
 import InstagramGlyph from "../atoms/InstagramGlyph";
 import YouTubeGlyph from "../atoms/YouTubeGlyph";
+import XGlyph from "../atoms/XGlyph";
 
 /** Säule 04 · Social Wall */
 const SocialWall = () => {
@@ -26,6 +27,7 @@ const SocialWall = () => {
               { href: CONFIG.instagram, icon: <span style={{ color: T.blue }}><InstagramGlyph size={17} /></span>, label: "Instagram" },
               { href: CONFIG.tiktok, icon: <TikTokGlyph size={16} />, label: "TikTok" },
               { href: CONFIG.youtube, icon: <YouTubeGlyph size={17} />, label: "YouTube" },
+              { href: CONFIG.x, icon: <XGlyph size={15} />, label: "X" },
             ].map((s) => (
               <a
                 key={s.label}

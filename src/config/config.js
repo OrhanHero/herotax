@@ -4,6 +4,7 @@ export const CONFIG = {
   instagram: "https://instagram.com/herotaxberlin",
   tiktok: "https://tiktok.com/@herotaxberlin",
   youtube: "https://www.youtube.com/@herotaxberlin",
+  x: "https://x.com/HeroTaxBerlin",
   handle: "@herotaxberlin",
   impressumName: "Orhan Kahraman",
   contactEmail: "orhanhero@outlook.de",
