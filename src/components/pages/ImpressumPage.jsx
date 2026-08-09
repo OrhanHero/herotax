@@ -74,7 +74,7 @@ export default function ImpressumPage() {
         <P>
           Telefon: <A href={`tel:${CONFIG.contactPhone}`}>{CONFIG.contactPhone}</A>
           <br />
-          E-Mail: <A href="mailto:herotax@outlook.de">herotax@outlook.de</A>
+          E-Mail: <A href={`mailto:${CONFIG.contactEmail}`}>{CONFIG.contactEmail}</A>
         </P>
 
         <H2>Redaktionell verantwortlich</H2>

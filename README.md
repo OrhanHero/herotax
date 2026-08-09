@@ -60,5 +60,5 @@ Redaktionelle Inhalte — kein Steuerberatungs-Ersatz (§ 5 StBerG). Die Datensc
 ## Kontakt
 
 - Web: [herotax.de](https://herotax.de)
-- E-Mail: orhanhero@outlook.de
+- E-Mail: info@herotax.de
 - [LinkedIn](https://www.linkedin.com/in/orhankahraman/) · [Instagram](https://instagram.com/herotaxberlin) · [TikTok](https://tiktok.com/@herotaxberlin) · [YouTube](https://www.youtube.com/@herotaxberlin) · [X](https://x.com/HeroTaxBerlin)

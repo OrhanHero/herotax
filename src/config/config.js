@@ -9,7 +9,7 @@ export const CONFIG = {
   github: "https://github.com/OrhanHero/herotax",
   handle: "@herotaxberlin",
   impressumName: "Orhan Kahraman",
-  contactEmail: "orhanhero@outlook.de",
+  contactEmail: "info@herotax.de",
   contactPhone: "03028603973",
 
   /* Plausible Analytics:
