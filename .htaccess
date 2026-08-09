@@ -1,7 +1,12 @@
 # IONOS/Apache-Konfiguration für herotax.de
+Options -Indexes
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Schutz vor direktem Zugriff auf versteckte Dateien/Ordner (.git, .env, .htaccess)
+  RewriteRule "(^|/)\." - [F]
 
   # SPA-Routing: Alle unbekannten Routes zur index.html weiterleiten
   RewriteCond %{REQUEST_FILENAME} !-f

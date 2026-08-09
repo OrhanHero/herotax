@@ -10,6 +10,7 @@ export const CONFIG = {
   handle: "@herotaxberlin",
   impressumName: "Orhan Kahraman",
   contactEmail: "orhanhero@outlook.de",
+  contactPhone: "03028603973",
 
   /* Plausible Analytics:
      Script gehört in die index.html:

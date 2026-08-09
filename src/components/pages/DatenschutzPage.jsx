@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
+import { CONFIG } from "../../config/config";
 
 /* ── Datenschutzerklärung ──────────────────────────────────────────
    Rechtstext-Basis erstellt mit dem Generator von e-recht24.de.
@@ -60,6 +62,11 @@ const Emphasis = ({ children }) => (
 );
 
 export default function DatenschutzPage() {
+  useEffect(() => {
+    document.title = "Datenschutzerklärung · HERO Tax";
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
       <a
@@ -181,6 +188,7 @@ export default function DatenschutzPage() {
             <br />
             12045 Berlin
             <br />
+            Telefon: <A href={`tel:${CONFIG.contactPhone}`}>{CONFIG.contactPhone}</A>
             <br />
             E-Mail: <A href="mailto:herotax@outlook.de">herotax@outlook.de</A>
           </p>

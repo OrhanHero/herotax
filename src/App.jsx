@@ -28,7 +28,7 @@ export default function HeroTaxPlatform() {
      Impressum sind eigene "Seiten" (eigener Pfad, per .htaccess/Vite-SPA-
      Fallback auf index.html gemappt). Alles andere bleibt die klassische
      One-Pager. */
-  const pathname = typeof window !== "undefined" ? window.location.pathname.replace(/\/$/, "") : "";
+  const pathname = typeof window !== "undefined" ? window.location.pathname.toLowerCase().replace(/\/$/, "") : "";
   const isDatenschutzPage = pathname === "/datenschutz";
   const isImpressumPage = pathname === "/impressum";
   const isLegalPage = isDatenschutzPage || isImpressumPage;

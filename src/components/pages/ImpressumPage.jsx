@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
+import { CONFIG } from "../../config/config";
 
 /* ── Impressum ──────────────────────────────────────────────────────
    Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz, vormals § 5 TMG)
@@ -34,6 +36,11 @@ const A = ({ href, children }) => (
 );
 
 export default function ImpressumPage() {
+  useEffect(() => {
+    document.title = "Impressum · HERO Tax";
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
       <a
@@ -65,6 +72,8 @@ export default function ImpressumPage() {
 
         <H2>Kontakt</H2>
         <P>
+          Telefon: <A href={`tel:${CONFIG.contactPhone}`}>{CONFIG.contactPhone}</A>
+          <br />
           E-Mail: <A href="mailto:herotax@outlook.de">herotax@outlook.de</A>
         </P>
 
@@ -118,6 +127,18 @@ export default function ImpressumPage() {
           Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
         </P>
 
+        <H2>Verbraucherstreitbeilegung / Alternative Streitbeilegung</H2>
+        <P>
+          Die Europäische Kommission stellt eine zentrale Anlaufstelle für Informationen zur Verbraucherstreitbeilegung
+          in der EU bereit:{" "}
+          <A href="https://europa.eu">europa.eu</A>. Unsere E-Mail-Adresse
+          finden Sie oben im Impressum.
+        </P>
+        <P>
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+          teilzunehmen.
+        </P>
+
         <H2>Hinweis nach § 5 StBerG</H2>
         <P>
           Die redaktionellen Inhalte dieser Website (News, Erklärstücke, Rechner, Guides) sind allgemeine,
@@ -127,11 +148,13 @@ export default function ImpressumPage() {
         </P>
 
         <P>
-          Details zur Verarbeitung personenbezogener Daten finden Sie in unserer{" "}
-          <a href="/datenschutz" className="underline underline-offset-2 hover:opacity-70" style={{ color: T.blue }}>
-            Datenschutzerklärung
-          </a>
-          .
+          <em>
+            Details zur Verarbeitung personenbezogener Daten finden Sie in unserer{" "}
+            <a href="/datenschutz" className="underline underline-offset-2 hover:opacity-70" style={{ color: T.blue }}>
+              Datenschutzerklärung
+            </a>
+            .
+          </em>
         </P>
       </div>
     </div>
