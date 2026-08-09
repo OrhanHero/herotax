@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
-/* ── Self-hosted Google Fonts (via @fontsource, no external requests) ── */
-@import "@fontsource/archivo/500.css";
-@import "@fontsource/archivo/600.css";
-@import "@fontsource/archivo/700.css";
-@import "@fontsource/archivo/900.css";
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";
-@import "@fontsource/noto-sans-arabic/400.css";
-@import "@fontsource/noto-sans-arabic/500.css";
-@import "@fontsource/noto-sans-arabic/700.css";
-@import "@fontsource/noto-sans-arabic/900.css";
+/* ── Self-hosted Google Fonts (Focused Subsets: Latin & Arabic) ── */
+@import "@fontsource/archivo/latin-500.css";
+@import "@fontsource/archivo/latin-600.css";
+@import "@fontsource/archivo/latin-700.css";
+@import "@fontsource/archivo/latin-900.css";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+@import "@fontsource/noto-sans-arabic/arabic-400.css";
+@import "@fontsource/noto-sans-arabic/arabic-500.css";
+@import "@fontsource/noto-sans-arabic/arabic-700.css";
+@import "@fontsource/noto-sans-arabic/arabic-900.css";
 
 body {
   font-family: "Inter", "Noto Sans Arabic", sans-serif;
@@ -56,19 +56,56 @@ html {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
-  html {
-    scroll-behavior: auto;
-  }
-  /* Ticker bleibt nutzbar: statisch & horizontal scrollbar */
-  .ticker-track {
-    animation: none;
-  }
-  .ticker-viewport {
-    overflow-x: auto;
-  }
+/* ── Background Grid Pattern & Tech Atmosphere ── */
+.hero-grid-pattern {
+  background-image: radial-gradient(rgba(37, 99, 235, 0.12) 1px, transparent 1px),
+                    radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+.gradient-text-hero {
+  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 40%, #10B981 80%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-glass-dark {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px 0 rgba(37, 99, 235, 0.15);
+}
+
+.hero-glass-dark:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 0 40px 0 rgba(37, 99, 235, 0.25);
+}
+
+.glow-blue {
+  box-shadow: 0 0 25px -5px rgba(37, 99, 235, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+}
+
+.glow-amber {
+  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }

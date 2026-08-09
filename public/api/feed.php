@@ -80,6 +80,9 @@ function fetchFeed(string $url): string|false
 
 function parseFeed(string $xmlRaw, string $sourceLabel): array
 {
+    if (function_exists('libxml_disable_entity_loader')) {
+        @libxml_disable_entity_loader(true);
+    }
     $prev = libxml_use_internal_errors(true);
     $xml = simplexml_load_string($xmlRaw);
     libxml_use_internal_errors($prev);
@@ -100,7 +103,8 @@ function parseFeed(string $xmlRaw, string $sourceLabel): array
         $rawDate = (string) ($node->pubDate ?? $node->updated ?? $node->published ?? '');
         $description = (string) ($node->description ?? $node->summary ?? '');
 
-        if ($title === '' || $link === '') {
+        // Validierung: Nur http / https URLs erlauben
+        if ($title === '' || $link === '' || !preg_match('#^https?://#i', $link)) {
             continue;
         }
 
