@@ -1,0 +1,54 @@
+# IONOS/Apache-Konfiguration für herotax.de
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Schutz vor direktem Zugriff auf versteckte Dateien/Ordner (.git, .env, .htaccess)
+  RewriteRule "(^|/)\." - [F]
+
+  # SPA-Routing: Alle unbekannten Routes zur index.html weiterleiten
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
+
+# Caching-Header für Performance
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML: Keine Caching (immer aktuell)
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    ExpiresDefault A0
+  </FilesMatch>
+
+  # JS/CSS/Fonts: 1 Jahr Caching (versioned by Vite)
+  <FilesMatch "\.(js|css|woff2|ttf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+    ExpiresDefault A31536000
+  </FilesMatch>
+
+  # Assets: 30 Tage
+  <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp)$">
+    Header set Cache-Control "public, max-age=2592000"
+    ExpiresDefault A2592000
+  </FilesMatch>
+</IfModule>
+
+# Gzip-Kompression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Security-Header
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://plausible.io; frame-ancestors 'self';"
+</IfModule>
