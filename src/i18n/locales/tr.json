@@ -39,6 +39,8 @@
   "footer.imprint": "Künye:",
   "footer.privacy": "Gizlilik",
   "footer.legal": "Editoryal içerik · Vergi danışmanlığının yerini tutmaz (§ 5 StBerG) · © 2026 HERO Tax",
-  "ai_label.text": "Bu web sitesi yapay zekâ ile oluşturuldu.",
-  "ai_label.link": "AB etiketlemesi"
+  "ai_label.badge": "AB Yapay Zekâ Yasası Şeffaflık Bildirimi",
+  "ai_label.headline": "Bu web sitesi tamamen yapay zekâ ile oluşturulmuştur (100% AI Generated).",
+  "ai_label.detail": "Tasarım, kaynak kodu, düzen ve editoryal içerik tamamen yapay zekâ sistemleri tarafından üretilmiştir.",
+  "ai_label.link": "AB AI Act Standardı"
 }

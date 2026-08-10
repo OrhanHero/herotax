@@ -39,6 +39,8 @@
   "footer.imprint": "Impressum:",
   "footer.privacy": "Datenschutz",
   "footer.legal": "Redaktionelle Inhalte · Kein Steuerberatungs-Ersatz (§ 5 StBerG) · © 2026 HERO Tax",
-  "ai_label.text": "Diese Website wurde mit KI generiert.",
-  "ai_label.link": "EU-Kennzeichnung"
+  "ai_label.badge": "EU AI Act Transparenzhinweis",
+  "ai_label.headline": "Diese Website ist komplett KI-generiert (100% AI Generated).",
+  "ai_label.detail": "Design, Quellcode, Layout und redaktionelle Aufarbeitung wurden vollständig durch KI-Systeme erstellt.",
+  "ai_label.link": "EU AI Act Standard"
 }

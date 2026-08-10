@@ -39,6 +39,8 @@
   "footer.imprint": "Naşir:",
   "footer.privacy": "Nihênî",
   "footer.legal": "Naveroka edîtoriyê · Ne şûna şêwirmendiya bacê ye (§ 5 StBerG) · © 2026 HERO Tax",
-  "ai_label.text": "Ev malper bi zîrekiya sûnî hatiye çêkirin.",
-  "ai_label.link": "Nîşankirina YE"
+  "ai_label.badge": "Agahdariya Şefafiyetê ya Qanûna AI ya YE",
+  "ai_label.headline": "Ev malper bi temamî bi zîrekiya sûnî hatiye çêkirin (100% AI Generated).",
+  "ai_label.detail": "Sêwirandin, koda çavkaniyê, nexşe û naveroka edîtoriyê bi temamî ji hêla pergalên AI ve hatine çêkirin.",
+  "ai_label.link": "Standardê EU AI Act"
 }

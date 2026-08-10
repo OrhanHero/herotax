@@ -5,6 +5,10 @@ Options -Indexes
   RewriteEngine On
   RewriteBase /
 
+  # HTTPS-Erzwingung (301 Permanent Redirect)
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
   # Schutz vor direktem Zugriff auf versteckte Dateien/Ordner (.git, .env, .htaccess)
   RewriteRule "(^|/)\." - [F]
 
