@@ -1,0 +1,22 @@
+name: Automated Link Health Checker
+
+on:
+  schedule:
+    # Jeden Sonntag um 08:00 Uhr UTC
+    - cron: '0 8 * * 0'
+  workflow_dispatch:
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.2.2
+
+      - name: Link Checker
+        uses: lycheeververse/lychee-action@v2.3.0
+        with:
+          args: --verbose --no-progress './src/**/*.js' './src/**/*.jsx' './README.md' './DEPLOYMENT.md'
+          fail: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
