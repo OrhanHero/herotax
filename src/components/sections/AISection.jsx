@@ -7,6 +7,7 @@ import { getArticles } from "../../services/articleService";
 import Eyebrow from "../atoms/Eyebrow";
 import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
+import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 
 /** Säule 01 · KI im Steuerrecht & Prozess-Intelligence */
 const AISection = () => {
@@ -20,9 +21,19 @@ const AISection = () => {
     getArticles("bsi").then(setBsiItems);
   }, []);
 
+  const refreshAiFeeds = async () => {
+    const bmds = await getArticles("bmds");
+    const bsi = await getArticles("bsi");
+    setBmdsItems(bmds);
+    setBsiItems(bsi);
+  };
+
   return (
     <section className="max-w-7xl mx-auto px-5 sm:px-8 py-24" id="ki">
-      <Eyebrow index="01">{t("ai.eyebrow")}</Eyebrow>
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
+        <Eyebrow index="01">{t("ai.eyebrow")}</Eyebrow>
+        <LiveTrackerBadge type="bmds" onRefresh={refreshAiFeeds} />
+      </div>
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
         <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-2xl" style={{ ...fontDisplay, color: T.text }}>
           {t("ai.t1")}

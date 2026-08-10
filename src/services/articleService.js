@@ -1,4 +1,4 @@
-/* ── Article-Service: Automatisches Laden & Caching ───────────────
+/* ── Article-Service: Automatisches Laden, Caching & Live-Tracker ────
    Holt aktuelle Meldungen über /api/feed.php (serverseitiger RSS-
    Proxy, siehe public/api/feed.php) und cached sie im localStorage.
    Schlägt der Live-Abruf fehl (z.B. lokale Entwicklung ohne PHP,
@@ -9,7 +9,7 @@
 import { BMDS_ITEMS, BSI_ITEMS, ARTICLES } from "../data/articles";
 
 const CACHE_PREFIX = "herotax_feed_";
-const CACHE_DURATION = 30 * 60 * 1000; // 30 Minuten — spiegelt den PHP-Cache
+export const CACHE_DURATION = 4 * 60 * 60 * 1000; // 4 Stunden — spiegelt den PHP-Cache (14400 s)
 
 /** type → welcher Feed-Proxy-Quellname abgefragt wird (siehe SOURCES in feed.php) */
 const FEED_SOURCE = {
@@ -27,7 +27,7 @@ const STATIC_DATA = {
 const cacheKey = (type) => `${CACHE_PREFIX}${type}`;
 const cacheTimestampKey = (type) => `${CACHE_PREFIX}${type}_ts`;
 
-const loadCache = (type) => {
+export const loadCache = (type) => {
   try {
     const raw = localStorage.getItem(cacheKey(type));
     return raw ? JSON.parse(raw) : null;
@@ -36,16 +36,16 @@ const loadCache = (type) => {
   }
 };
 
-const saveCache = (type, data) => {
+export const saveCache = (type, data) => {
   try {
     localStorage.setItem(cacheKey(type), JSON.stringify(data));
     localStorage.setItem(cacheTimestampKey(type), Date.now().toString());
   } catch {
-    /* z.B. Privater Modus / Speicher voll — Cache ist nur ein Optimierung */
+    /* z.B. Privater Modus / Speicher voll — Cache ist nur eine Optimierung */
   }
 };
 
-const isCacheStale = (type) => {
+export const isCacheStale = (type) => {
   try {
     const ts = localStorage.getItem(cacheTimestampKey(type));
     if (!ts) return true;
@@ -55,8 +55,43 @@ const isCacheStale = (type) => {
   }
 };
 
-/** Ruft den serverseitigen Feed-Proxy ab. Gibt null zurück, wenn nicht verfügbar
-    (kein Fehler-Throw — der Aufrufer entscheidet über den Fallback). */
+/** Formatiert den Zeitstempel im gewünschten Live-Tracker-Format:
+    z.B. "10.08.2026, 22:58 Uhr"
+*/
+export const formatTrackerDate = (timestamp) => {
+  const d = timestamp ? new Date(parseInt(timestamp, 10)) : new Date();
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+  const hours = String(d.getHours()).padStart(2, "0");
+  const minutes = String(d.getMinutes()).padStart(2, "0");
+  return `${day}.${month}.${year}, ${hours}:${minutes} Uhr`;
+};
+
+/** Gibt den lesbaren Live-Tracker-Text zurück:
+    z.B. "Live · Stand: 10.08.2026, 22:58 Uhr (alle 4 Std.)"
+*/
+export const getTrackerStatusText = (type = "general") => {
+  try {
+    const ts = localStorage.getItem(cacheTimestampKey(type));
+    const formatted = formatTrackerDate(ts || Date.now());
+    return `Live · Stand: ${formatted} (alle 4 Std.)`;
+  } catch {
+    const formatted = formatTrackerDate(Date.now());
+    return `Live · Stand: ${formatted} (alle 4 Std.)`;
+  }
+};
+
+export const getRawLastUpdated = (type = "general") => {
+  try {
+    const ts = localStorage.getItem(cacheTimestampKey(type));
+    return ts ? parseInt(ts, 10) : Date.now();
+  } catch {
+    return Date.now();
+  }
+};
+
+/** Ruft den serverseitigen Feed-Proxy ab. Gibt null zurück, wenn nicht verfügbar. */
 const fetchLiveItems = async (type) => {
   const source = FEED_SOURCE[type];
   if (!source) return null;
@@ -89,7 +124,7 @@ const mergeGeneral = (liveItems) => {
 };
 
 /**
- * Artikel laden — nutzt Cache wenn frisch, holt sonst live nach.
+ * Artikel laden — nutzt Cache wenn frisch (innerhalb 4 Std.), holt sonst live nach.
  * type: "general" (News-Hub/Ticker) | "bmds" | "bsi"
  */
 export const getArticles = async (type = "general") => {
@@ -105,10 +140,18 @@ export const getArticles = async (type = "general") => {
     return result;
   }
 
+  if (!localStorage.getItem(cacheTimestampKey(type))) {
+    try {
+      localStorage.setItem(cacheTimestampKey(type), Date.now().toString());
+    } catch {
+      /* noop */
+    }
+  }
+
   return cached || STATIC_DATA[type] || [];
 };
 
-/** Cache leeren (z.B. für einen manuellen "Neu laden"-Button) */
+/** Cache leeren & neu laden (z.B. für manuellen Refresh) */
 export const clearCache = () => {
   try {
     Object.keys(FEED_SOURCE).forEach((type) => {

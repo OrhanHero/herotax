@@ -34,7 +34,7 @@ const SOURCES = [
     ],
 ];
 
-const CACHE_TTL = 1800; // 30 Minuten
+const CACHE_TTL = 14400; // 4 Stunden (14400 Sekunden)
 const MAX_ITEMS = 6;
 
 function respond(array $items, string $status = 'ok'): void

@@ -8,6 +8,7 @@ import Eyebrow from "../atoms/Eyebrow";
 import CategoryTag from "../atoms/CategoryTag";
 import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
+import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 
 const DE_ICONS = {
   home: Home,
@@ -41,10 +42,18 @@ const NewsHub = () => {
   const featured = visible.find((a) => a.featured) || visible[0];
   const rest = visible.filter((a) => a !== featured);
 
+  const refreshArticles = async () => {
+    const data = await getArticles("general");
+    setArticles(data);
+  };
+
   return (
     <section className="py-24" style={{ borderTop: `1px solid ${T.lineSoft}` }} id="news">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <Eyebrow index="02">{t("news.eyebrow")}</Eyebrow>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
+          <Eyebrow index="02">{t("news.eyebrow")}</Eyebrow>
+          <LiveTrackerBadge type="general" onRefresh={refreshArticles} />
+        </div>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-xl" style={{ ...fontDisplay, color: T.text }}>
             {t("news.t1")}

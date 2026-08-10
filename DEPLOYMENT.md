@@ -86,42 +86,20 @@ index-*.js/css     → "max-age=31536000" (1 Jahr, versioned)
 
 ## Automatisierung (Optional)
 
-### CI/CD mit GitHub Actions
-Erstelle `.github/workflows/deploy.yml`:
-```yaml
-name: Deploy to IONOS
+### CI/CD mit GitHub Actions (IONOS Dual-Engine Deployment)
 
-on:
-  push:
-    branches:
-      - main
+#### 1. In GitHub Repository Secrets anlegen
+Vergib unter **Settings ➔ Secrets and variables ➔ Actions** das Secret:
+- **Name:** `SFTP_URL`
+- **Wert-Format:** `sftp://BENUTZERNAME:PASSWORT@HOST/ZIEL_ORDNER/`
+- **Beispiel IONOS:** `sftp://su486213:MeinPasswort%23@access-5019090422.webspace-host.com/aiacteu/`
+*(Sonderzeichen im Passwort wie `#` als `%23` kodieren, IONOS `;fingerprint=...` Filter läuft automatisch)*
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - run: npm install
-      - run: npm run build
-      
-      - name: Upload to IONOS
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.IONOS_HOST }}
-          username: ${{ secrets.IONOS_USER }}
-          key: ${{ secrets.IONOS_SSH_KEY }}
-          source: "dist/*"
-          target: "/www/htdocs/herotax.de/"
-```
-
-**GitHub Secrets eintragen:**
-- `IONOS_HOST`: herotax.de
-- `IONOS_USER`: Dein FTP-User
-- `IONOS_SSH_KEY`: SSH Private Key (falls SFTP via SSH)
+#### 2. Funktionsweise
+- **Dual-Engine:** Versucht automatisch zuerst **SFTP (SSH Port 22)** und wechsle bei verschlossenen Ports nahtlos auf **FTPS (TLS Port 21)**.
+- **Auto Build-Erkennung:** Erkennt automatisch Vite (`dist/`) oder Next.js (`out/`) Build-Ordner.
+- **Skript:** `scripts/deploy.mjs`
+- **Workflow:** `.github/workflows/deploy.yml`
 
 ## News/Artikel aktualisieren
 
@@ -132,13 +110,13 @@ npm run build
 # Upload dist/ wieder zu IONOS
 ```
 
-### Dynamische Daten (automatischer Feed-Import)
+### Dynamische Daten & Live Tracker (automatischer 4-Std-Feed-Import)
 Der NewsTicker, News-Hub ("Bund & Steuer") und das KI-Sicherheit-Panel
 (BMDS/BSI) laden ihre Meldungen automatisch über den serverseitigen
 Feed-Proxy `public/api/feed.php`. Der Proxy holt die offiziellen
-RSS-Feeds von BMF, BMDS und BSI, cached sie 30 Minuten und liefert
-sie als JSON aus — das umgeht die CORS-Sperre dieser Behörden-Domains
-für direkte Browser-Zugriffe.
+RSS-Feeds von BMF, BMDS und BSI, cached sie 4 Stunden (14.400 Sekunden)
+und liefert sie als JSON aus. Ein Live Tracker Badge zeigt den genauen
+Stand an (z. B. `Live · Stand: 10.08.2026, 22:58 Uhr (alle 4 Std.)`).
 
 **Voraussetzung:** IONOS-Webspace mit PHP (Standard bei IONOS
 Webhosting-Paketen). `feed.php` liegt in `dist/api/feed.php` und wird
