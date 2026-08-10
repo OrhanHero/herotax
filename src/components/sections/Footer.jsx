@@ -97,7 +97,7 @@ const Footer = () => {
           {t("footer.legal")}
         </p>
 
-        <div className="mt-8 max-w-2xl mx-auto">
+        <div className="mt-8 max-w-4xl mx-auto">
           <AILabel />
         </div>
       </div>
