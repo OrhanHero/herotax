@@ -4,7 +4,6 @@ import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import PrimaryCTA from "../atoms/PrimaryCTA";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
-import BerlinTechSeal from "../atoms/BerlinTechSeal";
 import { FernsehturmIcon } from "../atoms/FernsehturmBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 
@@ -90,7 +89,6 @@ const HeroSection = () => {
       {/* Eyebrow & Official Blueprint Badges */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <BrandenburgerTorBadge label="BERLIN METROPOL STEUER-SCHUTZSCHILD" />
-        <BerlinTechSeal label="GEPRÜFT · BEHÖRDEN-DATA 2026" />
       </div>
 
       <div className="grid lg:grid-cols-12 gap-10 items-center">
@@ -139,172 +137,173 @@ const HeroSection = () => {
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
         <div className="lg:col-span-5">
-          <div className="rounded-2xl text-slate-900 relative overflow-hidden transition-all duration-300 bg-white border border-slate-300 shadow-md">
-            {/* Moonlight Skyline Banner mit EU AI-Generated Badge Overlay */}
-            <div className="relative h-28 overflow-hidden border-b border-slate-200">
-              <AIImageOverlay
-                src="/images/berlin_moonlight_skyline.png"
-                alt="Berlin Moonlight Tech Skyline"
-                className="w-full h-full"
-                imgClassName="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-4">
-                <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-2">
-                    <FernsehturmIcon size={20} color="#FFFFFF" />
-                    <span className="text-xs font-bold tracking-widest text-white uppercase" style={{ ...fontMono }}>
-                      BERLIN METROPOL RADAR 🌙
-                    </span>
-                  </div>
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-600/90 text-white border border-blue-400/40 flex items-center gap-1">
-                    <Zap size={10} /> HUB #1 IN DE
+          <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg">
+            {/* Full Background: Berlin Moonlight Skyline */}
+            <AIImageOverlay
+              src="/images/berlin_moonlight_skyline.png"
+              alt="Berlin Moonlight Tech Skyline"
+              className="absolute inset-0 w-full h-full"
+              imgClassName="w-full h-full object-cover"
+            />
+            {/* Dark Overlay for readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950/92" />
+
+            {/* Content on top of background */}
+            <div className="relative z-10 p-5 sm:p-6">
+              {/* Header Status Bar */}
+              <div className="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-white/15">
+                <div className="flex items-center gap-2">
+                  <FernsehturmIcon size={20} color="#FFFFFF" />
+                  <span className="text-xs font-bold tracking-widest text-white uppercase" style={{ ...fontMono }}>
+                    BERLIN METROPOL RADAR 🌙
                   </span>
                 </div>
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-600/80 text-white border border-blue-400/30 flex items-center gap-1">
+                  <Zap size={10} /> HUB #1 IN DE
+                </span>
               </div>
-            </div>
 
-            <div className="p-5 sm:p-6">
               {/* Interactive Control Tabs */}
-            <div className="grid grid-cols-3 gap-1.5 bg-slate-100 p-1 rounded-lg mb-5 border border-slate-200">
-              <button
-                type="button"
-                onClick={() => setActiveTab("trends")}
-                className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
-                  activeTab === "trends"
-                    ? "bg-blue-600 text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-                style={{ ...fontDisplay }}
-              >
-                <Rocket size={13} /> Trends
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab("hubs")}
-                className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
-                  activeTab === "hubs"
-                    ? "bg-blue-600 text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-                style={{ ...fontDisplay }}
-              >
-                <Building2 size={13} /> Tech-Hubs
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveTab("kpis")}
-                className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
-                  activeTab === "kpis"
-                    ? "bg-blue-600 text-white shadow-xs"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-                style={{ ...fontDisplay }}
-              >
-                <BarChart3 size={13} /> KPIs
-              </button>
-            </div>
-
-            {/* TAB 1: Trends 2026 */}
-            {activeTab === "trends" && (
-              <div className="space-y-3">
-                {trends.map((item) => (
-                  <a
-                    key={item.title}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-white transition-all cursor-pointer shadow-2xs"
-                  >
-                    <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono uppercase font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                        {item.tag}
-                      </span>
-                      <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-600 group-hover:underline">
-                        <span>Quelle: {item.source}</span>
-                        <ExternalLink size={11} className="shrink-0" />
-                      </div>
-                    </div>
-                    <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay }}>
-                      {item.title}
-                    </h4>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </a>
-                ))}
+              <div className="grid grid-cols-3 gap-1.5 bg-white/10 backdrop-blur-sm p-1 rounded-lg mb-5 border border-white/15">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("trends")}
+                  className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
+                    activeTab === "trends"
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                  style={{ ...fontDisplay }}
+                >
+                  <Rocket size={13} /> Trends
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("hubs")}
+                  className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
+                    activeTab === "hubs"
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                  style={{ ...fontDisplay }}
+                >
+                  <Building2 size={13} /> Tech-Hubs
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("kpis")}
+                  className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
+                    activeTab === "kpis"
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                  style={{ ...fontDisplay }}
+                >
+                  <BarChart3 size={13} /> KPIs
+                </button>
               </div>
-            )}
 
-            {/* TAB 2: Berlin Tech Hubs */}
-            {activeTab === "hubs" && (
-              <div className="space-y-3">
-                {hubs.map((item) => (
-                  <a
-                    key={item.title}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-white transition-all cursor-pointer shadow-2xs"
-                  >
-                    <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono uppercase font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                        {item.tag}
-                      </span>
-                      <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-600 group-hover:underline">
-                        <span>Quelle: {item.source}</span>
-                        <ExternalLink size={11} className="shrink-0" />
-                      </div>
-                    </div>
-                    <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay }}>
-                      {item.title}
-                    </h4>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </a>
-                ))}
-              </div>
-            )}
-
-            {/* TAB 3: Berlin Startup KPIs */}
-            {activeTab === "kpis" && (
-              <div className="space-y-3 text-xs">
-                {kpis.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-white transition-all cursor-pointer shadow-2xs"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <div>
-                        <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-600 mb-0.5 group-hover:underline">
+              {/* TAB 1: Trends 2026 */}
+              {activeTab === "trends" && (
+                <div className="space-y-3">
+                  {trends.map((item) => (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block p-3.5 rounded-xl bg-white/8 backdrop-blur-sm border border-white/12 hover:border-blue-400/50 hover:bg-white/14 transition-all cursor-pointer"
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-[10px] font-mono uppercase font-bold text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded border border-amber-500/25">
+                          {item.tag}
+                        </span>
+                        <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-400 group-hover:underline">
                           <span>Quelle: {item.source}</span>
                           <ExternalLink size={11} className="shrink-0" />
                         </div>
-                        <span className="text-slate-900 font-bold block text-xs">{item.label}</span>
-                        <span className="text-slate-500 text-[11px]">{item.detail}</span>
                       </div>
-                      <span className="text-lg font-black text-blue-600 font-mono group-hover:scale-105 transition-transform">{item.value}</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            )}
+                      <h4 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors" style={{ ...fontDisplay }}>
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </a>
+                  ))}
+                </div>
+              )}
 
-            {/* Footer Link */}
-            <div className="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
-              <span style={{ ...fontMono }}>herotax.de · Verifizierte Daten</span>
-              <a href="#news" className="text-blue-600 font-bold hover:underline inline-flex items-center gap-1">
-                Hauptstadt News lesen <ChevronRight size={13} />
-              </a>
+              {/* TAB 2: Berlin Tech Hubs */}
+              {activeTab === "hubs" && (
+                <div className="space-y-3">
+                  {hubs.map((item) => (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block p-3.5 rounded-xl bg-white/8 backdrop-blur-sm border border-white/12 hover:border-blue-400/50 hover:bg-white/14 transition-all cursor-pointer"
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-[10px] font-mono uppercase font-bold text-blue-400 bg-blue-500/15 px-2 py-0.5 rounded border border-blue-500/25">
+                          {item.tag}
+                        </span>
+                        <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-400 group-hover:underline">
+                          <span>Quelle: {item.source}</span>
+                          <ExternalLink size={11} className="shrink-0" />
+                        </div>
+                      </div>
+                      <h4 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors" style={{ ...fontDisplay }}>
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {/* TAB 3: Berlin Startup KPIs */}
+              {activeTab === "kpis" && (
+                <div className="space-y-3 text-xs">
+                  {kpis.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block p-3.5 rounded-xl bg-white/8 backdrop-blur-sm border border-white/12 hover:border-blue-400/50 hover:bg-white/14 transition-all cursor-pointer"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div>
+                          <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-400 mb-0.5 group-hover:underline">
+                            <span>Quelle: {item.source}</span>
+                            <ExternalLink size={11} className="shrink-0" />
+                          </div>
+                          <span className="text-white font-bold block text-xs">{item.label}</span>
+                          <span className="text-slate-400 text-[11px]">{item.detail}</span>
+                        </div>
+                        <span className="text-lg font-black text-amber-400 font-mono group-hover:scale-105 transition-transform">{item.value}</span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {/* Footer Link */}
+              <div className="pt-4 mt-4 border-t border-white/15 flex items-center justify-between text-xs text-slate-400">
+                <span style={{ ...fontMono }}>herotax.de · Verifizierte Daten</span>
+                <a href="#news" className="text-blue-400 font-bold hover:text-blue-300 inline-flex items-center gap-1">
+                  Hauptstadt News lesen <ChevronRight size={13} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 

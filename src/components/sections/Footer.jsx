@@ -19,8 +19,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm" style={{ ...fontDisplay }}>
-            <a href="/" className="font-bold hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded flex items-center gap-1.5" style={{ color: T.text }}>
-              <span>HERO</span> <span style={{ color: T.blue }}>Tax</span> 🛡️
+            <a href="/" className="font-bold hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded flex items-center gap-2" style={{ color: T.text }}>
+              <img src="/images/herotax-logo.png" alt="HERO Tax Logo" className="h-6 w-auto" />
+              <span>HERO</span> <span style={{ color: T.blue }}>Tax</span>
             </a>
             <span className="font-normal" style={{ color: T.faint }}>{t("footer.made")}</span>
             <a
