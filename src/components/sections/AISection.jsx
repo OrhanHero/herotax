@@ -8,6 +8,8 @@ import Eyebrow from "../atoms/Eyebrow";
 import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
+import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
+import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Säule 01 · KI im Steuerrecht & Prozess-Intelligence */
 const AISection = () => {
@@ -29,9 +31,12 @@ const AISection = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-5 sm:px-8 py-24" id="ki">
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
-        <Eyebrow index="01">{t("ai.eyebrow")}</Eyebrow>
+    <section className="max-w-7xl mx-auto px-5 sm:px-8 py-24 rounded-3xl bg-blueprint-grid my-8" id="ki">
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+        <div className="flex items-center gap-3">
+          <Eyebrow index="01">{t("ai.eyebrow")}</Eyebrow>
+          <BrandenburgerTorBadge label="KI-SCHUTZSCHILD BERLIN" />
+        </div>
         <LiveTrackerBadge type="bmds" onRefresh={refreshAiFeeds} />
       </div>
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
@@ -87,33 +92,41 @@ const AISection = () => {
           background: `linear-gradient(135deg, ${T.blue} 0%, #1725A8 100%)`,
         }}
       >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
+        <div className="grid lg:grid-cols-12 gap-8 items-center mb-8">
+          <div className="lg:col-span-7 flex items-center gap-3">
             <span
-              className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0"
+              className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
               style={{ backgroundColor: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)" }}
             >
-              <ShieldCheck size={22} style={{ color: "#FFFFFF" }} />
+              <ShieldCheck size={24} style={{ color: "#FFFFFF" }} />
             </span>
             <div>
               <h3 className="text-xl sm:text-2xl font-black tracking-tight" style={{ ...fontDisplay, color: "#FFFFFF" }}>
-                KI-Sicherheit & Regulierung · Bund
+                KI-Sicherheit & Regulierung · Bund 🌙
               </h3>
               <p className="text-xs" style={{ ...fontMono, color: "rgba(255,255,255,0.65)" }}>
                 Offizielle Quellen: BMDS (Digitalpolitik & Regulierung) · BSI (Cyber- & KI-Sicherheit)
               </p>
             </div>
           </div>
-          <a
-            href="https://bmds.bund.de/aktuelles"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start px-5 py-2.5 rounded-full text-sm font-bold transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2"
-            style={{ ...fontDisplay, backgroundColor: "#FFFFFF", color: T.blue }}
-          >
-            Alle BMDS-Meldungen
-            <ExternalLink size={14} />
-          </a>
+          <div className="lg:col-span-5 flex items-center justify-end gap-3">
+            <AIImageOverlay
+              src="/images/berlin_moonlight_brandenburg.png"
+              alt="Berlin Brandenburger Tor Moonlight Tech Visual"
+              className="hidden sm:block rounded-xl border border-white/20 shadow-md"
+              imgClassName="w-48 h-20 object-cover rounded-xl"
+            />
+            <a
+              href="https://bmds.bund.de/aktuelles"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 shrink-0"
+              style={{ ...fontDisplay, backgroundColor: "#FFFFFF", color: T.blue }}
+            >
+              Alle BMDS-Meldungen
+              <ExternalLink size={14} />
+            </a>
+          </div>
         </div>
 
         {/* Zeile 1 · BMDS — Bundesministerium für Digitales und Staatsmodernisierung */}

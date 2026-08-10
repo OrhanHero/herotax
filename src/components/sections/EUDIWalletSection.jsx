@@ -2,6 +2,7 @@ import { ExternalLink, Wallet } from "lucide-react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import { EUDI_TIMELINE } from "../../data/eudiWallet";
 import Eyebrow from "../atoms/Eyebrow";
+import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Säule 03 · EUDI-Wallet (Digitale Identität der EU)
     Eigener Bereich für Stand & Zeitplan des European Digital Identity
@@ -27,20 +28,30 @@ const EUDIWalletSection = () => (
         className="rounded-3xl p-8 sm:p-10"
         style={{ background: `linear-gradient(135deg, ${T.blue} 0%, #1725A8 100%)` }}
       >
-        <div className="flex items-center gap-3 mb-8">
-          <span
-            className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0"
-            style={{ backgroundColor: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)" }}
-          >
-            <Wallet size={22} style={{ color: "#FFFFFF" }} />
-          </span>
-          <div>
-            <h3 className="text-xl sm:text-2xl font-black tracking-tight" style={{ ...fontDisplay, color: "#FFFFFF" }}>
-              EUDI-Wallet: Stand & Zeitplan
-            </h3>
-            <p className="text-xs" style={{ ...fontMono, color: "rgba(255,255,255,0.65)" }}>
-              Offizielle Quellen: BMDS (Deutschland) · Europäische Kommission (EU) · Verbraucherzentrale (Einordnung)
-            </p>
+        <div className="grid lg:grid-cols-12 gap-8 items-center mb-8">
+          <div className="lg:col-span-7 flex items-center gap-3">
+            <span
+              className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+              style={{ backgroundColor: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)" }}
+            >
+              <Wallet size={24} style={{ color: "#FFFFFF" }} />
+            </span>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-black tracking-tight" style={{ ...fontDisplay, color: "#FFFFFF" }}>
+                EUDI-Wallet: Stand & Zeitplan
+              </h3>
+              <p className="text-xs" style={{ ...fontMono, color: "rgba(255,255,255,0.65)" }}>
+                Offizielle Quellen: BMDS (Deutschland) · Europäische Kommission (EU) · Verbraucherzentrale
+              </p>
+            </div>
+          </div>
+          <div className="lg:col-span-5 flex justify-end">
+            <AIImageOverlay
+              src="/images/eudi_wallet_berlin.png"
+              alt="EUDI Wallet Berlin Digital Identity 3D Visual"
+              className="w-full rounded-2xl border border-white/20 shadow-lg"
+              imgClassName="w-full h-32 object-cover rounded-2xl"
+            />
           </div>
         </div>
 

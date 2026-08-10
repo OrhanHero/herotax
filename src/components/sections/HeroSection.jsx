@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { ShieldCheck, Lock, Cpu, Sparkles, Rocket, Building2, BarChart3, ChevronRight, Zap, ExternalLink } from "lucide-react";
+import { ShieldCheck, Lock, Cpu, Rocket, Building2, BarChart3, ChevronRight, Zap, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import PrimaryCTA from "../atoms/PrimaryCTA";
+import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
+import BerlinTechSeal from "../atoms/BerlinTechSeal";
+import { FernsehturmIcon } from "../atoms/FernsehturmBadge";
+import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
@@ -82,21 +86,11 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-10 sm:pt-16 pb-20 overflow-hidden hero-grid-pattern">
-      {/* Background Radial Glow Orbs */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] pointer-events-none opacity-40 blur-3xl"
-        style={{ background: `radial-gradient(ellipse at center, ${T.blue} 0%, rgba(16, 185, 129, 0.3) 50%, transparent 75%)` }}
-        aria-hidden="true"
-      />
-
-      {/* Cyber Eyebrow Badge */}
-      <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 border border-blue-500/30 bg-slate-900/80 text-blue-300 shadow-lg backdrop-blur-xl">
-        <Sparkles size={13} className="text-emerald-400 animate-spin-slow" />
-        <span style={{ ...fontMono }} className="tracking-wide">
-          {t("hero.kicker")}
-        </span>
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping ml-1" />
+    <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-20 overflow-hidden bg-blueprint-grid">
+      {/* Eyebrow & Official Blueprint Badges */}
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+        <BrandenburgerTorBadge label="BERLIN METROPOL STEUER-SCHUTZSCHILD" />
+        <BerlinTechSeal label="GEPRÜFT · BEHÖRDEN-DATA 2026" />
       </div>
 
       <div className="grid lg:grid-cols-12 gap-10 items-center">
@@ -109,7 +103,7 @@ const HeroSection = () => {
             {t("hero.title1")}
             <br />
             {t("hero.title2pre")}
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 via-emerald-600 to-amber-600 bg-clip-text text-transparent">
+            <span className="relative inline-block text-blue-600 px-2 underline decoration-blue-600/30 underline-offset-8">
               Berlin
             </span>
             {t("hero.title2post")}
@@ -121,16 +115,16 @@ const HeroSection = () => {
 
           {/* Key Feature Trust Badges */}
           <div className="flex flex-wrap items-center gap-2.5 pt-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-700 border border-emerald-500/20 shadow-xs">
-              <Lock size={13} className="text-emerald-600" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white border border-slate-300 text-slate-800 shadow-xs" style={{ ...fontMono }}>
+              <Lock size={13} className="text-blue-600" />
               Ohne Cookies & Tracking
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-500/10 text-blue-700 border border-blue-500/20 shadow-xs">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white border border-slate-300 text-slate-800 shadow-xs" style={{ ...fontMono }}>
               <ShieldCheck size={13} className="text-blue-600" />
               100% DSGVO & EU-Wallet
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-800 border border-amber-500/20 shadow-xs">
-              <Cpu size={13} className="text-amber-600" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white border border-slate-300 text-slate-800 shadow-xs" style={{ ...fontMono }}>
+              <Cpu size={13} className="text-blue-600" />
               BSI & BMDS Live Feeds
             </span>
           </div>
@@ -145,55 +139,66 @@ const HeroSection = () => {
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
         <div className="lg:col-span-5">
-          <div className="hero-glass-dark rounded-3xl p-6 sm:p-7 text-slate-100 relative overflow-hidden transition-all duration-300">
-            {/* Top Glowing Gradient Accent */}
-            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-500 via-emerald-400 to-amber-400" />
-
-            {/* Header Status Bar */}
-            <div className="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs font-bold tracking-widest text-slate-300 uppercase" style={{ ...fontMono }}>
-                  BERLIN STARTUP RADAR 🐻
-                </span>
+          <div className="rounded-2xl text-slate-900 relative overflow-hidden transition-all duration-300 bg-white border border-slate-300 shadow-md">
+            {/* Moonlight Skyline Banner mit EU AI-Generated Badge Overlay */}
+            <div className="relative h-28 overflow-hidden border-b border-slate-200">
+              <AIImageOverlay
+                src="/images/berlin_moonlight_skyline.png"
+                alt="Berlin Moonlight Tech Skyline"
+                className="w-full h-full"
+                imgClassName="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex items-end p-4">
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-2">
+                    <FernsehturmIcon size={20} color="#FFFFFF" />
+                    <span className="text-xs font-bold tracking-widest text-white uppercase" style={{ ...fontMono }}>
+                      BERLIN METROPOL RADAR 🌙
+                    </span>
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-600/90 text-white border border-blue-400/40 flex items-center gap-1">
+                    <Zap size={10} /> HUB #1 IN DE
+                  </span>
+                </div>
               </div>
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1">
-                <Zap size={10} /> HUB #1 IN DE
-              </span>
             </div>
 
-            {/* Interactive Control Tabs */}
-            <div className="grid grid-cols-3 gap-1.5 bg-slate-950/60 p-1 rounded-xl mb-5 border border-slate-800/80">
+            <div className="p-5 sm:p-6">
+              {/* Interactive Control Tabs */}
+            <div className="grid grid-cols-3 gap-1.5 bg-slate-100 p-1 rounded-lg mb-5 border border-slate-200">
               <button
                 type="button"
                 onClick={() => setActiveTab("trends")}
-                className={`py-2 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition-all ${
+                className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
                   activeTab === "trends"
-                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-blue-600 text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
+                style={{ ...fontDisplay }}
               >
                 <Rocket size={13} /> Trends
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("hubs")}
-                className={`py-2 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition-all ${
+                className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
                   activeTab === "hubs"
-                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-blue-600 text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
+                style={{ ...fontDisplay }}
               >
                 <Building2 size={13} /> Tech-Hubs
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("kpis")}
-                className={`py-2 px-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1 transition-all ${
+                className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
                   activeTab === "kpis"
-                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "bg-blue-600 text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
+                style={{ ...fontDisplay }}
               >
                 <BarChart3 size={13} /> KPIs
               </button>
@@ -201,32 +206,28 @@ const HeroSection = () => {
 
             {/* TAB 1: Trends 2026 */}
             {activeTab === "trends" && (
-              <div className="space-y-3 animate-fadeIn">
+              <div className="space-y-3">
                 {trends.map((item) => (
                   <a
                     key={item.title}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(item.href, "_blank", "noopener,noreferrer");
-                    }}
-                    className="group block p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800/90 hover:border-blue-500/50 hover:bg-slate-900 transition-all cursor-pointer relative z-10 pointer-events-auto shadow-sm"
+                    className="group block p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-white transition-all cursor-pointer shadow-2xs"
                   >
                     <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono uppercase font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                      <span className="text-[10px] font-mono uppercase font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
                         {item.tag}
                       </span>
-                      <div className="flex items-center gap-1.5 text-[11px] font-mono font-semibold text-blue-400 group-hover:text-blue-300 group-hover:underline">
+                      <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-600 group-hover:underline">
                         <span>Quelle: {item.source}</span>
-                        <ExternalLink size={12} className="shrink-0" />
+                        <ExternalLink size={11} className="shrink-0" />
                       </div>
                     </div>
-                    <h4 className="text-sm font-bold text-slate-100 group-hover:text-blue-300 transition-colors" style={{ ...fontDisplay }}>
+                    <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay }}>
                       {item.title}
                     </h4>
-                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                       {item.desc}
                     </p>
                   </a>
@@ -236,32 +237,28 @@ const HeroSection = () => {
 
             {/* TAB 2: Berlin Tech Hubs */}
             {activeTab === "hubs" && (
-              <div className="space-y-3 animate-fadeIn">
+              <div className="space-y-3">
                 {hubs.map((item) => (
                   <a
                     key={item.title}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(item.href, "_blank", "noopener,noreferrer");
-                    }}
-                    className="group block p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800/90 hover:border-emerald-500/50 hover:bg-slate-900 transition-all cursor-pointer relative z-10 pointer-events-auto shadow-sm"
+                    className="group block p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-white transition-all cursor-pointer shadow-2xs"
                   >
                     <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono uppercase font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                      <span className="text-[10px] font-mono uppercase font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                         {item.tag}
                       </span>
-                      <div className="flex items-center gap-1.5 text-[11px] font-mono font-semibold text-emerald-400 group-hover:text-emerald-300 group-hover:underline">
+                      <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-600 group-hover:underline">
                         <span>Quelle: {item.source}</span>
-                        <ExternalLink size={12} className="shrink-0" />
+                        <ExternalLink size={11} className="shrink-0" />
                       </div>
                     </div>
-                    <h4 className="text-sm font-bold text-slate-100 group-hover:text-emerald-300 transition-colors" style={{ ...fontDisplay }}>
+                    <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay }}>
                       {item.title}
                     </h4>
-                    <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                       {item.desc}
                     </p>
                   </a>
@@ -271,29 +268,25 @@ const HeroSection = () => {
 
             {/* TAB 3: Berlin Startup KPIs */}
             {activeTab === "kpis" && (
-              <div className="space-y-3 animate-fadeIn text-xs">
+              <div className="space-y-3 text-xs">
                 {kpis.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(item.href, "_blank", "noopener,noreferrer");
-                    }}
-                    className="group block p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800/90 hover:border-amber-500/50 hover:bg-slate-900 transition-all cursor-pointer relative z-10 pointer-events-auto shadow-sm"
+                    className="group block p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-white transition-all cursor-pointer shadow-2xs"
                   >
                     <div className="flex items-center justify-between gap-2">
                       <div>
-                        <div className="flex items-center gap-1.5 text-[11px] font-mono font-semibold text-amber-400 mb-0.5 group-hover:underline">
+                        <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-600 mb-0.5 group-hover:underline">
                           <span>Quelle: {item.source}</span>
                           <ExternalLink size={11} className="shrink-0" />
                         </div>
-                        <span className="text-slate-200 font-bold block text-xs">{item.label}</span>
-                        <span className="text-slate-400 text-[11px]">{item.detail}</span>
+                        <span className="text-slate-900 font-bold block text-xs">{item.label}</span>
+                        <span className="text-slate-500 text-[11px]">{item.detail}</span>
                       </div>
-                      <span className="text-lg font-black text-amber-400 font-mono group-hover:scale-105 transition-transform">{item.value}</span>
+                      <span className="text-lg font-black text-blue-600 font-mono group-hover:scale-105 transition-transform">{item.value}</span>
                     </div>
                   </a>
                 ))}
@@ -301,16 +294,17 @@ const HeroSection = () => {
             )}
 
             {/* Footer Link */}
-            <div className="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-              <span style={{ ...fontMono }}>herotax.de · Verified Sources</span>
-              <a href="#news" className="text-blue-400 font-bold hover:text-blue-300 inline-flex items-center gap-1">
+            <div className="pt-4 mt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
+              <span style={{ ...fontMono }}>herotax.de · Verifizierte Daten</span>
+              <a href="#news" className="text-blue-600 font-bold hover:underline inline-flex items-center gap-1">
                 Hauptstadt News lesen <ChevronRight size={13} />
               </a>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 

@@ -9,6 +9,7 @@ import CategoryTag from "../atoms/CategoryTag";
 import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
+import FernsehturmBadge from "../atoms/FernsehturmBadge";
 
 const DE_ICONS = {
   home: Home,
@@ -48,10 +49,13 @@ const NewsHub = () => {
   };
 
   return (
-    <section className="py-24" style={{ borderTop: `1px solid ${T.lineSoft}` }} id="news">
+    <section className="py-24 border-t bg-blueprint-grid" style={{ borderColor: T.lineSoft }} id="news">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
-          <Eyebrow index="02">{t("news.eyebrow")}</Eyebrow>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+          <div className="flex items-center gap-3">
+            <Eyebrow index="02">{t("news.eyebrow")}</Eyebrow>
+            <FernsehturmBadge label="HAUPTSTADT KIOSK" />
+          </div>
           <LiveTrackerBadge type="general" onRefresh={refreshArticles} />
         </div>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
@@ -88,8 +92,7 @@ const NewsHub = () => {
         <div className="grid lg:grid-cols-3 gap-5">
           {featured && (
             <article
-              className="lg:col-span-2 lg:row-span-2 group rounded-3xl p-8 sm:p-12 flex flex-col transition-all duration-300"
-              style={cardBase}
+              className="lg:col-span-2 lg:row-span-2 group glass-card card-lift rounded-3xl p-8 sm:p-12 flex flex-col transition-all duration-300 relative overflow-hidden"
             >
               <div className="flex items-center justify-between gap-4">
                 <CategoryTag cat={featured.cat} />
@@ -143,8 +146,7 @@ const NewsHub = () => {
           {rest.map((a) => (
             <article
               key={a.title}
-              className="group rounded-3xl p-7 flex flex-col justify-between gap-10 transition-all duration-300 hover:-translate-y-1"
-              style={cardBase}
+              className="group glass-card card-lift rounded-3xl p-7 flex flex-col justify-between gap-10"
             >
               <div className="flex items-center justify-between gap-4">
                 <CategoryTag cat={a.cat} />

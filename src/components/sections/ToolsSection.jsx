@@ -10,8 +10,8 @@ const ToolsSection = () => {
   const { t } = useLang();
   return (
     <section
-      className="py-24"
-      style={{ backgroundColor: T.card, borderTop: `1px solid ${T.lineSoft}`, borderBottom: `1px solid ${T.lineSoft}` }}
+      className="py-24 bg-blueprint-grid"
+      style={{ borderTop: `1px solid ${T.lineSoft}`, borderBottom: `1px solid ${T.lineSoft}` }}
       id="tools"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">

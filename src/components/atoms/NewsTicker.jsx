@@ -1,8 +1,9 @@
 import { useLang } from "../../i18n";
 import { T, fontMono } from "../../config/tokens";
+import { FernsehturmIcon } from "./FernsehturmBadge";
 
 /**
- * NewsTicker — durchlaufendes Nachrichten-Band (BMF-Stil).
+ * NewsTicker — durchlaufendes Nachrichten-Band im Berliner Kiosk & Amts-Blueprint Stil.
  * · Speist sich automatisch aus ARTICLES (eine Datenquelle, kein Doppelpflegen)
  * · Nahtlose Endlos-Schleife: Inhalt wird dupliziert, Animation läuft -50 %
  * · Pausiert bei Hover/Fokus (Lesbarkeit) und respektiert
@@ -13,18 +14,18 @@ const NewsTicker = ({ items }) => {
   const { t } = useLang();
   return (
     <div
-      className="flex items-stretch"
+      className="flex items-stretch shadow-xs"
       style={{ backgroundColor: T.text, borderBottom: `1px solid ${T.line}` }}
       role="region"
       aria-label="Newsticker: aktuelle Meldungen"
       dir="ltr"
     >
-      {/* Festes Label links — Laufband bleibt technisch LTR, damit die
-          Marquee-Animation in allen Sprachen identisch läuft */}
+      {/* Festes Label links — Berliner Kiosk / Amts-Ticker */}
       <div
         className="flex items-center gap-2 px-4 sm:px-5 py-2.5 shrink-0 z-10"
         style={{ backgroundColor: T.blue }}
       >
+        <FernsehturmIcon size={16} color={T.blueInk} />
         <span className="relative flex h-2 w-2" aria-hidden="true">
           <span
             className="ticker-ping absolute inline-flex h-full w-full rounded-full opacity-75"
@@ -54,8 +55,12 @@ const NewsTicker = ({ items }) => {
                   style={{ color: T.paper }}
                 >
                   <span
-                    className="text-xs uppercase tracking-wider shrink-0"
-                    style={{ ...fontMono, color: a.cat === "Berlin Fokus" ? "#8FA0FF" : T.faint }}
+                    className="text-xs font-bold uppercase tracking-wider shrink-0 px-2 py-0.5 rounded"
+                    style={{
+                      ...fontMono,
+                      backgroundColor: a.cat === "Berlin Fokus" ? "rgba(143,160,255,0.18)" : "rgba(255,255,255,0.1)",
+                      color: a.cat === "Berlin Fokus" ? "#8FA0FF" : "#D1D5DB",
+                    }}
                   >
                     {a.cat}
                   </span>
