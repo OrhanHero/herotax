@@ -8,6 +8,7 @@ import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 import EUAIActSection from "../atoms/EUAIActSection";
+import BerlinEcosystemMapCard from "../atoms/BerlinEcosystemMapCard";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
@@ -156,8 +157,8 @@ const HeroSection = () => {
               className="absolute inset-0 w-full h-full"
               imgClassName="w-full h-full object-cover"
             />
-            {/* Dark Overlay for readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950/92" />
+            {/* Lightened Overlay for enhanced image visibility & readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/25 via-slate-950/45 to-slate-950/70" />
 
             {/* Content on top of background */}
             <div className="relative z-10 p-5 sm:p-6">
@@ -309,6 +310,9 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
+
+          {/* Interaktive Berlin Metropol Ökosystem-Karte */}
+          <BerlinEcosystemMapCard />
         </div>
       </div>
     </section>
