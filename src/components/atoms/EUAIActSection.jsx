@@ -5,12 +5,7 @@ import { T, fontDisplay, fontMono } from "../../config/tokens";
 export default function EUAIActSection() {
   const [tab, setTab] = useState("rules"); // 'rules' | 'target' | 'penalties' | 'timeline'
 
-  const officialLinks = [
-    {
-      title: "EUR-Lex Gesetzestext",
-      href: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689",
-      icon: BookOpen,
-    },
+  const pillLinks = [
     {
       title: "EU KI-Rahmenwerk",
       href: "https://digital-strategy.ec.europa.eu/de/policies/regulatory-framework-ai#1720699867912-2",
@@ -127,25 +122,38 @@ export default function EUAIActSection() {
 
   return (
     <div className="mt-6 rounded-3xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-sm">
-      {/* Header Badge & Title + Compact Official Links */}
-      <div className="pb-4 border-b border-slate-100 mb-5">
-        <div className="flex items-center gap-2.5 mb-3">
-          <span className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
-            <Scale size={16} className="text-blue-600" />
-          </span>
-          <div>
-            <h3 className="font-bold text-base leading-snug" style={{ ...fontDisplay, color: T.text }}>
-              EU AI Act Guide 🇪🇺 · Verordnung (EU) 2024/1689
-            </h3>
-            <p className="text-xs" style={{ ...fontMono, color: T.faint }}>
-              Kompakt-Kompass: Regeln, wer betroffen ist, Strafen & Fristen
-            </p>
+      {/* Header Badge & Title + EUR-Lex Link on top right */}
+      <div className="pb-3.5 border-b border-slate-100 mb-5">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <div className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
+              <Scale size={16} className="text-blue-600" />
+            </span>
+            <div>
+              <h3 className="font-bold text-base leading-snug" style={{ ...fontDisplay, color: T.text }}>
+                EU AI Act Guide 🇪🇺 · Verordnung (EU) 2024/1689
+              </h3>
+              <p className="text-xs" style={{ ...fontMono, color: T.faint }}>
+                Kompakt-Kompass: Regeln, wer betroffen ist, Strafen & Fristen
+              </p>
+            </div>
           </div>
+          <a
+            href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-colors shrink-0"
+            style={{ ...fontMono }}
+          >
+            <BookOpen size={13} className="text-blue-600" />
+            <span>EUR-Lex Gesetzestext</span>
+            <ExternalLink size={11} className="opacity-70" />
+          </a>
         </div>
 
-        {/* Compact Pill Badges for all 4 Official EU Links right in the header space */}
-        <div className="flex flex-wrap items-center gap-1.5 pt-1">
-          {officialLinks.map((link) => {
+        {/* 3 Pill Badges fitting on 1 single row directly below */}
+        <div className="flex flex-wrap items-center gap-2 pt-0.5">
+          {pillLinks.map((link) => {
             const Icon = link.icon;
             return (
               <a
