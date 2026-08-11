@@ -87,9 +87,9 @@ const HeroSection = () => {
 
   return (
     <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-16 overflow-hidden bg-blueprint-grid">
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
         {/* Left Column: Display Headline & Copy */}
-        <div className="lg:col-span-7 space-y-5">
+        <div className="lg:col-span-7 space-y-5 flex flex-col justify-between">
           {/* Parallel Eyebrow Badge Left */}
           <div className="flex items-center gap-3">
             <BrandenburgerTorBadge label="BERLIN METROPOL STEUER-SCHUTZSCHILD" />
@@ -117,14 +117,14 @@ const HeroSection = () => {
         </div>
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
-        <div className="lg:col-span-5 space-y-5">
+        <div className="lg:col-span-5 flex flex-col justify-between">
           {/* Parallel Eyebrow Badge Right (Über dem Bild) */}
-          <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
             <FernsehturmBadge label="BERLIN METROPOL RADAR 🌙" />
             <LiveTrackerBadge type="general" />
           </div>
 
-          <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg border border-slate-200">
+          <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg border border-slate-200 flex-1 flex flex-col justify-between">
             {/* Full Background: Berlin Moonlight Skyline */}
             <AIImageOverlay
               src="/images/berlin_moonlight_skyline.png"
@@ -136,7 +136,7 @@ const HeroSection = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950/25 via-slate-950/45 to-slate-950/70" />
 
             {/* Content on top of background */}
-            <div className="relative z-10 p-5 sm:p-6">
+            <div className="relative z-10 p-5 sm:p-6 flex-1 flex flex-col justify-between">
 
               {/* Interactive Control Tabs */}
               <div className="grid grid-cols-3 gap-1.5 bg-white/10 backdrop-blur-sm p-1 rounded-lg mb-5 border border-white/15">
