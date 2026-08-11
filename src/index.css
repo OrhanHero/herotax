@@ -33,7 +33,7 @@ html {
 /* ── Newsticker-Laufband ── */
 .ticker-track {
   width: max-content;
-  animation: hero-ticker 45s linear infinite;
+  animation: hero-ticker 95s linear infinite;
 }
 .ticker-viewport:hover .ticker-track,
 .ticker-viewport:focus-within .ticker-track {
