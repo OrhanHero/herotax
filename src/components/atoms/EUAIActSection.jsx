@@ -8,31 +8,23 @@ export default function EUAIActSection() {
   const officialLinks = [
     {
       title: "EUR-Lex Gesetzestext",
-      desc: "Verordnung (EU) 2024/1689 im Volltext",
       href: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689",
       icon: BookOpen,
-      badge: "CELEX:32024R1689",
     },
     {
       title: "EU KI-Rahmenwerk",
-      desc: "Politische Leitlinien & Risikoklassen",
       href: "https://digital-strategy.ec.europa.eu/de/policies/regulatory-framework-ai#1720699867912-2",
       icon: Scale,
-      badge: "Digital Strategy",
     },
     {
       title: "Aktuelle EU-KI-News",
-      desc: "Offizielle Pressemitteilungen & Updates",
       href: "https://digital-strategy.ec.europa.eu/de/news",
       icon: Newspaper,
-      badge: "Live Feeds",
     },
     {
-      title: "Offizielle EU AI Act FAQs",
-      desc: "Navigationshilfe & Praxisfragen der EU",
+      title: "EU AI Act FAQs",
       href: "https://digital-strategy.ec.europa.eu/de/faqs/navigating-ai-act",
       icon: HelpCircle,
-      badge: "FAQ & Guide",
     },
   ];
 
@@ -135,9 +127,9 @@ export default function EUAIActSection() {
 
   return (
     <div className="mt-6 rounded-3xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-sm">
-      {/* Header Badge & Title */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-5">
-        <div className="flex items-center gap-2.5">
+      {/* Header Badge & Title + Compact Official Links */}
+      <div className="pb-4 border-b border-slate-100 mb-5">
+        <div className="flex items-center gap-2.5 mb-3">
           <span className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
             <Scale size={16} className="text-blue-600" />
           </span>
@@ -150,16 +142,27 @@ export default function EUAIActSection() {
             </p>
           </div>
         </div>
-        <a
-          href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-colors"
-          style={{ ...fontMono }}
-        >
-          <span>EUR-Lex Gesetzestext</span>
-          <ExternalLink size={12} />
-        </a>
+
+        {/* Compact Pill Badges for all 4 Official EU Links right in the header space */}
+        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+          {officialLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <a
+                key={link.title}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-600 border border-slate-200/80 transition-colors"
+                style={{ ...fontMono }}
+              >
+                <Icon size={11} className="text-blue-600" />
+                <span>{link.title}</span>
+                <ExternalLink size={10} className="opacity-60" />
+              </a>
+            );
+          })}
+        </div>
       </div>
 
       {/* Control Tabs */}
@@ -294,38 +297,6 @@ export default function EUAIActSection() {
           ))}
         </div>
       )}
-
-      {/* Offizielle EU-Links der Europäischen Kommission */}
-      <div className="mt-5 pt-4 border-t border-slate-100">
-        <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3" style={{ ...fontMono }}>
-          Offizielle EU-Quellen & Dokumente:
-        </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {officialLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-              <a
-                key={link.title}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-blue-300 hover:bg-blue-50/40 transition-all flex items-start gap-2.5 group"
-              >
-                <Icon size={16} className="text-blue-600 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="font-bold text-xs text-slate-900 truncate group-hover:text-blue-600" style={{ ...fontDisplay }}>
-                      {link.title}
-                    </span>
-                    <ExternalLink size={10} className="text-slate-400 shrink-0 group-hover:text-blue-600" />
-                  </div>
-                  <p className="text-[11px] text-slate-500 truncate">{link.desc}</p>
-                </div>
-              </a>
-            );
-          })}
-        </div>
-      </div>
     </div>
   );
 }
