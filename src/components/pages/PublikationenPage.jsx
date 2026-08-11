@@ -21,7 +21,7 @@ export default function PublikationenPage() {
           ← Zurück zur Startseite
         </a>
 
-        <Eyebrow index="PUB">Publikationen & Offizielle Leitfäden</Eyebrow>
+        <Eyebrow index="06">Publikationen & Offizielle Leitfäden</Eyebrow>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight" style={{ ...fontDisplay, color: T.text }}>
             Verifizierte Quellen &<br />

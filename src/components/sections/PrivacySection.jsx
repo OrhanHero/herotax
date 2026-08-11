@@ -16,7 +16,7 @@ const PrivacySection = () => {
   return (
     <section className="py-24" style={{ borderTop: `1px solid ${T.lineSoft}` }} id="datenschutz">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <Eyebrow index="06">{t("privacy.eyebrow")}</Eyebrow>
+        <Eyebrow index="07">{t("privacy.eyebrow")}</Eyebrow>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-2xl" style={{ ...fontDisplay, color: T.text }}>
             {t("privacy.t1")}
