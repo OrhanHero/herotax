@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import { CONFIG } from "../../config/config";
 
-/* ── Datenschutzerklärung nach Art. 13/14 DSGVO ────────────────────────
-   Rechtstext-Basis erstellt mit dem Datenschutz-Generator von e-recht24.de.
-   ────────────────────────────────────────────────────────────────── */
+/* ── Datenschutzerklärung nach Art. 13/14 DSGVO ──────────────────────── */
 
 const H2 = ({ children }) => (
   <h2
@@ -181,8 +179,7 @@ export default function DatenschutzPage() {
         </P>
 
         <p className="text-xs mt-14 pt-8" style={{ ...fontMono, color: T.faint, borderTop: `1px solid ${T.lineSoft}` }}>
-          Rechtstext-Basis erstellt mit dem Datenschutz-Generator von{" "}
-          <A href="https://www.e-recht24.de">e-recht24.de</A>.
+          Datenschutzerklärung der HERO Tax Platform · Stand: August 2026
         </p>
       </div>
     </div>
