@@ -75,17 +75,17 @@ const Header = () => {
             );
           })}
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <LanguageSwitcher />
           <a
             href={CONFIG.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 hover:shadow-md active:scale-95 focus:outline-none focus-visible:ring-2"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 hover:shadow-md active:scale-95 focus:outline-none focus-visible:ring-2 shrink-0"
             style={{ ...fontDisplay, backgroundColor: T.blue, color: T.blueInk }}
           >
             <WhatsAppGlyph size={15} />
-            <span>{t("cta.joinShort")}</span>
+            <span className="hidden xs:inline">{t("cta.joinShort")}</span>
           </a>
         </div>
       </div>

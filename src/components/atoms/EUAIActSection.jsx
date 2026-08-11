@@ -121,19 +121,19 @@ export default function EUAIActSection() {
   ];
 
   return (
-    <div className="mt-6 rounded-3xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-sm">
+    <div className="mt-6 rounded-3xl p-4 sm:p-7 bg-white border border-slate-200/90 shadow-sm max-w-full overflow-hidden">
       {/* Header Badge & Title + EUR-Lex Link on top right */}
-      <div className="pb-3.5 border-b border-slate-100 mb-5">
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <div className="flex items-start gap-2.5 min-w-0">
+      <div className="pb-3.5 border-b border-slate-100 mb-5 max-w-full">
+        <div className="flex flex-wrap sm:flex-nowrap items-start justify-between gap-3 mb-3 max-w-full">
+          <div className="flex items-start gap-2.5 min-w-0 max-w-full">
             <span className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0 mt-0.5">
               <Scale size={16} className="text-blue-600" />
             </span>
-            <div className="min-w-0">
-              <h3 className="font-bold text-sm sm:text-base leading-snug" style={{ ...fontDisplay, color: T.text }}>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-bold text-sm sm:text-base leading-snug break-words" style={{ ...fontDisplay, color: T.text }}>
                 EU AI Act Guide 🇪🇺 · Verordnung (EU) 2024/1689
               </h3>
-              <p className="text-xs text-slate-500 mt-0.5" style={{ ...fontMono }}>
+              <p className="text-xs text-slate-500 mt-0.5 break-words" style={{ ...fontMono }}>
                 Kompakt-Kompass: Regeln, wer betroffen ist, Strafen & Fristen
               </p>
             </div>
@@ -142,12 +142,12 @@ export default function EUAIActSection() {
             href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-colors shrink-0"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-colors shrink-0 max-w-full truncate"
             style={{ ...fontMono }}
           >
-            <BookOpen size={13} className="text-blue-600" />
+            <BookOpen size={13} className="text-blue-600 shrink-0" />
             <span>EUR-Lex Gesetzestext</span>
-            <ExternalLink size={11} className="opacity-70" />
+            <ExternalLink size={11} className="opacity-70 shrink-0" />
           </a>
         </div>
 

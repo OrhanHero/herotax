@@ -15,6 +15,12 @@
 @import "@fontsource/noto-sans-arabic/arabic-700.css";
 @import "@fontsource/noto-sans-arabic/arabic-900.css";
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
 body {
   font-family: "Inter", "Noto Sans Arabic", sans-serif;
   background-color: #F8F8F4;

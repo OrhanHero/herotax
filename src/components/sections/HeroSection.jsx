@@ -96,8 +96,8 @@ const HeroSection = () => {
           </div>
 
           <h1
-            className="font-black tracking-tight leading-[1.03]"
-            style={{ ...fontDisplay, color: T.text, fontSize: "clamp(2.5rem, 5.2vw, 4.75rem)" }}
+            className="font-black tracking-tight leading-[1.03] break-words max-w-full"
+            style={{ ...fontDisplay, color: T.text, fontSize: "clamp(1.9rem, 5.2vw, 4.75rem)" }}
           >
             {t("hero.title1")}
             <br />

@@ -92,7 +92,7 @@ export default function HeroTaxPlatform() {
 
   return (
     <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
-      <div className="min-h-screen antialiased" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
+      <div className="min-h-screen antialiased overflow-x-hidden w-full max-w-full" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
         <Header />
         {!isLegalPage && <NewsTicker items={articles} />}
 
