@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ShieldCheck, Lock, Cpu, Rocket, Building2, BarChart3, ChevronRight, Zap, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
+import { ARTICLES } from "../../data/articles";
+import { getArticles } from "../../services/articleService";
 import PrimaryCTA from "../atoms/PrimaryCTA";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
 import { FernsehturmIcon } from "../atoms/FernsehturmBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
+import NewsTicker from "../atoms/NewsTicker";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
   const { t } = useLang();
   const [activeTab, setActiveTab] = useState("trends"); // 'trends' | 'hubs' | 'kpis'
+  const [articles, setArticles] = useState(ARTICLES);
+
+  useEffect(() => {
+    getArticles("general").then((data) => {
+      if (Array.isArray(data) && data.length > 0) {
+        setArticles(data);
+      }
+    });
+  }, []);
 
   const trends = [
     {
@@ -136,7 +148,12 @@ const HeroSection = () => {
         </div>
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5 flex flex-col gap-4">
+          {/* Live Ticker direkt über dem Radar */}
+          <div className="rounded-2xl overflow-hidden shadow-md border border-slate-200" style={{ backgroundColor: T.text }}>
+            <NewsTicker items={articles} />
+          </div>
+
           <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg">
             {/* Full Background: Berlin Moonlight Skyline */}
             <AIImageOverlay
