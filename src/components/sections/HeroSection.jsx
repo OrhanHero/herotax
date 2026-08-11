@@ -1,28 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ShieldCheck, Lock, Cpu, Rocket, Building2, BarChart3, ChevronRight, Zap, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
-import { ARTICLES } from "../../data/articles";
-import { getArticles } from "../../services/articleService";
 import PrimaryCTA from "../atoms/PrimaryCTA";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
 import { FernsehturmIcon } from "../atoms/FernsehturmBadge";
+import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
-import NewsTicker from "../atoms/NewsTicker";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
   const { t } = useLang();
   const [activeTab, setActiveTab] = useState("trends"); // 'trends' | 'hubs' | 'kpis'
-  const [articles, setArticles] = useState(ARTICLES);
-
-  useEffect(() => {
-    getArticles("general").then((data) => {
-      if (Array.isArray(data) && data.length > 0) {
-        setArticles(data);
-      }
-    });
-  }, []);
 
   const trends = [
     {
@@ -148,10 +137,13 @@ const HeroSection = () => {
         </div>
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
-        <div className="lg:col-span-5 flex flex-col gap-4">
-          {/* Live Ticker direkt über dem Radar */}
-          <div className="rounded-2xl overflow-hidden shadow-md border border-slate-200" style={{ backgroundColor: T.text }}>
-            <NewsTicker items={articles} />
+        <div className="lg:col-span-5 flex flex-col gap-3">
+          {/* Live Stand Badge direkt über dem Radar */}
+          <div className="flex items-center justify-between gap-3 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
+            <LiveTrackerBadge type="general" />
+            <span className="text-[11px] font-mono text-slate-500 font-semibold shrink-0">
+              Echtzeit-Radar
+            </span>
           </div>
 
           <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg">
