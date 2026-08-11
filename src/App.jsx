@@ -17,6 +17,7 @@ import LivePage from "./components/pages/LivePage";
 import PublikationenPage from "./components/pages/PublikationenPage";
 import DatenschutzPage from "./components/pages/DatenschutzPage";
 import ImpressumPage from "./components/pages/ImpressumPage";
+import NotFoundPage from "./components/pages/NotFoundPage";
 
 export default function HeroTaxPlatform() {
   /* ── Sprach-State (global) ── */
@@ -65,6 +66,13 @@ export default function HeroTaxPlatform() {
 
   const renderContent = () => {
     switch (pathname) {
+      case "/":
+        return (
+          <>
+            <HeroSection />
+            <StartseiteFeatureHub />
+          </>
+        );
       case "/ki":
         return <KIPage />;
       case "/news":
@@ -82,12 +90,7 @@ export default function HeroTaxPlatform() {
       case "/impressum":
         return <ImpressumPage />;
       default:
-        return (
-          <>
-            <HeroSection />
-            <StartseiteFeatureHub />
-          </>
-        );
+        return <NotFoundPage />;
     }
   };
 
