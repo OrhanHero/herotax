@@ -4,6 +4,7 @@ import { ARTICLES } from "./data/articles";
 import { getArticles } from "./services/articleService";
 import NewsTicker from "./components/atoms/NewsTicker";
 import BackToTop from "./components/atoms/BackToTop";
+import AmbientMoonlightGlow from "./components/atoms/AmbientMoonlightGlow";
 import Header from "./components/sections/Header";
 import HeroSection from "./components/sections/HeroSection";
 import StartseiteFeatureHub from "./components/sections/StartseiteFeatureHub";
@@ -92,7 +93,8 @@ export default function HeroTaxPlatform() {
 
   return (
     <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
-      <div className="min-h-screen antialiased overflow-x-hidden w-full max-w-full" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
+      <div className="min-h-screen antialiased overflow-x-hidden w-full max-w-full relative" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
+        <AmbientMoonlightGlow />
         <Header />
         {!isLegalPage && <NewsTicker items={articles} />}
 

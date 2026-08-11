@@ -30,7 +30,7 @@ export const BrandenburgerTorIcon = ({ size = 22, color = "currentColor" }) => (
 const BrandenburgerTorBadge = ({ label = "BERLIN STEUER-SCHUTZSCHILD" }) => {
   return (
     <span
-      className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider"
+      className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider relative"
       style={{
         ...fontMono,
         backgroundColor: T.blueDim,
@@ -38,6 +38,10 @@ const BrandenburgerTorBadge = ({ label = "BERLIN STEUER-SCHUTZSCHILD" }) => {
         color: T.blue,
       }}
     >
+      <span className="relative flex h-2 w-2 shrink-0">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-blue-400" />
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
+      </span>
       <BrandenburgerTorIcon size={18} color={T.blue} />
       <span>{label}</span>
     </span>
