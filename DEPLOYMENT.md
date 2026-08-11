@@ -2,9 +2,11 @@
 
 ## Aktueller Workflow (GitHub Actions CI/CD Auto-Deployment)
 
+Wir arbeiten ausschließlich auf dem Branch **`GoogleAntigravityIDE`**.
+
 So wird aktuell automatisch deployt:
 
-1. **Code auf GitHub pushen** (Branch `GoogleAntigravityIDE`, `main` oder `master`):
+1. **Code auf den Branch `GoogleAntigravityIDE` pushen**:
    ```bash
    git add .
    git commit -m "deine Änderungen"
