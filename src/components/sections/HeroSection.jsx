@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ShieldCheck, Lock, Cpu, Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
-import PrimaryCTA from "../atoms/PrimaryCTA";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
@@ -127,13 +126,6 @@ const HeroSection = () => {
               <Cpu size={13} className="text-blue-600" />
               BSI & BMDS Live Feeds
             </span>
-          </div>
-
-          <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-            <PrimaryCTA large />
-            <p className="text-xs text-center sm:text-start self-center" style={{ ...fontMono, color: T.faint }}>
-              {t("cta.note")}
-            </p>
           </div>
 
           {/* EU AI Act Guide & Compliance Bereich */}
