@@ -1,38 +1,20 @@
 # 🚀 Deployment auf IONOS herotax.de
 
-## Aktueller Workflow (WinSCP-Auto-Sync)
+## Aktueller Workflow (GitHub Actions CI/CD Auto-Deployment)
 
-So wird aktuell tatsächlich deployt:
+So wird aktuell automatisch deployt:
 
-1. **Build erstellen**
+1. **Code auf GitHub pushen** (Branch `GoogleAntigravityIDE`, `main` oder `master`):
    ```bash
-   npm run build
+   git add .
+   git commit -m "deine Änderungen"
+   git push origin GoogleAntigravityIDE
    ```
-2. **Build-Output in den lokalen Sync-Ordner spiegeln** — `C:\Users\Hero\Documents\HeroTax`.
-   WinSCP läuft dort dauerhaft im Hintergrund und synct diesen Ordner automatisch mit dem
-   IONOS-Webspace, sobald sich Dateien ändern.
-   ```powershell
-   robocopy "dist\assets" "C:\Users\Hero\Documents\HeroTax\assets" /MIR
-   Copy-Item "dist\index.html"   "C:\Users\Hero\Documents\HeroTax\index.html"   -Force
-   Copy-Item "dist\favicon.svg"  "C:\Users\Hero\Documents\HeroTax\favicon.svg"  -Force
-   Copy-Item "dist\icons.svg"    "C:\Users\Hero\Documents\HeroTax\icons.svg"    -Force
-   Copy-Item "dist\api\feed.php" "C:\Users\Hero\Documents\HeroTax\api\feed.php" -Force
-   Copy-Item ".htaccess"         "C:\Users\Hero\Documents\HeroTax\.htaccess"    -Force
-   ```
-   `/MIR` auf `assets/` ist wichtig — Vite vergibt bei jedem Build neue Content-Hashes,
-   ohne Mirror-Sync sammeln sich veraltete `index-*.js`/`index-*.css`-Leichen im Zielordner.
-   Der serverseitige `api/cache/`-Ordner (vom Feed-Proxy selbst angelegt) bleibt davon
-   unberührt, da er nicht Teil von `dist/` ist.
-3. **Warten, bis WinSCP den Diff hochlädt**, dann live auf [herotax.de](https://herotax.de)
-   verifizieren.
-
-Die Abschnitte unten (manuelles SFTP, GitHub Actions) sind Referenz/Fallback, falls der
-WinSCP-Sync mal nicht läuft — nicht der Standardweg.
-
-⚠️ **`.github/workflows/static.yml`** ist ein Überbleibsel aus einem früheren Setup: Es
-triggert nur auf einen alten `claude/...`-Branch (nicht `master`) und lädt den rohen
-Quellcode statt eines gebauten `dist/`-Bundles zu GitHub Pages hoch — für dieses Vite/JSX-
-Projekt ohne Build-Schritt nicht funktionsfähig. Er ist nicht Teil des echten Deploy-Wegs.
+2. **GitHub Actions Workflow (.github/workflows/deploy.yml)**:
+   - Führt automatisch `npm run build` aus.
+   - Baut das Vite/React-Bundle in den `dist/`-Ordner.
+   - Lädt den Inhalt per `scripts/deploy.mjs` direkt auf den IONOS-Webspace hoch (verwendet das GitHub Secret `SFTP_URL` mit automatischer SFTP/FTPS Dual-Engine).
+3. **Ergebnis live verifizieren** auf [herotax.de](https://herotax.de).
 
 ## Vorbereitung (manueller Fallback)
 
