@@ -252,16 +252,6 @@ const NewsHub = () => {
                       <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0 animate-pulse" />
                       <span className="truncate">Unionsbürgerinnen & Unionsbürger</span>
                     </a>
-                    <a
-                      href="https://www.geoportal.de"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-teal-50/80 hover:bg-teal-100 border-teal-200 text-teal-900"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-teal-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Geoportal.de Bundesweit</span>
-                    </a>
                   </div>
                 </div>
               </div>
