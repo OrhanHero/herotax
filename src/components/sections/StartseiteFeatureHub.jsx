@@ -80,7 +80,7 @@ export default function StartseiteFeatureHub() {
       cardBorder: "rgba(6, 182, 212, 0.2)",
     },
     {
-      href: "/datenschutz",
+      href: "/dsgvo",
       icon: ShieldCheck,
       title: "DSGVO",
       subtitle: "BfDI Datenschutz-Radar, Privacy by Design & Betroffenenrechte",

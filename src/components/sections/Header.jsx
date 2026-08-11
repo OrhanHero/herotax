@@ -35,7 +35,7 @@ const Header = () => {
     { href: "/tools", label: t("nav.tools") },
     { href: "/live", label: t("nav.live") },
     { href: "/publikationen", label: t("nav.publications") },
-    { href: "/datenschutz", label: t("nav.privacy") },
+    { href: "/dsgvo", label: t("nav.privacy") },
   ];
 
   return (

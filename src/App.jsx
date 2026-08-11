@@ -16,6 +16,7 @@ import ToolsPage from "./components/pages/ToolsPage";
 import LivePage from "./components/pages/LivePage";
 import PublikationenPage from "./components/pages/PublikationenPage";
 import DatenschutzPage from "./components/pages/DatenschutzPage";
+import DSGVOPage from "./components/pages/DSGVOPage";
 import ImpressumPage from "./components/pages/ImpressumPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 
@@ -85,6 +86,8 @@ export default function HeroTaxPlatform() {
         return <LivePage />;
       case "/publikationen":
         return <PublikationenPage />;
+      case "/dsgvo":
+        return <DSGVOPage />;
       case "/datenschutz":
         return <DatenschutzPage />;
       case "/impressum":
