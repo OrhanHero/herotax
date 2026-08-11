@@ -135,6 +135,14 @@ const HeroSection = () => {
             {/* Lightened Overlay for enhanced image visibility & readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950/25 via-slate-950/45 to-slate-950/70" />
 
+            {/* Pulsierendes Mondschein-Aura-Licht direkt über dem Berliner Vollmond */}
+            <div
+              className="absolute top-[4%] right-[16%] sm:right-[20%] w-44 h-44 sm:w-56 sm:h-56 rounded-full pointer-events-none mix-blend-screen animate-moon-halo-pulse z-[5]"
+              style={{
+                background: "radial-gradient(circle, rgba(191, 219, 254, 0.75) 0%, rgba(96, 165, 250, 0.3) 45%, rgba(0, 0, 0, 0) 70%)",
+              }}
+            />
+
             {/* Content on top of background */}
             <div className="relative z-10 p-5 sm:p-6 flex-1 flex flex-col justify-between">
 

@@ -68,6 +68,25 @@ html {
   animation: moonlight-pulse-delayed 18s ease-in-out 3s infinite;
 }
 
+/* ── Pulsierender Mondschein-Halo Effect (0% JS CPU Overhead) ── */
+@keyframes moon-halo-pulse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.92);
+    opacity: 0.35;
+    filter: drop-shadow(0 0 35px rgba(147, 197, 253, 0.45));
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scale(1.15);
+    opacity: 0.8;
+    filter: drop-shadow(0 0 75px rgba(191, 219, 254, 0.9));
+  }
+}
+
+.animate-moon-halo-pulse {
+  animation: moon-halo-pulse 6s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
 /* ── Newsticker-Laufband ── */
 .ticker-track {
   width: max-content;
