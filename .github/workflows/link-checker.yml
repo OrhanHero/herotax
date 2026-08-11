@@ -1,9 +1,13 @@
 name: Automated Link Health Checker
 
 on:
+  push:
+    branches:
+      - GoogleAntigravityIDE
+      - main
   schedule:
-    # Jeden Sonntag um 08:00 Uhr UTC
-    - cron: '0 8 * * 0'
+    # Täglich um 06:00 Uhr UTC (08:00 Uhr Berlin Zeit)
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 jobs:
@@ -13,10 +17,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
 
-      - name: Link Checker
+      - name: Verify Official Government Links (HTTP 200 OK)
         uses: lycheeververse/lychee-action@v2.3.0
         with:
-          args: --verbose --no-progress './src/**/*.js' './src/**/*.jsx' './README.md' './DEPLOYMENT.md'
+          args: --verbose --no-progress --max-redirects 5 './src/**/*.js' './src/**/*.jsx' './README.md' './DEPLOYMENT.md'
           fail: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

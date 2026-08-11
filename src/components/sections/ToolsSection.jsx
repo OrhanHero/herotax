@@ -4,6 +4,7 @@ import Eyebrow from "../atoms/Eyebrow";
 import UStRechner from "../tools/UStRechner";
 import FristenCheck from "../tools/FristenCheck";
 import GuideTool from "../tools/GuideTool";
+import ERechnungCheckTool from "../tools/ERechnungCheckTool";
 
 /** Säule 04 · HERO-Tools (Zero-Friction) */
 const ToolsSection = () => {
@@ -28,10 +29,11 @@ const ToolsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
+        <div className="grid md:grid-cols-2 gap-5 items-stretch">
           <UStRechner />
           <FristenCheck />
           <GuideTool />
+          <ERechnungCheckTool />
         </div>
 
         <p className="mt-6 text-xs text-center" style={{ ...fontMono, color: T.faint }}>
