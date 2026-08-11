@@ -139,11 +139,8 @@ const HeroSection = () => {
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
         <div className="lg:col-span-5 flex flex-col gap-3">
           {/* Live Stand Badge direkt über dem Radar */}
-          <div className="flex items-center justify-between gap-3 px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
+          <div className="flex items-center justify-center sm:justify-start px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
             <LiveTrackerBadge type="general" />
-            <span className="text-[11px] font-mono text-slate-500 font-semibold shrink-0">
-              Echtzeit-Radar
-            </span>
           </div>
 
           <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg">
