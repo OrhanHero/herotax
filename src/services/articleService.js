@@ -8,7 +8,7 @@
 
 import { BMDS_ITEMS, BSI_ITEMS, ARTICLES } from "../data/articles";
 
-const CACHE_PREFIX = "herotax_feed_v2_";
+const CACHE_PREFIX = "herotax_feed_v3_";
 export const CACHE_DURATION = 4 * 60 * 60 * 1000; // 4 Stunden — spiegelt den PHP-Cache (14400 s)
 
 /** type → welcher Feed-Proxy-Quellname abgefragt wird (siehe SOURCES in feed.php) */

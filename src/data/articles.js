@@ -131,17 +131,17 @@ export const DEUTSCHLANDGPT_LINKS = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    title: "IBB & Senatsverwaltung Berlin: Neuer KI-Förderfonds & E-Rechnungs-Offensive gestartet",
+    title: "Berliner Wahlen 2026: Wahl zum Abgeordnetenhaus & Bezirksversammlungen am 20. September 2026",
     excerpt:
-      "Über den Einheitlichen Ansprechpartner Berlin und die Investitionsbank Berlin stehen Gründern neue Sonderprogramme für KI-Automatisierung und Tax-Tech bereit. Gewerbeanmeldung bleibt online mit 15 € statt 26 € rabattiert.",
-    read: "4 Min",
+      "Am Sonntag, 20. September 2026, wählen die Berlinerinnen und Berliner das Abgeordnetenhaus von Berlin (AGH) sowie die 12 Bezirksverordnetenversammlungen (BVV). Alle wichtigen Fristen, Wahlberechtigungen und Briefwahl-Infos im Überblick.",
+    read: "5 Min",
     date: "11. August 2026",
-    source: { label: "Einheitlicher Ansprechpartner Berlin", href: "https://www.berlin.de/ea/" },
+    source: { label: "Landeswahlleiterin Berlin · berlin.de/wahlen", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/" },
     featured: true,
     highlight: {
-      value: "15 €",
-      compare: "26 €",
-      label: "Online-Anmeldung über den Einheitlichen Ansprechpartner Berlin — statt Vor-Ort-Termin.",
+      value: "20.09.2026",
+      compare: "AGH & BVV",
+      label: "Offizieller Wahltag für das Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen.",
     },
   },
   {
@@ -158,21 +158,21 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "Amt für Statistik Berlin: Rekordzuwachs bei Gewerbeanmeldungen & Tech-Gründungen",
+    title: "Wahlrecht ab 16 Jahren: Wer bei den Berliner Wahlen 2026 wahlberechtigt ist",
     excerpt:
-      "Die Hauptstadt verzeichnet über 18.500 Neugründungen im 1. Halbjahr 2026. Besonders stark wachsen FinTechs, KI-Startups und GreenTech-Initiativen am EUREF-Campus.",
+      "Wahlberechtigt für das Abgeordnetenhaus von Berlin sind alle Deutschen ab 16 Jahren mit Hauptwohnsitz in Berlin seit mind. 3 Monaten. Bei den BVV-Wahlen dürfen auch EU-Bürgerinnen und EU-Bürger ab 16 Jahren abstimmen.",
     read: "3 Min",
     date: "11. August 2026",
-    source: { label: "Amt für Statistik Berlin-Brandenburg", href: "https://www.statistik-berlin-brandenburg.de" },
+    source: { label: "Landeswahlleiterin Berlin · Allgemeine Informationen", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/allgemeine-informationen/artikel.1578239.php" },
   },
   {
     cat: "Berlin Fokus",
-    title: "IBB-Förderprogramme: GründungsBONUS Plus bringt bis zu 50.000 € Zuschuss für Startups",
+    title: "Briefwahl 2026: Online-Beantragung & automatische Wahlbenachrichtigungen",
     excerpt:
-      "Die Digitalprämie Berlin wurde durch den InvestitionsBONUS abgelöst. Der GründungsBONUS Plus unterstützt innovative Vorhaben mit bis zu 50.000 € — plus 10.000 € Extra-Bonus für frauengeführte Gründungen.",
-    read: "5 Min",
+      "Wahlbenachrichtigungen werden bis Mitte August 2026 zugestellt. Die Briefwahl kann direkt online per QR-Code oder postalisch ohne Angabe von Gründen beantragt werden.",
+    read: "4 Min",
     date: "10. August 2026",
-    source: { label: "Investitionsbank Berlin — GründungsBONUS Plus", href: "https://www.ibb.de/de/foerderprogramme/gruendungsbonus-plus.html" },
+    source: { label: "Landeswahlleiterin Berlin · Briefwahl 2026", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/briefwahl/artikel.1700053.php" },
   },
   {
     cat: "Bund & Steuer",
@@ -192,12 +192,12 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "Merantix AI Hub & IHK Berlin: 45 % aller Neugründungen setzen auf KI-Tax-Automation",
+    title: "Rund 25.000 Wahlhelfende gesucht: Anmeldung & Aufwandsentschädigung am Wahltag",
     excerpt:
-      "Europas führendes KI-Ökosystem in Berlin-Mitte berichtet über stark steigenden Einsatz von Agentic AI und automatisierter Vorsteuerprüfung.",
+      "Das Land Berlin sucht rund 25.000 ehrenamtliche Wahlhelfende für die Wahllokale und Briefwahlbezirke am 20. September 2026. Für den Einsatz gibt es ein steuerfreies Erfrischungsgeld.",
     read: "4 Min",
     date: "08. August 2026",
-    source: { label: "Merantix AI Hub Berlin", href: "https://www.merantix.com/" },
+    source: { label: "Landeswahlleiterin Berlin · Wahlhelfende", href: "https://www.berlin.de/wahlen/organisation/wahlhelfende/" },
   },
   {
     cat: "Bund & Steuer",
