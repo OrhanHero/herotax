@@ -169,17 +169,108 @@ const NewsHub = () => {
                   </div>
                 )}
 
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight mb-4 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay, color: T.text }}>
+                <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight mb-3 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay, color: T.text }}>
                   {featured.title}
                 </h3>
-                <p className="text-base leading-relaxed mb-6 max-w-2xl" style={{ color: T.muted }}>
+                <p className="text-base leading-relaxed mb-4 max-w-2xl" style={{ color: T.muted }}>
                   {featured.excerpt}
                 </p>
+
+                {/* Kleine farbliche Bulletpoint-Karten (Wahlen 2026 Schnell-Navigation) */}
+                <div className="my-6 pt-4 border-t border-slate-100">
+                  <p className="text-xs font-bold uppercase tracking-wider mb-3 text-slate-500" style={{ ...fontMono }}>
+                    Amtliche Unterlagen & Direkt-Services:
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                    <a
+                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/allgemeine-informationen/artikel.1578239.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-blue-50/80 hover:bg-blue-100 border-blue-200 text-blue-900"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0 animate-pulse" />
+                      <span className="truncate">Allgemeine Informationen</span>
+                    </a>
+                    <a
+                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahllokalsuche/artikel.1701445.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-emerald-50/80 hover:bg-emerald-100 border-emerald-200 text-emerald-900"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
+                      <span className="truncate">Wahllokalsuche & Musterstimmzettel</span>
+                    </a>
+                    <a
+                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahlvorschlaege/artikel.1600254.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-indigo-50/80 hover:bg-indigo-100 border-indigo-200 text-indigo-900"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0 animate-pulse" />
+                      <span className="truncate">Wahlvorschläge</span>
+                    </a>
+                    <a
+                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/fragen-und-antwortkatalog/artikel.1646712.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-50/80 hover:bg-amber-100 border-amber-200 text-amber-900"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0 animate-pulse" />
+                      <span className="truncate">Fragen- & Antwortkatalog (FAQs)</span>
+                    </a>
+                    <a
+                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahlgebietseinteilung/artikel.1600253.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-purple-50/80 hover:bg-purple-100 border-purple-200 text-purple-900"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0 animate-pulse" />
+                      <span className="truncate">Wahlgebietseinteilung</span>
+                    </a>
+                    <a
+                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/briefwahl/artikel.1700053.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-sky-50/80 hover:bg-sky-100 border-sky-200 text-sky-900"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0 animate-pulse" />
+                      <span className="truncate">Briefwahl</span>
+                    </a>
+                    <a
+                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/unionsbuerger/artikel.1600483.php"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-rose-50/80 hover:bg-rose-100 border-rose-200 text-rose-900"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0 animate-pulse" />
+                      <span className="truncate">Unionsbürgerinnen & Unionsbürger</span>
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 border-t border-slate-100">
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100">
                 <Meta read={featured.read} date={featured.date} />
-                <SourceLink href={featured.source.href} label={featured.source.label} />
+                <div className="flex flex-wrap items-center gap-4">
+                  <SourceLink href={featured.source.href} label={featured.source.label} />
+                  <a
+                    href="https://gdi.berlin.de/viewer/main/?LAYERS=[{%22id%22:%22hintergrund_default_grau%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_uwb%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_bwb%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_awk%22}]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-blue-600 hover:underline"
+                  >
+                    <span>🗺️ Geoportal Berlin: Wahlgebiete 2026 (AGH)</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                </div>
               </div>
             </a>
           )}
