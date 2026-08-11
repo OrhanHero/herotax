@@ -1,15 +1,11 @@
 import { useEffect } from "react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import { CONFIG } from "../../config/config";
+import PrivacySection from "../sections/PrivacySection";
 
-/* ── Datenschutzerklärung ──────────────────────────────────────────
-   Rechtstext-Basis erstellt mit dem Generator von e-recht24.de.
-   Auf die tatsächlich eingesetzten Dienste zugeschnitten: Abschnitte
-   zu Tools, die auf herotax.de (noch) nicht laufen (Instagram-Embed,
-   IONOS WebAnalytics, Newsletter-Versand, YouTube), wurden entfernt.
-   Wird eines dieser Tools später eingebaut, MUSS der passende
-   Abschnitt hier wieder ergänzt werden (am besten erneut über den
-   e-recht24-Generator, dann hierher übertragen).
+/* ── Datenschutzerklärung & DSGVO-Hub ──────────────────────────────────
+   Rechtstext-Basis erstellt mit dem Generator von e-recht24.de
+   inklusive des interaktiven DSGVO- & Datenschutz-Blockes.
    ────────────────────────────────────────────────────────────────── */
 
 const H2 = ({ children }) => (
@@ -63,26 +59,29 @@ const Emphasis = ({ children }) => (
 
 export default function DatenschutzPage() {
   useEffect(() => {
-    document.title = "Datenschutzerklärung · HERO Tax";
+    document.title = "DSGVO & Datenschutz Hub · HERO Tax";
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+    <div className="max-w-7xl mx-auto px-5 sm:px-8 py-10 sm:py-14">
       <a
         href="/"
-        className="inline-flex items-center gap-1.5 text-xs mb-10 hover:underline underline-offset-4"
+        className="inline-flex items-center gap-1.5 text-xs mb-8 hover:underline underline-offset-4"
         style={{ ...fontMono, color: T.faint }}
       >
         ← Zurück zur Startseite
       </a>
 
-      <div className="max-w-3xl">
+      {/* Interaktiver DSGVO & Datenschutz Block mit allen Karten */}
+      <PrivacySection />
+
+      <div className="max-w-3xl mt-16 pt-16 border-t border-slate-200">
         <p className="text-xs tracking-widest uppercase mb-3" style={{ ...fontMono, color: T.blue }}>
-          Rechtliches
+          Rechtliches & Formale Erklärung
         </p>
         <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-12" style={{ ...fontDisplay, color: T.text }}>
-          Datenschutzerklärung
+          Datenschutzerklärung nach Art. 13 / 14 DSGVO
         </h1>
 
         <H2>1. Datenschutz auf einen Blick</H2>

@@ -1,4 +1,4 @@
-import { Cpu, Newspaper, Wallet, Wrench, Radio, BookOpen, ArrowRight } from "lucide-react";
+import { Cpu, Newspaper, Wallet, Wrench, Radio, BookOpen, ShieldCheck, ArrowRight } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
 
@@ -78,6 +78,17 @@ export default function StartseiteFeatureHub() {
       iconBorder: "rgba(6, 182, 212, 0.25)",
       cardBg: "linear-gradient(135deg, rgba(236, 254, 255, 0.75) 0%, #FFFFFF 100%)",
       cardBorder: "rgba(6, 182, 212, 0.2)",
+    },
+    {
+      href: "/datenschutz",
+      icon: ShieldCheck,
+      title: "DSGVO & Datenschutz",
+      subtitle: "BfDI Datenschutz-Radar, Privacy by Design & Betroffenenrechte",
+      accent: "#4F46E5",
+      iconBg: "rgba(79, 70, 229, 0.1)",
+      iconBorder: "rgba(79, 70, 229, 0.25)",
+      cardBg: "linear-gradient(135deg, rgba(238, 242, 255, 0.85) 0%, #FFFFFF 100%)",
+      cardBorder: "rgba(79, 70, 229, 0.2)",
     },
   ];
 
