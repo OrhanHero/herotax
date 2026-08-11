@@ -8,7 +8,7 @@ import PrivacySection from "../sections/PrivacySection";
 
 export default function DatenschutzPage() {
   useEffect(() => {
-    document.title = "DSGVO & Datenschutz Hub · HERO Tax";
+    document.title = "DSGVO Hub · HERO Tax";
     window.scrollTo(0, 0);
   }, []);
 

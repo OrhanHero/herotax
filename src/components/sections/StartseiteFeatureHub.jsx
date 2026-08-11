@@ -82,7 +82,7 @@ export default function StartseiteFeatureHub() {
     {
       href: "/datenschutz",
       icon: ShieldCheck,
-      title: "DSGVO & Datenschutz",
+      title: "DSGVO",
       subtitle: "BfDI Datenschutz-Radar, Privacy by Design & Betroffenenrechte",
       accent: "#4F46E5",
       iconBg: "rgba(79, 70, 229, 0.1)",
