@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShieldCheck, Lock, Cpu, Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
+import { Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
@@ -111,22 +111,6 @@ const HeroSection = () => {
           <p className="text-base sm:text-lg leading-relaxed font-normal max-w-xl" style={{ color: T.muted }}>
             {t("hero.sub")}
           </p>
-
-          {/* Key Feature Trust Badges */}
-          <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white border border-slate-300 text-slate-800 shadow-xs" style={{ ...fontMono }}>
-              <Lock size={13} className="text-blue-600" />
-              Ohne Cookies & Tracking
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white border border-slate-300 text-slate-800 shadow-xs" style={{ ...fontMono }}>
-              <ShieldCheck size={13} className="text-blue-600" />
-              100% DSGVO & EU-Wallet
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white border border-slate-300 text-slate-800 shadow-xs" style={{ ...fontMono }}>
-              <Cpu size={13} className="text-blue-600" />
-              BSI & BMDS Live Feeds
-            </span>
-          </div>
 
           {/* EU AI Act Guide & Compliance Bereich */}
           <EUAIActSection />
