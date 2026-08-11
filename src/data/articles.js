@@ -154,6 +154,15 @@ export const ARTICLES = [
     source: { label: "Landeswahlleiterin Berlin · Pressemitteilungen 2026", href: "https://www.berlin.de/wahlen/pressemitteilungen/2026/" },
   },
   {
+    cat: "Berlin Fokus",
+    title: "Wahl-O-Mat Berlin 2026: Veröffentlichung am 24. August gegen Mittag auf wahl-o-mat.de",
+    excerpt:
+      "Der Wahl-O-Mat der Bundeszentrale für politische Bildung (bpb) zur Wahl zum Abgeordnetenhaus von Berlin 2026 wird am 24. August gegen Mittag online freigeschaltet. Alle Standpunkte und Parteivergleiche vor dem 20. September.",
+    read: "3 Min",
+    date: "11. August 2026",
+    source: { label: "bpb · Bundeszentrale für politische Bildung (wahl-o-mat.de)", href: "https://www.bpb.de/themen/wahl-o-mat/" },
+  },
+  {
     cat: "Bund & Steuer",
     title: "BMF-Update: Neue BMF-Schreiben zur E-Rechnungspflicht & GoBD-Compliance verabschiedet",
     excerpt: "Das Bundesfinanzministerium konkretisiert die Übergangsregeln zur E-Rechnungspflicht ab 2027 und veröffentlicht neue Pauschalbeträge für Geschäftsreisen.",

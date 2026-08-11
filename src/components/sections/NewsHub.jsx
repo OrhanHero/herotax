@@ -108,6 +108,17 @@ const NewsHub = () => {
               </div>
               <div className="flex flex-wrap items-center gap-3 shrink-0">
                 <a
+                  href="https://www.bpb.de/themen/wahl-o-mat/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
+                  title="Der Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin wird am 24. August gegen Mittag unter wahl-o-mat.de veröffentlicht."
+                  style={{ ...fontDisplay }}
+                >
+                  <span>🗳️ Wahl-O-Mat Berlin (Ab 24. Aug.)</span>
+                  <ArrowUpRight size={16} />
+                </a>
+                <a
                   href="https://www.berlin.de/wahlen/pressemitteilungen/2026/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -251,6 +262,17 @@ const NewsHub = () => {
                     >
                       <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0 animate-pulse" />
                       <span className="truncate">Unionsbürgerinnen & Unionsbürger</span>
+                    </a>
+                    <a
+                      href="https://www.bpb.de/themen/wahl-o-mat/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      title="Der Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin wird am 24. August gegen Mittag unter wahl-o-mat.de veröffentlicht."
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-100/90 hover:bg-amber-200 border-amber-300 text-amber-950 shadow-sm"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0 animate-ping" />
+                      <span className="truncate font-bold">Wahl-O-Mat Berlin (Ab 24. Aug. online)</span>
                     </a>
                   </div>
                 </div>
