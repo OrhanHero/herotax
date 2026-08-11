@@ -7,6 +7,7 @@ import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
+import EUAIActSection from "../atoms/EUAIActSection";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
@@ -134,6 +135,9 @@ const HeroSection = () => {
               {t("cta.note")}
             </p>
           </div>
+
+          {/* EU AI Act Guide & Compliance Bereich */}
+          <EUAIActSection />
         </div>
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
