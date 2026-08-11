@@ -205,6 +205,45 @@ export default function ERechnungCheckTool() {
             </div>
           </div>
 
+          {/* Amtliche Primärquellen & Leitfäden */}
+          <div className="pt-4 border-t border-slate-100">
+            <p className="text-xs font-bold uppercase tracking-wider mb-2.5 text-slate-500" style={{ ...fontMono }}>
+              Amtliche Primärquellen & IHK-Leitfäden:
+            </p>
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1.5"
+                style={{ ...fontMono }}
+              >
+                <span>🏛️ BMF — E-Rechnung FAQs & Übergangsregeln</span>
+                <ArrowRight size={12} />
+              </a>
+              <a
+                href="https://e-rechnung-bund.de/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1.5"
+                style={{ ...fontMono }}
+              >
+                <span>🇩🇪 E-Rechnung Bund — Plattform & Standards (XRechnung / ZUGFeRD)</span>
+                <ArrowRight size={12} />
+              </a>
+              <a
+                href="https://www.ihk.de/darmstadt/produktmarken/recht-und-fair-play/steuerinfo/bmf-plant-verpflichtende-erechnung-und-meldesystem-5784882"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1.5"
+                style={{ ...fontMono }}
+              >
+                <span>🏢 IHK — Verpflichtende E-Rechnung & Meldesystem im Überblick</span>
+                <ArrowRight size={12} />
+              </a>
+            </div>
+          </div>
+
           <div className="flex justify-between items-center pt-2">
             <button
               type="button"
@@ -215,15 +254,6 @@ export default function ERechnungCheckTool() {
               <RefreshCw size={14} />
               <span>Check neu starten</span>
             </button>
-            <a
-              href="https://www.bundesfinanzministerium.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-bold text-blue-600 hover:underline"
-              style={{ ...fontMono }}
-            >
-              BMF-Leitfaden E-Rechnung ↗
-            </a>
           </div>
         </div>
       )}
