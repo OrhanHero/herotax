@@ -89,82 +89,128 @@ const NewsHub = () => {
           </div>
         </div>
 
+        {/* Special Election Banner for Berlin Fokus */}
+        {filter === "Berlin Fokus" && (
+          <div className="mb-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white border border-blue-400/30 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider mb-3">
+                  <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
+                  Amtliches Wahlportal 2026
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2" style={{ ...fontDisplay }}>
+                  Berliner Wahlen am 20. September 2026
+                </h3>
+                <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed">
+                  Wahl zum Abgeordnetenhaus von Berlin (AGH) & allen 12 Bezirksverordnetenversammlungen (BVV). Offizielle Informationen der Landeswahlleiterin Berlin.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <a
+                  href="https://www.berlin.de/wahlen/pressemitteilungen/2026/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
+                  style={{ ...fontDisplay }}
+                >
+                  <span>Pressemitteilungen 2026</span>
+                  <ArrowUpRight size={16} />
+                </a>
+                <a
+                  href="https://www.berlin.de/wahlen/organisation/wahlhelfende/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5"
+                  style={{ ...fontDisplay }}
+                >
+                  <span>25.000 Wahlhelfende gesucht</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="grid lg:grid-cols-3 gap-5">
           {featured && (
-            <article
-              className="lg:col-span-2 lg:row-span-2 group glass-card card-lift rounded-3xl p-8 sm:p-12 flex flex-col transition-all duration-300 relative overflow-hidden"
+            <a
+              href={featured.source.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lg:col-span-2 lg:row-span-2 group glass-card card-lift rounded-3xl p-8 sm:p-12 flex flex-col justify-between transition-all duration-300 relative overflow-hidden hover:border-blue-300 block text-left cursor-pointer"
             >
-              <div className="flex items-center justify-between gap-4">
-                <CategoryTag cat={featured.cat} />
-                <ArrowUpRight size={22} style={{ color: T.blue }} />
-              </div>
-
-              {/* Kernzahl der Meldung als Blickfang — füllt die Fläche zwischen
-                  Kopfzeile und Titel mit echtem Inhalt statt Leerraum. */}
-              {featured.highlight && (
-                <div className="flex-1 flex items-center gap-6 sm:gap-8 py-8">
-                  <div className="shrink-0">
-                    <div className="text-6xl sm:text-7xl font-black tracking-tight" style={{ ...fontDisplay, color: T.blue }}>
-                      {featured.highlight.value}
-                    </div>
-                    {featured.highlight.compare && (
-                      <div className="flex items-baseline gap-2 mt-1">
-                        <span className="text-sm" style={{ color: T.faint }}>
-                          statt
-                        </span>
-                        <span
-                          className="text-xl sm:text-2xl font-bold line-through"
-                          style={{ ...fontDisplay, color: T.faint, textDecorationColor: T.faint }}
-                        >
-                          {featured.highlight.compare}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="h-14 w-px shrink-0" style={{ backgroundColor: T.line }} />
-                  <p className="text-sm sm:text-base leading-relaxed max-w-xs" style={{ color: T.muted }}>
-                    {featured.highlight.label}
-                  </p>
+              <div>
+                <div className="flex items-center justify-between gap-4 mb-6">
+                  <CategoryTag cat={featured.cat} />
+                  <span className="w-10 h-10 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
+                    <ArrowUpRight size={20} />
+                  </span>
                 </div>
-              )}
 
-              <div className={featured.highlight ? "" : "mt-16"}>
-                <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight mb-5" style={{ ...fontDisplay, color: T.text }}>
+                {featured.highlight && (
+                  <div className="flex-1 flex items-center gap-6 sm:gap-8 py-6 mb-4">
+                    <div className="shrink-0">
+                      <div className="text-5xl sm:text-6xl font-black tracking-tight" style={{ ...fontDisplay, color: T.blue }}>
+                        {featured.highlight.value}
+                      </div>
+                      {featured.highlight.compare && (
+                        <div className="mt-1.5">
+                          <span className="inline-block text-xs font-bold font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-100 text-blue-800 border border-blue-200">
+                            {featured.highlight.compare}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="h-14 w-px shrink-0" style={{ backgroundColor: T.line }} />
+                    <p className="text-sm sm:text-base leading-relaxed max-w-xs" style={{ color: T.muted }}>
+                      {featured.highlight.label}
+                    </p>
+                  </div>
+                )}
+
+                <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight mb-4 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay, color: T.text }}>
                   {featured.title}
                 </h3>
-                <p className="text-base sm:text-lg leading-relaxed mb-6 max-w-2xl" style={{ color: T.muted }}>
+                <p className="text-base leading-relaxed mb-6 max-w-2xl" style={{ color: T.muted }}>
                   {featured.excerpt}
                 </p>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-                  <Meta read={featured.read} date={featured.date} />
-                  <SourceLink href={featured.source.href} label={featured.source.label} />
-                </div>
               </div>
-            </article>
+
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 border-t border-slate-100">
+                <Meta read={featured.read} date={featured.date} />
+                <SourceLink href={featured.source.href} label={featured.source.label} />
+              </div>
+            </a>
           )}
 
           {rest.map((a) => (
-            <article
+            <a
               key={a.title}
-              className="group glass-card card-lift rounded-3xl p-7 flex flex-col justify-between gap-10"
+              href={a.source.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group glass-card card-lift rounded-3xl p-7 flex flex-col justify-between gap-6 hover:border-blue-300 transition-all block text-left cursor-pointer"
             >
               <div className="flex items-center justify-between gap-4">
                 <CategoryTag cat={a.cat} />
-                <ArrowUpRight size={18} className="opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ color: T.blue }} />
+                <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center text-slate-600 transition-all shrink-0">
+                  <ArrowUpRight size={16} />
+                </span>
               </div>
               <div>
-                <h3 className="text-xl font-bold tracking-tight leading-snug mb-3" style={{ ...fontDisplay, color: T.text }}>
+                <h3 className="text-xl font-bold tracking-tight leading-snug mb-3 group-hover:text-blue-600 transition-colors" style={{ ...fontDisplay, color: T.text }}>
                   {a.title}
                 </h3>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: T.muted }}>
                   {a.excerpt}
                 </p>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 pt-3 border-t border-slate-100">
                   <Meta read={a.read} date={a.date} />
                   <SourceLink href={a.source.href} label={a.source.label} />
                 </div>
               </div>
-            </article>
+            </a>
           ))}
         </div>
 

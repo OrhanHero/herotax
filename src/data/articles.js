@@ -131,18 +131,27 @@ export const DEUTSCHLANDGPT_LINKS = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    title: "Berliner Wahlen 2026: Wahl zum Abgeordnetenhaus & Bezirksversammlungen am 20. September 2026",
+    title: "Berliner Wahlen 2026: Wahl zum Abgeordnetenhaus (AGH) & den 12 Bezirksverordnetenversammlungen (BVV)",
     excerpt:
-      "Am Sonntag, 20. September 2026, wählen die Berlinerinnen und Berliner das Abgeordnetenhaus von Berlin (AGH) sowie die 12 Bezirksverordnetenversammlungen (BVV). Alle wichtigen Fristen, Wahlberechtigungen und Briefwahl-Infos im Überblick.",
+      "Am Sonntag, 20. September 2026, wählen die Berlinerinnen und Berliner das Abgeordnetenhaus von Berlin (AGH) sowie die 12 Bezirksverordnetenversammlungen (BVV). Alle offiziellen Termine, Wahlberechtigungen ab 16 Jahren und Briefwahl-Infos im Überblick.",
     read: "5 Min",
     date: "11. August 2026",
-    source: { label: "Landeswahlleiterin Berlin · berlin.de/wahlen", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/" },
+    source: { label: "Landeswahlleiterin Berlin · Offizielle Wahlseite 2026", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/" },
     featured: true,
     highlight: {
       value: "20.09.2026",
-      compare: "AGH & BVV",
-      label: "Offizieller Wahltag für das Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen.",
+      compare: "Wahl zum AGH & BVV",
+      label: "Offizieller Wahltag in ganz Berlin für das Abgeordnetenhaus (AGH) und alle 12 Bezirke (BVV).",
     },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Amtliche Pressemitteilungen 2026: Landeswahlleiterin informiert über Vorbereitungen & Fristen",
+    excerpt:
+      "Die Landeswahlleiterin für Berlin verabschiedet laufend offizielle Pressemitteilungen zu Wahlkreisgrenzen, Stimmzettel-Druck, Barrierefreiheit und Wahllokal-Einteilungen für den 20. September 2026.",
+    read: "4 Min",
+    date: "11. August 2026",
+    source: { label: "Landeswahlleiterin Berlin · Pressemitteilungen 2026", href: "https://www.berlin.de/wahlen/pressemitteilungen/2026/" },
   },
   {
     cat: "Bund & Steuer",
@@ -151,6 +160,7 @@ export const ARTICLES = [
     read: "4 Min",
     highlight: {
       value: "2027",
+      compare: "E-Rechnungspflicht",
       label: "Ab diesem Jahr greift die E-Rechnungspflicht verbindlich für alle B2B-Umsätze.",
     },
     date: "11. August 2026",
@@ -158,7 +168,7 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "Wahlrecht ab 16 Jahren: Wer bei den Berliner Wahlen 2026 wahlberechtigt ist",
+    title: "Erstwahlrecht ab 16 Jahren: Wer bei den Berliner Wahlen 2026 wahlberechtigt ist",
     excerpt:
       "Wahlberechtigt für das Abgeordnetenhaus von Berlin sind alle Deutschen ab 16 Jahren mit Hauptwohnsitz in Berlin seit mind. 3 Monaten. Bei den BVV-Wahlen dürfen auch EU-Bürgerinnen und EU-Bürger ab 16 Jahren abstimmen.",
     read: "3 Min",
@@ -167,7 +177,7 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "Briefwahl 2026: Online-Beantragung & automatische Wahlbenachrichtigungen",
+    title: "Briefwahl 2026: Online-Beantragung per QR-Code & Ausgaben der Wahlunterlagen",
     excerpt:
       "Wahlbenachrichtigungen werden bis Mitte August 2026 zugestellt. Die Briefwahl kann direkt online per QR-Code oder postalisch ohne Angabe von Gründen beantragt werden.",
     read: "4 Min",
@@ -183,18 +193,19 @@ export const ARTICLES = [
     source: { label: "ELSTER", href: "https://www.elster.de" },
   },
   {
-    cat: "Bund & Steuer",
-    title: "EU ViDA-Initiative (VAT in Digital Age): Digitales Reporting für grenzüberschreitende Umsätze",
-    excerpt: "Die EU-Kommission bereitet die schrittweise Einführung der digitalen Echtzeit-Meldepflicht für B2B-Lieferungen in der EU vor.",
-    read: "4 Min",
+    cat: "Berlin Fokus",
+    title: "Wahlrecht für EU-Unionsbürger: Stimmabgabe für die Bezirksverordnetenversammlung (BVV)",
+    excerpt:
+      "Staatsangehörige anderer EU-Mitgliedstaaten, die seit mindestens drei Monaten in Berlin gemeldet sind, sind für die Bezirksverordnetenversammlung (BVV) in ihrem Bezirk wahlberechtigt.",
+    read: "3 Min",
     date: "09. August 2026",
-    source: { label: "Europäische Kommission — Taxation", href: "https://ec.europa.eu/taxation_customs/" },
+    source: { label: "Landeswahlleiterin Berlin · EU-Unionsbürger", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/unionsbuerger/artikel.1600483.php" },
   },
   {
     cat: "Berlin Fokus",
-    title: "Rund 25.000 Wahlhelfende gesucht: Anmeldung & Aufwandsentschädigung am Wahltag",
+    title: "Rund 25.000 Wahlhelfende gesucht: Anmeldung & steuerfreies Erfrischungsgeld",
     excerpt:
-      "Das Land Berlin sucht rund 25.000 ehrenamtliche Wahlhelfende für die Wahllokale und Briefwahlbezirke am 20. September 2026. Für den Einsatz gibt es ein steuerfreies Erfrischungsgeld.",
+      "Das Land Berlin sucht rund 25.000 ehrenamtliche Wahlhelfende für die Wahllokale und Briefwahlbezirke am 20. September 2026. Für den Einsatz gibt es eine Aufwandsentschädigung.",
     read: "4 Min",
     date: "08. August 2026",
     source: { label: "Landeswahlleiterin Berlin · Wahlhelfende", href: "https://www.berlin.de/wahlen/organisation/wahlhelfende/" },
