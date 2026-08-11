@@ -25,12 +25,18 @@ export default function AILabel() {
             className="shrink-0"
           />
           <div className="min-w-0">
-            <span
-              className="inline-block text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md mb-1"
-              style={{ ...fontMono, backgroundColor: T.blueDim, color: T.blue, border: `1px solid ${T.blueBorder}` }}
-            >
-              {t("ai_label.badge")}
-            </span>
+            <div className="flex flex-wrap items-center gap-2 mb-1">
+              <span
+                className="inline-block text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md"
+                style={{ ...fontMono, backgroundColor: T.blueDim, color: T.blue, border: `1px solid ${T.blueBorder}` }}
+              >
+                {t("ai_label.badge")}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0" title="100% Trackingfrei · Ohne Cookies · 100% DSGVO-Konform">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                100% TRACKINGFREI · OHNE COOKIES
+              </span>
+            </div>
             <p className="text-xs sm:text-sm font-bold leading-tight" style={{ color: T.text }}>
               {t("ai_label.headline")}
             </p>

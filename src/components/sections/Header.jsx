@@ -58,12 +58,6 @@ const Header = () => {
             />
             <span>HERO</span> <span style={{ color: T.blue }}>Tax</span>
           </a>
-
-          {/* DSGVO & Cookie-Free Transparenz-Siegel */}
-          <span className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0" title="100% Trackingfrei · Ohne Cookies · 100% DSGVO-Konform">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            100% TRACKINGFREI · OHNE COOKIES
-          </span>
         </div>
         <nav className="hidden md:flex items-center gap-6 text-sm font-semibold" aria-label="Hauptnavigation">
           {navLinks.map((link) => {
