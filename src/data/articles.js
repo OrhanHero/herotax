@@ -203,6 +203,15 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
+    title: "Geoportal Berlin & Geoportal.de: Neue digitale Geodaten, Open Data & 3D-Stadtmodelle online",
+    excerpt:
+      "Die Senatsverwaltung für Stadtentwicklung, Bauen und Wohnen stellt über das Geoportal Berlin und Geoportal.de hochauflösende 3D-Stadtmodelle, Bau- & Flächennutzungsdaten sowie die aktuellen Wahlkreisgrenzen 2026 als Open Data bereit.",
+    read: "4 Min",
+    date: "11. August 2026",
+    source: { label: "Senatsverwaltung für Stadtentwicklung Berlin · geoportal.de", href: "https://www.berlin.de/sen/stadt/stadtdaten/geodaten-berlin/aktuelles-newsletter/" },
+  },
+  {
+    cat: "Berlin Fokus",
     title: "Rund 25.000 Wahlhelfende gesucht: Anmeldung & steuerfreies Erfrischungsgeld",
     excerpt:
       "Das Land Berlin sucht rund 25.000 ehrenamtliche Wahlhelfende für die Wahllokale und Briefwahlbezirke am 20. September 2026. Für den Einsatz gibt es eine Aufwandsentschädigung.",
