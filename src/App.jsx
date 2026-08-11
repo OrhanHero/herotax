@@ -6,32 +6,35 @@ import NewsTicker from "./components/atoms/NewsTicker";
 import BackToTop from "./components/atoms/BackToTop";
 import Header from "./components/sections/Header";
 import HeroSection from "./components/sections/HeroSection";
-import AISection from "./components/sections/AISection";
-import NewsHub from "./components/sections/NewsHub";
-import ToolsSection from "./components/sections/ToolsSection";
-import SocialWall from "./components/sections/SocialWall";
-import PrivacySection from "./components/sections/PrivacySection";
-import EUDIWalletSection from "./components/sections/EUDIWalletSection";
+import StartseiteFeatureHub from "./components/sections/StartseiteFeatureHub";
 import Footer from "./components/sections/Footer";
+import KIPage from "./components/pages/KIPage";
+import NewsHubPage from "./components/pages/NewsHubPage";
+import EUDIWalletPage from "./components/pages/EUDIWalletPage";
+import ToolsPage from "./components/pages/ToolsPage";
+import LivePage from "./components/pages/LivePage";
+import PublikationenPage from "./components/pages/PublikationenPage";
 import DatenschutzPage from "./components/pages/DatenschutzPage";
 import ImpressumPage from "./components/pages/ImpressumPage";
 
 export default function HeroTaxPlatform() {
-  /* ── Sprach-State (global) ──
-     Initialwert kommt aus localStorage (bzw. In-Memory-Fallback),
-     jede Änderung wird sofort persistiert. */
+  /* ── Sprach-State (global) ── */
   const [lang, setLang] = useState(readStoredLang);
   const [articles, setArticles] = useState(ARTICLES);
+  const [pathname, setPathname] = useState(
+    typeof window !== "undefined" ? window.location.pathname.toLowerCase().replace(/\/$/, "") || "/" : "/"
+  );
   const activeLang = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0];
 
-  /* Minimal-Routing ohne Router-Bibliothek: nur Datenschutzerklärung und
-     Impressum sind eigene "Seiten" (eigener Pfad, per .htaccess/Vite-SPA-
-     Fallback auf index.html gemappt). Alles andere bleibt die klassische
-     One-Pager. */
-  const pathname = typeof window !== "undefined" ? window.location.pathname.toLowerCase().replace(/\/$/, "") : "";
-  const isDatenschutzPage = pathname === "/datenschutz";
-  const isImpressumPage = pathname === "/impressum";
-  const isLegalPage = isDatenschutzPage || isImpressumPage;
+  /* SPA Routing Event Listener */
+  useEffect(() => {
+    const handlePopState = () => {
+      const current = typeof window !== "undefined" ? window.location.pathname.toLowerCase().replace(/\/$/, "") || "/" : "/";
+      setPathname(current);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   /** t(key): Übersetzung mit Fallback-Kette gewählte Sprache → Deutsch → Key */
   const t = useMemo(() => {
@@ -49,8 +52,6 @@ export default function HeroTaxPlatform() {
 
   useEffect(() => {
     storeLang(lang);
-    /* lang- und dir-Attribut auch am <html>-Element pflegen —
-       wichtig für Screenreader, Suchmaschinen und Browser-Übersetzung */
     try {
       document.documentElement.lang = lang;
       document.documentElement.dir = activeLang.dir;
@@ -59,29 +60,43 @@ export default function HeroTaxPlatform() {
     }
   }, [lang, activeLang.dir]);
 
+  const isLegalPage = pathname === "/datenschutz" || pathname === "/impressum";
+
+  const renderContent = () => {
+    switch (pathname) {
+      case "/ki":
+        return <KIPage />;
+      case "/news":
+        return <NewsHubPage />;
+      case "/eudi-wallet":
+        return <EUDIWalletPage />;
+      case "/tools":
+        return <ToolsPage />;
+      case "/live":
+        return <LivePage />;
+      case "/publikationen":
+        return <PublikationenPage />;
+      case "/datenschutz":
+        return <DatenschutzPage />;
+      case "/impressum":
+        return <ImpressumPage />;
+      default:
+        return (
+          <>
+            <HeroSection />
+            <StartseiteFeatureHub />
+          </>
+        );
+    }
+  };
+
   return (
     <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
       <div className="min-h-screen antialiased" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
         <Header />
         {!isLegalPage && <NewsTicker items={articles} />}
 
-        <main>
-          {isDatenschutzPage ? (
-            <DatenschutzPage />
-          ) : isImpressumPage ? (
-            <ImpressumPage />
-          ) : (
-            <>
-              <HeroSection />
-              <AISection />
-              <NewsHub />
-              <EUDIWalletSection />
-              <ToolsSection />
-              <SocialWall />
-              <PrivacySection />
-            </>
-          )}
-        </main>
+        <main>{renderContent()}</main>
 
         <Footer />
         <BackToTop />
@@ -89,3 +104,4 @@ export default function HeroTaxPlatform() {
     </LangContext.Provider>
   );
 }
+

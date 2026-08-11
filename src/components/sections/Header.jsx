@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLang } from "../../i18n";
 import { CONFIG } from "../../config/config";
 import { T, fontDisplay } from "../../config/tokens";
@@ -7,6 +8,36 @@ import LanguageSwitcher from "../atoms/LanguageSwitcher";
 /** Sticky Navbar mit Logo, Hauptnavigation, Sprachwahl und CTA */
 const Header = () => {
   const { t } = useLang();
+  const [currentPath, setCurrentPath] = useState(
+    typeof window !== "undefined" ? window.location.pathname.toLowerCase().replace(/\/$/, "") || "/" : "/"
+  );
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname.toLowerCase().replace(/\/$/, "") || "/";
+      setCurrentPath(path);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const navigate = (path, e) => {
+    if (e && (e.metaKey || e.ctrlKey)) return;
+    if (e) e.preventDefault();
+    window.history.pushState({}, "", path);
+    window.dispatchEvent(new Event("popstate"));
+  };
+
+  const navLinks = [
+    { href: "/ki", label: t("nav.ki") },
+    { href: "/news", label: t("nav.news") },
+    { href: "/eudi-wallet", label: t("nav.eudiWallet") },
+    { href: "/tools", label: t("nav.tools") },
+    { href: "/live", label: t("nav.live") },
+    { href: "/publikationen", label: t("nav.publications") },
+    { href: "/datenschutz", label: t("nav.privacy") },
+  ];
+
   return (
     <header
       className="sticky top-0 z-50 backdrop-blur-xl transition-all duration-300 border-b"
@@ -14,23 +45,35 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <a href="#" className="font-black text-xl tracking-tight flex items-center gap-2.5" style={{ ...fontDisplay, color: T.text }}>
+          <a
+            href="/"
+            onClick={(e) => navigate("/", e)}
+            className="font-black text-xl tracking-tight flex items-center gap-2.5"
+            style={{ ...fontDisplay, color: T.text }}
+          >
             <img
-              src="/images/herotax-logo.png"
-              alt="HERO Tax Logo"
-              className="h-9 w-auto"
+              src="/images/berlin_moonlight_skyline.png"
+              alt="HERO Tax Logo - Berlin Moonlight Skyline"
+              className="h-9 w-9 rounded-lg object-cover border border-slate-300/80 shadow-xs"
             />
             <span>HERO</span> <span style={{ color: T.blue }}>Tax</span>
           </a>
         </div>
         <nav className="hidden md:flex items-center gap-6 text-sm font-semibold" aria-label="Hauptnavigation">
-          <a href="#ki" className="hover:text-blue-600 transition-colors" style={{ color: T.muted }}>{t("nav.ki")}</a>
-          <a href="#news" className="hover:text-blue-600 transition-colors" style={{ color: T.muted }}>{t("nav.news")}</a>
-          <a href="#eudi-wallet" className="hover:text-blue-600 transition-colors" style={{ color: T.muted }}>{t("nav.eudiWallet")}</a>
-          <a href="#tools" className="hover:text-blue-600 transition-colors" style={{ color: T.muted }}>{t("nav.tools")}</a>
-          <a href="#live" className="hover:text-blue-600 transition-colors" style={{ color: T.muted }}>{t("nav.live")}</a>
-          <a href="#datenschutz" className="hover:text-blue-600 transition-colors" style={{ color: T.muted }}>{t("nav.privacy")}</a>
-          <a href="#publikationen" className="hover:text-blue-600 transition-colors" style={{ color: T.muted }}>{t("nav.publications")}</a>
+          {navLinks.map((link) => {
+            const isActive = currentPath === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => navigate(link.href, e)}
+                className={`transition-colors hover:text-blue-600 ${isActive ? "text-blue-600 font-bold underline underline-offset-4" : ""}`}
+                style={{ color: isActive ? T.blue : T.muted }}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
@@ -51,3 +94,4 @@ const Header = () => {
 };
 
 export default Header;
+

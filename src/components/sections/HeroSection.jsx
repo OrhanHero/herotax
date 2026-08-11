@@ -295,7 +295,16 @@ const HeroSection = () => {
               {/* Footer Link */}
               <div className="pt-4 mt-4 border-t border-white/15 flex items-center justify-between text-xs text-slate-400">
                 <span style={{ ...fontMono }}>herotax.de · Verifizierte Daten</span>
-                <a href="#news" className="text-blue-400 font-bold hover:text-blue-300 inline-flex items-center gap-1">
+                <a
+                  href="/news"
+                  onClick={(e) => {
+                    if (e && (e.metaKey || e.ctrlKey)) return;
+                    e.preventDefault();
+                    window.history.pushState({}, "", "/news");
+                    window.dispatchEvent(new Event("popstate"));
+                  }}
+                  className="text-blue-400 font-bold hover:text-blue-300 inline-flex items-center gap-1"
+                >
                   Hauptstadt News lesen <ChevronRight size={13} />
                 </a>
               </div>
