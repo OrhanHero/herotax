@@ -131,7 +131,7 @@ export default function StartseiteFeatureHub() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm font-bold text-blue-600 pt-4" style={{ borderTop: `1px solid ${card.cardBorder}` }}>
+                <div className="flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-blue-400 pt-4" style={{ borderTop: `1px solid ${card.cardBorder}` }}>
                   <span>Bereich öffnen</span>
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>

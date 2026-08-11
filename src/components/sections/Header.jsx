@@ -68,7 +68,7 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => navigate(link.href, e)}
-                className={`transition-colors hover:text-blue-600 ${isActive ? "text-blue-600 font-bold underline underline-offset-4" : ""}`}
+                className={`transition-colors hover:text-blue-600 ${isActive ? "text-blue-600 dark:text-blue-400 font-bold underline underline-offset-4" : ""}`}
                 style={{ color: isActive ? T.blue : T.muted }}
               >
                 {link.label}

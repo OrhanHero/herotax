@@ -53,11 +53,11 @@ export default function ERechnungCheckTool() {
       <div className="rounded-3xl p-7 sm:p-9 border shadow-md relative overflow-hidden transition-colors" style={{ backgroundColor: T.card, borderColor: T.line }}>
       <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b" style={{ borderColor: T.lineSoft }}>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
             <FileText size={20} />
           </div>
           <div>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-600 block">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 block">
               Interaktives Tool · 30-Sekunden Check
             </span>
             <h3 className="text-xl font-bold tracking-tight" style={{ ...fontDisplay, color: T.text }}>
@@ -205,15 +205,15 @@ export default function ERechnungCheckTool() {
             <p className="text-sm leading-relaxed mb-4 opacity-90">
               {result.desc}
             </p>
-            <div className="p-3.5 rounded-xl bg-white/80 border border-slate-200/80 text-xs font-semibold text-slate-800 flex items-start gap-2">
-              <ArrowRight size={16} className="text-blue-600 shrink-0 mt-0.5" />
+            <div className="p-3.5 rounded-xl bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-700/70 text-xs font-semibold text-slate-800 dark:text-slate-100 flex items-start gap-2">
+              <ArrowRight size={16} className="text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
               <span>{result.action}</span>
             </div>
           </div>
 
           {/* Amtliche Primärquellen & Leitfäden */}
-          <div className="pt-4 border-t border-slate-100">
-            <p className="text-xs font-bold uppercase tracking-wider mb-2.5 text-slate-500" style={{ ...fontMono }}>
+          <div className="pt-4 border-t" style={{ borderColor: T.lineSoft }}>
+            <p className="text-xs font-bold uppercase tracking-wider mb-2.5" style={{ ...fontMono, color: T.faint }}>
               Amtliche Primärquellen & IHK-Leitfäden:
             </p>
             <div className="flex flex-col gap-2">
@@ -221,7 +221,7 @@ export default function ERechnungCheckTool() {
                 href="https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1.5"
+                className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1.5"
                 style={{ ...fontMono }}
               >
                 <span>🏛️ BMF — E-Rechnung FAQs & Übergangsregeln</span>
@@ -231,7 +231,7 @@ export default function ERechnungCheckTool() {
                 href="https://e-rechnung-bund.de/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1.5"
+                className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1.5"
                 style={{ ...fontMono }}
               >
                 <span>🇩🇪 E-Rechnung Bund — Plattform & Standards (XRechnung / ZUGFeRD)</span>
@@ -241,7 +241,7 @@ export default function ERechnungCheckTool() {
                 href="https://www.ihk.de/darmstadt/produktmarken/recht-und-fair-play/steuerinfo/bmf-plant-verpflichtende-erechnung-und-meldesystem-5784882"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center gap-1.5"
+                className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1.5"
                 style={{ ...fontMono }}
               >
                 <span>🏢 IHK — Verpflichtende E-Rechnung & Meldesystem im Überblick</span>
@@ -254,7 +254,7 @@ export default function ERechnungCheckTool() {
             <button
               type="button"
               onClick={resetQuiz}
-              className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               style={{ ...fontMono }}
             >
               <RefreshCw size={14} />
@@ -263,10 +263,10 @@ export default function ERechnungCheckTool() {
             <button
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all shadow-xs"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-100 text-xs font-bold transition-all shadow-xs"
               style={{ ...fontMono }}
             >
-              <Printer size={14} className="text-blue-600" />
+              <Printer size={14} className="text-blue-600 dark:text-blue-400" />
               <span>Roadmap drucken / als PDF speichern</span>
             </button>
           </div>

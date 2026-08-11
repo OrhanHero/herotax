@@ -102,7 +102,7 @@ const HeroSection = () => {
             {t("hero.title1")}
             <br />
             {t("hero.title2pre")}
-            <span className="relative inline-block text-blue-600 px-1.5 underline decoration-blue-600/30 underline-offset-8">
+            <span className="relative inline-block text-blue-600 dark:text-blue-400 px-1.5 underline decoration-blue-600/30 underline-offset-8">
               Berlin
             </span>
             {t("hero.title2post")}

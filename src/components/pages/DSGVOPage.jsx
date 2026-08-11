@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { fontMono } from "../../config/tokens";
+import { T, fontMono } from "../../config/tokens";
 import PrivacySection from "../sections/PrivacySection";
 
 /* ── Interaktiver DSGVO Hub ──────────────────────────────────────────
@@ -17,7 +17,7 @@ export default function DSGVOPage() {
       <a
         href="/"
         className="inline-flex items-center gap-1.5 text-xs mb-8 hover:underline underline-offset-4"
-        style={{ ...fontMono, color: "#94A3B8" }}
+        style={{ ...fontMono, color: T.faint }}
       >
         ← Zurück zur Startseite
       </a>

@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Der ThemeProvider schaltet über `html.dark` um — Tailwind v4 bindet die
+   dark-Variante per Default an `prefers-color-scheme`. Ohne dieses Mapping
+   greift keine einzige `dark:`-Utility beim manuellen Umschalten. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ── Self-hosted Google Fonts (Focused Subsets: Latin & Arabic) ── */
 @import "@fontsource/archivo/latin-500.css";
 @import "@fontsource/archivo/latin-600.css";
@@ -23,7 +28,9 @@
   --color-line-soft: #E8E8E2;
   --color-text: #121215;
   --color-muted: #5A5A62;
-  --color-faint: #8E8E98;
+  --color-faint: #686874;
+  --color-blue: #2337E8;
+  --color-blue-ink: #FFFFFF;
   --color-blue-dim: rgba(35, 55, 232, 0.07);
   --color-blue-border: rgba(35, 55, 232, 0.22);
   --color-shadow: 0 2px 4px rgba(18,18,21,0.04), 0 12px 28px -12px rgba(18,18,21,0.08);
@@ -32,8 +39,10 @@
   --color-glass-border: rgba(255, 255, 255, 0.55);
   --blueprint-grid-color: rgba(35, 55, 232, 0.05);
   --blueprint-dots-color: rgba(35, 55, 232, 0.14);
-  --color-ticker-bg: #121215;
-  --color-ticker-text: #FFFFFF;
+  --color-ink: #121215;
+  --color-ink-text: #FFFFFF;
+  --color-ink-muted: #9AA3B2;
+  --color-ink-accent: #8FA0FF;
 }
 
 html.dark {
@@ -43,8 +52,11 @@ html.dark {
   --color-line: #253046;
   --color-line-soft: #1E2738;
   --color-text: #F0F4FC;
-  --color-muted: #94A3B8;
-  --color-faint: #64748B;
+  --color-muted: #A3B2C7;
+  /* #64748B lag als Meta-Farbe unter WCAG AA (≈3.8:1 auf den Karten) */
+  --color-faint: #8A97AC;
+  --color-blue: #6E86FF;
+  --color-blue-ink: #0A0D14;
   --color-blue-dim: rgba(59, 130, 246, 0.15);
   --color-blue-border: rgba(59, 130, 246, 0.35);
   --color-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 12px 28px -12px rgba(0, 0, 0, 0.7);
@@ -53,8 +65,10 @@ html.dark {
   --color-glass-border: rgba(255, 255, 255, 0.09);
   --blueprint-grid-color: rgba(59, 130, 246, 0.07);
   --blueprint-dots-color: rgba(59, 130, 246, 0.18);
-  --color-ticker-bg: #06080E;
-  --color-ticker-text: #E2E8F0;
+  --color-ink: #06080E;
+  --color-ink-text: #E2E8F0;
+  --color-ink-muted: #94A3B8;
+  --color-ink-accent: #A5B4FF;
 }
 
 html, body, #root {
@@ -331,7 +345,7 @@ html {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F1EE;
+  background: var(--color-wash, #F1F1EE);
 }
 ::-webkit-scrollbar-thumb {
   background: #2337E8;

@@ -15,7 +15,7 @@ const NewsTicker = ({ items }) => {
   return (
     <div
       className="flex items-stretch shadow-xs"
-      style={{ backgroundColor: T.text, borderBottom: `1px solid ${T.line}` }}
+      style={{ backgroundColor: T.ink, borderBottom: `1px solid ${T.line}` }}
       role="region"
       aria-label="Newsticker: aktuelle Meldungen"
       dir="ltr"
@@ -52,23 +52,23 @@ const NewsTicker = ({ items }) => {
                   rel="noopener noreferrer"
                   tabIndex={copy === 1 ? -1 : 0}
                   className="inline-flex items-center gap-2.5 px-6 text-sm transition-opacity hover:opacity-75 focus:outline-none focus-visible:underline"
-                  style={{ color: T.paper }}
+                  style={{ color: T.inkText }}
                 >
                   <span
                     className="text-xs font-bold uppercase tracking-wider shrink-0 px-2 py-0.5 rounded"
                     style={{
                       ...fontMono,
                       backgroundColor: a.cat === "Berlin Fokus" ? "rgba(143,160,255,0.18)" : "rgba(255,255,255,0.1)",
-                      color: a.cat === "Berlin Fokus" ? "#8FA0FF" : "#D1D5DB",
+                      color: a.cat === "Berlin Fokus" ? T.inkAccent : T.inkText,
                     }}
                   >
                     {a.cat}
                   </span>
                   <span className="font-semibold">{a.title}</span>
-                  <span className="text-xs shrink-0" style={{ ...fontMono, color: T.faint }}>
+                  <span className="text-xs shrink-0" style={{ ...fontMono, color: T.inkMuted }}>
                     {a.date}
                   </span>
-                  <span aria-hidden="true" style={{ color: T.blue }}>+++</span>
+                  <span aria-hidden="true" style={{ color: T.inkAccent }}>+++</span>
                 </a>
               ))}
             </div>

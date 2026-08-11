@@ -32,20 +32,20 @@ const PrivacySection = () => {
           {/* DSGVO-Selbstverpflichtung der Plattform */}
           <div
             className="lg:col-span-3 rounded-3xl p-8 sm:p-10"
-            style={{ backgroundColor: T.text }}
+            style={{ backgroundColor: T.ink }}
           >
             <div className="flex items-center gap-3 mb-8">
               <span
                 className="w-11 h-11 rounded-2xl flex items-center justify-center"
                 style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
               >
-                <ShieldCheck size={22} style={{ color: "#8FA0FF" }} />
+                <ShieldCheck size={22} style={{ color: T.inkAccent }} />
               </span>
               <div>
-                <h3 className="text-xl font-bold" style={{ ...fontDisplay, color: T.paper }}>
+                <h3 className="text-xl font-bold" style={{ ...fontDisplay, color: T.inkText }}>
                   DSGVO bei HERO Tax
                 </h3>
-                <p className="text-xs" style={{ ...fontMono, color: "rgba(250,250,248,0.5)" }}>
+                <p className="text-xs" style={{ ...fontMono, color: T.inkMuted }}>
                   Privacy by Design · Stand: Juli 2026
                 </p>
               </div>
@@ -54,12 +54,12 @@ const PrivacySection = () => {
             <div className="grid sm:grid-cols-2 gap-x-8 gap-y-7">
               {PRIVACY_PRINCIPLES.map(({ icon: Icon, title, text }) => (
                 <div key={title} className="flex gap-3.5">
-                  <Icon size={19} className="shrink-0 mt-0.5" style={{ color: "#8FA0FF" }} />
+                  <Icon size={19} className="shrink-0 mt-0.5" style={{ color: T.inkAccent }} />
                   <div>
-                    <h4 className="font-bold text-sm mb-1.5" style={{ ...fontDisplay, color: T.paper }}>
+                    <h4 className="font-bold text-sm mb-1.5" style={{ ...fontDisplay, color: T.inkText }}>
                       {title}
                     </h4>
-                    <p className="text-sm leading-relaxed" style={{ color: "rgba(250,250,248,0.65)" }}>
+                    <p className="text-sm leading-relaxed" style={{ color: T.inkMuted }}>
                       {text}
                     </p>
                   </div>
@@ -68,7 +68,7 @@ const PrivacySection = () => {
             </div>
 
             <div className="mt-9 pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
-              <p className="text-xs mb-4" style={{ ...fontMono, color: "rgba(250,250,248,0.5)" }}>
+              <p className="text-xs mb-4" style={{ ...fontMono, color: T.inkMuted }}>
                 BfDI für Bürger:innen — weitere Themen
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
@@ -85,12 +85,12 @@ const PrivacySection = () => {
                       className="w-9 h-9 rounded-xl flex items-center justify-center mb-3"
                       style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
                     >
-                      <Icon size={17} style={{ color: "#8FA0FF" }} />
+                      <Icon size={17} style={{ color: T.inkAccent }} />
                     </span>
-                    <h4 className="font-bold text-sm mb-1" style={{ ...fontDisplay, color: T.paper }}>
+                    <h4 className="font-bold text-sm mb-1" style={{ ...fontDisplay, color: T.inkText }}>
                       {title}
                     </h4>
-                    <p className="text-xs leading-relaxed" style={{ color: "rgba(250,250,248,0.65)" }}>
+                    <p className="text-xs leading-relaxed" style={{ color: T.inkMuted }}>
                       {text}
                     </p>
                   </a>
@@ -102,7 +102,7 @@ const PrivacySection = () => {
               className="mt-9 pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
             >
-              <p className="text-xs" style={{ ...fontMono, color: "rgba(250,250,248,0.6)" }}>
+              <p className="text-xs" style={{ ...fontMono, color: T.inkMuted }}>
                 100% Privacy by Design · Keine Tracking-Cookies · EU-Server Caching
               </p>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
@@ -11,6 +11,17 @@ import SourceLink from "../atoms/SourceLink";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import BerlinBezirkSelector from "../atoms/BerlinBezirkSelector";
+
+/* Wahl zum Abgeordnetenhaus von Berlin — 20. September 2026 (Monat ist 0-basiert). */
+const ELECTION_DAY = new Date(2026, 8, 20);
+
+/** Verbleibende Tage bis zur Wahl, ab Tagesbeginn gerechnet, damit der Wert
+    nicht von der Uhrzeit des Seitenaufrufs abhängt. Negativ nach dem Wahltag. */
+const daysUntilElection = () => {
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((ELECTION_DAY - startOfToday) / 86_400_000);
+};
 
 const DE_ICONS = {
   home: Home,
@@ -26,6 +37,7 @@ const NewsHub = () => {
   const { t } = useLang();
   const [filter, setFilter] = useState("Alle");
   const [articles, setArticles] = useState(ARTICLES);
+  const daysLeft = useMemo(daysUntilElection, []);
 
   // Lade Artikel beim Mount (mit Caching & automatischem Update)
   useEffect(() => {
@@ -101,9 +113,13 @@ const NewsHub = () => {
                     <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
                     Amtliches Wahlportal 2026
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
-                    ⏳ Noch {daysLeft} Tage bis zur Wahl
-                  </div>
+                  {daysLeft >= 0 && (
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
+                      {daysLeft === 0
+                        ? "🗳️ Heute ist Wahltag"
+                        : `⏳ Noch ${daysLeft} ${daysLeft === 1 ? "Tag" : "Tage"} bis zur Wahl`}
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2" style={{ ...fontDisplay }}>
                   Berliner Wahlen am 20. September 2026
@@ -162,7 +178,7 @@ const NewsHub = () => {
               <div>
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <CategoryTag cat={featured.cat} />
-                  <span className="w-10 h-10 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
+                  <span className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-400/30 flex items-center justify-center text-blue-600 dark:text-blue-300 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0">
                     <ArrowUpRight size={20} />
                   </span>
                 </div>
@@ -175,7 +191,7 @@ const NewsHub = () => {
                       </div>
                       {featured.highlight.compare && (
                         <div className="mt-1.5">
-                          <span className="inline-block text-xs font-bold font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-100 text-blue-800 border border-blue-200">
+                          <span className="inline-block text-xs font-bold font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-100 dark:bg-blue-500/20 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-400/30">
                             {featured.highlight.compare}
                           </span>
                         </div>
@@ -196,8 +212,8 @@ const NewsHub = () => {
                 </p>
 
                 {/* Kleine farbliche Bulletpoint-Karten (Wahlen 2026 Schnell-Navigation) */}
-                <div className="my-6 pt-4 border-t border-slate-100">
-                  <p className="text-xs font-bold uppercase tracking-wider mb-3 text-slate-500" style={{ ...fontMono }}>
+                <div className="my-6 pt-4 border-t" style={{ borderColor: T.lineSoft }}>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ ...fontMono, color: T.faint }}>
                     Amtliche Unterlagen & Direkt-Services:
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -206,7 +222,7 @@ const NewsHub = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-blue-50/80 hover:bg-blue-100 border-blue-200 text-blue-900"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-blue-50/80 dark:bg-blue-500/15 hover:bg-blue-100 dark:hover:bg-blue-500/25 border-blue-200 dark:border-blue-400/25 text-blue-900 dark:text-blue-200"
                     >
                       <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0 animate-pulse" />
                       <span className="truncate">Allgemeine Informationen</span>
@@ -216,7 +232,7 @@ const NewsHub = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-emerald-50/80 hover:bg-emerald-100 border-emerald-200 text-emerald-900"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-emerald-50/80 dark:bg-emerald-500/15 hover:bg-emerald-100 dark:hover:bg-emerald-500/25 border-emerald-200 dark:border-emerald-400/25 text-emerald-900 dark:text-emerald-200"
                     >
                       <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
                       <span className="truncate">Wahllokalsuche & Musterstimmzettel</span>
@@ -226,7 +242,7 @@ const NewsHub = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-indigo-50/80 hover:bg-indigo-100 border-indigo-200 text-indigo-900"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-indigo-50/80 dark:bg-indigo-500/15 hover:bg-indigo-100 dark:hover:bg-indigo-500/25 border-indigo-200 dark:border-indigo-400/25 text-indigo-900 dark:text-indigo-200"
                     >
                       <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0 animate-pulse" />
                       <span className="truncate">Wahlvorschläge</span>
@@ -236,7 +252,7 @@ const NewsHub = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-50/80 hover:bg-amber-100 border-amber-200 text-amber-900"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-50/80 dark:bg-amber-500/15 hover:bg-amber-100 dark:hover:bg-amber-500/25 border-amber-200 dark:border-amber-400/25 text-amber-900 dark:text-amber-200"
                     >
                       <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0 animate-pulse" />
                       <span className="truncate">Fragen- & Antwortkatalog (FAQs)</span>
@@ -246,7 +262,7 @@ const NewsHub = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-purple-50/80 hover:bg-purple-100 border-purple-200 text-purple-900"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-purple-50/80 dark:bg-purple-500/15 hover:bg-purple-100 dark:hover:bg-purple-500/25 border-purple-200 dark:border-purple-400/25 text-purple-900 dark:text-purple-200"
                     >
                       <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0 animate-pulse" />
                       <span className="truncate">Wahlgebietseinteilung</span>
@@ -256,7 +272,7 @@ const NewsHub = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-sky-50/80 hover:bg-sky-100 border-sky-200 text-sky-900"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-sky-50/80 dark:bg-sky-500/15 hover:bg-sky-100 dark:hover:bg-sky-500/25 border-sky-200 dark:border-sky-400/25 text-sky-900 dark:text-sky-200"
                     >
                       <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0 animate-pulse" />
                       <span className="truncate">Briefwahl</span>
@@ -266,7 +282,7 @@ const NewsHub = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-rose-50/80 hover:bg-rose-100 border-rose-200 text-rose-900"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-rose-50/80 dark:bg-rose-500/15 hover:bg-rose-100 dark:hover:bg-rose-500/25 border-rose-200 dark:border-rose-400/25 text-rose-900 dark:text-rose-200"
                     >
                       <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0 animate-pulse" />
                       <span className="truncate">Unionsbürgerinnen & Unionsbürger</span>
@@ -277,7 +293,7 @@ const NewsHub = () => {
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       title="Der Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin wird am 24. August gegen Mittag unter wahl-o-mat.de veröffentlicht."
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-100/90 hover:bg-amber-200 border-amber-300 text-amber-950 shadow-sm"
+                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-100/90 dark:bg-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/30 border-amber-300 dark:border-amber-400/40 text-amber-950 dark:text-amber-100 shadow-sm"
                     >
                       <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0 animate-ping" />
                       <span className="truncate font-bold">Wahl-O-Mat Berlin (Ab 24. Aug. online)</span>
@@ -286,7 +302,7 @@ const NewsHub = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100">
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t" style={{ borderColor: T.lineSoft }}>
                 <Meta read={featured.read} date={featured.date} />
                 <div className="flex flex-wrap items-center gap-4">
                   <SourceLink href={featured.source.href} label={featured.source.label} />
@@ -295,7 +311,7 @@ const NewsHub = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-blue-600 hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     <span>🗺️ Geoportal Berlin: Wahlgebiete 2026 (AGH)</span>
                     <ArrowUpRight size={13} />
@@ -315,7 +331,7 @@ const NewsHub = () => {
             >
               <div className="flex items-center justify-between gap-4">
                 <CategoryTag cat={a.cat} />
-                <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center text-slate-600 transition-all shrink-0">
+                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700/70 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center text-slate-600 dark:text-slate-200 transition-all shrink-0">
                   <ArrowUpRight size={16} />
                 </span>
               </div>
@@ -326,7 +342,7 @@ const NewsHub = () => {
                 <p className="text-sm leading-relaxed mb-4" style={{ color: T.muted }}>
                   {a.excerpt}
                 </p>
-                <div className="flex flex-col gap-2 pt-3 border-t border-slate-100">
+                <div className="flex flex-col gap-2 pt-3 border-t" style={{ borderColor: T.lineSoft }}>
                   <Meta read={a.read} date={a.date} />
                   <SourceLink href={a.source.href} label={a.source.label} />
                 </div>

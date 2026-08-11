@@ -83,7 +83,7 @@ export default function PublikationenPage() {
         </div>
 
         {/* Fachthemen & Stellungnahmen */}
-        <div className="rounded-3xl p-8 sm:p-10" style={{ backgroundColor: "#FFFFFF", border: `1px solid ${T.line}` }}>
+        <div className="rounded-3xl p-8 sm:p-10" style={{ backgroundColor: T.card, border: `1px solid ${T.line}` }}>
           <h2 className="text-2xl font-black tracking-tight mb-6" style={{ ...fontDisplay, color: T.text }}>
             Aktuelle Fachthemen & Handreichungen
           </h2>
@@ -107,7 +107,7 @@ export default function PublikationenPage() {
                   href={item.source.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:underline"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline"
                 >
                   <ExternalLink size={12} />
                   {item.source.label}
