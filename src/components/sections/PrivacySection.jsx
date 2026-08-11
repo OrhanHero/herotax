@@ -1,4 +1,4 @@
-import { ShieldCheck, Scale, FileText, ExternalLink } from "lucide-react";
+import { ShieldCheck, Scale, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
 import { PRIVACY_PRINCIPLES, BFDI_ITEMS, BFDI_PUBLICATIONS, BFDI_BUERGER_THEMES } from "../../data/privacy";
@@ -102,17 +102,13 @@ const PrivacySection = () => {
               className="mt-9 pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
             >
-              <p className="text-xs" style={{ ...fontMono, color: "rgba(250,250,248,0.5)" }}>
-                Alle Details & Rechtsgrundlagen in der Datenschutzerklärung.
+              <p className="text-xs" style={{ ...fontMono, color: "rgba(250,250,248,0.6)" }}>
+                100% Privacy by Design · Keine Tracking-Cookies · EU-Server Caching
               </p>
-              <a
-                href="/datenschutz"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold self-start transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2"
-                style={{ ...fontDisplay, backgroundColor: T.paper, color: T.text }}
-              >
-                <FileText size={15} />
-                Zur Datenschutzerklärung
-              </a>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                DSGVO-Konform
+              </span>
             </div>
           </div>
 
