@@ -124,16 +124,16 @@ export default function EUAIActSection() {
     <div className="mt-6 rounded-3xl p-6 sm:p-7 bg-white border border-slate-200/90 shadow-sm">
       {/* Header Badge & Title + EUR-Lex Link on top right */}
       <div className="pb-3.5 border-b border-slate-100 mb-5">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-          <div className="flex items-center gap-2.5">
-            <span className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="flex items-start gap-2.5 min-w-0">
+            <span className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0 mt-0.5">
               <Scale size={16} className="text-blue-600" />
             </span>
-            <div>
-              <h3 className="font-bold text-base leading-snug" style={{ ...fontDisplay, color: T.text }}>
+            <div className="min-w-0">
+              <h3 className="font-bold text-sm sm:text-base leading-snug" style={{ ...fontDisplay, color: T.text }}>
                 EU AI Act Guide 🇪🇺 · Verordnung (EU) 2024/1689
               </h3>
-              <p className="text-xs" style={{ ...fontMono, color: T.faint }}>
+              <p className="text-xs text-slate-500 mt-0.5" style={{ ...fontMono }}>
                 Kompakt-Kompass: Regeln, wer betroffen ist, Strafen & Fristen
               </p>
             </div>
@@ -151,8 +151,8 @@ export default function EUAIActSection() {
           </a>
         </div>
 
-        {/* 3 Pill Badges fitting on 1 single row directly below */}
-        <div className="flex flex-wrap items-center gap-2 pt-0.5">
+        {/* 3 Pill Badges in 3 equal columns covering 100% full width (No empty space!) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
           {pillLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -161,12 +161,12 @@ export default function EUAIActSection() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-600 border border-slate-200/80 transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md text-[11px] font-bold bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-600 border border-slate-200/80 transition-colors text-center w-full"
                 style={{ ...fontMono }}
               >
-                <Icon size={11} className="text-blue-600" />
-                <span>{link.title}</span>
-                <ExternalLink size={10} className="opacity-60" />
+                <Icon size={11} className="text-blue-600 shrink-0" />
+                <span className="truncate">{link.title}</span>
+                <ExternalLink size={10} className="opacity-60 shrink-0" />
               </a>
             );
           })}
