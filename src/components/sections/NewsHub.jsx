@@ -10,6 +10,7 @@ import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
+import BerlinBezirkSelector from "../atoms/BerlinBezirkSelector";
 
 const DE_ICONS = {
   home: Home,
@@ -147,6 +148,8 @@ const NewsHub = () => {
             </div>
           </div>
         )}
+
+        {filter === "Berlin Fokus" && <BerlinBezirkSelector />}
 
         <div className="grid lg:grid-cols-3 gap-5">
           {featured && (

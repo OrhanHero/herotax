@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, AlertCircle, ArrowRight, RefreshCw, FileText } from "lucide-react";
+import { CheckCircle2, AlertCircle, ArrowRight, RefreshCw, FileText, Printer } from "lucide-react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 
 /** Interaktiver 30-Sekunden E-Rechnungs-Check 2027 für Unternehmer */
@@ -244,7 +244,7 @@ export default function ERechnungCheckTool() {
             </div>
           </div>
 
-          <div className="flex justify-between items-center pt-2">
+          <div className="flex flex-wrap justify-between items-center gap-3 pt-2">
             <button
               type="button"
               onClick={resetQuiz}
@@ -253,6 +253,15 @@ export default function ERechnungCheckTool() {
             >
               <RefreshCw size={14} />
               <span>Check neu starten</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all shadow-xs"
+              style={{ ...fontMono }}
+            >
+              <Printer size={14} className="text-blue-600" />
+              <span>Roadmap drucken / als PDF speichern</span>
             </button>
           </div>
         </div>
