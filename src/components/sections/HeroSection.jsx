@@ -4,8 +4,7 @@ import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import PrimaryCTA from "../atoms/PrimaryCTA";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
-import { FernsehturmIcon } from "../atoms/FernsehturmBadge";
-import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
+import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
@@ -86,34 +85,34 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-20 overflow-hidden bg-blueprint-grid">
-      {/* Eyebrow & Official Blueprint Badges */}
-      <div className="flex flex-wrap items-center gap-3 mb-6">
-        <BrandenburgerTorBadge label="BERLIN METROPOL STEUER-SCHUTZSCHILD" />
-      </div>
-
-      <div className="grid lg:grid-cols-12 gap-10 items-center">
+    <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-16 overflow-hidden bg-blueprint-grid">
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         {/* Left Column: Display Headline & Copy */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-5">
+          {/* Parallel Eyebrow Badge Left */}
+          <div className="flex items-center gap-3">
+            <BrandenburgerTorBadge label="BERLIN METROPOL STEUER-SCHUTZSCHILD" />
+          </div>
+
           <h1
             className="font-black tracking-tight leading-[1.03]"
-            style={{ ...fontDisplay, color: T.text, fontSize: "clamp(2.75rem, 5.8vw, 5.25rem)" }}
+            style={{ ...fontDisplay, color: T.text, fontSize: "clamp(2.5rem, 5.2vw, 4.75rem)" }}
           >
             {t("hero.title1")}
             <br />
             {t("hero.title2pre")}
-            <span className="relative inline-block text-blue-600 px-2 underline decoration-blue-600/30 underline-offset-8">
+            <span className="relative inline-block text-blue-600 px-1.5 underline decoration-blue-600/30 underline-offset-8">
               Berlin
             </span>
             {t("hero.title2post")}
           </h1>
 
-          <p className="text-lg sm:text-xl leading-relaxed font-normal max-w-xl" style={{ color: T.muted }}>
+          <p className="text-base sm:text-lg leading-relaxed font-normal max-w-xl" style={{ color: T.muted }}>
             {t("hero.sub")}
           </p>
 
           {/* Key Feature Trust Badges */}
-          <div className="flex flex-wrap items-center gap-2.5 pt-2">
+          <div className="flex flex-wrap items-center gap-2 pt-1">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white border border-slate-300 text-slate-800 shadow-xs" style={{ ...fontMono }}>
               <Lock size={13} className="text-blue-600" />
               Ohne Cookies & Tracking
@@ -128,7 +127,7 @@ const HeroSection = () => {
             </span>
           </div>
 
-          <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <PrimaryCTA large />
             <p className="text-xs text-center sm:text-start self-center" style={{ ...fontMono, color: T.faint }}>
               {t("cta.note")}
@@ -137,13 +136,16 @@ const HeroSection = () => {
         </div>
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
-        <div className="lg:col-span-5 flex flex-col gap-3">
-          {/* Live Stand Badge direkt über dem Radar */}
-          <div className="flex items-center justify-center sm:justify-start px-4 py-2.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
-            <LiveTrackerBadge type="general" />
+        <div className="lg:col-span-5 space-y-5">
+          {/* Parallel Eyebrow Badge Right (Über dem Bild) */}
+          <div className="flex items-center justify-between gap-3">
+            <FernsehturmBadge label="BERLIN METROPOL RADAR 🌙" />
+            <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1">
+              <Zap size={11} /> HUB #1 IN DE
+            </span>
           </div>
 
-          <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg">
+          <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg border border-slate-200">
             {/* Full Background: Berlin Moonlight Skyline */}
             <AIImageOverlay
               src="/images/berlin_moonlight_skyline.png"
@@ -156,18 +158,6 @@ const HeroSection = () => {
 
             {/* Content on top of background */}
             <div className="relative z-10 p-5 sm:p-6">
-              {/* Header Status Bar */}
-              <div className="flex items-center justify-between gap-3 pb-4 mb-5 border-b border-white/15">
-                <div className="flex items-center gap-2">
-                  <FernsehturmIcon size={20} color="#FFFFFF" />
-                  <span className="text-xs font-bold tracking-widest text-white uppercase" style={{ ...fontMono }}>
-                    BERLIN METROPOL RADAR 🌙
-                  </span>
-                </div>
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-600/80 text-white border border-blue-400/30 flex items-center gap-1">
-                  <Zap size={10} /> HUB #1 IN DE
-                </span>
-              </div>
 
               {/* Interactive Control Tabs */}
               <div className="grid grid-cols-3 gap-1.5 bg-white/10 backdrop-blur-sm p-1 rounded-lg mb-5 border border-white/15">
