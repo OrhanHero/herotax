@@ -4,7 +4,6 @@ import { CONFIG } from "../../config/config";
 import { T, fontDisplay } from "../../config/tokens";
 import WhatsAppGlyph from "../atoms/WhatsAppGlyph";
 import LanguageSwitcher from "../atoms/LanguageSwitcher";
-import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 
 /** Sticky Navbar mit Logo, Hauptnavigation, Sprachwahl und CTA */
 const Header = () => {
@@ -76,10 +75,7 @@ const Header = () => {
             );
           })}
         </nav>
-        <div className="flex items-center gap-3">
-          <div className="hidden lg:block">
-            <LiveTrackerBadge type="general" />
-          </div>
+        <div className="flex items-center gap-2">
           <LanguageSwitcher />
           <a
             href={CONFIG.whatsappUrl}

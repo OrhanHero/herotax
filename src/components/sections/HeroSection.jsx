@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ShieldCheck, Lock, Cpu, Rocket, Building2, BarChart3, ChevronRight, Zap, ExternalLink } from "lucide-react";
+import { ShieldCheck, Lock, Cpu, Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import PrimaryCTA from "../atoms/PrimaryCTA";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
+import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
@@ -138,11 +139,9 @@ const HeroSection = () => {
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
         <div className="lg:col-span-5 space-y-5">
           {/* Parallel Eyebrow Badge Right (Über dem Bild) */}
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <FernsehturmBadge label="BERLIN METROPOL RADAR 🌙" />
-            <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1">
-              <Zap size={11} /> HUB #1 IN DE
-            </span>
+            <LiveTrackerBadge type="general" />
           </div>
 
           <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg border border-slate-200">
