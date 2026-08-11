@@ -3,8 +3,6 @@ name: Build and Deploy to IONOS via SFTP/FTPS
 on:
   push:
     branches:
-      - main
-      - master
       - GoogleAntigravityIDE
   schedule:
     # Jeden Tag um 06:00 Uhr UTC automatisches Re-Deployment

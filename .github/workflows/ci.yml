@@ -2,14 +2,10 @@ name: Code Quality & Build Check
 
 on:
   push:
-    branches-ignore:
-      - main
-      - master
+    branches:
       - GoogleAntigravityIDE
   pull_request:
     branches:
-      - main
-      - master
       - GoogleAntigravityIDE
 
 jobs:

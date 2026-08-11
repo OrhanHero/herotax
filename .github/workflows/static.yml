@@ -4,8 +4,6 @@ name: Deploy static content to Pages
 on:
   push:
     branches:
-      - main
-      - master
       - GoogleAntigravityIDE
   workflow_dispatch:
 
