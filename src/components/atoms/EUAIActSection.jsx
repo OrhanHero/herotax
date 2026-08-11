@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { ShieldAlert, Users, CalendarClock, Scale, CheckCircle2, AlertTriangle, ExternalLink, Info } from "lucide-react";
+import { ShieldAlert, Users, CalendarClock, Scale, CheckCircle2, AlertTriangle, ExternalLink, Info, Gavel } from "lucide-react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 
 export default function EUAIActSection() {
-  const [tab, setTab] = useState("rules"); // 'rules' | 'target' | 'timeline'
+  const [tab, setTab] = useState("rules"); // 'rules' | 'target' | 'penalties' | 'timeline'
 
   const rules = [
     {
@@ -41,6 +41,33 @@ export default function EUAIActSection() {
       role: "Privatpersonen & Verbraucher",
       desc: "Recht auf Aufklärung bei KI-Interaktion, Schutz vor Deepfakes sowie Anspruch auf Beschwerde bei Aufsichtsbehörden.",
       badge: "Verbraucherschutz",
+    },
+  ];
+
+  const penalties = [
+    {
+      level: "Höchststrafe: Bis zu 35 Mio. € oder 7 % Umsatz",
+      desc: "Gilt für Verstöße gegen verbotene KI-Praktiken (Art. 5) wie Social Scoring, verdeckte Manipulation oder biometrische Massenüberwachung.",
+      tag: "Stufe 1 · Verbotene KI",
+      color: "#EF4444",
+    },
+    {
+      level: "Bis zu 15 Mio. € oder 3 % Umsatz",
+      desc: "Gilt bei Nichteinhaltung von Hochrisiko-KI-Auflagen, fehlender Transparenzkennzeichnung (Art. 50) oder Pflichtverstößen von Anwendern.",
+      tag: "Stufe 2 · Hochrisiko & Transparenz",
+      color: "#F59E0B",
+    },
+    {
+      level: "Bis zu 7,5 Mio. € oder 1,5 % Umsatz",
+      desc: "Gilt für die Übermittlung falscher, unvollständiger oder irreführender Informationen an behördliche Marktüberwacher.",
+      tag: "Stufe 3 · Falschangaben",
+      color: "#3B82F6",
+    },
+    {
+      level: "Sonderregelung für KMUs & Start-ups",
+      desc: "Für kleine und mittlere Unternehmen (KMUs) sowie Start-ups gilt grundsätzlich der jeweils niedrigere Betrag als Bußgeldgrenze.",
+      tag: "KMU & Start-up Schutz",
+      color: "#10B981",
     },
   ];
 
@@ -88,7 +115,7 @@ export default function EUAIActSection() {
               EU AI Act Guide 🇪🇺 · Verordnung (EU) 2024/1689
             </h3>
             <p className="text-xs" style={{ ...fontMono, color: T.faint }}>
-              Kompakt-Kompass für Unternehmer, Freiberufler & Verbraucher
+              Kompakt-Kompass: Regeln, wer betroffen ist, Strafen & Fristen
             </p>
           </div>
         </div>
@@ -104,7 +131,7 @@ export default function EUAIActSection() {
       </div>
 
       {/* Control Tabs */}
-      <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-slate-100/80 mb-5 border border-slate-200/60">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1 rounded-xl bg-slate-100/80 mb-5 border border-slate-200/60">
         <button
           type="button"
           onClick={() => setTab("rules")}
@@ -123,7 +150,17 @@ export default function EUAIActSection() {
           }`}
           style={{ ...fontDisplay }}
         >
-          <Users size={13} /> Wer betroffen?
+          <Users size={13} /> Betroffene
+        </button>
+        <button
+          type="button"
+          onClick={() => setTab("penalties")}
+          className={`py-2 px-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+            tab === "penalties" ? "bg-white text-red-600 shadow-xs" : "text-slate-600 hover:text-slate-900"
+          }`}
+          style={{ ...fontDisplay }}
+        >
+          <Gavel size={13} /> Strafen
         </button>
         <button
           type="button"
@@ -181,7 +218,30 @@ export default function EUAIActSection() {
         </div>
       )}
 
-      {/* Tab 3: Fristen & Stufenplan */}
+      {/* Tab 3: Strafen & Bußgeldrahmen (Art. 99) */}
+      {tab === "penalties" && (
+        <div className="space-y-3">
+          {penalties.map((p) => (
+            <div key={p.level} className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70">
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <h4 className="font-bold text-xs sm:text-sm text-red-700 flex items-center gap-1.5" style={{ ...fontDisplay }}>
+                  <Gavel size={14} className="shrink-0" />
+                  {p.level}
+                </h4>
+                <span
+                  className="text-[10px] font-mono font-bold px-2 py-0.5 rounded text-white shrink-0"
+                  style={{ backgroundColor: p.color }}
+                >
+                  {p.tag}
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Tab 4: Fristen & Stufenplan */}
       {tab === "timeline" && (
         <div className="space-y-2.5">
           {timeline.map((t) => (
