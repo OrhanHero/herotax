@@ -42,5 +42,7 @@
   "ai_label.badge": "AB Yapay Zekâ Yasası Şeffaflık Bildirimi",
   "ai_label.headline": "Bu web sitesi tamamen yapay zekâ ile oluşturulmuştur (100% AI Generated).",
   "ai_label.detail": "Tasarım, kaynak kodu, düzen ve editoryal içerik tamamen yapay zekâ sistemleri tarafından üretilmiştir.",
-  "ai_label.link": "AB AI Act Standardı"
+  "ai_label.link": "AB AI Act Standardı",
+  "header.themeLight": "Açık moda geç",
+  "header.themeDark": "Karanlık moda geç"
 }

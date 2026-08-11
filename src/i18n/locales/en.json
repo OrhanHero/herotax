@@ -42,5 +42,7 @@
   "ai_label.badge": "EU AI Act Transparency Disclosure",
   "ai_label.headline": "This website is completely AI-generated (100% AI Generated).",
   "ai_label.detail": "Design, source code, layout, and editorial content were fully created by AI systems.",
-  "ai_label.link": "EU AI Act Standard"
+  "ai_label.link": "EU AI Act Standard",
+  "header.themeLight": "Switch to light mode",
+  "header.themeDark": "Switch to dark mode"
 }

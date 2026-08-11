@@ -7,6 +7,7 @@ Das Projekt ist öffentlich, weil Transparenz Teil des Anspruchs ist: Wer über 
 ## Was die Seite macht
 
 - **News-Hub** — kuratierte Meldungen zu Steuern, KI-Regulierung und Digitalisierung, jede mit Primärquelle (BMF, BMDS, BSI, IHK Berlin, …); dazu ein DE-Ökosystem-Bereich mit kuratierter Verlinkung zu [DeutschlandGPT](https://www.deutschlandgpt.de/) (`DEUTSCHLANDGPT_LINKS` in `src/data/articles.js`)
+- **Light / Dark Mode Switcher** — Nahtloser Theme-Wechsel im Header (Sonne/Mond Toggle) mit automatischer System-Erkennung (`prefers-color-scheme`), `localStorage`-Persistenz und „Deep Midnight Blue Blueprint“ Ästhetik
 - **Live-Feeds & Live Tracker** — ein serverseitiger PHP-Proxy (`public/api/feed.php`) holt RSS-Feeds offizieller Behörden, cached sie 4 Stunden (14.400s) und liefert sie CORS-frei aus; dazu zeigt der Live Tracker (`LiveTrackerBadge.jsx`: "Live · Stand: DD.MM.YYYY, HH:mm Uhr (alle 4 Std.)") den genauen Aktualisierungsstand samt manuellem Refresh-Button; fällt der Live-Abruf aus, greift automatisch die kuratierte Fallback-Liste in `src/data/articles.js`
 - **Tools** — Umsatzsteuer-Rechner, Fristen-Check, ein interaktiver Gründungs-Guide für Berlin
 - **EUDI-Wallet-Bereich** — Stand & Zeitplan der europäischen digitalen Brieftasche, mit offiziellen Quellen (EU-Kommission, BMDS, Verbraucherzentrale, Open-Code-Referenzimplementierung des Bundes)
@@ -27,8 +28,9 @@ Das Projekt ist öffentlich, weil Transparenz Teil des Anspruchs ist: Wer über 
 
 ```
 src/
+  theme.jsx      ThemeProvider, ThemeContext & useTheme Hook für Light/Dark Mode
   components/
-    atoms/       kleine wiederverwendbare Bausteine (Icons, Sprachwahl, LiveTrackerBadge, ...)
+    atoms/       kleine wiederverwendbare Bausteine (Icons, Sprachwahl, ThemeSwitcher, LiveTrackerBadge, ...)
     sections/    Seitenabschnitte (Header, Hero, News-Hub, Tools, Footer, ...)
     tools/       interaktive Rechner/Guides
     pages/       eigenständige Seiten (Datenschutzerklärung)

@@ -21,7 +21,7 @@ export default function StartseiteFeatureHub() {
       accent: "#3B82F6",
       iconBg: "rgba(59, 130, 246, 0.1)",
       iconBorder: "rgba(59, 130, 246, 0.25)",
-      cardBg: "linear-gradient(135deg, rgba(239, 246, 255, 0.75) 0%, #FFFFFF 100%)",
+      cardBg: "linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, var(--color-card, #FFFFFF) 100%)",
       cardBorder: "rgba(59, 130, 246, 0.2)",
     },
     {
@@ -32,7 +32,7 @@ export default function StartseiteFeatureHub() {
       accent: "#10B981",
       iconBg: "rgba(16, 185, 129, 0.1)",
       iconBorder: "rgba(16, 185, 129, 0.25)",
-      cardBg: "linear-gradient(135deg, rgba(236, 253, 245, 0.75) 0%, #FFFFFF 100%)",
+      cardBg: "linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, var(--color-card, #FFFFFF) 100%)",
       cardBorder: "rgba(16, 185, 129, 0.2)",
     },
     {
@@ -43,7 +43,7 @@ export default function StartseiteFeatureHub() {
       accent: "#6366F1",
       iconBg: "rgba(99, 102, 241, 0.1)",
       iconBorder: "rgba(99, 102, 241, 0.25)",
-      cardBg: "linear-gradient(135deg, rgba(238, 242, 255, 0.75) 0%, #FFFFFF 100%)",
+      cardBg: "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, var(--color-card, #FFFFFF) 100%)",
       cardBorder: "rgba(99, 102, 241, 0.2)",
     },
     {
@@ -54,7 +54,7 @@ export default function StartseiteFeatureHub() {
       accent: "#D97706",
       iconBg: "rgba(245, 158, 11, 0.12)",
       iconBorder: "rgba(245, 158, 11, 0.25)",
-      cardBg: "linear-gradient(135deg, rgba(254, 243, 199, 0.5) 0%, #FFFFFF 100%)",
+      cardBg: "linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, var(--color-card, #FFFFFF) 100%)",
       cardBorder: "rgba(245, 158, 11, 0.22)",
     },
     {
@@ -65,7 +65,7 @@ export default function StartseiteFeatureHub() {
       accent: "#EC4899",
       iconBg: "rgba(236, 72, 153, 0.1)",
       iconBorder: "rgba(236, 72, 153, 0.25)",
-      cardBg: "linear-gradient(135deg, rgba(253, 242, 248, 0.75) 0%, #FFFFFF 100%)",
+      cardBg: "linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, var(--color-card, #FFFFFF) 100%)",
       cardBorder: "rgba(236, 72, 153, 0.2)",
     },
     {
@@ -76,7 +76,7 @@ export default function StartseiteFeatureHub() {
       accent: "#0891B2",
       iconBg: "rgba(6, 182, 212, 0.1)",
       iconBorder: "rgba(6, 182, 212, 0.25)",
-      cardBg: "linear-gradient(135deg, rgba(236, 254, 255, 0.75) 0%, #FFFFFF 100%)",
+      cardBg: "linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, var(--color-card, #FFFFFF) 100%)",
       cardBorder: "rgba(6, 182, 212, 0.2)",
     },
   ];

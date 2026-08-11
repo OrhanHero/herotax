@@ -18,12 +18,12 @@ export default function NotFoundPage() {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-5 sm:px-8 py-16">
-      <div className="max-w-md w-full text-center rounded-3xl p-8 sm:p-10 bg-white border border-slate-200/90 shadow-md relative overflow-hidden">
-        <div className="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center mx-auto mb-6 text-blue-600">
+      <div className="max-w-md w-full text-center rounded-3xl p-8 sm:p-10 border shadow-md relative overflow-hidden transition-colors" style={{ backgroundColor: T.card, borderColor: T.line }}>
+        <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-6 text-blue-600">
           <Compass size={32} className="animate-spin-slow" />
         </div>
 
-        <span className="inline-block px-3 py-1 rounded-md text-xs font-bold uppercase tracking-widest bg-amber-50 text-amber-700 border border-amber-200 mb-3" style={{ ...fontMono }}>
+        <span className="inline-block px-3 py-1 rounded-md text-xs font-bold uppercase tracking-widest bg-amber-500/10 text-amber-500 border border-amber-500/20 mb-3" style={{ ...fontMono }}>
           404 · Status Code
         </span>
 
@@ -31,7 +31,7 @@ export default function NotFoundPage() {
           Seite nicht gefunden
         </h1>
 
-        <p className="text-sm text-slate-600 leading-relaxed mb-8">
+        <p className="text-sm leading-relaxed mb-8" style={{ color: T.muted }}>
           Die angeforderte Adresse existiert auf HERO Tax nicht oder wurde verschoben.
         </p>
 

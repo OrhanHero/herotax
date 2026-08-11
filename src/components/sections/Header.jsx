@@ -4,6 +4,7 @@ import { CONFIG } from "../../config/config";
 import { T, fontDisplay } from "../../config/tokens";
 import WhatsAppGlyph from "../atoms/WhatsAppGlyph";
 import LanguageSwitcher from "../atoms/LanguageSwitcher";
+import ThemeSwitcher from "../atoms/ThemeSwitcher";
 
 /** Sticky Navbar mit Logo, Hauptnavigation, Sprachwahl und CTA */
 const Header = () => {
@@ -41,7 +42,7 @@ const Header = () => {
   return (
     <header
       className="sticky top-0 z-50 backdrop-blur-xl transition-all duration-300 border-b"
-      style={{ backgroundColor: "rgba(248,248,244,0.94)", borderColor: T.line }}
+      style={{ backgroundColor: "var(--color-header-bg, rgba(248,248,244,0.94))", borderColor: T.line }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
@@ -76,6 +77,7 @@ const Header = () => {
           })}
         </nav>
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <ThemeSwitcher />
           <LanguageSwitcher />
           <a
             href={CONFIG.whatsappUrl}

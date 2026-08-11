@@ -1,5 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { LangContext, LANGUAGES, I18N, readStoredLang, storeLang } from "./i18n";
+import { ThemeProvider } from "./theme";
+import { T } from "./config/tokens";
 import { ARTICLES } from "./data/articles";
 import { getArticles } from "./services/articleService";
 import NewsTicker from "./components/atoms/NewsTicker";
@@ -98,18 +100,24 @@ export default function HeroTaxPlatform() {
   };
 
   return (
-    <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
-      <div className="min-h-screen antialiased overflow-x-hidden w-full max-w-full relative" dir={activeLang.dir} style={{ backgroundColor: "#FAFAF8", color: "#141417" }}>
-        <AmbientMoonlightGlow />
-        <Header />
-        {!isLegalPage && <NewsTicker items={articles} />}
+    <ThemeProvider>
+      <LangContext.Provider value={{ lang, setLang, t, isRTL: activeLang.dir === "rtl" }}>
+        <div
+          className="min-h-screen antialiased overflow-x-hidden w-full max-w-full relative transition-colors duration-300"
+          dir={activeLang.dir}
+          style={{ backgroundColor: T.paper, color: T.text }}
+        >
+          <AmbientMoonlightGlow />
+          <Header />
+          {!isLegalPage && <NewsTicker items={articles} />}
 
-        <main>{renderContent()}</main>
+          <main>{renderContent()}</main>
 
-        <Footer />
-        <BackToTop />
-      </div>
-    </LangContext.Provider>
+          <Footer />
+          <BackToTop />
+        </div>
+      </LangContext.Provider>
+    </ThemeProvider>
   );
 }
 

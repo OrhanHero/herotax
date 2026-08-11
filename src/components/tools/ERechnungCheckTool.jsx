@@ -50,10 +50,10 @@ export default function ERechnungCheckTool() {
   const result = step === 4 ? getResult() : null;
 
   return (
-    <div className="bg-white rounded-3xl p-7 sm:p-9 border border-slate-200/90 shadow-md relative overflow-hidden">
-      <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+      <div className="rounded-3xl p-7 sm:p-9 border shadow-md relative overflow-hidden transition-colors" style={{ backgroundColor: T.card, borderColor: T.line }}>
+      <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b" style={{ borderColor: T.lineSoft }}>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 shrink-0">
             <FileText size={20} />
           </div>
           <div>
@@ -65,14 +65,14 @@ export default function ERechnungCheckTool() {
             </h3>
           </div>
         </div>
-        <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+        <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: T.wash, color: T.muted }}>
           Schritt {Math.min(step, 3)} von 3
         </span>
       </div>
 
       {step === 1 && (
         <div className="space-y-5">
-          <h4 className="text-base font-bold text-slate-800">Frage 1: An wen verkaufst du deine Waren oder Dienstleistungen?</h4>
+          <h4 className="text-base font-bold" style={{ color: T.text }}>Frage 1: An wen verkaufst du deine Waren oder Dienstleistungen?</h4>
           <div className="grid sm:grid-cols-2 gap-3">
             <button
               type="button"
@@ -80,12 +80,13 @@ export default function ERechnungCheckTool() {
                 setB2b(true);
                 setStep(2);
               }}
-              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-50/50 group border-slate-200"
+              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-500/5 group"
+              style={{ backgroundColor: T.wash, borderColor: T.line }}
             >
-              <span className="font-bold text-slate-900 group-hover:text-blue-600 block text-base mb-1">
+              <span className="font-bold group-hover:text-blue-600 block text-base mb-1" style={{ color: T.text }}>
                 Geschäftskunden (B2B)
               </span>
-              <span className="text-xs text-slate-500 leading-relaxed block">
+              <span className="text-xs leading-relaxed block" style={{ color: T.muted }}>
                 Ich stelle Rechnungen an Firmen, Selbstständige oder Freiberufler aus.
               </span>
             </button>
@@ -95,12 +96,13 @@ export default function ERechnungCheckTool() {
                 setB2b(false);
                 setStep(4);
               }}
-              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-50/50 group border-slate-200"
+              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-500/5 group"
+              style={{ backgroundColor: T.wash, borderColor: T.line }}
             >
-              <span className="font-bold text-slate-900 group-hover:text-blue-600 block text-base mb-1">
+              <span className="font-bold group-hover:text-blue-600 block text-base mb-1" style={{ color: T.text }}>
                 Ausschließlich Privatkunden (B2C)
               </span>
-              <span className="text-xs text-slate-500 leading-relaxed block">
+              <span className="text-xs leading-relaxed block" style={{ color: T.muted }}>
                 Ich liefere nur an Endverbraucher / Privatpersonen.
               </span>
             </button>
@@ -110,7 +112,7 @@ export default function ERechnungCheckTool() {
 
       {step === 2 && (
         <div className="space-y-5">
-          <h4 className="text-base font-bold text-slate-800">Frage 2: Wie hoch ist dein Vorjahresumsatz (2025 / 2026)?</h4>
+          <h4 className="text-base font-bold" style={{ color: T.text }}>Frage 2: Wie hoch ist dein Vorjahresumsatz (2025 / 2026)?</h4>
           <div className="grid sm:grid-cols-2 gap-3">
             <button
               type="button"
@@ -118,12 +120,13 @@ export default function ERechnungCheckTool() {
                 setRevenue("under");
                 setStep(3);
               }}
-              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-50/50 group border-slate-200"
+              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-500/5 group"
+              style={{ backgroundColor: T.wash, borderColor: T.line }}
             >
-              <span className="font-bold text-slate-900 group-hover:text-blue-600 block text-base mb-1">
+              <span className="font-bold group-hover:text-blue-600 block text-base mb-1" style={{ color: T.text }}>
                 Unter 800.000 € Umsatz
               </span>
-              <span className="text-xs text-slate-500 leading-relaxed block">
+              <span className="text-xs leading-relaxed block" style={{ color: T.muted }}>
                 Kleinunternehmen, Gründer oder Mittelstand unter der 800k-Grenze.
               </span>
             </button>
@@ -133,12 +136,13 @@ export default function ERechnungCheckTool() {
                 setRevenue("over");
                 setStep(3);
               }}
-              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-50/50 group border-slate-200"
+              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-500/5 group"
+              style={{ backgroundColor: T.wash, borderColor: T.line }}
             >
-              <span className="font-bold text-slate-900 group-hover:text-blue-600 block text-base mb-1">
+              <span className="font-bold group-hover:text-blue-600 block text-base mb-1" style={{ color: T.text }}>
                 Über 800.000 € Umsatz
               </span>
-              <span className="text-xs text-slate-500 leading-relaxed block">
+              <span className="text-xs leading-relaxed block" style={{ color: T.muted }}>
                 Größeres Unternehmen mit Jahresumsatz über 800.000 €.
               </span>
             </button>
@@ -148,7 +152,7 @@ export default function ERechnungCheckTool() {
 
       {step === 3 && (
         <div className="space-y-5">
-          <h4 className="text-base font-bold text-slate-800">Frage 3: In welchem Format schreibst du bisher deine Rechnungen?</h4>
+          <h4 className="text-base font-bold" style={{ color: T.text }}>Frage 3: In welchem Format schreibst du bisher deine Rechnungen?</h4>
           <div className="grid sm:grid-cols-2 gap-3">
             <button
               type="button"
@@ -156,12 +160,13 @@ export default function ERechnungCheckTool() {
                 setFormat("pdf");
                 setStep(4);
               }}
-              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-50/50 group border-slate-200"
+              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-500/5 group"
+              style={{ backgroundColor: T.wash, borderColor: T.line }}
             >
-              <span className="font-bold text-slate-900 group-hover:text-blue-600 block text-base mb-1">
+              <span className="font-bold group-hover:text-blue-600 block text-base mb-1" style={{ color: T.text }}>
                 Manuelles PDF oder Papier
               </span>
-              <span className="text-xs text-slate-500 leading-relaxed block">
+              <span className="text-xs leading-relaxed block" style={{ color: T.muted }}>
                 Word, Excel, normales PDF ohne eingebetteten XML-Code.
               </span>
             </button>
@@ -171,12 +176,13 @@ export default function ERechnungCheckTool() {
                 setFormat("e-rechnung");
                 setStep(4);
               }}
-              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-50/50 group border-slate-200"
+              className="p-5 rounded-2xl border text-left transition-all hover:border-blue-500 hover:bg-blue-500/5 group"
+              style={{ backgroundColor: T.wash, borderColor: T.line }}
             >
-              <span className="font-bold text-slate-900 group-hover:text-blue-600 block text-base mb-1">
+              <span className="font-bold group-hover:text-blue-600 block text-base mb-1" style={{ color: T.text }}>
                 ZUGFeRD oder XRechnung
               </span>
-              <span className="text-xs text-slate-500 leading-relaxed block">
+              <span className="text-xs leading-relaxed block" style={{ color: T.muted }}>
                 Strukturiertes Datenformat mit XML (EN 16931 Standard).
               </span>
             </button>
