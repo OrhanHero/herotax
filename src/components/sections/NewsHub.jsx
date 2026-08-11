@@ -95,9 +95,14 @@ const NewsHub = () => {
             <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider mb-3">
-                  <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
-                  Amtliches Wahlportal 2026
+                <div className="inline-flex flex-wrap items-center gap-2 mb-3">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider">
+                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
+                    Amtliches Wahlportal 2026
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
+                    ⏳ Noch {daysLeft} Tage bis zur Wahl
+                  </div>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2" style={{ ...fontDisplay }}>
                   Berliner Wahlen am 20. September 2026
