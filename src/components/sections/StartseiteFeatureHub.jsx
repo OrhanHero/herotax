@@ -16,62 +16,68 @@ export default function StartseiteFeatureHub() {
     {
       href: "/ki",
       icon: Cpu,
-      badge: "SÄULE 01",
       title: t("nav.ki"),
       subtitle: "Agentic AI, Beleg-Automatisierung & BSI/BMDS Live-Feeds",
       accent: "#3B82F6",
-      bg: "rgba(59, 130, 246, 0.06)",
-      border: "rgba(59, 130, 246, 0.2)",
+      iconBg: "rgba(59, 130, 246, 0.1)",
+      iconBorder: "rgba(59, 130, 246, 0.25)",
+      cardBg: "linear-gradient(135deg, rgba(239, 246, 255, 0.75) 0%, #FFFFFF 100%)",
+      cardBorder: "rgba(59, 130, 246, 0.2)",
     },
     {
       href: "/news",
       icon: Newspaper,
-      badge: "SÄULE 02",
       title: t("nav.news"),
       subtitle: "Hauptstadt-Kiosk: Berlin-Fokus, Bundesgesetze & DeutschlandGPT",
       accent: "#10B981",
-      bg: "rgba(16, 185, 129, 0.06)",
-      border: "rgba(16, 185, 129, 0.2)",
+      iconBg: "rgba(16, 185, 129, 0.1)",
+      iconBorder: "rgba(16, 185, 129, 0.25)",
+      cardBg: "linear-gradient(135deg, rgba(236, 253, 245, 0.75) 0%, #FFFFFF 100%)",
+      cardBorder: "rgba(16, 185, 129, 0.2)",
     },
     {
       href: "/eudi-wallet",
       icon: Wallet,
-      badge: "SÄULE 03",
       title: t("nav.eudiWallet"),
       subtitle: "Stand, Zeitplan & Ausweis fürs Smartphone (eIDAS 2.0)",
       accent: "#6366F1",
-      bg: "rgba(99, 102, 241, 0.06)",
-      border: "rgba(99, 102, 241, 0.2)",
+      iconBg: "rgba(99, 102, 241, 0.1)",
+      iconBorder: "rgba(99, 102, 241, 0.25)",
+      cardBg: "linear-gradient(135deg, rgba(238, 242, 255, 0.75) 0%, #FFFFFF 100%)",
+      cardBorder: "rgba(99, 102, 241, 0.2)",
     },
     {
       href: "/tools",
       icon: Wrench,
-      badge: "SÄULE 04",
       title: t("nav.tools"),
       subtitle: "USt-Rechner, FristenCheck & Interaktive Guides direkt im Browser",
-      accent: "#F59E0B",
-      bg: "rgba(245, 158, 11, 0.06)",
-      border: "rgba(245, 158, 11, 0.2)",
+      accent: "#D97706",
+      iconBg: "rgba(245, 158, 11, 0.12)",
+      iconBorder: "rgba(245, 158, 11, 0.25)",
+      cardBg: "linear-gradient(135deg, rgba(254, 243, 199, 0.5) 0%, #FFFFFF 100%)",
+      cardBorder: "rgba(245, 158, 11, 0.22)",
     },
     {
       href: "/live",
       icon: Radio,
-      badge: "SÄULE 05",
       title: t("nav.live"),
       subtitle: "Daily Tax Hacks, WhatsApp Channel & Social Community",
       accent: "#EC4899",
-      bg: "rgba(236, 72, 153, 0.06)",
-      border: "rgba(236, 72, 153, 0.2)",
+      iconBg: "rgba(236, 72, 153, 0.1)",
+      iconBorder: "rgba(236, 72, 153, 0.25)",
+      cardBg: "linear-gradient(135deg, rgba(253, 242, 248, 0.75) 0%, #FFFFFF 100%)",
+      cardBorder: "rgba(236, 72, 153, 0.2)",
     },
     {
       href: "/publikationen",
       icon: BookOpen,
-      badge: "SÄULE 06",
       title: t("nav.publications"),
       subtitle: "BfDI, BMF & BSI Leitfäden, Broschüren & Downloads",
-      accent: "#06B6D4",
-      bg: "rgba(6, 182, 212, 0.06)",
-      border: "rgba(6, 182, 212, 0.2)",
+      accent: "#0891B2",
+      iconBg: "rgba(6, 182, 212, 0.1)",
+      iconBorder: "rgba(6, 182, 212, 0.25)",
+      cardBg: "linear-gradient(135deg, rgba(236, 254, 255, 0.75) 0%, #FFFFFF 100%)",
+      cardBorder: "rgba(6, 182, 212, 0.2)",
     },
   ];
 
@@ -100,26 +106,20 @@ export default function StartseiteFeatureHub() {
                 key={card.href}
                 href={card.href}
                 onClick={(e) => navigate(card.href, e)}
-                className="group rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2"
+                className="group rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-md focus:outline-none focus-visible:ring-2"
                 style={{
                   ...cardBase,
-                  backgroundColor: "#FFFFFF",
-                  border: `1px solid ${T.line}`,
+                  background: card.cardBg,
+                  border: `1px solid ${card.cardBorder}`,
                 }}
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span
                       className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
-                      style={{ backgroundColor: card.bg, border: `1px solid ${card.border}` }}
+                      style={{ backgroundColor: card.iconBg, border: `1px solid ${card.iconBorder}` }}
                     >
                       <Icon size={20} style={{ color: card.accent }} />
-                    </span>
-                    <span
-                      className="text-[10px] font-mono font-bold tracking-wider uppercase px-2.5 py-1 rounded-full"
-                      style={{ backgroundColor: card.bg, color: card.accent }}
-                    >
-                      {card.badge}
                     </span>
                   </div>
 
@@ -131,7 +131,7 @@ export default function StartseiteFeatureHub() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm font-bold text-blue-600 pt-4" style={{ borderTop: `1px solid ${T.lineSoft}` }}>
+                <div className="flex items-center gap-2 text-sm font-bold text-blue-600 pt-4" style={{ borderTop: `1px solid ${card.cardBorder}` }}>
                   <span>Bereich öffnen</span>
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </div>
