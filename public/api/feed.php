@@ -67,6 +67,22 @@ function excerpt(string $text, int $maxLen = 180): string
 
 function fetchFeed(string $url): string|false
 {
+    if (function_exists('curl_init')) {
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 8,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_USERAGENT => 'herotax.de-feed-proxy/1.0',
+            CURLOPT_SSL_VERIFYPEER => true,
+        ]);
+        $res = curl_exec($ch);
+        curl_close($ch);
+        if ($res !== false && strlen($res) > 0) {
+            return $res;
+        }
+    }
     $context = stream_context_create([
         'http' => [
             'method' => 'GET',

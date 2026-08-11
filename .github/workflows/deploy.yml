@@ -5,8 +5,8 @@ on:
     branches:
       - GoogleAntigravityIDE
   schedule:
-    # Jeden Tag um 06:00 Uhr UTC automatisches Re-Deployment
-    - cron: '0 6 * * *'
+    # Alle 4 Stunden automatisches Re-Deployment zu IONOS
+    - cron: '0 */4 * * *'
   workflow_dispatch:
 
 jobs:
