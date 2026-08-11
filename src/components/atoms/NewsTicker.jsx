@@ -39,7 +39,7 @@ const NewsTicker = ({ items }) => {
       </div>
 
       {/* Laufband */}
-      <div className="ticker-viewport overflow-hidden flex-1">
+      <div className="ticker-viewport overflow-hidden flex-1 min-w-0">
         <div className="ticker-track flex items-center whitespace-nowrap py-2.5">
           {/* Inhalt doppelt rendern → nahtlose Schleife bei -50 % */}
           {[0, 1].map((copy) => (

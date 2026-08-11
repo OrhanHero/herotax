@@ -44,7 +44,7 @@ export default function AILabel() {
             href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold underline hover:opacity-70 inline-block whitespace-nowrap"
+            className="font-semibold underline hover:opacity-70 inline-inline"
             style={{ color: T.blue }}
           >
             {t("ai_label.link")} →

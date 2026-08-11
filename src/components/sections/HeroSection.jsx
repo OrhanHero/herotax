@@ -87,11 +87,11 @@ const HeroSection = () => {
 
   return (
     <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-16 overflow-hidden bg-blueprint-grid">
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-full overflow-hidden">
         {/* Left Column: Display Headline & Copy */}
-        <div className="lg:col-span-7 space-y-5 flex flex-col justify-between">
+        <div className="lg:col-span-7 space-y-5 flex flex-col justify-between max-w-full overflow-hidden">
           {/* Parallel Eyebrow Badge Left */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 max-w-full overflow-hidden">
             <BrandenburgerTorBadge label="BERLIN METROPOL STEUER-SCHUTZSCHILD" />
           </div>
 
@@ -108,7 +108,7 @@ const HeroSection = () => {
             {t("hero.title2post")}
           </h1>
 
-          <p className="text-base sm:text-lg leading-relaxed font-normal max-w-xl" style={{ color: T.muted }}>
+          <p className="text-base sm:text-lg leading-relaxed font-normal max-w-xl break-words" style={{ color: T.muted }}>
             {t("hero.sub")}
           </p>
 
@@ -117,9 +117,9 @@ const HeroSection = () => {
         </div>
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
-        <div className="lg:col-span-5 flex flex-col justify-between">
+        <div className="lg:col-span-5 flex flex-col justify-between max-w-full overflow-hidden">
           {/* Parallel Eyebrow Badge Right (Über dem Bild) */}
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-5 max-w-full overflow-hidden">
             <FernsehturmBadge label="BERLIN METROPOL RADAR 🌙" />
             <LiveTrackerBadge type="general" />
           </div>

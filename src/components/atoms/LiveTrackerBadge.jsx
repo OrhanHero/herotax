@@ -64,7 +64,7 @@ const LiveTrackerBadge = ({ type = "general", onRefresh, variant = "default" }) 
 
   return (
     <div
-      className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs transition-all duration-200"
+      className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs transition-all duration-200 max-w-full overflow-hidden"
       style={{
         ...fontMono,
         backgroundColor: T.wash,
@@ -77,7 +77,7 @@ const LiveTrackerBadge = ({ type = "general", onRefresh, variant = "default" }) 
         <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ backgroundColor: "#10B981" }} />
       </span>
       
-      <span className="truncate">
+      <span className="truncate max-w-[190px] sm:max-w-none">
         {statusText || "Live · Stand: 10.08.2026, 22:58 Uhr (alle 4 Std.)"}
       </span>
 
