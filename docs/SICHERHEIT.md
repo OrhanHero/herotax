@@ -624,7 +624,34 @@ Workflow und kein Deployment kann sie ersetzen.
 
 | # | Aufgabe | Bezug |
 |---|---|---|
-| O1 | **Bot-/DDoS-Schutz bzw. WAF im IONOS-Tarif aktivieren.** Laut Analyse die wirkungsvollste Einzelmaßnahme bei geringstem Aufwand — und die einzige, die gegen die getarnten Crawler wirkt („fake PerplexityBot", „fake OpenAI bot"). Der User-Agent-Filter in der `.htaccess` erreicht die per Definition nicht, weil sie sich als etwas anderes ausgeben. | M5 |
+| ~~O1~~ | ~~Bot-/DDoS-Schutz bzw. WAF im IONOS-Tarif aktivieren~~ — **am 12.08.2026 geklärt: existiert bei IONOS Webhosting Plus nicht.** Siehe unten. | M5 |
+
+> **O1 ist nicht offen, sondern nicht verfügbar.** Der Bereich
+> „Sicherheitslösungen" im IONOS-Kundenkonto bietet für diesen Vertrag
+> ausschließlich: SSL-Zertifikate, einen **Malware-Datei-Scan**,
+> E-Mail-Spam-/Virenschutz und Rechtstexte für das Impressum. **Kein WAF,
+> kein Bot-Schutz, kein Rate-Limiting.**
+>
+> Der Malware-Scan ist ausdrücklich **kein Ersatz**: Er durchsucht Dateien auf
+> dem Webspace nach Schadcode, blockiert aber keine Anfrage. Für diese Seite
+> ist er zudem gegenstandslos — ein statischer Vite-Build ohne Upload-Funktion
+> und ohne CMS bietet keinen Weg, auf dem eine Webshell dort landen könnte.
+> Eine Buchung würde ein Problem adressieren, das nicht existiert.
+>
+> **Damit ist die Härtung in `public/.htaccess` die Obergrenze dessen, was bei
+> diesem Hosting-Produkt erreichbar ist.** Wer mehr will — Erkennung
+> gefälschter Crawler über IP-Verifikation, echtes Rate-Limiting, IP-Sperren —
+> braucht einen vorgeschalteten Dienst; siehe
+> [IONOS-CHECKLISTE.md](./IONOS-CHECKLISTE.md), Teil C. Darauf zu verzichten
+> ist ebenfalls vertretbar: Alle beobachteten Angriffe laufen ins Leere, und
+> das verbleibende Risiko ist das Grundrauschen des Scannings.
+
+**Offen und dringend:**
+
+| # | Aufgabe | Bezug |
+|---|---|---|
+| O8 | **SFTP-Passwort wechseln** und GitHub-Secret `SFTP_URL` aktualisieren — Benutzername und Host stehen in der öffentlichen Git-Historie (siehe Abschnitt 4c). | — |
+| O9 | **Prüfen, welche Domain im IONOS-Konto ohne SSL-Zertifikat ist.** Die Startseite der Sicherheitslösungen meldet „1 Domain ist nicht geschützt". Betrifft das eine Subdomain von herotax.de, ist das **kritisch**: `public/.htaccess` sendet `Strict-Transport-Security` mit `includeSubDomains; preload`. Jede Subdomain ohne gültiges Zertifikat ist damit für ein Jahr nicht mehr erreichbar — nicht „unverschlüsselt erreichbar", sondern gar nicht. Besonders relevant für `www.herotax.de`, das der Feed-Proxy ausdrücklich als Origin erlaubt. | M9 |
 
 **Priorität 2 — einmaliger Aufwand, klarer Erkenntnisgewinn**
 
