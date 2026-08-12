@@ -683,17 +683,33 @@ alle vorherigen Deploy-Läufe.
 zwei Konten auseinanderzuhalten. Das Zielverzeichnis (`/herotax`) bleibt
 sichtbar — es ist kein Geheimnis und für die Diagnose entscheidend.
 
-**Was das für die bestehenden Logs bedeutet:** Ältere Workflow-Läufe
-enthalten die Kennung weiterhin. Zwei Wege:
+**Bestehende Logs — erledigt.** Am 12.08.2026 wurden die Logs **aller 96
+Läufe** des Deploy-Workflows gelöscht (Zeitraum 10.08.–12.08.2026). Damit ist
+weder die alte noch die neue Kennung noch aus einem Actions-Log lesbar. Die
+Läufe selbst (Status, Zeitpunkt, Ergebnis) bleiben erhalten, nur die
+Log-Inhalte sind weg.
 
-1. **Logs löschen** — in GitHub unter Actions den jeweiligen Lauf öffnen →
-   *Delete logs*. Betrifft alle Läufe von *Build and Deploy to IONOS*.
-2. **Stehen lassen** — ein Benutzername ohne Passwort ist kein Zugang. Da die
-   alte Kennung ohnehin gelöscht ist und die neue nur in Läufen ab dem
-   12.08.2026 auftaucht, ist der Nutzen für einen Angreifer gering.
+Der Webspace-Hostname ließ sich nicht durch Rotation entwerten — er ist
+vertragsgebunden und nicht änderbar. Deshalb war das Löschen hier die einzige
+Möglichkeit, während beim Benutzernamen ohnehin schon das Löschen des
+IONOS-Kontos die eigentliche Absicherung war.
 
-Empfohlen wird Weg 1 für die Läufe seit dem Zugangsdatenwechsel, weil dort die
-**aktuell gültige** Kennung steht.
+> **Einstellung, die das künftig überflüssig macht:**
+> **Settings → Actions → General → „Artifact and log retention"**. Standard
+> sind 90 Tage, einstellbar bis herunter auf 1 Tag. Bei 1–7 Tagen verfallen
+> Logs von selbst — für dieses Projekt völlig ausreichend, da Deploy-Logs nur
+> zur Fehlersuche unmittelbar nach einem Lauf gebraucht werden. Ein Häkchen
+> statt 96 Einzellöschungen.
+>
+> Ein Massenlöschen gibt es in der GitHub-API **nicht**; jeder Lauf muss
+> einzeln angesprochen werden. Die Aufbewahrungsdauer ist deshalb der einzige
+> skalierende Weg.
+
+**Nicht gemacht — und warum:** Das Repository neu anzulegen, um die Kennung
+auch aus der Git-Historie zu entfernen, wäre technisch möglich, aber
+unverhältnismäßig: Es kostet die vollständige Entwicklungshistorie, Issues,
+Stars und alle Links auf einzelne Commits — bei null Sicherheitsgewinn, weil
+das alte SFTP-Konto gelöscht ist und die Kennung damit ins Leere zeigt.
 
 ### Empfohlener Ablauf nach jedem Wechsel der Zugangsdaten
 
