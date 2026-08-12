@@ -30,6 +30,22 @@ So wird aktuell automatisch deployt:
   `api/cache/` bleibt dabei unangetastet. Abschaltbar mit `DEPLOY_PRUNE=0`,
   Sicherheitslimit über `DEPLOY_PRUNE_LIMIT` (Standard 200).
 
+### Verbindung prüfen, ohne zu deployen
+
+Nach einem Wechsel der SFTP-Zugangsdaten:
+
+```bash
+npm run deploy:check
+```
+
+Aus GitHub: **Actions → Build and Deploy to IONOS → Run workflow → Mode: `check`**.
+
+Verbindet sich, listet das Zielverzeichnis auf und meldet, ob es plausibel
+aussieht — lädt nichts hoch und löscht nichts. Wichtig, weil ein neu
+angelegter SFTP-Benutzer bei IONOS in einem anderen Startverzeichnis landen
+kann; ein Deploy würde dann am falschen Ort landen und der Prune-Schritt dort
+aufräumen.
+
 Hintergrund und vollständige Maßnahmenliste: [docs/SICHERHEIT.md](./docs/SICHERHEIT.md)
 
 ## Vorbereitung (manueller Fallback)

@@ -609,6 +609,71 @@ deutlich aufwendigere und fehleranfälligere Weg.
 
 ---
 
+## 4d. Nachtrag — SFTP-Zugangsdaten gewechselt (O8 erledigt)
+
+Der alte SFTP-Benutzer wurde im IONOS-Konto **gelöscht**, ein neuer angelegt
+und das GitHub-Secret `SFTP_URL` aktualisiert. Damit ist O8 abgeschlossen: Die
+in der Git-Historie einsehbare Kennung gehört zu einem Konto, das es nicht mehr
+gibt, und ist wertlos.
+
+**Warum das mehr war als ein Passwortwechsel:** Ein neu angelegter
+SFTP-Benutzer kann bei IONOS in einem **anderen Startverzeichnis** landen als
+der alte. Ein Deployment würde dann stillschweigend am falschen Ort landen —
+und der Prune-Schritt würde dort aufräumen, also fremde Dateien löschen. Ein
+grüner Workflow allein wäre kein Beleg dafür, dass alles stimmt.
+
+### Prüfmodus im Deploy-Skript
+
+`scripts/deploy.mjs` kennt deshalb jetzt `--check` (bzw. `DEPLOY_CHECK=1`):
+verbinden, Zielverzeichnis auflisten, berichten — **kein Upload, kein
+Löschen, kein Build nötig**.
+
+```bash
+npm run deploy:check
+```
+
+Aus GitHub heraus: **Actions → Build and Deploy to IONOS → Run workflow →
+Mode: `check`**. Der Prüfjob läuft dann anstelle des Deployments.
+
+Ausgegeben wird, wohin die Verbindung tatsächlich geht und was dort liegt:
+
+```
+Verbinde zu <host>:22 als Benutzer "<neuer Benutzer>"...
+🔍 Prüfmodus: es wird nichts hochgeladen und nichts gelöscht.
+✅ SFTP-Anmeldung erfolgreich.
+
+📁 Zielverzeichnis /herotax — N Einträge:
+   • index.html
+   • .htaccess
+   • assets
+   …
+✅ Zielverzeichnis plausibel — gefunden: index.html, .htaccess, assets
+```
+
+**Drei Fälle führen zum Fehlschlag** — bewusst, damit ein grüner Lauf etwas
+bedeutet:
+
+| Fall | Verhalten |
+|---|---|
+| Secret fehlt oder unvollständig | Exit 1. Eine Prüfung, die nicht laufen konnte, darf nicht grün melden. (Im normalen Deploy-Modus wird weiterhin übersprungen, damit Forks ohne Secret nicht scheitern.) |
+| Anmeldung schlägt fehl oder Host nicht erreichbar | Exit 1 |
+| Zielverzeichnis leer oder ohne `index.html`/`.htaccess`/`assets` | Exit 1 mit Warnung, dass der Prune-Schritt dort fremde Dateien löschen würde |
+
+Der letzte Fall ist der eigentliche Zweck: Er unterscheidet „Verbindung steht"
+von „Verbindung steht **und zeigt auf den richtigen Ort**". Genau daran
+scheitert ein Zugangsdatenwechsel typischerweise.
+
+### Empfohlener Ablauf nach jedem Wechsel der Zugangsdaten
+
+1. `Actions → Build and Deploy to IONOS → Run workflow → Mode: check`
+2. Ausgabe lesen: Stimmen Benutzername und Zielverzeichnis? Liegen dort
+   `index.html`, `.htaccess` und `assets`?
+3. Erst dann normal deployen (Mode `deploy` oder einfach ein Push).
+4. Anschließend `npm run security:check` bzw. den automatisch angehängten
+   Smoketest abwarten.
+
+---
+
 ## 5. Offene Punkte
 
 ### Muss außerhalb dieses Repositories erledigt werden
@@ -674,7 +739,7 @@ Workflow und kein Deployment kann sie ersetzen.
 
 | # | Aufgabe | Bezug |
 |---|---|---|
-| O8 | **SFTP-Passwort wechseln** und GitHub-Secret `SFTP_URL` aktualisieren — Benutzername und Host stehen in der öffentlichen Git-Historie (siehe Abschnitt 4c). | — |
+| ~~O8~~ | ~~SFTP-Zugangsdaten wechseln~~ — **erledigt.** Alter Benutzer gelöscht, neuer angelegt, Secret aktualisiert. Siehe Abschnitt 4d. | — |
 | O9 | **Prüfen, welche Domain im IONOS-Konto ohne SSL-Zertifikat ist.** Die Startseite der Sicherheitslösungen meldet „1 Domain ist nicht geschützt". Betrifft das eine Subdomain von herotax.de, ist das **kritisch**: `public/.htaccess` sendet `Strict-Transport-Security` mit `includeSubDomains; preload`. Jede Subdomain ohne gültiges Zertifikat ist damit für ein Jahr nicht mehr erreichbar — nicht „unverschlüsselt erreichbar", sondern gar nicht. Besonders relevant für `www.herotax.de`, das der Feed-Proxy ausdrücklich als Origin erlaubt. | M9 |
 
 **Priorität 2 — einmaliger Aufwand, klarer Erkenntnisgewinn**
@@ -780,7 +845,7 @@ adressiert hätte:
 
 | # | Risiko | Maßnahme |
 |---|---|---|
-| **O8** | SFTP-Benutzername und Host stehen in der öffentlichen Git-Historie. Ohne Rate-Limiting sind gezielte Passwortversuche möglich — und SFTP ist der **einzige** Weg, auf dem jemand diese Seite verändern könnte. | **SFTP-Passwort ändern**, GitHub-Secret `SFTP_URL` aktualisieren |
+| ~~O8~~ | ~~SFTP-Kennung in der öffentlichen Git-Historie~~ | **Erledigt.** Alter Benutzer im IONOS-Konto gelöscht, neuer angelegt, Secret aktualisiert — die historische Kennung gehört zu einem Konto, das es nicht mehr gibt. Siehe Abschnitt 4d. |
 | **O9** | Eine Domain im Konto hat kein SSL-Zertifikat. `public/.htaccess` sendet HSTS mit `includeSubDomains; preload` — eine betroffene Subdomain wäre nicht „unsicher erreichbar", sondern für ein Jahr **gar nicht erreichbar**. | Zertifikat zuweisen bzw. prüfen, welche Domain betroffen ist |
 
 ### Was laufend weiterläuft, ohne Zutun

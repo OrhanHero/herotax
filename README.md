@@ -67,6 +67,7 @@ npm run lint             # Oxlint
 npm run check:routes     # Routen & 301-Weiterleitungen App.jsx ↔ .htaccess
 npm run security:check   # Sicherheits-Smoketest gegen die Live-Seite
 npm run security:logs -- access.log   # IONOS-Access-Logs auswerten
+npm run deploy:check     # SFTP-Verbindung & Zielverzeichnis prüfen (ohne Upload)
 ```
 
 > **Neue Seite anlegen?** Die Route muss in `src/App.jsx` **und**

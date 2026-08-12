@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "check:routes": "node scripts/check-routes.mjs",
     "security:check": "node scripts/security-check.mjs",
-    "security:logs": "node scripts/analyze-logs.mjs"
+    "security:logs": "node scripts/analyze-logs.mjs",
+    "deploy:check": "node scripts/deploy.mjs --check"
   },
   "dependencies": {
     "@fontsource/archivo": "^5.2.8",

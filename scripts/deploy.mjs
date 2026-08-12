@@ -74,7 +74,22 @@ if (!server && raw) {
   }
 }
 
+/** Mit DEPLOY_CHECK=1 oder `--check` wird nur die Verbindung geprüft:
+ *  Anmeldung, Zielverzeichnis, Inhalt. Kein Build nötig, kein Upload,
+ *  kein Löschen. Siehe reportTarget() weiter unten. */
+const CHECK_ONLY = process.env.DEPLOY_CHECK === "1" || process.argv.includes("--check");
+
 if (!server || !password) {
+  // Im Prüfmodus ist ein fehlendes Secret ein Fehlschlag, kein Grund zum
+  // Überspringen: Eine Prüfung, die nicht laufen konnte, darf nicht grün
+  // melden. Im Deploy-Modus bleibt das Überspringen richtig, damit Forks und
+  // Pull Requests ohne Secret nicht scheitern.
+  if (CHECK_ONLY) {
+    console.error("❌ Secret SFTP_URL fehlt oder ist unvollständig — es konnte nichts geprüft werden.");
+    console.error("   In GitHub unter Settings → Secrets and variables → Actions hinterlegen,");
+    console.error("   Format: sftp://BENUTZER:PASSWORT@HOST/ZIELVERZEICHNIS/");
+    process.exit(1);
+  }
   console.log("⚠️ Secret SFTP_URL nicht gefunden. Deployment wird übersprungen.");
   process.exit(0);
 }
@@ -83,7 +98,7 @@ const distDir = path.resolve(__dirname, "../dist");
 const outDir = path.resolve(__dirname, "../out");
 const localDir = fs.existsSync(distDir) ? distDir : outDir;
 
-if (!fs.existsSync(localDir)) {
+if (!CHECK_ONLY && !fs.existsSync(localDir)) {
   console.error(`❌ FEHLER: Build-Ordner nicht gefunden (${localDir}). Bitte zuerst "npm run build" ausführen.`);
   process.exit(1);
 }
@@ -114,7 +129,7 @@ function walkLocal(dir, base = dir) {
   return out;
 }
 
-const localFiles = walkLocal(localDir);
+const localFiles = CHECK_ONLY && !fs.existsSync(localDir) ? [] : walkLocal(localDir);
 const violations = [];
 for (const rel of localFiles) {
   for (const rule of FORBIDDEN) {
@@ -128,7 +143,9 @@ if (violations.length > 0) {
   console.error("   Bitte den Build bereinigen (siehe docs/SICHERHEIT.md, Maßnahme M13).");
   process.exit(1);
 }
-console.log(`🔎 Preflight ok — ${localFiles.length} Dateien, keine Secrets im Build.`);
+if (!CHECK_ONLY) {
+  console.log(`🔎 Preflight ok — ${localFiles.length} Dateien, keine Secrets im Build.`);
+}
 
 /* ── M8 · Prune: verwaiste Dateien auf dem Webspace entfernen ─────────────── */
 
@@ -157,7 +174,42 @@ function reportPrune(stale) {
   return true;
 }
 
+/* ── Prüfmodus: verbinden und berichten, ohne etwas zu verändern ───────────── */
+
+/*  Gedacht für den Fall, dass die SFTP-Zugangsdaten gewechselt wurden. Ein
+ *  neuer Benutzer kann bei IONOS in einem anderen Startverzeichnis landen —
+ *  dann würde ein normaler Deploy stillschweigend am falschen Ort landen und
+ *  der Prune-Schritt dort aufräumen. Der Prüfmodus deckt das vorher auf. */
+
+/** Plausibilitätsprüfung: Sieht das Zielverzeichnis nach dieser Website aus? */
+function reportTarget(entries) {
+  const names = entries.map((e) => e.name);
+  console.log(`\n📁 Zielverzeichnis ${remoteDir} — ${names.length} Einträge:`);
+  for (const n of names.slice(0, 25)) console.log(`   • ${n}`);
+  if (names.length > 25) console.log(`   … und ${names.length - 25} weitere`);
+
+  const marker = ["index.html", ".htaccess", "assets"];
+  const gefunden = marker.filter((m) => names.includes(m));
+
+  if (names.length === 0) {
+    console.warn("\n⚠️ Das Verzeichnis ist LEER. Entweder ist es das falsche Ziel,");
+    console.warn("   oder es wurde noch nie deployt. Vor dem nächsten Deploy klären —");
+    console.warn("   sonst landet die Seite am falschen Ort.");
+    return false;
+  }
+  if (gefunden.length === 0) {
+    console.warn("\n⚠️ Kein einziger erwarteter Eintrag gefunden (index.html, .htaccess, assets).");
+    console.warn("   Das sieht NICHT nach dem Web-Root von herotax.de aus.");
+    console.warn("   Bitte den Pfad im Secret SFTP_URL prüfen, bevor deployt wird —");
+    console.warn("   der Prune-Schritt würde hier fremde Dateien löschen.");
+    return false;
+  }
+  console.log(`\n✅ Zielverzeichnis plausibel — gefunden: ${gefunden.join(", ")}`);
+  return true;
+}
+
 console.log(`Verbinde zu ${server}:${port} als Benutzer "${username}"...`);
+if (CHECK_ONLY) console.log("🔍 Prüfmodus: es wird nichts hochgeladen und nichts gelöscht.\n");
 
 async function run() {
   // ── Versuch 1: SFTP (SSH Port 22) ──
@@ -172,6 +224,25 @@ async function run() {
       retries: 1,
       algorithms: { serverHostKey: ["ssh-rsa", "ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", "ecdsa-sha2-nistp521", "ssh-ed25519"] }
     });
+
+    if (CHECK_ONLY) {
+      console.log("✅ SFTP-Anmeldung erfolgreich.");
+      let entries = [];
+      try {
+        entries = await sftp.list(remoteDir);
+      } catch (err) {
+        console.error(`\n❌ Zielverzeichnis ${remoteDir} nicht lesbar: ${err.message}`);
+        console.error("   Der Benutzer hat dort keinen Zugriff, oder der Pfad im Secret ist falsch.");
+        await sftp.end();
+        process.exit(1);
+      }
+      const ok = reportTarget(entries);
+      await sftp.end();
+      console.log(ok ? "\n🎉 Verbindung geprüft — Deployment kann laufen.\n"
+                     : "\n❌ Verbindung steht, aber das Ziel stimmt nicht. Bitte SFTP_URL korrigieren.\n");
+      process.exit(ok ? 0 : 1);
+    }
+
     console.log("✅ SFTP-Verbindung erfolgreich! Übertrage Dateien...");
     try { await sftp.mkdir(remoteDir, true); } catch { /* existiert bereits */ }
     await sftp.uploadDir(localDir, remoteDir);
@@ -217,6 +288,23 @@ async function run() {
   } catch {
     await ftpClient.access({ host: server, port: 21, user: username, password: password, secure: false });
   }
+  if (CHECK_ONLY) {
+    console.log("✅ FTPS-Anmeldung erfolgreich.");
+    let entries = [];
+    try {
+      entries = await ftpClient.list(remoteDir);
+    } catch (err) {
+      console.error(`\n❌ Zielverzeichnis ${remoteDir} nicht lesbar: ${err.message}`);
+      ftpClient.close();
+      process.exit(1);
+    }
+    const ok = reportTarget(entries);
+    ftpClient.close();
+    console.log(ok ? "\n🎉 Verbindung geprüft — Deployment kann laufen.\n"
+                   : "\n❌ Verbindung steht, aber das Ziel stimmt nicht. Bitte SFTP_URL korrigieren.\n");
+    process.exit(ok ? 0 : 1);
+  }
+
   console.log("✅ FTPS-Verbindung erfolgreich! Übertrage Dateien...");
   await ftpClient.ensureDir(remoteDir);
   // Kein clearWorkingDir() mehr: das löschte bei jedem Deploy auch den
