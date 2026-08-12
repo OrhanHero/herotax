@@ -75,10 +75,26 @@ Teil C nötig wird.
 
 ---
 
-## Teil C — wenn es die Einstellungen nicht gibt
+## Teil C — die WAF-Frage
 
-Das ist der wahrscheinliche Fall. Dann bleibt eine Möglichkeit, und die
-funktioniert unabhängig von IONOS: **einen Dienst vor die Domain schalten.**
+**Zuerst innerhalb von IONOS prüfen.** Eine Web Application Firewall ist nicht
+im Bereich „Sicherheitslösungen" zu finden, sondern laut Anbieter Bestandteil
+von **CDN Pro** (Hosting-Vertrag → CDN-Übersicht → *Weiteres CDN hinzufügen*).
+
+Vor einer Buchung diese drei Punkte klären:
+
+1. **Lässt sich `herotax.de` selbst über das CDN ausliefern**, oder nur eine
+   Subdomain? Das ist die entscheidende Frage: Die Angriffe treffen die
+   Hauptdomain. Eine WAF vor einer Asset-Subdomain sieht davon nichts.
+2. Was kostet CDN Pro?
+3. Ist die WAF konfigurierbar (Regelsätze, Rate-Limiting) oder ein pauschaler
+   Schalter?
+
+**Deckt es die Hauptdomain ab**, ist das die Lösung — ohne DNS-Umzug zu einem
+Fremdanbieter, und der Rest dieses Abschnitts entfällt.
+
+**Nur wenn nicht,** bleibt die Alternative: **einen Dienst vor die Domain
+schalten.**
 
 **Cloudflare (kostenloser Tarif) deckt in einem Zug ab:**
 
@@ -98,6 +114,12 @@ entschieden und nicht nebenbei gemacht werden.
 
 **Was es nicht ändert:** Die Härtung in `public/.htaccess` bleibt in Kraft und
 wirkt weiter als zweite Schicht.
+
+> **Gilt für beide Wege — CDN Pro wie Fremddienst:** `public/.htaccess` setzt
+> `default-src 'self'` in der Content-Security-Policy. Werden Skripte, Stile
+> oder Schriften über einen anderen Hostnamen ausgeliefert, verweigert der
+> Browser sie vollständig. Die CSP muss **vor** der Aktivierung angepasst
+> werden, nicht danach.
 
 Falls Cloudflare nicht gewünscht ist, ist das ebenfalls eine legitime
 Entscheidung. Dann gilt: Die Seite ist gehärtet, die Angriffe laufen ins
