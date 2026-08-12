@@ -4,7 +4,6 @@ import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import SiteStatusBadge from "../atoms/SiteStatusBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
-import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
@@ -118,10 +117,11 @@ const HeroSection = () => {
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
         <div className="lg:col-span-5 flex flex-col justify-between max-w-full overflow-hidden">
-          {/* Parallel Eyebrow Badge Right (Über dem Bild) */}
+          {/* Parallel Eyebrow Badge Right (Über dem Bild). Der Live-Stand
+              steht seit dem Umbau links im SiteStatusBadge — zweimal in
+              derselben Hero wäre doppelt. */}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-5 max-w-full overflow-hidden">
             <FernsehturmBadge label="BERLIN METROPOL RADAR 🌙" />
-            <LiveTrackerBadge type="general" />
           </div>
 
           <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg border border-slate-200 flex-1 flex flex-col justify-between">

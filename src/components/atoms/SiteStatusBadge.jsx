@@ -6,13 +6,14 @@ import { formatTrackerDate } from "../../services/articleService";
 /**
  * SiteStatusBadge — Live-Stand der Webseite selbst.
  *
- * Zeigt, wann der ausgelieferte Stand gebaut wurde: "Live · Webseite
- * aktualisiert: 12.08.2026, 06:03 Uhr". Der Zeitpunkt kommt aus
- * __BUILD_TIME__ (vite.config.js) und ist damit der echte Build-Zeitpunkt,
- * nicht der Ladezeitpunkt im Browser.
+ * Zeigt, wann der ausgelieferte Stand gebaut wurde: "Live-Stand:
+ * 12.08.2026, 08:02 Uhr". Der Zeitpunkt kommt aus __BUILD_TIME__
+ * (vite.config.js) und ist damit der echte Build-Zeitpunkt, nicht der
+ * Ladezeitpunkt im Browser.
  *
  * Abgrenzung zum LiveTrackerBadge: der zeigt den Stand der Nachrichten-
- * Daten aus dem Cache, dieser den Stand der Seite.
+ * Daten aus dem Cache, dieser den Stand der Seite. In der Hero steht
+ * deshalb nur dieses Badge, nicht beide.
  */
 const SiteStatusBadge = () => {
   const buildTime = typeof __BUILD_TIME__ !== "undefined" ? __BUILD_TIME__ : Date.now();
@@ -44,7 +45,7 @@ const SiteStatusBadge = () => {
         <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: "#10B981" }} />
       </span>
       <Globe size={14} className="shrink-0" />
-      <span className="truncate">Live · Webseite aktualisiert: {stand}</span>
+      <span className="truncate">Live-Stand: {stand}</span>
     </span>
   );
 };
