@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
+        with:
+          # Volle Historie: der Sitemap-Generator liest lastmod je Seite aus
+          # "git log". Ein flacher Checkout kennt nur den letzten Commit und
+          # würde alle Seiten auf das heutige Datum setzen.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
