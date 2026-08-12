@@ -208,7 +208,17 @@ function reportTarget(entries) {
   return true;
 }
 
-console.log(`Verbinde zu ${server}:${port} als Benutzer "${username}"...`);
+/** Kennungen niemals vollständig ins Log schreiben: GitHub-Actions-Logs sind
+ *  bei einem öffentlichen Repository für jeden lesbar. Benutzername und Host
+ *  sind zwar kein Passwort, aber Aufklärungsmaterial — genau deshalb wurden
+ *  die Zugangsdaten am 12.08.2026 gewechselt. Für die Fehlersuche genügt ein
+ *  Anfang, um zwei Konten auseinanderzuhalten. */
+const maskiert = (wert, sichtbar = 2) =>
+  !wert ? "(leer)"
+  : wert.length <= sichtbar ? "*".repeat(wert.length)
+  : wert.slice(0, sichtbar) + "*".repeat(Math.min(wert.length - sichtbar, 8));
+
+console.log(`Verbinde zu ${maskiert(server, 7)} (Port ${port}) als Benutzer ${maskiert(username)}...`);
 if (CHECK_ONLY) console.log("🔍 Prüfmodus: es wird nichts hochgeladen und nichts gelöscht.\n");
 
 async function run() {

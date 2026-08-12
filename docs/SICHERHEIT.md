@@ -663,6 +663,38 @@ Der letzte Fall ist der eigentliche Zweck: Er unterscheidet „Verbindung steht"
 von „Verbindung steht **und zeigt auf den richtigen Ort**". Genau daran
 scheitert ein Zugangsdatenwechsel typischerweise.
 
+### Beim ersten Prüflauf gefunden: Kennung im öffentlichen Actions-Log
+
+Der Prüflauf vom 12.08.2026 (`31629880129`) war erfolgreich — und deckte
+zugleich einen Fehler im Deploy-Skript auf. Es schrieb den SFTP-Benutzernamen
+und den vollständigen Hostnamen im Klartext ins Log:
+
+```
+Verbinde zu access-…webspace-host.com:22 als Benutzer "su…"...
+```
+
+**GitHub-Actions-Logs sind bei einem öffentlichen Repository für jeden
+lesbar.** Damit landete die frisch gewechselte Kennung sofort wieder
+öffentlich — genau das, was der Wechsel beheben sollte. Das galt auch für
+alle vorherigen Deploy-Läufe.
+
+**Behoben:** Benutzername und Host werden jetzt maskiert ausgegeben
+(`su*******`, `access-********`). Für die Fehlersuche genügt der Anfang, um
+zwei Konten auseinanderzuhalten. Das Zielverzeichnis (`/herotax`) bleibt
+sichtbar — es ist kein Geheimnis und für die Diagnose entscheidend.
+
+**Was das für die bestehenden Logs bedeutet:** Ältere Workflow-Läufe
+enthalten die Kennung weiterhin. Zwei Wege:
+
+1. **Logs löschen** — in GitHub unter Actions den jeweiligen Lauf öffnen →
+   *Delete logs*. Betrifft alle Läufe von *Build and Deploy to IONOS*.
+2. **Stehen lassen** — ein Benutzername ohne Passwort ist kein Zugang. Da die
+   alte Kennung ohnehin gelöscht ist und die neue nur in Läufen ab dem
+   12.08.2026 auftaucht, ist der Nutzen für einen Angreifer gering.
+
+Empfohlen wird Weg 1 für die Läufe seit dem Zugangsdatenwechsel, weil dort die
+**aktuell gültige** Kennung steht.
+
 ### Empfohlener Ablauf nach jedem Wechsel der Zugangsdaten
 
 1. `Actions → Build and Deploy to IONOS → Run workflow → Mode: check`
