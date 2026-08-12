@@ -270,7 +270,11 @@ liegen, aber nicht mehr Teil des Builds sind, werden gelöscht. Dabei gilt:
   Prune-Schritt ab, statt den Webspace zu leeren
   (`DEPLOY_PRUNE_LIMIT` anpassbar). Der einmalige Nachholeffekt lag mit 107
   Dateien darunter; ab jetzt räumt jedes Deployment nur noch seinen eigenen
-  Vorgänger ab, die Zahl bleibt also einstellig.
+  Vorgänger ab. Der Folge-Deploy (Run `31591779781`) hat das bestätigt:
+  **1 verwaiste Datei**. Dass es überhaupt eine ist, liegt an
+  `__BUILD_TIME__` in `vite.config.js` — der Wert geht ins JS-Bundle ein, das
+  damit bei jedem Build einen neuen Hash bekommt. Das CSS bleibt unverändert,
+  solange sich die Styles nicht ändern.
 - abschaltbar mit `DEPLOY_PRUNE=0`
 
 **Gemessenes Ergebnis des ersten Deployments nach dieser Änderung**
