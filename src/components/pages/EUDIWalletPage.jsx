@@ -30,7 +30,9 @@ export default function EUDIWalletPage() {
 
       <section className="py-24" style={{ borderTop: `1px solid ${T.lineSoft}` }} id="eu-ai-act">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
-          <Eyebrow index="04">EU AI Act · Verordnung (EU) 2024/1689</Eyebrow>
+          {/* Ohne Nummer: der EU-Kompass führt bereits die 03, und die 04
+              gehört dem Tools-Bereich. */}
+          <Eyebrow>EU AI Act · Verordnung (EU) 2024/1689</Eyebrow>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
             <h2
               className="text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-2xl"
