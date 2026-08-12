@@ -24,10 +24,9 @@ hier steht, ist der Rest.
 
 ## Kurzfassung: was umzustellen ist
 
-> **Wichtige Einschränkung, bevor Sie suchen.** Aus der Deployment-Konfiguration
-> (`access-5019090422.webspace-host.com`, Benutzer `su486213`) geht hervor:
-> herotax.de läuft auf einem **IONOS Shared-Webhosting-Paket**, nicht auf einem
-> eigenen Server. Ein Teil der Maßnahmen aus dem Analysebericht setzt aber
+> **Wichtige Einschränkung, bevor Sie suchen.** Der Vertrag ist ein
+> **IONOS Webhosting Plus** (Shared-Hosting), kein eigener Server — die Domain
+> zeigt laut Kundenkonto auf ein Webspace-Verzeichnis. Ein Teil der Maßnahmen aus dem Analysebericht setzt aber
 > Serverzugriff voraus und existiert bei Shared-Hosting schlicht nicht. Wer
 > danach im Portal sucht, sucht vergeblich.
 
@@ -52,9 +51,8 @@ IONOS-Support. Vorschlag zum Kopieren:
 
 > Guten Tag,
 >
-> für meinen Webhosting-Vertrag zur Domain herotax.de (Webspace
-> `access-5019090422.webspace-host.com`) bitte ich um Auskunft zu vier
-> Punkten:
+> für meinen Webhosting-Vertrag „IONOS Webhosting Plus" zur Domain herotax.de
+> bitte ich um Auskunft zu vier Punkten:
 >
 > 1. Ist in meinem Tarif ein Bot-Schutz, DDoS-Schutz oder eine Web
 >    Application Firewall enthalten oder zubuchbar? Falls zubuchbar: welches

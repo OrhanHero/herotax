@@ -18,7 +18,7 @@ So wird aktuell automatisch deployt:
    - Lädt den Inhalt per `scripts/deploy.mjs` direkt auf den IONOS-Webspace hoch (verwendet das GitHub Secret `SFTP_URL` mit automatischer SFTP/FTPS Dual-Engine).
 3. **Ergebnis live verifizieren** auf [herotax.de](https://herotax.de).
 4. **Sicherheits-Smoketest** (`.github/workflows/security-check.yml`) läuft
-   automatisch nach jedem Deployment und täglich um 07:30 Berliner Zeit.
+   automatisch nach jedem Deployment und alle 6 Stunden.
 
 ### Was das Deploy-Skript zusätzlich tut
 
@@ -45,8 +45,8 @@ Das erstellt den `/dist` Ordner mit allen produktiven Dateien.
 
 **SFTP/FTP-Zugang:**
 - Host: `herotax.de` (oder `ftp.herotax.de`)
-- Nutzer: [Deine IONOS-FTP-Credentials]
-- Zielordner: `/www/htdocs/herotax.de` oder einfach `public_html/`
+- Nutzer: siehe IONOS-Konto — **niemals hier eintragen**, dieses Repository ist öffentlich
+- Zielordner: `/herotax` — steht im IONOS-Konto unter Domains & SSL → herotax.de → **Ziel**
 
 **Zu uploadende Dateien:**
 ```
@@ -118,7 +118,7 @@ index-*.js/css     → "max-age=31536000" (1 Jahr, versioned)
 Vergib unter **Settings ➔ Secrets and variables ➔ Actions** das Secret:
 - **Name:** `SFTP_URL`
 - **Wert-Format:** `sftp://BENUTZERNAME:PASSWORT@HOST/ZIEL_ORDNER/`
-- **Beispiel IONOS:** `sftp://su486213:MeinPasswort%23@access-5019090422.webspace-host.com/aiacteu/`
+- **Beispiel IONOS:** `sftp://BENUTZER:PASSWORT@access-XXXXXXXXXX.webspace-host.com/herotax/`
 *(Sonderzeichen im Passwort wie `#` als `%23` kodieren, IONOS `;fingerprint=...` Filter läuft automatisch)*
 
 #### 2. Funktionsweise

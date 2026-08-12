@@ -32,7 +32,9 @@ let server = process.env.DIRECT_SERVER || "";
 let username = process.env.DIRECT_USERNAME || "";
 let password = process.env.DIRECT_PASSWORD || "";
 let port = parseInt(process.env.DIRECT_PORT || "22", 10);
-let remoteDir = (process.env.DIRECT_DIR || "/aiacteu").replace(/\/+$/, "") || "/aiacteu";
+// Zielverzeichnis der Domain laut IONOS (Domains & SSL → herotax.de → Ziel).
+// Greift nur, wenn SFTP_URL keinen Pfad mitbringt.
+let remoteDir = (process.env.DIRECT_DIR || "/herotax").replace(/\/+$/, "") || "/herotax";
 
 function safeDecode(str) {
   try { return decodeURIComponent(str); } catch { return str; }
@@ -57,7 +59,7 @@ if (!server && raw) {
     let hostPort = hostPath;
     if (slash !== -1) {
       hostPort = hostPath.substring(0, slash);
-      remoteDir = hostPath.substring(slash).replace(/\/+$/, "") || "/aiacteu";
+      remoteDir = hostPath.substring(slash).replace(/\/+$/, "") || "/herotax";
     }
     const hpColon = hostPort.indexOf(":");
     if (hpColon !== -1) {

@@ -577,6 +577,38 @@ Hand im Browser geprüft werden. Sie stehen in `src/data/articles.js`
 
 ---
 
+## 4c. Nachtrag 12.08.2026 — Zugangskennung im öffentlichen Repository
+
+Beim Abgleich der IONOS-Kontoansicht mit dem Repository fiel auf: `DEPLOYMENT.md`
+nannte im Beispiel für das Secret `SFTP_URL` den **echten SFTP-Benutzernamen und
+den Webspace-Hostnamen** im Klartext. Das Repository ist öffentlich.
+
+**Was nicht passiert ist:** Ein Passwort war nie im Repository — an der Stelle
+stand durchgehend ein Platzhalter. Es ist also **kein Zugangsdatum abgeflossen**.
+
+**Was trotzdem gilt:** Benutzername und Hostname sind Aufklärungsmaterial. Ein
+Angreifer, der beides kennt, muss den SFTP-Zugang nicht mehr blind suchen,
+sondern kann gezielt Passwörter durchprobieren. Genau diese Art von Fund
+suchen die Scanner, die in der Analyse dokumentiert sind.
+
+**Umgesetzt:** Beide Angaben sind durch Platzhalter ersetzt, ebenso in der
+IONOS-Checkliste. Der Rückfallwert für das Zielverzeichnis in
+`scripts/deploy.mjs` stand außerdem auf einem fremden Pfad und zeigt jetzt auf
+das tatsächliche Zielverzeichnis der Domain.
+
+**Was offen bleibt und Ihre Entscheidung braucht:** Die Angaben stehen weiterhin
+in der **Git-Historie** und lassen sich dort nicht folgenlos entfernen.
+Empfehlung:
+
+> **Das SFTP-Passwort im IONOS-Konto ändern** und das GitHub-Secret `SFTP_URL`
+> entsprechend aktualisieren (Settings → Secrets and variables → Actions).
+
+Das ist in fünf Minuten erledigt und macht die öffentlich einsehbare Kennung
+wertlos. Ein Umschreiben der Git-Historie ist dafür nicht nötig und wäre der
+deutlich aufwendigere und fehleranfälligere Weg.
+
+---
+
 ## 5. Offene Punkte
 
 ### Muss außerhalb dieses Repositories erledigt werden
