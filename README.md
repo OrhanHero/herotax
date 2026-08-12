@@ -39,27 +39,54 @@ src/
   services/      articleService.js — Feed-Abruf, 4-Std-Caching & Live-Tracker
   config/        Konfiguration (Links, Kontakt, Design-Tokens)
 public/
+  .htaccess      Apache-Konfiguration & Härtung (einzige Quelle, → dist/)
+  404.html       echte Fehlerseite (ErrorDocument 404/403)
+  robots.txt     Crawler-Steuerung (Suchmaschinen ja, KI-Training nein)
   api/feed.php   Feed-Proxy für RSS-Quellen der Behörden (4-Std-Cache)
 scripts/
-  deploy.mjs     Dual-Engine IONOS SFTP/FTPS Auto-Deployment-Skript
+  deploy.mjs             Dual-Engine IONOS SFTP/FTPS Auto-Deployment-Skript
+  check-routes.mjs       Routen-Abgleich App.jsx ↔ .htaccess
+  security-check.mjs     Sicherheits-Smoketest gegen die Live-Seite
+docs/
+  SICHERHEIT.md  Umsetzungsdoku der Sicherheitsanalyse vom 12.08.2026
 .github/
   workflows/
-    deploy.yml   GitHub Actions Pipeline für automatische IONOS-Uploads
+    deploy.yml           GitHub Actions Pipeline für automatische IONOS-Uploads
+    security-check.yml   täglicher Sicherheits-Smoketest
 ```
 
 ## Entwicklung
 
 ```bash
 npm install
-npm run dev       # Dev-Server (Vite)
-npm run build     # Produktions-Build nach /dist
-npm run preview   # Build lokal testen
-npm run lint      # Oxlint
+npm run dev              # Dev-Server (Vite)
+npm run build            # Produktions-Build nach /dist
+npm run preview          # Build lokal testen
+npm run lint             # Oxlint
+npm run check:routes     # Routen & 301-Weiterleitungen App.jsx ↔ .htaccess
+npm run security:check   # Sicherheits-Smoketest gegen die Live-Seite
 ```
+
+> **Neue Seite anlegen?** Die Route muss in `src/App.jsx` **und**
+> `public/.htaccess` stehen — sonst liefert der Server dafür einen echten 404.
+> (Die `sitemap.xml` entsteht beim Build automatisch aus dem Router.)
+> `npm run check:routes` prüft das und läuft auch in der CI.
 
 ## Deployment
 
 Details zum automatischen CI/CD-Deployment via GitHub Actions auf IONOS (Dual-Engine SFTP/FTPS, Secret `SFTP_URL`, `.htaccess`-SPA-Routing) stehen in [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+## Sicherheit
+
+Die Seite ist gegen automatisiertes Massenscanning gehärtet: WordPress- und
+Webshell-Pfade werden serverseitig mit 403 abgewiesen, Dotfiles und
+Konfigurationsdateien sind gesperrt, unbekannte Pfade liefern einen echten
+HTTP 404 statt stillschweigend die Startseite, und das Deployment bricht ab,
+wenn Secrets im Build landen. Ein täglicher Smoketest prüft das gegen die
+Live-Seite.
+
+Was genau umgesetzt wurde, wie es geprüft wird und was beim Hoster offen
+bleibt, steht in [docs/SICHERHEIT.md](./docs/SICHERHEIT.md).
 
 ## Rechtlicher Hinweis
 

@@ -1,0 +1,37 @@
+# Maßnahme M12 der Sicherheitsanalyse vom 12.08.2026:
+# Alarm, sobald ein Secret-Pfad mit HTTP 200 beantwortet wird oder die
+# Härtung aus public/.htaccess live nicht mehr greift.
+name: Security Smoketest (herotax.de)
+
+on:
+  # Nach jedem Deployment prüfen
+  workflow_run:
+    workflows: ["Build and Deploy to IONOS via SFTP/FTPS"]
+    types: [completed]
+  # Täglich um 05:30 UTC (07:30 Berliner Zeit)
+  schedule:
+    - cron: '30 5 * * *'
+  workflow_dispatch:
+    inputs:
+      base:
+        description: 'Zu prüfende Basis-URL'
+        required: false
+        default: 'https://herotax.de'
+
+jobs:
+  smoketest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Routen-Konsistenz (App.jsx ↔ .htaccess)
+        run: npm run check:routes
+
+      - name: Live-Smoketest gegen die ausgelieferte Seite
+        run: npm run security:check -- --base=${{ github.event.inputs.base || 'https://herotax.de' }}

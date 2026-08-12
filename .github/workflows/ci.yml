@@ -31,5 +31,10 @@ jobs:
       - name: Run Linter (Oxlint)
         run: npm run lint
 
+      # M6: neue Seiten müssen in App.jsx und .htaccess stehen, sonst
+      # liefert der Server dafür einen echten 404.
+      - name: Routen-Konsistenz prüfen
+        run: npm run check:routes
+
       - name: Verify Build
         run: npm run build

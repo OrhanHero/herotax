@@ -1,3 +1,18 @@
+/**
+ * HERO Tax · IONOS Deployment (Dual-Engine SFTP → FTPS)
+ * ---------------------------------------------------------------------------
+ * Lädt den Vite-Build (dist/) auf den IONOS-Webspace.
+ *
+ * Sicherheitsmaßnahmen aus der Analyse vom 12.08.2026:
+ *   M13 — Preflight: der Upload bricht ab, wenn im Build Dateien liegen, die
+ *         niemals ins Web-Root gehören (.env, .git, Keys, Sourcemaps …).
+ *   M8  — Prune: nach dem Upload werden Dateien auf dem Webspace gelöscht,
+ *         die im aktuellen Build nicht mehr vorkommen. Genau so verschwindet
+ *         der veraltete zweite Frontend-Build (/static/js/main.*.js aus einer
+ *         früheren Create-React-App-Generation), der bisher parallel zum
+ *         aktuellen Vite-Bundle (/assets/index-*.js) erreichbar blieb.
+ *         Abschaltbar über DEPLOY_PRUNE=0.
+ */
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
@@ -62,8 +77,6 @@ if (!server || !password) {
   process.exit(0);
 }
 
-console.log(`Verbinde zu ${server}:${port} als Benutzer "${username}"...`);
-
 const distDir = path.resolve(__dirname, "../dist");
 const outDir = path.resolve(__dirname, "../out");
 const localDir = fs.existsSync(distDir) ? distDir : outDir;
@@ -73,8 +86,79 @@ if (!fs.existsSync(localDir)) {
   process.exit(1);
 }
 
+/* ── M13 · Preflight: was niemals ins Web-Root darf ───────────────────────── */
+
+/** Dateien/Ordner, deren Auslieferung ein Sicherheitsvorfall wäre. */
+const FORBIDDEN = [
+  { test: (rel) => rel.split("/").some((seg) => seg === ".git" || seg === ".svn" || seg === ".hg"),
+    why: "Versionskontroll-Verzeichnis (Quellcode-Rekonstruktion möglich)" },
+  { test: (rel) => /(^|\/)\.env(\..+)?$/i.test(rel), why: "Umgebungsdatei mit Secrets" },
+  { test: (rel) => /\.(pem|key|p12|pfx|ppk|crt|keystore)$/i.test(rel), why: "Schlüssel-/Zertifikatsdatei" },
+  { test: (rel) => /(^|\/)(id_rsa|id_ed25519|\.htpasswd|\.npmrc|\.netrc)$/i.test(rel), why: "Zugangsdaten-Datei" },
+  { test: (rel) => /(^|\/)(secrets|credentials|sftp-config|ftp-config)\.(json|ya?ml)$/i.test(rel), why: "Konfigurationsdatei mit Zugangsdaten" },
+  { test: (rel) => /\.map$/i.test(rel), why: "Sourcemap (gibt den unminifizierten Quellcode preis)" },
+  { test: (rel) => /\.(sql|sqlite3?|db|bak|old|orig|swp)$/i.test(rel), why: "Datenbank-/Backup-Artefakt" },
+];
+
+/** Alle Dateien unterhalb von dir als repo-relative Pfade mit "/" als Trenner. */
+function walkLocal(dir, base = dir) {
+  const out = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const abs = path.join(dir, entry.name);
+    const rel = path.relative(base, abs).split(path.sep).join("/");
+    if (entry.isDirectory()) out.push(...walkLocal(abs, base));
+    else out.push(rel);
+  }
+  return out;
+}
+
+const localFiles = walkLocal(localDir);
+const violations = [];
+for (const rel of localFiles) {
+  for (const rule of FORBIDDEN) {
+    if (rule.test(rel)) violations.push(`${rel} — ${rule.why}`);
+  }
+}
+
+if (violations.length > 0) {
+  console.error("❌ DEPLOYMENT ABGEBROCHEN — der Build enthält Dateien, die nicht ins Web-Root gehören:");
+  for (const v of violations) console.error(`   • ${v}`);
+  console.error("   Bitte den Build bereinigen (siehe docs/SICHERHEIT.md, Maßnahme M13).");
+  process.exit(1);
+}
+console.log(`🔎 Preflight ok — ${localFiles.length} Dateien, keine Secrets im Build.`);
+
+/* ── M8 · Prune: verwaiste Dateien auf dem Webspace entfernen ─────────────── */
+
+const PRUNE_ENABLED = process.env.DEPLOY_PRUNE !== "0";
+/** Pfade, die der Server selbst anlegt und die der Deploy nicht anfassen darf. */
+const PROTECTED_PREFIXES = ["api/cache"];
+/** Sicherheitsnetz: unerwartet viele Löschungen deuten auf ein falsches
+ *  Zielverzeichnis hin — dann lieber abbrechen als den Webspace leeren. */
+const PRUNE_LIMIT = parseInt(process.env.DEPLOY_PRUNE_LIMIT || "200", 10);
+
+const keep = new Set(localFiles);
+const isProtected = (rel) => PROTECTED_PREFIXES.some((p) => rel === p || rel.startsWith(`${p}/`));
+
+function reportPrune(stale) {
+  if (stale.length === 0) {
+    console.log("🧹 Prune: keine verwaisten Dateien auf dem Webspace.");
+    return false;
+  }
+  console.log(`🧹 Prune: ${stale.length} verwaiste Datei(en) auf dem Webspace:`);
+  for (const rel of stale.slice(0, 40)) console.log(`   • ${rel}`);
+  if (stale.length > 40) console.log(`   … und ${stale.length - 40} weitere`);
+  if (stale.length > PRUNE_LIMIT) {
+    console.warn(`⚠️ Prune übersprungen: mehr als ${PRUNE_LIMIT} Löschungen. Zielverzeichnis prüfen (${remoteDir}) oder DEPLOY_PRUNE_LIMIT erhöhen.`);
+    return false;
+  }
+  return true;
+}
+
+console.log(`Verbinde zu ${server}:${port} als Benutzer "${username}"...`);
+
 async function run() {
-  // Versuch 1: SFTP (SSH Port 22)
+  // ── Versuch 1: SFTP (SSH Port 22) ──
   try {
     const sftp = new SFTPClient();
     await sftp.connect({
@@ -87,16 +171,44 @@ async function run() {
       algorithms: { serverHostKey: ["ssh-rsa", "ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", "ecdsa-sha2-nistp521", "ssh-ed25519"] }
     });
     console.log("✅ SFTP-Verbindung erfolgreich! Übertrage Dateien...");
-    try { await sftp.mkdir(remoteDir, true); } catch {}
+    try { await sftp.mkdir(remoteDir, true); } catch { /* existiert bereits */ }
     await sftp.uploadDir(localDir, remoteDir);
+    console.log("📤 Upload abgeschlossen.");
+
+    if (PRUNE_ENABLED) {
+      const stale = [];
+      const walkRemote = async (rel = "") => {
+        const abs = rel ? `${remoteDir}/${rel}` : remoteDir;
+        let entries = [];
+        try { entries = await sftp.list(abs); } catch { return; }
+        for (const entry of entries) {
+          const childRel = rel ? `${rel}/${entry.name}` : entry.name;
+          if (isProtected(childRel)) continue;
+          if (entry.type === "d") await walkRemote(childRel);
+          else if (!keep.has(childRel)) stale.push(childRel);
+        }
+      };
+      await walkRemote();
+      if (reportPrune(stale)) {
+        for (const rel of stale) {
+          try {
+            await sftp.delete(`${remoteDir}/${rel}`);
+            console.log(`   ✔ gelöscht: ${rel}`);
+          } catch (err) {
+            console.warn(`   ✖ konnte ${rel} nicht löschen: ${err.message}`);
+          }
+        }
+      }
+    }
+
     await sftp.end();
-    console.log("🎉 SFTP-Upload erfolgreich abgeschlossen!");
+    console.log("🎉 SFTP-Deployment erfolgreich abgeschlossen!");
     return;
   } catch (sftpErr) {
     console.log(`SFTP-Hinweis: ${sftpErr.message}. Wechsle zu FTPS (Port 21)...`);
   }
 
-  // Versuch 2: FTPS (TLS Port 21 Fallback)
+  // ── Versuch 2: FTPS (TLS Port 21 Fallback) ──
   const ftpClient = new ftp.Client(30000);
   try {
     await ftpClient.access({ host: server, port: 21, user: username, password: password, secure: true, secureOptions: { rejectUnauthorized: false } });
@@ -105,10 +217,40 @@ async function run() {
   }
   console.log("✅ FTPS-Verbindung erfolgreich! Übertrage Dateien...");
   await ftpClient.ensureDir(remoteDir);
-  await ftpClient.clearWorkingDir();
+  // Kein clearWorkingDir() mehr: das löschte bei jedem Deploy auch den
+  // Feed-Cache (api/cache) mit. Aufräumen übernimmt jetzt der Prune-Schritt.
   await ftpClient.uploadFromDir(localDir);
+  console.log("📤 Upload abgeschlossen.");
+
+  if (PRUNE_ENABLED) {
+    const stale = [];
+    const walkRemote = async (rel = "") => {
+      const abs = rel ? `${remoteDir}/${rel}` : remoteDir;
+      let entries = [];
+      try { entries = await ftpClient.list(abs); } catch { return; }
+      for (const entry of entries) {
+        if (entry.name === "." || entry.name === "..") continue;
+        const childRel = rel ? `${rel}/${entry.name}` : entry.name;
+        if (isProtected(childRel)) continue;
+        if (entry.isDirectory) await walkRemote(childRel);
+        else if (!keep.has(childRel)) stale.push(childRel);
+      }
+    };
+    await walkRemote();
+    if (reportPrune(stale)) {
+      for (const rel of stale) {
+        try {
+          await ftpClient.remove(`${remoteDir}/${rel}`);
+          console.log(`   ✔ gelöscht: ${rel}`);
+        } catch (err) {
+          console.warn(`   ✖ konnte ${rel} nicht löschen: ${err.message}`);
+        }
+      }
+    }
+  }
+
   ftpClient.close();
-  console.log("🎉 FTPS-Upload erfolgreich abgeschlossen!");
+  console.log("🎉 FTPS-Deployment erfolgreich abgeschlossen!");
 }
 
 run().catch((err) => {

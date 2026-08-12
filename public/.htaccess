@@ -1,23 +1,101 @@
-# IONOS/Apache-Konfiguration für herotax.de (BSI Härtung)
+# ═══════════════════════════════════════════════════════════════════════════
+# herotax.de · Apache-Konfiguration (IONOS Webhosting)
+# ---------------------------------------------------------------------------
+# Diese Datei liegt in public/ und wird von Vite unverändert nach dist/
+# kopiert. Sie ist damit die EINZIGE .htaccess, die auf dem Webspace landet.
+# Änderungen bitte ausschließlich hier vornehmen.
+#
+# Härtung nach BSI TR-03116 / OWASP, ergänzt um die Maßnahmen M1, M2, M6,
+# M9 der Sicherheitsanalyse vom 12.08.2026 (siehe docs/SICHERHEIT.md).
+# ═══════════════════════════════════════════════════════════════════════════
+
 Options -Indexes
+
+# UTF-8 als Standard, damit Umlaute in statischen Dateien korrekt ankommen
+AddDefaultCharset UTF-8
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Schutz vor direktem Zugriff auf versteckte Dateien/Ordner (.git, .env, .htaccess)
-  RewriteRule "(^|/)\." - [F]
+  # ── HTTPS erzwingen (301) ────────────────────────────────────────────────
+  # Zweite Bedingung: IONOS terminiert TLS teilweise vorgelagert, dann ist
+  # %{HTTPS} "off", obwohl die Anfrage verschlüsselt ankam.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+  # ── Nur benötigte HTTP-Methoden zulassen ─────────────────────────────────
+  # TRACE/TRACK/PUT/DELETE/PROPFIND werden von Scannern zur Erkennung
+  # veralteter Server genutzt und von dieser Seite nie gebraucht.
+  RewriteCond %{REQUEST_METHOD} !^(GET|HEAD|POST|OPTIONS)$
+  RewriteRule ^ - [F,L]
+
+  # ── Bekannte Massenscanner und Security-Tools abweisen ───────────────────
+  # (Analyse Abschnitt 5.2: CensysInspect u. a. liefern die Ziellisten,
+  #  aus denen die späteren Angriffsversuche gespeist werden.)
+  RewriteCond %{HTTP_USER_AGENT} (CensysInspect|Expanse|InternetMeasurement|Odin|NetSystemsResearch|zgrab|masscan|nikto|sqlmap|wpscan|WPScan|dirbuster|gobuster|feroxbuster|nuclei|Nmap|ZmEu|l9explore|CheckMarkNetwork) [NC,OR]
+  # Aggressive SEO-/Backlink-Crawler ohne Nutzen für diese Seite
+  RewriteCond %{HTTP_USER_AGENT} (SERankingBacklinksBot|SemrushBot|AhrefsBot|MJ12bot|DotBot|BLEXBot|PetalBot|DataForSeoBot|Barkrowler) [NC]
+  RewriteRule ^ - [F,L]
+
+  # ── .well-known muss erreichbar bleiben (ACME/TLS, App-Links) ────────────
+  RewriteRule ^\.well-known/ - [L]
+
+  # ── M2a: Dotfiles und -verzeichnisse (.env, .git, .htaccess, .aws, .ssh) ─
+  RewriteRule (^|/)\. - [F,L]
+
+  # ── M1: WordPress-Pfadraum hart abweisen ─────────────────────────────────
+  # herotax.de ist eine React-SPA, kein WordPress. Der komplette Pfadraum
+  # kann ohne Nebenwirkung mit 403 beantwortet werden. Das betraf zuletzt
+  # 295 von 617 Fehleraufrufen (/wp-admin/install.php).
+  RewriteRule (^|/)wp-(admin|includes|content|json|login|config|signup|cron|mail|links-opml|trackback|activate|comments-post|blog-header|load|settings) - [F,L,NC]
+  RewriteRule (^|/)(xmlrpc\.php|wlwmanifest\.xml)$ - [F,L,NC]
+  RewriteRule (^|/)install\.php$ - [F,L,NC]
+
+  # ── M2b: Konfigurations-, Secret- und Backup-Dateien ─────────────────────
+  RewriteRule (^|/)(secrets|settings|config|configuration|sftp-config|ftp-config|credentials|meta|composer|package|package-lock|composer-lock|firebase|appsettings)\.(json|ya?ml|yml|lock|xml|cfg|ini)$ - [F,L,NC]
+  RewriteRule (^|/)(credentials|id_rsa|id_ed25519|\.?htpasswd|dump|backup|database)$ - [F,L,NC]
+  RewriteRule ^(aws|backend|debug|smtp|cgi-bin|vendor|storage|conf|config|server-status|server-info)(/|$) - [F,L,NC]
+  # Endungen, die auf einem statischen Frontend nie ausgeliefert werden dürfen
+  RewriteRule \.(env|bak|old|orig|save|swp|swo|sql|db|sqlite|sqlite3|log|ini|conf|cfg|pem|key|crt|p12|pfx|ppk|tar|gz|tgz|zip|rar|7z|dist|inc|sh|bash)$ - [F,L,NC]
+
+  # ── M2c: Serverseitige Skripte — nur der Feed-Proxy ist erlaubt ──────────
+  # Deckt Webshell-Scans (wp_filemanager.php, cache.php, mrmgjy.php,
+  # site.php, this_is_a_new_hello_world.php, smtp/phpinfo.php) mit einer
+  # einzigen Regel ab.
+  RewriteCond %{REQUEST_URI} !^/api/feed\.php$
+  RewriteRule \.(php|php[0-9]|phps|phtml|phar|asp|aspx|jsp|jspx|cgi|pl|py|rb|exe|dll)$ - [F,L,NC]
+
+  # ── Feed-Cache des PHP-Proxys nicht direkt lesbar machen ─────────────────
+  RewriteRule ^api/cache(/|$) - [F,L,NC]
+
+  # ── M6: Echtes 404 statt Soft-404 ───────────────────────────────────────
+  # Vorher lief JEDER unbekannte Pfad in index.html mit HTTP 200 (201
+  # "Fehleraufrufe" auf / in der Analyse). Jetzt gilt:
+  #   1. bekannte SPA-Route  → index.html mit HTTP 200
+  #   2. existierende Datei  → normal ausliefern
+  #   3. alles andere        → echter HTTP 404 (ErrorDocument /404.html)
+  #
   # Umbenannte Route: /eudi-wallet heisst seit dem Zusammenlegen mit dem
   # EU AI Act /eu-kompass. Dauerhaft (301), damit Lesezeichen und
   # Suchmaschinen der neuen Adresse folgen. Muss vor der SPA-Regel stehen.
   RewriteRule ^eudi-wallet/?$ /eu-kompass [R=301,L]
 
-  # SPA-Routing: Alle unbekannten Routes zur index.html weiterleiten
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [QSA,L]
+  # ACHTUNG: Diese Liste muss zum switch(pathname) in src/App.jsx passen.
+  # "npm run check:routes" bricht ab, wenn beide auseinanderlaufen.
+  RewriteRule ^(ki|news|eu-kompass|tools|live|publikationen|dsgvo|datenschutz|impressum)/?$ index.html [L,NC]
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ - [R=404,L]
 </IfModule>
+
+# Eigene, schlanke Fehlerseite (liefert HTTP 404, kein Soft-200)
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
 
 # Caching-Header für Performance
 <IfModule mod_expires.c>
@@ -36,7 +114,7 @@ Options -Indexes
   </FilesMatch>
 
   # Assets: 30 Tage
-  <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp)$">
+  <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|ico)$">
     Header set Cache-Control "public, max-age=2592000"
     ExpiresDefault A2592000
   </FilesMatch>
@@ -52,10 +130,19 @@ Options -Indexes
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "DENY"
   Header set X-XSS-Protection "1; mode=block"
-  Header set Referrer-Policy "no-referrer-when-downgrade"
+  # M9: strict-origin-when-cross-origin gibt bei HTTP-Zielen gar keinen und
+  # bei fremden HTTPS-Zielen nur den Origin statt der vollen URL weiter.
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-  Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), accelerometer=(), gyroscope=()"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), accelerometer=(), gyroscope=(), interest-cohort=()"
   Header set Cross-Origin-Opener-Policy "same-origin-allow-popups"
   Header set Cross-Origin-Resource-Policy "cross-origin"
   Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data:; connect-src 'self' https://*.berlin.de https://*.bundesfinanzministerium.de https://*.bfdi.bund.de https://*.bsi.bund.de https://*.bpb.de https://*.geoportal.de https://plausible.io; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+
+  # M9: Technologie-Banner entfernen, damit Censys & Co. weniger indexieren.
+  # (ServerTokens/ServerSignature-Vollabschaltung geht nur in der IONOS-
+  #  Serverkonfiguration — siehe docs/SICHERHEIT.md, offene Punkte.)
+  Header always unset X-Powered-By
+  Header always unset X-AspNet-Version
+  Header always unset X-Runtime
 </IfModule>

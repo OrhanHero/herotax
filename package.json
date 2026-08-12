@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:routes": "node scripts/check-routes.mjs",
+    "security:check": "node scripts/security-check.mjs"
   },
   "dependencies": {
     "@fontsource/archivo": "^5.2.8",

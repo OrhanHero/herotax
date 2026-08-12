@@ -16,8 +16,34 @@
 declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+header('X-Content-Type-Options: nosniff');
 header('Cache-Control: public, max-age=900');
+
+// Maßnahme M2 (Analyse 12.08.2026): kein "*" mehr — nur die eigene Domain
+// darf den Proxy per XHR/fetch aus dem Browser ansprechen.
+const ALLOWED_ORIGINS = [
+    'https://herotax.de',
+    'https://www.herotax.de',
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, ALLOWED_ORIGINS, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Vary: Origin');
+}
+
+// Nur lesende Zugriffe
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+if ($method === 'OPTIONS') {
+    header('Access-Control-Allow-Methods: GET, HEAD, OPTIONS');
+    http_response_code(204);
+    exit;
+}
+if (!in_array($method, ['GET', 'HEAD'], true)) {
+    http_response_code(405);
+    header('Allow: GET, HEAD, OPTIONS');
+    echo json_encode(['status' => 'method_not_allowed', 'items' => []]);
+    exit;
+}
 
 const SOURCES = [
     'bmf-steuern' => [
@@ -100,7 +126,9 @@ function parseFeed(string $xmlRaw, string $sourceLabel): array
         @libxml_disable_entity_loader(true);
     }
     $prev = libxml_use_internal_errors(true);
-    $xml = simplexml_load_string($xmlRaw);
+    // LIBXML_NONET verbietet dem Parser jeden Netzwerkzugriff beim Auflösen
+    // externer Entities (XXE/SSRF über einen manipulierten Feed).
+    $xml = simplexml_load_string($xmlRaw, 'SimpleXMLElement', LIBXML_NONET);
     libxml_use_internal_errors($prev);
 
     if ($xml === false) {
@@ -139,8 +167,10 @@ function parseFeed(string $xmlRaw, string $sourceLabel): array
     return $items;
 }
 
+// is_string(): ?source[]=… würde sonst ein Array liefern und PHP 8 beim
+// Array-Zugriff mit einem TypeError abbrechen lassen.
 $source = $_GET['source'] ?? '';
-if (!isset(SOURCES[$source])) {
+if (!is_string($source) || !isset(SOURCES[$source])) {
     http_response_code(400);
     respond([], 'invalid_source');
 }
