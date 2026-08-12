@@ -8,9 +8,11 @@ on:
   workflow_run:
     workflows: ["Build and Deploy to IONOS via SFTP/FTPS"]
     types: [completed]
-  # Täglich um 05:30 UTC (07:30 Berliner Zeit)
+  # Alle 6 Stunden. Der Test schlägt auch bei 5xx und bei nicht erreichbarer
+  # Seite fehl und dient damit zugleich als Verfügbarkeits- und
+  # Fehleralarmierung (M12) — GitHub benachrichtigt bei rotem Workflow.
   schedule:
-    - cron: '30 5 * * *'
+    - cron: '30 */6 * * *'
   workflow_dispatch:
     inputs:
       base:

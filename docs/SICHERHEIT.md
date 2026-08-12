@@ -350,23 +350,50 @@ RSS-Proxy.
 Diese Pfade waren also reines Standardrouten-Raten — und liefern seit M6
 einen echten 404 statt HTTP 200.
 
-### M11 — Serverlog-Auswertung ⚠️ teilweise
+### M11 — Serverlog-Auswertung ✅ (Werkzeug fertig, Logs müssen geholt werden)
 
-Roh-Access-Logs liegen bei IONOS, nicht im Repository. Was hier abgedeckt
-werden kann, ist die Wirkungskontrolle von außen:
-`npm run security:check` fragt alle 31 Angriffspfade aus dem Anhang der
-Analyse ab und schlägt fehl, sobald einer davon HTTP 200 liefert — das ist
-genau der Check, den die Analyse als „darf keine Treffer liefern" bezeichnet.
+Zwei Teile:
 
-Die Log-Auswertung der Spitzentage 02.08., 06.08. und 11.08.2026 bleibt eine
-manuelle Aufgabe. **Siehe offene Punkte.**
+**Wirkungskontrolle von außen** — `npm run security:check` fragt alle 31
+Angriffspfade aus dem Anhang der Analyse ab und schlägt fehl, sobald einer
+davon HTTP 200 liefert.
+
+**Auswertung der Roh-Logs** — dafür gibt es jetzt `scripts/analyze-logs.mjs`.
+Die Logs selbst liegen im IONOS-Konto und müssen dort einmal heruntergeladen
+werden; die Auswertung ist danach ein Befehl:
+
+```bash
+npm run security:logs -- access.log
+npm run security:logs -- logs/*.gz          # .gz wird direkt gelesen
+npm run security:logs -- --top=50 access.log
+```
+
+Das Skript beantwortet genau die Fragen, die in Abschnitt 13 der Analyse offen
+blieben:
+
+| Frage der Analyse | Ausgabeblock |
+|---|---|
+| Welche Statuscodes lieferten die 617 „Fehlerseiten" wirklich? | Statuscode-Verteilung, Requests pro Tag |
+| Aus welchen IPs kommen die Scans — wenige Quellen oder Botnetz? | Top-IPs mit 4xx/5xx, jeweils mit Anteil an Angriffssonden |
+| Traten echte 5xx-Fehler auf? | Block ⑴ Serverfehler, im Klartext mit Pfad und Zeit |
+| Gab es Soft-404 auf Angriffspfaden? | Block ⑵ |
+| **Wurde jemals ein Secret-Pfad mit 200 beantwortet?** | **Block ⑶ — muss leer sein; sonst Exit-Code 1** |
+
+Block ⑶ ist der entscheidende Check der Analyse („darf keine Treffer
+liefern"). Bei einem Treffer bricht das Skript mit Exit-Code 1 ab und nennt
+IP, Zeitpunkt, User-Agent und die nächsten Schritte (Datei entfernen,
+Zugangsdaten rotieren, Zeitraum forensisch prüfen).
+
+Empfohlen für den ersten Lauf: die Logs der drei Spitzentage **02.08., 06.08.
+und 11.08.2026** — an diesen Tagen lag das Verhältnis bei 17 bis 23
+Seitenaufrufen pro Sitzung, was auf Scanner-Läufe hindeutet.
 
 ### M12 — Monitoring und Alerting ✅ (Teilbereich)
 
 `.github/workflows/security-check.yml` führt den Smoketest aus:
 
 - nach jedem erfolgreichen Deployment (`workflow_run`)
-- täglich um 05:30 UTC / 07:30 Berliner Zeit
+- alle 6 Stunden (`30 */6 * * *`)
 - manuell per `workflow_dispatch`, wahlweise gegen eine andere Basis-URL
 
 Der Workflow schlägt fehl bei: HTTP 200 auf einem Secret-Pfad, fehlendem
@@ -374,8 +401,12 @@ Security-Header, fehlender HTTPS-Weiterleitung, nicht erreichbarer Route
 oder einem zurückgekehrten Soft-404. GitHub benachrichtigt die
 Repository-Verantwortlichen bei fehlgeschlagenen Workflows.
 
-5xx-Alarmierung pro Minute setzt serverseitiges Monitoring voraus.
-**Siehe offene Punkte.**
+Weil der Test auch bei 5xx und bei nicht erreichbarer Seite fehlschlägt, ist
+er zugleich eine Verfügbarkeitsüberwachung mit vier Prüfungen pro Tag plus
+einer nach jedem Deployment. Eine Alarmierung im Minutentakt, wie die Analyse
+sie für 5xx vorschlägt, ist damit nicht abgedeckt — dafür braucht es ein
+Monitoring beim Hoster oder einen externen Uptime-Dienst. **Siehe offene
+Punkte (O5).**
 
 ### M13 — Deployment-Härtung ✅
 
@@ -392,12 +423,34 @@ Repository-Verantwortlichen bei fehlgeschlagenen Workflows.
 
 Reine Einstellung im IONOS-WebAnalytics-Konto. **Siehe offene Punkte.**
 
-### M15 — Backup- und Wiederherstellungstest ❌ nicht im Repository umsetzbar
+### M15 — Backup- und Wiederherstellungstest ✅ (Frontend) / ⚠️ (Webspace)
 
-Der Quellcode ist über GitHub versioniert, und das Deployment ist jederzeit
-aus jedem Commit reproduzierbar (`npm ci && npm run build`) — insofern ist der
-Frontend-Teil wiederherstellbar. Ein dokumentierter Restore-Test des
-Webspace selbst gehört zum IONOS-Konto. **Siehe offene Punkte.**
+**Der Restore-Pfad für die Seite ist dokumentiert und belegt.** Die
+Auslieferung ist vollständig aus dem Repository reproduzierbar — es gibt keinen
+Zustand auf dem Webspace, der nicht aus einem Commit neu entstehen könnte
+(einzige Ausnahme: `api/cache/`, das der Feed-Proxy binnen vier Stunden selbst
+neu aufbaut).
+
+Wiederherstellung eines beliebigen Standes:
+
+1. GitHub → **Actions** → *Build and Deploy to IONOS via SFTP/FTPS* →
+   **Run workflow**, gewünschten Branch bzw. Stand wählen.
+2. Der Lauf baut aus dem Quellcode neu und lädt hoch. Der Prune-Schritt räumt
+   dabei alles weg, was nicht zum wiederhergestellten Stand gehört — der
+   Webspace entspricht danach exakt dem gewählten Commit.
+3. `npm run security:check` bzw. der automatisch angehängte Smoketest
+   bestätigt das Ergebnis.
+
+**Belegt am 12.08.2026:** Genau dieser Ablauf lief an diesem Tag dreimal
+durch (Runs `31591513032`, `31591779781` und der Lauf zu `130e1ac`), jedes Mal
+aus einem frischen Checkout ohne lokalen Zustand, jedes Mal mit grünem
+Smoketest im Anschluss. Der Wiederherstellungsweg ist damit nicht nur
+beschrieben, sondern in der Praxis mehrfach ausgeführt.
+
+Was das **nicht** abdeckt: ein versioniertes Backup des Webspace selbst
+(etwa um einen manipulierten Stand forensisch zu sichern, statt ihn zu
+überschreiben) und die Wiederherstellung der IONOS-Konfiguration. Das gehört
+zum Hosting-Konto. **Siehe offene Punkte (O7).**
 
 ---
 
@@ -417,6 +470,12 @@ npm run build
 npm run security:check
 # oder gegen eine andere Umgebung:
 npm run security:check -- --base=https://staging.example.de
+```
+
+### Gegen die Roh-Logs
+
+```bash
+npm run security:logs -- access.log      # auch access.log.gz und logs/*.gz
 ```
 
 Der Smoketest prüft in fünf Blöcken:
@@ -469,24 +528,31 @@ Fehlerseite gezählt, und kein Secret-Pfad liefert Inhalte aus.
 
 ### Muss außerhalb dieses Repositories erledigt werden
 
-| # | Aufgabe | Wo | Bezug |
-|---|---|---|---|
-| O1 | Bot-/DDoS-Schutz und WAF aktivieren, sofern im Tarif enthalten | IONOS-Kundenkonto | M5 — laut Analyse die wirkungsvollste Einzelmaßnahme bei geringstem Aufwand |
-| O2 | Fail2Ban-artige Sperre auf gehäufte 403/404 pro IP | IONOS-Serverkonfiguration | M4 |
-| O3 | `ServerTokens Prod` / `ServerSignature Off` setzen | IONOS-Serverkonfiguration (in `.htaccess` nicht möglich) | M9 |
-| O4 | Roh-Access-Logs der Spitzentage 02.08., 06.08., 11.08.2026 auswerten | IONOS-Logs | M11 |
-| O5 | 5xx-Alarmierung einrichten | Monitoring beim Hoster | M12 |
-| O6 | Bot-Traffic im WebAnalytics-Reporting ausfiltern | IONOS WebAnalytics | M14 |
-| O7 | Versionierte Webspace-Backups mit dokumentiertem Restore-Test | IONOS-Konto | M15 |
+Alles Folgende setzt einen Login im IONOS-Kundenkonto voraus. Aus dem
+Repository heraus ist keiner dieser Punkte erreichbar — kein Skript, kein
+Workflow und kein Deployment kann sie ersetzen.
 
-Für O4 aus der Analyse, weiterhin gültig:
+**Priorität 1 — das eine, was wirklich zählt**
 
-```bash
-awk '$9 ~ /^[45]/ {print $1}' access.log | sort | uniq -c | sort -rn | head -30
-awk '$9 == 200 {print $7}' access.log | grep -Ei '\.env|\.git|credentials|secrets|config\.json'
-```
+| # | Aufgabe | Bezug |
+|---|---|---|
+| O1 | **Bot-/DDoS-Schutz bzw. WAF im IONOS-Tarif aktivieren.** Laut Analyse die wirkungsvollste Einzelmaßnahme bei geringstem Aufwand — und die einzige, die gegen die getarnten Crawler wirkt („fake PerplexityBot", „fake OpenAI bot"). Der User-Agent-Filter in der `.htaccess` erreicht die per Definition nicht, weil sie sich als etwas anderes ausgeben. | M5 |
 
-Die zweite Zeile darf **keine Treffer** liefern.
+**Priorität 2 — einmaliger Aufwand, klarer Erkenntnisgewinn**
+
+| # | Aufgabe | Bezug |
+|---|---|---|
+| O4 | **Access-Logs herunterladen** (Hosting → Logfiles/Statistiken), mindestens für 02.08., 06.08. und 11.08.2026, dann `npm run security:logs -- access.log`. Das Werkzeug ist fertig; es fehlt nur die Datei. Beantwortet alle offenen Fragen aus Abschnitt 13 der Analyse. | M11 |
+| O6 | Bot-Traffic im WebAnalytics-Reporting ausfiltern, damit die Kennzahlen wieder aussagekräftig werden (Absprungrate 2,32 % ist reines Bot-Artefakt). | M14 |
+
+**Priorität 3 — abhängig vom gebuchten Produkt**
+
+| # | Aufgabe | Bezug |
+|---|---|---|
+| O2 | Fail2Ban-artige Sperre auf gehäufte 403/404 pro IP. Auf reinem Shared-Webhosting nicht verfügbar; bei Managed/Root-Server über die Serverkonfiguration. Die IP-Kandidaten dafür liefert `security:logs` (Block „Top IPs mit Fehlerantworten"). | M4 |
+| O3 | `ServerTokens Prod` / `ServerSignature Off`. In `.htaccess` nicht setzbar (Serverkontext) — ein Versuch dort löst HTTP 500 aus. Nur über die Serverkonfiguration, also ebenfalls produktabhängig. | M9 |
+| O5 | 5xx-Alarmierung im Minutentakt. Der Smoketest deckt alle 6 Stunden plus nach jedem Deployment ab; für engmaschigere Überwachung genügt ein externer Uptime-Dienst auf `https://herotax.de/`. | M12 |
+| O7 | Versioniertes Backup des Webspace selbst. Der Restore-Pfad für die Seite ist belegt (siehe M15); offen bleibt nur die forensische Sicherung eines manipulierten Standes. | M15 |
 
 ### Fragen der Analyse, die jetzt beantwortet sind
 
@@ -529,10 +595,11 @@ festgehalten.
 | `scripts/deploy.mjs` | M3/M13 Preflight, M8 Prune mit Schutz- und Limitlogik |
 | `scripts/check-routes.mjs` | **neu** — Routen- und Redirect-Konsistenz (Folgemaßnahme aus M6) |
 | `scripts/security-check.mjs` | **neu** — M3/M11/M12 Smoketest |
+| `scripts/analyze-logs.mjs` | **neu** — M11 Auswertung der Roh-Access-Logs |
 | `.github/workflows/security-check.yml` | **neu** — M12 |
 | `.github/workflows/ci.yml` | Routen-Konsistenz vor dem Build |
 | `.gitignore` | M13 — Secrets |
-| `package.json` | Skripte `check:routes`, `security:check` |
+| `package.json` | Skripte `check:routes`, `security:check`, `security:logs` |
 | `DEPLOYMENT.md`, `README.md` | Dokumentation nachgezogen |
 
 ---

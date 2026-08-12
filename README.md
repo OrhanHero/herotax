@@ -47,12 +47,13 @@ scripts/
   deploy.mjs             Dual-Engine IONOS SFTP/FTPS Auto-Deployment-Skript
   check-routes.mjs       Routen-Abgleich App.jsx ↔ .htaccess
   security-check.mjs     Sicherheits-Smoketest gegen die Live-Seite
+  analyze-logs.mjs       Auswertung der IONOS-Roh-Access-Logs
 docs/
   SICHERHEIT.md  Umsetzungsdoku der Sicherheitsanalyse vom 12.08.2026
 .github/
   workflows/
     deploy.yml           GitHub Actions Pipeline für automatische IONOS-Uploads
-    security-check.yml   täglicher Sicherheits-Smoketest
+    security-check.yml   Sicherheits-Smoketest (alle 6 Std. + nach jedem Deploy)
 ```
 
 ## Entwicklung
@@ -65,6 +66,7 @@ npm run preview          # Build lokal testen
 npm run lint             # Oxlint
 npm run check:routes     # Routen & 301-Weiterleitungen App.jsx ↔ .htaccess
 npm run security:check   # Sicherheits-Smoketest gegen die Live-Seite
+npm run security:logs -- access.log   # IONOS-Access-Logs auswerten
 ```
 
 > **Neue Seite anlegen?** Die Route muss in `src/App.jsx` **und**
@@ -82,8 +84,8 @@ Die Seite ist gegen automatisiertes Massenscanning gehärtet: WordPress- und
 Webshell-Pfade werden serverseitig mit 403 abgewiesen, Dotfiles und
 Konfigurationsdateien sind gesperrt, unbekannte Pfade liefern einen echten
 HTTP 404 statt stillschweigend die Startseite, und das Deployment bricht ab,
-wenn Secrets im Build landen. Ein täglicher Smoketest prüft das gegen die
-Live-Seite.
+wenn Secrets im Build landen. Ein Smoketest prüft das alle sechs Stunden und
+nach jedem Deployment gegen die Live-Seite.
 
 Was genau umgesetzt wurde, wie es geprüft wird und was beim Hoster offen
 bleibt, steht in [docs/SICHERHEIT.md](./docs/SICHERHEIT.md).
