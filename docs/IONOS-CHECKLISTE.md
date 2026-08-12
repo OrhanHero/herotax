@@ -24,26 +24,88 @@ hier steht, ist der Rest.
 
 ## Kurzfassung: was umzustellen ist
 
-Fünf Einstellungen, mehr nicht. Alles andere in diesem Dokument ist Prüfen
-und Auswerten.
+> **Wichtige Einschränkung, bevor Sie suchen.** Aus der Deployment-Konfiguration
+> (`access-5019090422.webspace-host.com`, Benutzer `su486213`) geht hervor:
+> herotax.de läuft auf einem **IONOS Shared-Webhosting-Paket**, nicht auf einem
+> eigenen Server. Ein Teil der Maßnahmen aus dem Analysebericht setzt aber
+> Serverzugriff voraus und existiert bei Shared-Hosting schlicht nicht. Wer
+> danach im Portal sucht, sucht vergeblich.
 
-| # | Was umstellen | Von → Auf | Portal | Aufwand |
-|---|---|---|---|---|
-| **1** | **Bot-/DDoS-Schutz bzw. WAF** | aus → **ein** | `mein.ionos.de` | Minuten, ggf. kostenpflichtig |
-| **2** | **Bot-Filter im Reporting** | aus → **ein** | `analytics.ionos.de` | Minuten |
-| **3** | Logfile-Aufbewahrung | Standard → **maximal** | `mein.ionos.de` | Minuten |
-| **4** | Automatische Backups | prüfen → **ein, mit Aufbewahrung** | `mein.ionos.de` | Minuten |
-| **5** | `ServerTokens Prod` / Fail2Ban | aus → ein | nur Managed/Root-Server | entfällt bei Shared-Hosting |
+| # | Einstellung | Gibt es das hier? | Portal |
+|---|---|---|---|
+| **1** | Bot-/DDoS-Schutz bzw. WAF | **fraglich** — bei IONOS separat vermarktet, nicht Teil des Standard-Webhostings | `mein.ionos.de` |
+| **2** | Bot-Filter im Reporting | wahrscheinlich | `analytics.ionos.de` |
+| **3** | Logfile-Zugriff und -Aufbewahrung | je nach Paket | `mein.ionos.de` |
+| **4** | Automatische Backups | je nach Paket | `mein.ionos.de` |
+| ~~5~~ | ~~Fail2Ban, `ServerTokens Prod`~~ | **nein — entfällt** | braucht Root-/Managed-Server |
 
-**Nummer 1 ist die einzige, die die Angriffsoberfläche verkleinert.** Die
-übrigen vier verbessern, was Sie sehen und wiederherstellen können — sie
-wehren nichts ab.
+**Was daraus folgt:** Auf Shared-Hosting ist die Härtung in
+`public/.htaccess` weitgehend die **Obergrenze** dessen, was sich an dieser
+Stelle erreichen lässt. Sie ist umgesetzt und live nachgemessen. Alles
+darüber hinaus — echtes Rate-Limiting, IP-Sperren, Erkennung gefälschter
+Crawler — braucht eine Instanz **vor** dem Webspace. Siehe Teil C.
 
-Was **nicht** umzustellen ist: alles am Webspace selbst. Die Härtung liegt in
-`public/.htaccess` und wird bei jedem Deployment automatisch mit ausgeliefert.
-Dateien auf dem Webspace bitte **nicht** von Hand ändern — der Prune-Schritt
-des Deployments setzt sie beim nächsten Lauf ohnehin auf den Repository-Stand
-zurück.
+### Das in einer Nachricht klären
+
+Statt im Portal zu suchen, ist der schnellste Weg eine Frage an den
+IONOS-Support. Vorschlag zum Kopieren:
+
+> Guten Tag,
+>
+> für meinen Webhosting-Vertrag zur Domain herotax.de (Webspace
+> `access-5019090422.webspace-host.com`) bitte ich um Auskunft zu vier
+> Punkten:
+>
+> 1. Ist in meinem Tarif ein Bot-Schutz, DDoS-Schutz oder eine Web
+>    Application Firewall enthalten oder zubuchbar? Falls zubuchbar: welches
+>    Produkt und zu welchem Preis?
+> 2. Kann ich die Roh-Access-Logs des Webspace herunterladen? Wenn ja, wo,
+>    und wie lange werden sie vorgehalten? Lässt sich die Aufbewahrungsdauer
+>    verlängern?
+> 3. Gibt es automatische Backups des Webspace, und wie viele Stände werden
+>    wie lange aufbewahrt?
+> 4. Lässt sich Bot-/Robot-Traffic in IONOS WebAnalytics aus den Berichten
+>    herausfiltern?
+>
+> Hintergrund ist eine Sicherheitsauswertung, bei der umfangreiches
+> automatisiertes Scanning festgestellt wurde.
+>
+> Vielen Dank
+
+Die Antwort darauf entscheidet, ob Teil A überhaupt etwas hergibt — und ob
+Teil C nötig wird.
+
+---
+
+## Teil C — wenn es die Einstellungen nicht gibt
+
+Das ist der wahrscheinliche Fall. Dann bleibt eine Möglichkeit, und die
+funktioniert unabhängig von IONOS: **einen Dienst vor die Domain schalten.**
+
+**Cloudflare (kostenloser Tarif) deckt in einem Zug ab:**
+
+| Offener Punkt | Was Cloudflare liefert |
+|---|---|
+| O1 — WAF/Bot-Schutz (M5) | Bot-Erkennung inkl. Verifikation, ob eine IP wirklich zu Google/OpenAI/Perplexity gehört — genau das, was gegen die „fake"-Crawler fehlt |
+| O2 — Rate-Limiting/IP-Sperren (M4) | Rate-Limiting-Regeln, IP- und Länder-Sperren |
+| O5 — Alarmierung (M12) | Verfügbarkeits- und Fehlerbenachrichtigungen |
+| O4 — Statuscodes (M11) | Analytics **mit** HTTP-Statuscodes und Herkunftsländern — also genau das, was IONOS WebAnalytics prinzipiell nicht zeigt |
+
+**Was es kostet:** nichts im Basistarif.
+
+**Was es bedeutet:** Die DNS-Verwaltung der Domain zieht zu Cloudflare um.
+Der Webspace bei IONOS bleibt unverändert, es ändert sich nur, wohin die
+Domain zeigt. Das ist ein überschaubarer, aber bewusster Schritt — er sollte
+entschieden und nicht nebenbei gemacht werden.
+
+**Was es nicht ändert:** Die Härtung in `public/.htaccess` bleibt in Kraft und
+wirkt weiter als zweite Schicht.
+
+Falls Cloudflare nicht gewünscht ist, ist das ebenfalls eine legitime
+Entscheidung. Dann gilt: Die Seite ist gehärtet, die Angriffe laufen ins
+Leere, und das Restrisiko liegt beim Grundrauschen des Scannings — das war
+in der Analyse mit MITTEL bewertet und ist durch die umgesetzten Maßnahmen
+gesunken.
 
 ---
 
