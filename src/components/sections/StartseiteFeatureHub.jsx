@@ -38,8 +38,8 @@ export default function StartseiteFeatureHub() {
     {
       href: "/eudi-wallet",
       icon: Wallet,
-      title: t("nav.eudiWallet"),
-      subtitle: "Stand, Zeitplan & Ausweis fürs Smartphone (eIDAS 2.0)",
+      title: t("nav.euKompass"),
+      subtitle: "EUDI-Wallet (eIDAS 2.0) & EU AI Act: Regeln, Strafen & Fristen",
       accent: "#6366F1",
       iconBg: "rgba(99, 102, 241, 0.1)",
       iconBorder: "rgba(99, 102, 241, 0.25)",
