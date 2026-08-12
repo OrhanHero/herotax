@@ -11,7 +11,10 @@ import AIImageOverlay from "../atoms/AIImageOverlay";
 const EUDIWalletSection = () => (
   <section className="py-24" style={{ borderTop: `1px solid ${T.lineSoft}` }} id="eudi-wallet">
     <div className="max-w-7xl mx-auto px-5 sm:px-8">
-      <Eyebrow index="03">EUDI-Wallet · Digitale Identität der EU</Eyebrow>
+      {/* Die 03 benennt den Bereich EU-Kompass, nicht nur den Wallet-Teil —
+          der AI Act weiter unten gehört dazu und führt deshalb keine
+          eigene Nummer. */}
+      <Eyebrow index="03">EU-Kompass · EUDI-Wallet & EU AI Act</Eyebrow>
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
         <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-tight max-w-2xl" style={{ ...fontDisplay, color: T.text }}>
           Ein Ausweis fürs Smartphone.
