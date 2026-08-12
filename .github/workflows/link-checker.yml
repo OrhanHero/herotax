@@ -17,10 +17,36 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
 
-      - name: Verify Official Government Links (HTTP 200 OK)
+      # Der Anspruch der Seite ist "jede Meldung mit Primärquelle" — ein toter
+      # Behördenlink ist damit ein inhaltlicher Fehler, kein Schönheitsfehler.
+      #
+      # --accept: 403 und 429 kommen bei Bundes- und Landesportalen regelmäßig
+      # vom Bot-Schutz, nicht von einem kaputten Link. Sie gelten deshalb als
+      # in Ordnung. 404 und 410 bedeuten dagegen wirklich "weg" — dann schlägt
+      # der Lauf fehl und GitHub benachrichtigt.
+      - name: Verify Official Government Links
         uses: lycheeverse/lychee-action@v2.3.0
         with:
-          args: --verbose --no-progress --max-redirects 5 './src/**/*.js' './src/**/*.jsx' './README.md' './DEPLOYMENT.md'
-          fail: false
+          args: >-
+            --verbose
+            --no-progress
+            --max-redirects 5
+            --max-retries 2
+            --timeout 20
+            --accept 200,206,301,302,303,307,308,403,429
+            --exclude-mail
+            './src/**/*.js'
+            './src/**/*.jsx'
+            './README.md'
+            './DEPLOYMENT.md'
+            './docs/**/*.md'
+          output: lychee-report.md
+          fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Läuft auch bei rotem Check, damit der Bericht im Actions-Tab sichtbar
+      # ist statt nur im Rohlog.
+      - name: Bericht in die Job-Zusammenfassung schreiben
+        if: always()
+        run: cat lychee-report.md >> "$GITHUB_STEP_SUMMARY" || true
