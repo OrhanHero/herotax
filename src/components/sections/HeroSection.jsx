@@ -87,11 +87,12 @@ const HeroSection = () => {
     <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-16 overflow-hidden bg-blueprint-grid">
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-full overflow-hidden">
         {/* Left Column: Display Headline & Copy
-            justify-center statt -between: seit der AI-Act-Block auf den
-            EU-Kompass umgezogen ist, füllt die Spalte die Radar-Höhe nicht
-            mehr aus — verteilt hätte es Badge, Headline und Copy weit
-            auseinandergerissen. */}
-        <div className="lg:col-span-7 space-y-5 flex flex-col justify-center max-w-full overflow-hidden">
+            justify-start: die Spalte ist seit dem Umzug des AI-Act-Blocks
+            deutlich kürzer als die Radar-Spalte. Zentriert liesse das oben
+            eine grosse Lücke, verteilt würde es Badge, Headline und Copy
+            auseinanderziehen — oben bündig stehen die beiden Badges links
+            und rechts wieder auf einer Linie. */}
+        <div className="lg:col-span-7 space-y-5 flex flex-col justify-start max-w-full overflow-hidden">
           {/* Parallel Eyebrow Badge Left: Live-Stand der Webseite */}
           <div className="flex items-center gap-3 max-w-full overflow-hidden">
             <SiteStatusBadge />
