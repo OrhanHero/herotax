@@ -24,6 +24,17 @@ jobs:
       # vom Bot-Schutz, nicht von einem kaputten Link. Sie gelten deshalb als
       # in Ordnung. 404 und 410 bedeuten dagegen wirklich "weg" — dann schlägt
       # der Lauf fehl und GitHub benachrichtigt.
+      #
+      # --exclude: zwei Hosts sind für automatisierte Prüfer grundsätzlich
+      # nicht erreichbar und würden den Check dauerhaft rot färben, ohne dass
+      # inhaltlich etwas kaputt wäre:
+      #   handelsregister.de     — bricht die Verbindung für Nicht-Browser ab
+      #   gesetze-im-internet.de — antwortet automatisierten Clients nicht
+      #                            innerhalb des Timeouts (2 Retries erfolglos)
+      # Beide werden im Lauf vom 12.08.2026 als einzige Auffälligkeiten
+      # gemeldet, obwohl die Seiten im Browser erreichbar sind. Ändert sich
+      # dort etwas, fällt es nur bei manueller Prüfung auf — siehe
+      # docs/SICHERHEIT.md, Abschnitt Inhaltsprüfung.
       - name: Verify Official Government Links
         uses: lycheeverse/lychee-action@v2.3.0
         with:
@@ -35,6 +46,8 @@ jobs:
             --timeout 20
             --accept 200,206,301,302,303,307,308,403,429
             --exclude-mail
+            --exclude '^https?://(www\.)?handelsregister\.de'
+            --exclude '^https?://(www\.)?gesetze-im-internet\.de'
             './src/**/*.js'
             './src/**/*.jsx'
             './README.md'

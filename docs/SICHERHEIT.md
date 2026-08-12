@@ -524,6 +524,53 @@ Fehlerseite gezählt, und kein Secret-Pfad liefert Inhalte aus.
 
 ---
 
+## 4b. Inhaltsprüfung (12.08.2026)
+
+Die Härtung durfte an den Inhalten nichts kaputt machen — insbesondere M6
+(echter 404 statt Soft-404) hätte jeden internen Link zerlegt, der auf keine
+echte Route zeigt. Geprüft wurde deshalb:
+
+| Prüfung | Werkzeug | Ergebnis |
+|---|---|---|
+| Interne Links → echte Routen | Abgleich gegen `collectRoutes()` | ✅ alle auflösbar |
+| Navigation (Header, Footer, Feature-Hub) | Codeanalyse | ✅ alle 10 Routen erreichbar |
+| Übersetzungen de/en/tr/ar/ku | Schlüsselabgleich gegen `de.json` | ✅ 46/46 in allen fünf Sprachen |
+| Externe Quellenlinks | `lycheeverse/lychee-action` | ✅ 125/134 bestätigt, 0 tote Links |
+
+**Zu den Übersetzungen:** `hero.title2pre` ist im Türkischen bewusst leer.
+Türkisch bildet die Beziehung mit einer Postposition („Berlin için"), ein
+vorangestelltes „für" gibt es dort nicht. Fünf englische Werte sind
+wortgleich mit dem Deutschen — es handelt sich um Eigennamen und Marken
+(„Tools", „HERO Live", „· Made in Berlin"). Beides ist korrekt und kein
+Übersetzungsrückstand.
+
+**Zu den Links — der eigentliche Befund:** Der Workflow
+`.github/workflows/link-checker.yml` lief bis zum 12.08.2026 mit `fail: false`
+und meldete deshalb **immer** „success", auch wenn sämtliche geprüften Links
+tot gewesen wären. Für eine Seite, deren Anspruch „jede Meldung mit
+Primärquelle" ist, war das eine Attrappe: Die neun umgezogenen
+berlin.de-Wahlamt-Links, die in `58c516f` korrigiert wurden, hat nicht dieser
+Check gefunden.
+
+Seit `70263ab` schlägt der Lauf bei 404/410 fehl. Der erste scharfe Lauf
+ergab bei 134 geprüften Links **keinen einzigen toten Link**. Die drei
+gemeldeten Auffälligkeiten waren Artefakte des Bot-Schutzes der Zielseiten,
+nicht defekte Inhalte:
+
+| Ziel | Meldung | Bewertung |
+|---|---|---|
+| `gesetze-im-internet.de/ustg_1980/__19.html` | Timeout | antwortet automatisierten Clients nicht |
+| `gesetze-im-internet.de/ao_1977/__88.html` | Timeout | dito |
+| `handelsregister.de` | Netzwerkfehler | bricht die Verbindung für Nicht-Browser ab |
+
+Beide Hosts sind jetzt vom automatischen Check ausgenommen — ein dauerhaft
+roter Check wäre genauso wertlos wie der dauerhaft grüne davor. **Diese drei
+Links müssen dafür gelegentlich von Hand im Browser geprüft werden**; sie
+stehen in `src/data/articles.js` (§ 19 UStG, § 88 AO) und `src/data/guide.js`
+(Handelsregister).
+
+---
+
 ## 5. Offene Punkte
 
 ### Muss außerhalb dieses Repositories erledigt werden
