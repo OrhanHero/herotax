@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
-import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
+import SiteStatusBadge from "../atoms/SiteStatusBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
@@ -93,9 +93,9 @@ const HeroSection = () => {
             mehr aus — verteilt hätte es Badge, Headline und Copy weit
             auseinandergerissen. */}
         <div className="lg:col-span-7 space-y-5 flex flex-col justify-center max-w-full overflow-hidden">
-          {/* Parallel Eyebrow Badge Left */}
+          {/* Parallel Eyebrow Badge Left: Live-Stand der Webseite */}
           <div className="flex items-center gap-3 max-w-full overflow-hidden">
-            <BrandenburgerTorBadge label="BERLIN METROPOL STEUER-SCHUTZSCHILD" />
+            <SiteStatusBadge />
           </div>
 
           <h1
