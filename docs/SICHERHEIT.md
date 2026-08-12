@@ -743,7 +743,64 @@ festgehalten.
 
 ---
 
-## 7. Restrisiko
+## 7. Abschlussbewertung — ist die Seite sicher genug?
+
+**Ja.** Stand 12.08.2026, nach Umsetzung der Maßnahmen und bewusster
+Entscheidung gegen ein kostenpflichtiges CDN/WAF.
+
+Die Begründung liegt nicht in der Zahl der abgewehrten Angriffe, sondern in
+der Angriffsfläche selbst:
+
+| Angriffsziel | Erreichbar? | Begründung |
+|---|---|---|
+| Zugangsdaten stehlen | **Nein** | Keine auf dem Webspace. Deploy-Preflight bricht ab, falls welche in den Build geraten; `.htaccess` weist sie zusätzlich mit 403 ab (live nachgemessen) |
+| Seite verändern, Webshell ablegen | **Nein** | Kein Schreibweg über das Web: kein Upload, kein Formular, kein CMS, keine Datenbank. Schreibzugriff ausschließlich per SFTP |
+| Anwendung ausnutzen | **Nein** | Einziger serverseitiger Code ist ein lesender RSS-Proxy mit fest verdrahteten Quellen, ohne `?url=`-Parameter, mit `LIBXML_NONET` |
+| XSS einschleusen | **Nein** | Kein `dangerouslySetInnerHTML`, kein `eval`, kein `innerHTML`. React maskiert alle Inhalte; `excerpt()` entfernt Tags zusätzlich serverseitig |
+| Konten übernehmen | **Nein** | Es gibt keine Konten, keine Anmeldung, keine personenbezogenen Nutzerdaten |
+| Verfügbarkeit angreifen (DDoS) | **Ja, theoretisch** | Ohne CDN nicht abgefedert. Verfügbarkeits-, kein Vertraulichkeitsproblem |
+
+**Der entscheidende Punkt:** Was die 617 Angriffsversuche suchten, existiert
+hier nicht. Sie suchten WordPress — es gibt keins. Sie suchten `.env` und
+`.git` — die lagen nie im Web-Root. Sie suchten Webshells auf bereits
+kompromittierten Servern — dieser ist keiner. Die Härtung hat diese Versuche
+zusätzlich mit 403/404 abgeschnitten, aber sie wären auch vorher ins Leere
+gelaufen. Was die Härtung real verändert hat, ist der Soft-404 (M6), die
+fehlende HTTPS-Erzwingung (M9) und die 107 verwaisten Bundles (M8) — drei
+echte Fehler, die jetzt behoben sind.
+
+**Was CDN Pro zusätzlich gebracht hätte:** Die Scans wären früher abgeblockt
+worden, die gefälschten Crawler erkannt, DDoS abgefedert. Das ist zusätzliche
+Tiefe — kein fehlendes Schloss. Der Verzicht ist fachlich vertretbar.
+
+### Die zwei verbleibenden Restrisiken
+
+Beide sind kostenlos zu schließen und wiegen schwerer als alles, was ein WAF
+adressiert hätte:
+
+| # | Risiko | Maßnahme |
+|---|---|---|
+| **O8** | SFTP-Benutzername und Host stehen in der öffentlichen Git-Historie. Ohne Rate-Limiting sind gezielte Passwortversuche möglich — und SFTP ist der **einzige** Weg, auf dem jemand diese Seite verändern könnte. | **SFTP-Passwort ändern**, GitHub-Secret `SFTP_URL` aktualisieren |
+| **O9** | Eine Domain im Konto hat kein SSL-Zertifikat. `public/.htaccess` sendet HSTS mit `includeSubDomains; preload` — eine betroffene Subdomain wäre nicht „unsicher erreichbar", sondern für ein Jahr **gar nicht erreichbar**. | Zertifikat zuweisen bzw. prüfen, welche Domain betroffen ist |
+
+### Was laufend weiterläuft, ohne Zutun
+
+- Sicherheits-Smoketest alle 6 Stunden und nach jedem Deployment; schlägt an,
+  sobald ein Secret-Pfad 200 liefert, ein Header fehlt oder die Seite nicht
+  erreichbar ist
+- Deploy-Preflight verhindert, dass Secrets ins Web-Root gelangen
+- Prune entfernt Reste alter Deployments
+- Link-Checker meldet tote Behördenquellen
+- Routen-Konsistenzprüfung verhindert, dass neue Seiten live 404 liefern
+
+**Damit ist das Thema abgeschlossen.** Neu zu bewerten wäre es erst, wenn die
+Seite eine Anmeldung, ein Formular mit Datenverarbeitung, einen Upload oder
+eine Datenbank bekommt. Jede dieser Änderungen verschiebt die Bewertung
+grundlegend — dann ist eine neue Betrachtung fällig.
+
+---
+
+## 8. Restrisiko gegenüber der Ausgangsbewertung
 
 Die Analyse bewertete das Gesamtrisiko als **MITTEL**, mit R1 (Offenlegung von
 Secrets durch fehlkonfiguriertes Deployment) als einzigem Einzelrisiko der
