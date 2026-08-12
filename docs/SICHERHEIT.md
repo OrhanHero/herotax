@@ -624,46 +624,51 @@ Workflow und kein Deployment kann sie ersetzen.
 
 | # | Aufgabe | Bezug |
 |---|---|---|
-| O1 | **WAF beschaffen — Weg geklärt, Eignung offen.** Nicht über „Sicherheitslösungen", sondern über **IONOS CDN Pro**, das laut Anbieter eine Web Application Firewall enthält. Vor einer Buchung ist eine Frage zu klären, siehe unten. | M5 |
+| O1 | **CDN Pro buchen** (Hosting → CDN-Übersicht). Enthält WAF, erweiterte Bot-Abwehr und DDoS-Schutz. Klare Empfehlung. | M5 |
 
-> **Zwei Korrekturen zum Zwischenstand vom 12.08.2026.**
+> **Aufgelöst am 12.08.2026: IONOS CDN powered by Cloudflare.**
 >
-> Der Bereich „Sicherheitslösungen" im Kundenkonto bietet für diesen Vertrag
-> nur SSL-Zertifikate, einen Malware-Datei-Scan, E-Mail-Spam-/Virenschutz und
-> Rechtstexte — dort ist **kein** WAF zu finden. Daraus wurde zunächst
-> geschlossen, IONOS biete generell keinen an. **Das war falsch:** IONOS führt
-> eine WAF als Bestandteil von **CDN Pro** sowie im Cloud- und
-> Managed-Security-Umfeld. Der Weg führt also über die CDN-Verwaltung des
-> Hosting-Vertrags, nicht über die Sicherheitslösungen.
+> Der Weg führt nicht über „Sicherheitslösungen" (dort gibt es nur SSL,
+> Malware-Dateiscan, E-Mail-Schutz und Rechtstexte), sondern über die
+> **CDN-Übersicht des Hosting-Vertrags**. IONOS verkauft dort Cloudflare
+> weiter — der vorgeschaltete Dienst, der zwischenzeitlich als externer Umweg
+> geplant war, ist direkt beim Hoster buchbar. Ein DNS-Umzug zu einem
+> Fremdanbieter entfällt damit.
 >
-> **Vor einer Buchung zu klären — daran hängt alles:** Liefert CDN Pro
-> `herotax.de` **selbst** aus (Apex-Domain), oder nur eine Subdomain? Der
-> Hinweistext beim Basic-CDN spricht davon, Inhalte müssten „über die
-> verwendete Subdomain" verfügbar sein. Trifft dasselbe Modell auf Pro zu,
-> läuft die Hauptdomain weiter direkt zum Webspace — und genau dort schlagen
-> die Angriffe auf (`/wp-admin/install.php`, `/.env`, `/.git/config`). Eine
-> WAF vor einer Asset-Subdomain würde Bilder und JavaScript schützen, also
-> das, was niemand angreift. Sie wäre für diesen Zweck wirkungslos.
+> **CDN Pro** enthält laut Produktseite:
 >
-> - **Deckt CDN Pro die Hauptdomain ab** → das ist die Lösung für O1, ohne
->   DNS-Umzug zu einem Fremdanbieter. Dann entfällt Teil C der
->   [IONOS-CHECKLISTE.md](./IONOS-CHECKLISTE.md).
-> - **Nur Subdomain** → für diesen Zweck ungeeignet; dann bleibt der
->   vorgeschaltete Fremddienst aus Teil C.
+> | Merkmal | Deckt ab |
+> |---|---|
+> | Web Application Firewall | O1 / M5 |
+> | Erweiterte Bot-Abwehr | die gefälschten Crawler aus Abschnitt 5.2 — Cloudflare verifiziert, ob eine IP wirklich zum angegebenen Anbieter gehört; genau das kann ein User-Agent-Filter prinzipiell nicht |
+> | Under Attack Mode (DDoS) | Reserve für den Ernstfall |
+> | Unbegrenzte Bandbreite | die Scan-Last kostet nichts mehr |
 >
-> **In beiden Fällen zuerst die CSP anpassen.** `public/.htaccess` setzt
-> `default-src 'self'`. Werden Skripte, Stile oder Schriften über einen
-> anderen Hostnamen ausgeliefert, verweigert der Browser sie vollständig —
-> die Seite bliebe weiß. Die Anpassung muss **vor** der Aktivierung erfolgen.
+> Zusätzlich liefert Cloudflare **Analytics mit HTTP-Statuscodes und
+> Herkunftsländern** — also das, was IONOS WebAnalytics prinzipiell nicht
+> zeigt und weswegen O4 überhaupt auf der Liste steht. **Eine Buchung schließt
+> O1, O2 und O5 und entschärft O4.**
 >
-> **Der Malware-Scan bleibt kein Ersatz:** Er durchsucht Dateien auf dem
-> Webspace nach Schadcode, blockiert aber keine Anfrage. Für diese Seite ist
-> er zudem gegenstandslos — ein statischer Vite-Build ohne Upload-Funktion und
-> ohne CMS bietet keinen Weg, auf dem eine Webshell dort landen könnte.
+> **CDN Basic reicht nicht:** nur „einfache Bot-Abwehr", kein WAF, und laut
+> Beschreibung „für persönliche Hobby-Projekte ohne Unternehmensbezug".
 >
-> **Bis dahin gilt:** Die Härtung in `public/.htaccess` ist wirksam und live
-> nachgemessen. Alle beobachteten Angriffe laufen ins Leere; das verbleibende
-> Risiko ist das Grundrauschen des Scannings.
+> **Vor dem Bestellen prüfen:** dass `herotax.de` selbst abgedeckt ist und
+> nicht nur eine Subdomain — die Domain läuft als Zusatz-Domain auf dem
+> Vertrag. Bei einem Cloudflare-Reverse-Proxy ist das der Normalfall.
+>
+> **Zur Content-Security-Policy:** Die frühere Warnung gilt **nur**, falls
+> Inhalte über einen fremden Hostnamen ausgeliefert werden. Bleibt alles unter
+> `herotax.de` — der Regelfall beim Reverse Proxy —, ist an
+> `public/.htaccess` nichts zu ändern.
+>
+> **Nach der Aktivierung ausgeschaltet lassen:** Rocket Loader und
+> Auto-Minify verändern ausgeliefertes JavaScript nachträglich und vertragen
+> sich schlecht mit einem Vite-Build. Under Attack Mode nur im Ernstfall — er
+> zeigt jedem Besucher eine Zwischenseite.
+>
+> **Nach der Aktivierung prüfen:** `npm run security:check` laufen lassen. Ein
+> Proxy kann Security-Header verändern und Statuscodes umschreiben; beides
+> deckt der Smoketest auf.
 
 **Offen und dringend:**
 
