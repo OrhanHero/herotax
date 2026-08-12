@@ -245,18 +245,21 @@ zuvor hier vorgesehene statische Pflege entfällt.
 
 ### M8 — Altes Frontend-Bundle entfernen ✅
 
-**Korrektur zur Analyse.** Der Bericht empfiehlt, `/assets/index-*` zu
-entfernen. Das ist genau umgekehrt: dieses Projekt baut mit **Vite**, und Vite
-erzeugt `/assets/index-*.js`. Das ist der **aktuelle** Build. Das Muster
-`/static/js/main.*.js` stammt aus **Create React App** — eine Generation, die
-dieses Repository nicht mehr enthält. Der veraltete zweite Build ist also
-`/static/*`, nicht `/assets/*`.
+**Zur Empfehlung des Berichts.** Der Bericht rät, `/assets/index-*` zu
+entfernen. So pauschal geht das nicht: dieses Projekt baut mit **Vite**, und
+Vite erzeugt `/assets/index-*.js` — dort liegt auch der *aktuelle* Build. Das
+Muster `/static/js/main.*.js` stammt dagegen aus **Create React App**, einer
+Generation, die dieses Repository nicht mehr enthält.
+
+Zu entfernen war also nicht ein Verzeichnis, sondern alles darin, was nicht
+zum aktuellen Build gehört. Wie viel das war, steht weiter unten — es war
+deutlich mehr als ein zweiter Build.
 
 Ursache gefunden: `scripts/deploy.mjs` lud per `sftp.uploadDir()` nur hoch und
-löschte nie etwas. Dateien aus früheren Deployments blieben auf dem Webspace
-liegen — deshalb waren beide Bundle-Strukturen gleichzeitig erreichbar. (Der
-FTPS-Zweig rief zwar `clearWorkingDir()` auf, aber *vor* dem Upload und damit
-inklusive des Feed-Caches.)
+löschte nie etwas. Weil Vite jeden Build unter einem neuen Hash ablegt, blieb
+das Bundle jedes früheren Deployments dauerhaft auf dem Webspace abrufbar.
+(Der FTPS-Zweig rief zwar `clearWorkingDir()` auf, aber *vor* dem Upload und
+damit inklusive des Feed-Caches.)
 
 Das Deployment räumt jetzt nach dem Upload auf: Dateien, die auf dem Webspace
 liegen, aber nicht mehr Teil des Builds sind, werden gelöscht. Dabei gilt:
@@ -265,12 +268,42 @@ liegen, aber nicht mehr Teil des Builds sind, werden gelöscht. Dabei gilt:
 - jede Löschung wird einzeln protokolliert
 - Sicherheitsnetz: bei mehr als 200 zu löschenden Dateien bricht der
   Prune-Schritt ab, statt den Webspace zu leeren
-  (`DEPLOY_PRUNE_LIMIT` anpassbar)
+  (`DEPLOY_PRUNE_LIMIT` anpassbar). Der einmalige Nachholeffekt lag mit 107
+  Dateien darunter; ab jetzt räumt jedes Deployment nur noch seinen eigenen
+  Vorgänger ab, die Zahl bleibt also einstellig.
 - abschaltbar mit `DEPLOY_PRUNE=0`
 
-**Beim ersten Deployment nach dieser Änderung** verschwindet der alte
-CRA-Build. Das Log listet auf, was entfernt wurde — bitte einmal
-durchsehen.
+**Gemessenes Ergebnis des ersten Deployments nach dieser Änderung**
+(Run `31591513032`, 12.08.2026, 11:22 UTC):
+
+```
+🔎 Preflight ok — 44 Dateien, keine Secrets im Build.
+🧹 Prune: 107 verwaiste Datei(en) auf dem Webspace
+🎉 SFTP-Deployment erfolgreich abgeschlossen!
+```
+
+**107 verwaiste Dateien** — deutlich mehr als erwartet, und der Befund fällt
+anders aus als angenommen:
+
+- **Alle 107 waren `assets/index-*.js` bzw. `assets/index-*.css`.** Es lag
+  also nicht ein alter Build daneben, sondern **jeder Build seit dem Go-Live**.
+  Bei rund 55 Deployments (Push plus 4-Stunden-Cron) sammelte sich pro Lauf ein
+  neues Bundle-Paar an, ohne dass je etwas entfernt wurde.
+- Darunter exakt die beiden Dateien, die der Analyse als „zweite
+  Build-Struktur" aufgefallen waren: `assets/index-Df4WSlXO.js` (16 Aufrufe)
+  und `assets/index-Cf-4NrkT.js` (15 Aufrufe). Beide waren **Leichen aus
+  früheren Deployments**, nicht der aktuelle Build.
+- **`static/js/main.*.js` war nicht mehr auf dem Webspace.** Der Pfad aus
+  Abschnitt 8.3 der Analyse (97 Aufrufe) existiert im Zielverzeichnis nicht
+  mehr — er muss zwischen dem Analysezeitraum und dem 12.08.2026 verschwunden
+  sein oder wurde nie aus diesem Verzeichnis ausgeliefert. Woher er stammte,
+  lässt sich jetzt nicht mehr klären; für die Zukunft ist der Mechanismus, der
+  solche Reste liegen lässt, jedenfalls behoben.
+
+Damit ist die Aussage aus dem Analysebericht („veralteter zweiter JS-Build")
+im Kern bestätigt, die Ursache aber eine andere als vermutet: kein paralleles
+Framework, sondern ein Deployment ohne Aufräumen. Jedes dieser 107 Bundles war
+öffentlich abrufbar und enthielt den Frontend-Stand seines Deployment-Tages.
 
 Der zweite Teil von M8 — „prüfen, ob in den ausgelieferten JS-Bundles
 Schlüssel, Tokens oder interne Endpunkte im Klartext stehen" — ist für den
@@ -404,11 +437,27 @@ alle Angriffs-/Recon-Pfade werden mit 403 oder 404 beantwortet, alle legitimen
 Pfade (Routen, Assets, Schriften, Bilder, Feed-Proxy) weiterhin mit 200.
 Keine Fehlblockade.
 
-> **Noch nicht live verifiziert.** Die Umsetzungsumgebung hatte per
-> Netzwerk-Policy keinen Zugriff auf `herotax.de` — jeder ausgehende Aufruf
-> endete am Proxy, nicht am Server. Der erste echte Ist-Wert entsteht,
-> wenn `security-check.yml` nach dem nächsten Deployment läuft.
-> **Bitte diesen Lauf abwarten und das Ergebnis prüfen.**
+### Live-Verifikation
+
+Die Umsetzungsumgebung selbst hatte per Netzwerk-Policy keinen Zugriff auf
+`herotax.de` (jeder ausgehende Aufruf endete am Proxy). Die erste echte
+Messung stammt deshalb aus dem CI-Lauf `31591604949` vom 12.08.2026,
+11:23 UTC, unmittelbar nach dem Deployment von `be00c57`:
+
+```
+① Angriffs- und Recon-Pfade      31/31 → 403 oder 404, kein einziger 200
+② Echte Routen                   14/14 → 200
+②b /eudi-wallet                        → 301 /eu-kompass
+③ Soft-404-Test                   6/6 → 404   (vorher: 200)
+④ Security-Header                 6/6 vorhanden, kein X-Powered-By
+⑤ HTTPS-Erzwingung               http:// → 301 https://herotax.de/
+
+Ergebnis: 0 Fehler, 0 Warnungen — Prüfung bestanden.
+```
+
+Damit ist belegt: Die 617 Fehleraufrufe aus der Analyse laufen jetzt gegen
+403/404 statt gegen Soft-200, die Startseite wird nicht mehr fälschlich als
+Fehlerseite gezählt, und kein Secret-Pfad liefert Inhalte aus.
 
 ---
 
@@ -441,7 +490,7 @@ Die zweite Zeile darf **keine Treffer** liefern.
 |---|---|
 | Warum erscheint `/` 201-mal als Fehlerseite? | Soft-404: die SPA-Rewrite-Regel lieferte für jeden unbekannten Pfad `index.html` mit HTTP 200. Keine echten 5xx-Fehler. Mit M6 behoben. |
 | Existieren `/dashboard`, `/checkout`, `/signup`, `/pricing` als reale Routen? | Nein. Der Router kennt zehn Routen, keine davon. Reines Standardrouten-Raten. |
-| Stammt `/assets/index-*` aus einem alten Deployment? | Nein — umgekehrt. `/assets/index-*` ist der aktuelle Vite-Build, `/static/js/main.*.js` ist der veraltete Create-React-App-Build. Ursache: das Deploy-Skript löschte nie. Mit M8 behoben. |
+| Stammt `/assets/index-*` aus einem alten Deployment? | Teils ja. `/assets/index-*` ist das Namensmuster des aktuellen Vite-Builds, aber weil das Deploy-Skript nie löschte, lagen dort **107 Bundles früherer Deployments** daneben — darunter die beiden in der Analyse aufgefallenen Dateien. Alle wurden am 12.08.2026 entfernt (M8). `/static/js/main.*.js` war zu diesem Zeitpunkt nicht mehr vorhanden. |
 
 ### Noch offen aus den Analytics-Daten
 
@@ -496,7 +545,8 @@ sie es doch in den Build schaffen (Preflight), und der Server würde sie selbst
 dann nicht ausliefern (`.htaccess`). Der tägliche Smoketest schlägt Alarm,
 falls doch eine Lücke entsteht.
 
-R3 (Soft-404) und R4 (veralteter zweiter Build) sind vollständig beseitigt.
+R3 (Soft-404) und R4 (veralteter zweiter Build) sind vollständig beseitigt —
+beides am 12.08.2026 gegen die Live-Seite nachgemessen.
 R2, R7 und R8 sind gedämpft, aber nicht beseitigt — die verbleibende Wirkung
 hängt an O1/O2, also an der WAF beim Hoster. R5 war gegenstandslos (keine
 Login-Routen). R6 und R9 bleiben unverändert.
