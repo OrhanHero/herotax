@@ -22,21 +22,34 @@ import DSGVOPage from "./components/pages/DSGVOPage";
 import ImpressumPage from "./components/pages/ImpressumPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 
+/** Umbenannte Routen: alte Adresse → neue Adresse.
+    Auf herotax.de erledigt das die .htaccess per 301. Diese Karte greift
+    für den Dev-Server ohne Apache und für Verläufe, die noch die alte
+    Adresse im History-Stack haben. */
+const ROUTE_REDIRECTS = {
+  "/eudi-wallet": "/eu-kompass",
+};
+
+/** Aktuellen Pfad normalisiert lesen und umbenannte Routen auflösen. */
+const readPath = () => {
+  if (typeof window === "undefined") return "/";
+  const current = window.location.pathname.toLowerCase().replace(/\/$/, "") || "/";
+  const target = ROUTE_REDIRECTS[current];
+  if (!target) return current;
+  window.history.replaceState({}, "", target + window.location.search + window.location.hash);
+  return target;
+};
+
 export default function HeroTaxPlatform() {
   /* ── Sprach-State (global) ── */
   const [lang, setLang] = useState(readStoredLang);
   const [articles, setArticles] = useState(ARTICLES);
-  const [pathname, setPathname] = useState(
-    typeof window !== "undefined" ? window.location.pathname.toLowerCase().replace(/\/$/, "") || "/" : "/"
-  );
+  const [pathname, setPathname] = useState(readPath);
   const activeLang = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0];
 
   /* SPA Routing Event Listener */
   useEffect(() => {
-    const handlePopState = () => {
-      const current = typeof window !== "undefined" ? window.location.pathname.toLowerCase().replace(/\/$/, "") || "/" : "/";
-      setPathname(current);
-    };
+    const handlePopState = () => setPathname(readPath());
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
@@ -80,7 +93,7 @@ export default function HeroTaxPlatform() {
         return <KIPage />;
       case "/news":
         return <NewsHubPage />;
-      case "/eudi-wallet":
+      case "/eu-kompass":
         return <EUDIWalletPage />;
       case "/tools":
         return <ToolsPage />;

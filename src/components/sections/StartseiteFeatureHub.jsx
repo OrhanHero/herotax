@@ -36,7 +36,7 @@ export default function StartseiteFeatureHub() {
       cardBorder: "rgba(16, 185, 129, 0.2)",
     },
     {
-      href: "/eudi-wallet",
+      href: "/eu-kompass",
       icon: Wallet,
       title: t("nav.euKompass"),
       subtitle: "EUDI-Wallet (eIDAS 2.0) & EU AI Act: Regeln, Strafen & Fristen",

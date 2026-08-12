@@ -8,6 +8,11 @@ Options -Indexes
   # Schutz vor direktem Zugriff auf versteckte Dateien/Ordner (.git, .env, .htaccess)
   RewriteRule "(^|/)\." - [F]
 
+  # Umbenannte Route: /eudi-wallet heisst seit dem Zusammenlegen mit dem
+  # EU AI Act /eu-kompass. Dauerhaft (301), damit Lesezeichen und
+  # Suchmaschinen der neuen Adresse folgen. Muss vor der SPA-Regel stehen.
+  RewriteRule ^eudi-wallet/?$ /eu-kompass [R=301,L]
+
   # SPA-Routing: Alle unbekannten Routes zur index.html weiterleiten
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

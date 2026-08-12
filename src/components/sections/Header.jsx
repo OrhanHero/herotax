@@ -32,7 +32,7 @@ const Header = () => {
   const navLinks = [
     { href: "/ki", label: t("nav.ki") },
     { href: "/news", label: t("nav.news") },
-    { href: "/eudi-wallet", label: t("nav.euKompass") },
+    { href: "/eu-kompass", label: t("nav.euKompass") },
     { href: "/tools", label: t("nav.tools") },
     { href: "/live", label: t("nav.live") },
     { href: "/publikationen", label: t("nav.publications") },
