@@ -585,6 +585,9 @@ Alles Folgende setzt einen Login im IONOS-Kundenkonto voraus. Aus dem
 Repository heraus ist keiner dieser Punkte erreichbar — kein Skript, kein
 Workflow und kein Deployment kann sie ersetzen.
 
+**Als abarbeitbare Checkliste mit Portalen, Suchbegriffen und der Kurzfassung
+„was umzustellen ist" steht das in [IONOS-CHECKLISTE.md](./IONOS-CHECKLISTE.md).**
+
 **Priorität 1 — das eine, was wirklich zählt**
 
 | # | Aufgabe | Bezug |
