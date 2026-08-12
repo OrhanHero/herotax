@@ -21,9 +21,10 @@ jobs:
       # Behördenlink ist damit ein inhaltlicher Fehler, kein Schönheitsfehler.
       #
       # --accept: 403 und 429 kommen bei Bundes- und Landesportalen regelmäßig
-      # vom Bot-Schutz, nicht von einem kaputten Link. Sie gelten deshalb als
-      # in Ordnung. 404 und 410 bedeuten dagegen wirklich "weg" — dann schlägt
-      # der Lauf fehl und GitHub benachrichtigt.
+      # vom Bot-Schutz, nicht von einem kaputten Link (berlin.de antwortet
+      # unter Last mit 429). 999 ist LinkedIns hauseigener Bot-Block-Code.
+      # Alle drei gelten deshalb als in Ordnung. 404 und 410 bedeuten dagegen
+      # wirklich "weg" — dann schlägt der Lauf fehl und GitHub benachrichtigt.
       #
       # --exclude: zwei Hosts sind für automatisierte Prüfer grundsätzlich
       # nicht erreichbar und würden den Check dauerhaft rot färben, ohne dass
@@ -44,8 +45,7 @@ jobs:
             --max-redirects 5
             --max-retries 2
             --timeout 20
-            --accept 200,206,301,302,303,307,308,403,429
-            --exclude-mail
+            --accept 200,206,301,302,303,307,308,403,429,999
             --exclude '^https?://(www\.)?handelsregister\.de'
             --exclude '^https?://(www\.)?gesetze-im-internet\.de'
             './src/**/*.js'

@@ -552,22 +552,28 @@ Primärquelle" ist, war das eine Attrappe: Die neun umgezogenen
 berlin.de-Wahlamt-Links, die in `58c516f` korrigiert wurden, hat nicht dieser
 Check gefunden.
 
-Seit `70263ab` schlägt der Lauf bei 404/410 fehl. Der erste scharfe Lauf
-ergab bei 134 geprüften Links **keinen einzigen toten Link**. Die drei
-gemeldeten Auffälligkeiten waren Artefakte des Bot-Schutzes der Zielseiten,
-nicht defekte Inhalte:
+Seit `70263ab` schlägt der Lauf bei 404/410 fehl. Die scharfen Läufe vom
+12.08.2026 ergaben bei 134 geprüften Links **keinen einzigen toten Link**.
+Alle Auffälligkeiten waren Bot-Abwehr der Zielseiten, nicht defekte Inhalte:
 
-| Ziel | Meldung | Bewertung |
-|---|---|---|
-| `gesetze-im-internet.de/ustg_1980/__19.html` | Timeout | antwortet automatisierten Clients nicht |
-| `gesetze-im-internet.de/ao_1977/__88.html` | Timeout | dito |
-| `handelsregister.de` | Netzwerkfehler | bricht die Verbindung für Nicht-Browser ab |
+| Ziel | Meldung | Bewertung | Umgang |
+|---|---|---|---|
+| `gesetze-im-internet.de/ustg_1980/__19.html` | Timeout | antwortet automatisierten Clients nicht | ausgenommen |
+| `gesetze-im-internet.de/ao_1977/__88.html` | Timeout | dito | ausgenommen |
+| `handelsregister.de` | Netzwerkfehler | bricht die Verbindung für Nicht-Browser ab | ausgenommen |
+| `linkedin.com/in/orhankahraman/` | HTTP 999 | LinkedIns hauseigener Bot-Block-Code | als gültig akzeptiert |
+| drei `berlin.de`-Seiten | HTTP 429 | Rate-Limit unter Last, Seiten existieren | als gültig akzeptiert |
 
-Beide Hosts sind jetzt vom automatischen Check ausgenommen — ein dauerhaft
-roter Check wäre genauso wertlos wie der dauerhaft grüne davor. **Diese drei
-Links müssen dafür gelegentlich von Hand im Browser geprüft werden**; sie
-stehen in `src/data/articles.js` (§ 19 UStG, § 88 AO) und `src/data/guide.js`
-(Handelsregister).
+Der Unterschied zwischen den beiden Spalten ist beabsichtigt: Wo eine Antwort
+kommt (999, 429), wird der Link weiter geprüft und nur der Statuscode
+akzeptiert — verschwindet die Seite, meldet der Check das. Wo gar keine
+Antwort kommt (Timeout, Verbindungsabbruch), lässt sich nichts prüfen; diese
+Hosts sind ausgenommen, damit der Check nicht dauerhaft rot steht und damit
+wertlos wird wie der dauerhaft grüne davor.
+
+**Preis der Ausnahme:** Die drei ausgenommenen Links müssen gelegentlich von
+Hand im Browser geprüft werden. Sie stehen in `src/data/articles.js`
+(§ 19 UStG, § 88 AO) und `src/data/guide.js` (Handelsregister).
 
 ---
 
