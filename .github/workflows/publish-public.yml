@@ -75,25 +75,33 @@ jobs:
             exit 1
           fi
 
-          # Schreibrecht vorab messen. Ohne diese Pruefung laeuft der ganze
-          # Job durch — Checkout, Bereinigung, Build — und scheitert erst in
-          # der letzten Zeile am Push. Ein Token mit 'Contents: Read-only'
-          # kommt bis dahin naemlich anstandslos durch.
-          code=$(curl -sS -o /tmp/repo.json -w '%{http_code}' \
+          # Echte Schreibprobe, bevor der Job Zeit in Checkout und Build
+          # steckt und erst in der letzten Zeile am Push scheitert.
+          #
+          # Lesende Pruefungen taugen dafuer nicht: ${PUBLIC_REPO} ist
+          # oeffentlich, also liest es jedes Token — auch eines ohne jede
+          # Freigabe. Und 'permissions.push' aus der Repo-API beschreibt die
+          # Rolle des Kontos, nicht den Umfang des Tokens; beim Eigentuemer
+          # steht dort immer true. Nur ein echter Schreibzugriff ist
+          # aussagekraeftig: einen Ref anlegen und sofort wieder loeschen.
+          sha=$(git ls-remote "https://github.com/${PUBLIC_REPO}" "refs/heads/${PUBLIC_BRANCH}" | cut -f1)
+          probe=refs/heads/token-schreibprobe
+          code=$(curl -sS -o /tmp/probe.json -w '%{http_code}' -X POST \
                    -H "Authorization: Bearer $API_TOKEN_GITHUB" \
                    -H "Accept: application/vnd.github+json" \
-                   "https://api.github.com/repos/${PUBLIC_REPO}" || echo "000")
-          echo "GitHub-API meldet HTTP $code fuer ${PUBLIC_REPO}"
+                   -d "{\"ref\":\"${probe}\",\"sha\":\"${sha}\"}" \
+                   "https://api.github.com/repos/${PUBLIC_REPO}/git/refs" || echo "000")
 
-          if [ "$code" != "200" ]; then
-            echo "::error::Das Token kann ${PUBLIC_REPO} nicht einmal lesen (HTTP $code). Unter 'Repository access' muss das Repo ausgewaehlt sein."
-            exit 1
-          fi
-
-          push=$(jq -r '.permissions.push // "fehlt"' /tmp/repo.json)
-          echo "Schreibrecht des Tokens (permissions.push): $push"
-          if [ "$push" != "true" ]; then
-            echo "::error::Das Token darf ${PUBLIC_REPO} lesen, aber nicht beschreiben. Im Fine-grained PAT unter 'Repository permissions' muss 'Contents' auf 'Read and write' stehen — 'Read-only' reicht nicht. Danach das Secret PUBLIC_REPO_TOKEN neu hinterlegen."
+          if [ "$code" = "201" ]; then
+            curl -sS -o /dev/null -X DELETE \
+              -H "Authorization: Bearer $API_TOKEN_GITHUB" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${PUBLIC_REPO}/git/${probe}" || true
+            echo "Schreibprobe bestanden — das Token darf ${PUBLIC_REPO} beschreiben."
+          else
+            echo "Antwort der GitHub-API (HTTP $code):"
+            cat /tmp/probe.json || true
+            echo "::error::Das Token kann ${PUBLIC_REPO} nicht beschreiben (HTTP $code). Zu pruefen im Fine-grained PAT: 1. unter 'Repository access' muss ${PUBLIC_REPO} ausgewaehlt sein — Lesen klappt auch ohne, weil das Repo oeffentlich ist; 2. unter 'Repository permissions' muss 'Contents' auf 'Read and write' stehen. Danach das Secret PUBLIC_REPO_TOKEN neu hinterlegen."
             exit 1
           fi
 
