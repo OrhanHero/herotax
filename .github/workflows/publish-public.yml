@@ -75,6 +75,28 @@ jobs:
             exit 1
           fi
 
+          # Schreibrecht vorab messen. Ohne diese Pruefung laeuft der ganze
+          # Job durch — Checkout, Bereinigung, Build — und scheitert erst in
+          # der letzten Zeile am Push. Ein Token mit 'Contents: Read-only'
+          # kommt bis dahin naemlich anstandslos durch.
+          code=$(curl -sS -o /tmp/repo.json -w '%{http_code}' \
+                   -H "Authorization: Bearer $API_TOKEN_GITHUB" \
+                   -H "Accept: application/vnd.github+json" \
+                   "https://api.github.com/repos/${PUBLIC_REPO}" || echo "000")
+          echo "GitHub-API meldet HTTP $code fuer ${PUBLIC_REPO}"
+
+          if [ "$code" != "200" ]; then
+            echo "::error::Das Token kann ${PUBLIC_REPO} nicht einmal lesen (HTTP $code). Unter 'Repository access' muss das Repo ausgewaehlt sein."
+            exit 1
+          fi
+
+          push=$(jq -r '.permissions.push // "fehlt"' /tmp/repo.json)
+          echo "Schreibrecht des Tokens (permissions.push): $push"
+          if [ "$push" != "true" ]; then
+            echo "::error::Das Token darf ${PUBLIC_REPO} lesen, aber nicht beschreiben. Im Fine-grained PAT unter 'Repository permissions' muss 'Contents' auf 'Read and write' stehen — 'Read-only' reicht nicht. Danach das Secret PUBLIC_REPO_TOKEN neu hinterlegen."
+            exit 1
+          fi
+
       - name: Privaten Code auschecken
         uses: actions/checkout@v4
         with:
