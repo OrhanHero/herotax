@@ -4,6 +4,10 @@
 
 Das Projekt ist öffentlich, weil Transparenz Teil des Anspruchs ist: Wer über Steuern und Datenschutz schreibt, muss offenlegen, wie die eigene Plattform gebaut ist.
 
+> Dieses Repository enthält den Quellcode der Seite. Es wird automatisch aus
+> dem privaten Entwicklungs-Repository gespiegelt; die Auslieferung an den
+> Hoster und alles, was dazugehört, bleibt dort.
+
 ## Was die Seite macht
 
 - **News-Hub** — kuratierte Meldungen zu Steuern, KI-Regulierung und Digitalisierung, jede mit Primärquelle (BMF, BMDS, BSI, IHK Berlin, …); dazu ein DE-Ökosystem-Bereich mit kuratierter Verlinkung zu [DeutschlandGPT](https://www.deutschlandgpt.de/) (`DEUTSCHLANDGPT_LINKS` in `src/data/articles.js`)
@@ -22,7 +26,6 @@ Das Projekt ist öffentlich, weil Transparenz Teil des Anspruchs ist: Wer über 
 - [lucide-react](https://lucide.dev) für Icons
 - Kein Backend-Framework — Inhalte sind statische Daten (`src/data/`) plus ein schlanker PHP-Feed-Proxy für Live-News
 - [Oxlint](https://oxc.rs) für Linting
-- Dual-Engine IONOS SFTP/FTPS Deployment Engine (`scripts/deploy.mjs` + `ssh2-sftp-client` / `basic-ftp`)
 
 ## Projektstruktur
 
@@ -39,23 +42,11 @@ src/
   services/      articleService.js — Feed-Abruf, 4-Std-Caching & Live-Tracker
   config/        Konfiguration (Links, Kontakt, Design-Tokens)
 public/
-  .htaccess      Apache-Konfiguration & Härtung (einzige Quelle, → dist/)
   404.html       echte Fehlerseite (ErrorDocument 404/403)
   robots.txt     Crawler-Steuerung (Suchmaschinen ja, KI-Training nein)
   api/feed.php   Feed-Proxy für RSS-Quellen der Behörden (4-Std-Cache)
 scripts/
-  deploy.mjs             Dual-Engine IONOS SFTP/FTPS Auto-Deployment-Skript
-  check-routes.mjs       Routen-Abgleich App.jsx ↔ .htaccess
-  security-check.mjs     Sicherheits-Smoketest gegen die Live-Seite
-  analyze-logs.mjs       Auswertung der IONOS-Roh-Access-Logs
-docs/
-  SICHERHEIT.md  Umsetzungsdoku der Sicherheitsanalyse vom 12.08.2026
-.github/
-  workflows/
-    deploy.yml           GitHub Actions Pipeline für automatische IONOS-Uploads
-    security-check.yml   Sicherheits-Smoketest (alle 6 Std. + nach jedem Deploy)
-    publish-public.yml   Spiegelung des Quellcodes nach OrhanHero/herotax-code
-README.public.md         README des öffentlichen Spiegel-Repos (ohne Deploy-Interna)
+  sitemap.mjs    Vite-Plugin, erzeugt sitemap.xml beim Build aus dem Router
 ```
 
 ## Entwicklung
@@ -66,53 +57,19 @@ npm run dev              # Dev-Server (Vite)
 npm run build            # Produktions-Build nach /dist
 npm run preview          # Build lokal testen
 npm run lint             # Oxlint
-npm run check:routes     # Routen & 301-Weiterleitungen App.jsx ↔ .htaccess
-npm run security:check   # Sicherheits-Smoketest gegen die Live-Seite
-npm run security:logs -- access.log   # IONOS-Access-Logs auswerten
-npm run deploy:check     # SFTP-Verbindung & Zielverzeichnis prüfen (ohne Upload)
 ```
 
-> **Neue Seite anlegen?** Die Route muss in `src/App.jsx` **und**
-> `public/.htaccess` stehen — sonst liefert der Server dafür einen echten 404.
-> (Die `sitemap.xml` entsteht beim Build automatisch aus dem Router.)
-> `npm run check:routes` prüft das und läuft auch in der CI.
-
-## Deployment
-
-Details zum automatischen CI/CD-Deployment via GitHub Actions auf IONOS (Dual-Engine SFTP/FTPS, Secret `SFTP_URL`, `.htaccess`-SPA-Routing) stehen in [DEPLOYMENT.md](./DEPLOYMENT.md).
-
-## Öffentlicher Code-Spiegel
-
-Dieses Repo ist das **Deployment-Repo** und bleibt privat. Nach jedem
-erfolgreichen Deploy spiegelt `.github/workflows/publish-public.yml` den reinen
-Quellcode nach [OrhanHero/herotax-code](https://github.com/OrhanHero/herotax-code)
-— als einzelner Commit, ohne die Historie dieses Repos.
-
-Alles, was zum Deployment oder Betrieb gehört, bleibt hier: die Workflows,
-`scripts/deploy.mjs`, `check-routes.mjs`, `security-check.mjs`,
-`analyze-logs.mjs`, `public/.htaccess`, `DEPLOYMENT.md` und `docs/`. Die
-npm-Skripte und die SFTP-Abhängigkeiten werden aus der veröffentlichten
-`package.json` herausgelöst, das Lockfile wird passend neu erzeugt.
-
-> **Neue Datei, die zum Deployment gehört?** In `PRIVATE_PATHS` in
-> `publish-public.yml` eintragen — sonst landet sie öffentlich. Der Workflow
-> prüft die Liste vor dem Push ein zweites Mal und baut den öffentlichen Stand
-> zur Gegenprobe einmal komplett durch.
-
-Die öffentliche README steht in [README.public.md](./README.public.md) und
-ersetzt beim Spiegeln diese Datei.
+> Die `sitemap.xml` entsteht beim Build automatisch aus den Routen in
+> `src/App.jsx` — eine neue Seite landet dort ohne weiteres Zutun.
 
 ## Sicherheit
 
 Die Seite ist gegen automatisiertes Massenscanning gehärtet: WordPress- und
-Webshell-Pfade werden serverseitig mit 403 abgewiesen, Dotfiles und
-Konfigurationsdateien sind gesperrt, unbekannte Pfade liefern einen echten
-HTTP 404 statt stillschweigend die Startseite, und das Deployment bricht ab,
-wenn Secrets im Build landen. Ein Smoketest prüft das alle sechs Stunden und
-nach jedem Deployment gegen die Live-Seite.
-
-Was genau umgesetzt wurde, wie es geprüft wird und was beim Hoster offen
-bleibt, steht in [docs/SICHERHEIT.md](./docs/SICHERHEIT.md).
+Webshell-Pfade werden serverseitig abgewiesen, Dotfiles und
+Konfigurationsdateien sind gesperrt, und unbekannte Pfade liefern einen echten
+HTTP 404 statt stillschweigend die Startseite. Ein Smoketest prüft das
+regelmäßig gegen die Live-Seite. Die Serverkonfiguration und die Prüfwerkzeuge
+liegen im privaten Repository.
 
 ## Rechtlicher Hinweis
 

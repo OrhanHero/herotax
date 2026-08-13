@@ -1,13 +1,16 @@
 name: Publish Clean Code to Public Repo
 
 # Spiegelt den Quellcode aus diesem privaten Repo in das oeffentliche Repo
-# OrhanHero/herotax-code — ohne Deployment-Interna und ohne die Historie
-# des privaten Repos.
+# OrhanHero/herotax-code — ohne Deployment- und Betriebs-Interna und ohne
+# die Historie des privaten Repos.
 #
 # Wichtig: Das Zielrepo bekommt bewusst NUR den aktuellen Dateistand als
 # neuen Commit obendrauf. Die Historie des privaten Repos wird nie
-# uebertragen, sonst waeren die geloeschten Dateien (DEPLOYMENT.md,
-# deploy.mjs, .htaccess) ueber alte Commits weiterhin oeffentlich lesbar.
+# uebertragen, sonst waeren die entfernten Dateien ueber alte Commits
+# weiterhin oeffentlich lesbar.
+#
+# Was privat bleibt, steht in PRIVATE_PATHS. Eine neue Datei, die zum
+# Deployment oder Betrieb gehoert, gehoert dort eingetragen.
 
 on:
   workflow_run:
@@ -30,6 +33,26 @@ concurrency:
 env:
   PUBLIC_REPO: OrhanHero/herotax-code
   PUBLIC_BRANCH: main
+
+  # Bleibt im Deployment-Repo. Ein Eintrag pro Zeile, Pfad relativ zur
+  # Repo-Wurzel; Verzeichnisse wirken samt Inhalt.
+  PRIVATE_PATHS: |
+    .github
+    DEPLOYMENT.md
+    README.public.md
+    docs/IONOS-CHECKLISTE.md
+    docs/SICHERHEIT.md
+    public/.htaccess
+    scripts/analyze-logs.mjs
+    scripts/check-routes.mjs
+    scripts/deploy.mjs
+    scripts/security-check.mjs
+
+  # npm-Skripte, die auf die eben entfernten Dateien zeigen wuerden.
+  PRIVATE_NPM_SCRIPTS: check:routes security:check security:logs deploy:check
+
+  # Abhaengigkeiten, die es nur fuer scripts/deploy.mjs gibt.
+  PRIVATE_NPM_DEPS: basic-ftp ssh2-sftp-client
 
 jobs:
   publish-clean:
@@ -64,6 +87,11 @@ jobs:
           fetch-depth: 1
           path: public-repo
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Sauberen Stand zusammenstellen
         run: |
           set -euo pipefail
@@ -72,33 +100,114 @@ jobs:
           # Ohne .git — die Historie des privaten Repos bleibt privat.
           rm -rf clean/.git
 
-          # Deployment- und Server-Interna entfernen.
-          rm -rf clean/.github
-          rm -f  clean/scripts/deploy.mjs
-          rm -f  clean/public/.htaccess
-          rm -f  clean/DEPLOYMENT.md
+          # Deployment- und Betriebs-Interna entfernen.
+          while IFS= read -r p; do
+            [ -n "$p" ] || continue
+            rm -rf "clean/$p"
+            echo "  entfernt: $p"
+          done <<< "$PRIVATE_PATHS"
+
+      - name: README fuer das oeffentliche Repo einsetzen
+        run: |
+          set -euo pipefail
+          # Die private README beschreibt Hoster, Deploy-Pipeline und
+          # Betriebs-Skripte. Oeffentlich gilt README.public.md.
+          if [ -f private/README.public.md ]; then
+            cp private/README.public.md clean/README.md
+            echo "README.public.md als README.md uebernommen."
+          else
+            echo "::error::private/README.public.md fehlt. Ohne diese Datei wuerde die interne README mit Hoster- und Deploy-Details veroeffentlicht."
+            exit 1
+          fi
+
+      - name: package.json von Deployment-Anteilen befreien
+        working-directory: clean
+        run: |
+          set -euo pipefail
+          node -e '
+            const fs = require("fs");
+            const file = "package.json";
+            const pkg = JSON.parse(fs.readFileSync(file, "utf8"));
+            const drop = (obj, keys, label) => {
+              for (const k of keys) {
+                if (obj && k in obj) {
+                  delete obj[k];
+                  console.log(`  ${label} entfernt: ${k}`);
+                }
+              }
+            };
+            drop(pkg.scripts, process.env.PRIVATE_NPM_SCRIPTS.split(/\s+/).filter(Boolean), "npm-Skript");
+            drop(pkg.devDependencies, process.env.PRIVATE_NPM_DEPS.split(/\s+/).filter(Boolean), "devDependency");
+            drop(pkg.dependencies, process.env.PRIVATE_NPM_DEPS.split(/\s+/).filter(Boolean), "dependency");
+            fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n");
+          '
+          # Lockfile nachziehen, sonst bricht "npm ci" im oeffentlichen Repo
+          # mit "package.json and package-lock.json are not in sync" ab.
+          # Bestehende Aufloesungen bleiben gepinnt, es fallen nur die
+          # entfernten Pakete samt ihrer transitiven Deps heraus.
+          npm install --package-lock-only --ignore-scripts
 
       - name: Sicherheitsnetz — keine Interna im Upload
         run: |
           set -euo pipefail
           fail=0
-          for path in .github scripts/deploy.mjs public/.htaccess DEPLOYMENT.md .env; do
-            if [ -e "clean/$path" ]; then
-              echo "::error::'$path' liegt noch im zu veroeffentlichenden Stand."
+
+          while IFS= read -r p; do
+            [ -n "$p" ] || continue
+            if [ -e "clean/$p" ]; then
+              echo "::error::'$p' liegt noch im zu veroeffentlichenden Stand."
+              fail=1
+            fi
+          done <<< "$PRIVATE_PATHS"
+
+          # Schluessel- und Umgebungsdateien, die laut .gitignore nie im
+          # Repo landen duerfen — doppelt geprueft, weil ein Fund hier
+          # oeffentlich nicht mehr zurueckzuholen waere.
+          if find clean -type f \( -name '*.pem' -o -name '*.key' -o -name '*.p12' -o -name '*.pfx' -o -name '*.ppk' -o -name '.env*' -o -name '.npmrc' -o -name '.netrc' -o -name '.htpasswd' -o -name 'id_rsa' -o -name 'id_ed25519' \) | grep -q .; then
+            echo "::error::Schluessel- oder Umgebungsdatei im zu veroeffentlichenden Stand gefunden:"
+            find clean -type f \( -name '*.pem' -o -name '*.key' -o -name '*.p12' -o -name '*.pfx' -o -name '*.ppk' -o -name '.env*' -o -name '.npmrc' -o -name '.netrc' -o -name '.htpasswd' -o -name 'id_rsa' -o -name 'id_ed25519' \)
+            fail=1
+          fi
+
+          # Kein npm-Skript und keine Deploy-Abhaengigkeit darf uebrig sein.
+          for s in $PRIVATE_NPM_SCRIPTS; do
+            if node -p "Object.keys(require('./clean/package.json').scripts || {}).includes('$s')" | grep -q true; then
+              echo "::error::npm-Skript '$s' steht noch in der oeffentlichen package.json."
               fail=1
             fi
           done
-          # Dotfiles, die per .gitignore nie im Repo sein duerften.
-          if find clean -type f \( -name '*.pem' -o -name '*.key' -o -name '.env*' -o -name '.npmrc' -o -name '.netrc' \) | grep -q .; then
-            echo "::error::Schluessel- oder Umgebungsdatei im zu veroeffentlichenden Stand gefunden."
+          for d in $PRIVATE_NPM_DEPS; do
+            if grep -q "\"$d\"" clean/package.json clean/package-lock.json; then
+              echo "::error::Abhaengigkeit '$d' steht noch in der oeffentlichen package.json / package-lock.json."
+              fail=1
+            fi
+          done
+
+          # Die private README darf nicht durchrutschen.
+          if grep -qiE 'SFTP|FTPS|IONOS' clean/README.md; then
+            echo "::error::clean/README.md nennt noch Hoster- oder Deploy-Details."
             fail=1
           fi
+
           [ "$fail" -eq 0 ] || exit 1
+
+      - name: Gegenprobe — oeffentlicher Stand baut fuer sich allein
+        working-directory: clean
+        run: |
+          set -euo pipefail
+          # Beweist, dass im oeffentlichen Repo nichts fehlt, was der Build
+          # braucht (z. B. scripts/sitemap.mjs, das vite.config.js importiert).
+          npm ci
+          npm run lint
+          npm run build
+          rm -rf node_modules dist
 
       - name: Dateistand ins oeffentliche Repo uebernehmen
         run: |
           set -euo pipefail
-          # Ziel leerraeumen (ausser .git), damit privat geloeschte Dateien
+          # Reste der Gegenprobe, falls die je anders abbricht.
+          rm -rf clean/node_modules clean/dist
+          # Ziel leerraeumen (ausser .git), damit privat entfernte Dateien
           # auch oeffentlich verschwinden. Danach den sauberen Stand kopieren.
           find public-repo -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
           cp -a clean/. public-repo/
