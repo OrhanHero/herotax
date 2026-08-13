@@ -19,8 +19,8 @@ header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: public, max-age=900');
 
-// Maßnahme M2 (Analyse 12.08.2026): kein "*" mehr — nur die eigene Domain
-// darf den Proxy per XHR/fetch aus dem Browser ansprechen.
+// Kein "*" — nur die eigene Domain darf den Proxy per XHR/fetch aus dem
+// Browser ansprechen.
 const ALLOWED_ORIGINS = [
     'https://herotax.de',
     'https://www.herotax.de',

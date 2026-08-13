@@ -201,6 +201,14 @@ jobs:
             fail=1
           fi
 
+          # Verweise auf die interne Sicherheitsanalyse: ihre Massnahmen-IDs
+          # (M1, M2, ...) und ihr Datum. Der Begriff 'Sicherheitsanalyse' allein
+          # ist erlaubt — er kommt in den redaktionellen Artikeln vor.
+          if grep -rniE 'Ma(ss|ß)nahme M[0-9]|\(M[0-9]+\)|Analyse vom? [0-9]{2}\.[0-9]{2}\.[0-9]{4}' clean --exclude-dir=node_modules; then
+            echo "::error::Der zu veroeffentlichende Stand verweist noch auf die interne Sicherheitsanalyse (Treffer oben)."
+            fail=1
+          fi
+
           # 'IONOS' darf nur dort stehen, wo die Datenschutzerklaerung den
           # Hoster nennen muss — das ist rechtlich gefordert und steht ohnehin
           # oeffentlich auf der Seite.
