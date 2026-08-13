@@ -1,37 +1,120 @@
 name: Publish Clean Code to Public Repo
 
+# Spiegelt den Quellcode aus diesem privaten Repo in das oeffentliche Repo
+# OrhanHero/herotax-code — ohne Deployment-Interna und ohne die Historie
+# des privaten Repos.
+#
+# Wichtig: Das Zielrepo bekommt bewusst NUR den aktuellen Dateistand als
+# neuen Commit obendrauf. Die Historie des privaten Repos wird nie
+# uebertragen, sonst waeren die geloeschten Dateien (DEPLOYMENT.md,
+# deploy.mjs, .htaccess) ueber alte Commits weiterhin oeffentlich lesbar.
+
 on:
   workflow_run:
     workflows: ["Build and Deploy to IONOS via SFTP/FTPS"]
     types: [completed]
+    branches: [GoogleAntigravityIDE]
   workflow_dispatch:
+
+# Nur Lesen im eigenen Repo. Der Push ins oeffentliche Repo laeuft ueber
+# das PAT in PUBLIC_REPO_TOKEN, nicht ueber GITHUB_TOKEN — der gilt immer
+# nur fuer dieses eine Repository.
+permissions:
+  contents: read
+
+# Zwei parallele Laeufe wuerden sich beim Push gegenseitig abweisen.
+concurrency:
+  group: publish-public
+  cancel-in-progress: false
+
+env:
+  PUBLIC_REPO: OrhanHero/herotax-code
+  PUBLIC_BRANCH: main
 
 jobs:
   publish-clean:
-    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Private Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Delete Sensitive Files Directly
-        run: |
-          # Löscht die geschützten Daten direkt im aktuellen Ordner
-          rm -rf .github/
-          rm -f scripts/deploy.mjs
-          rm -f public/.htaccess
-          rm -f DEPLOYMENT.md
-
-      - name: Push to Public Repo
-        uses: cpina/github-action-push-to-another-repository@main
+      - name: Token pruefen
         env:
           API_TOKEN_GITHUB: ${{ secrets.PUBLIC_REPO_TOKEN }}
+        run: |
+          if [ -z "$API_TOKEN_GITHUB" ]; then
+            echo "::error::Secret PUBLIC_REPO_TOKEN fehlt oder ist leer. Ohne dieses Token kann nicht ins oeffentliche Repo gepusht werden (GITHUB_TOKEN gilt nur fuer dieses Repository). Anlegen: Fine-grained PAT mit 'Contents: Read and write' auf ${PUBLIC_REPO}, dann unter Settings > Secrets and variables > Actions als PUBLIC_REPO_TOKEN hinterlegen."
+            exit 1
+          fi
+
+      - name: Privaten Code auschecken
+        uses: actions/checkout@v4
         with:
-          # Wir nutzen einfach den aktuellen Standard-Ordner "."
-          source-directory: '.'
-          destination-github-username: 'OrhanHero'
-          destination-repository-name: 'herotax-code'
-          user-email: 'orhan.kahraman@iu-study.org'
-          target-branch: 'main'
+          # Bei workflow_run zeigt github.ref auf den Default-Branch, nicht
+          # auf den tatsaechlich deployten Stand — deshalb den head_sha des
+          # ausloesenden Laufs verwenden.
+          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
+          fetch-depth: 1
+          path: private
+
+      - name: Oeffentliches Repo auschecken
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PUBLIC_REPO }}
+          ref: ${{ env.PUBLIC_BRANCH }}
+          token: ${{ secrets.PUBLIC_REPO_TOKEN }}
+          fetch-depth: 1
+          path: public-repo
+
+      - name: Sauberen Stand zusammenstellen
+        run: |
+          set -euo pipefail
+          rm -rf clean && mkdir clean
+          cp -a private/. clean/
+          # Ohne .git — die Historie des privaten Repos bleibt privat.
+          rm -rf clean/.git
+
+          # Deployment- und Server-Interna entfernen.
+          rm -rf clean/.github
+          rm -f  clean/scripts/deploy.mjs
+          rm -f  clean/public/.htaccess
+          rm -f  clean/DEPLOYMENT.md
+
+      - name: Sicherheitsnetz — keine Interna im Upload
+        run: |
+          set -euo pipefail
+          fail=0
+          for path in .github scripts/deploy.mjs public/.htaccess DEPLOYMENT.md .env; do
+            if [ -e "clean/$path" ]; then
+              echo "::error::'$path' liegt noch im zu veroeffentlichenden Stand."
+              fail=1
+            fi
+          done
+          # Dotfiles, die per .gitignore nie im Repo sein duerften.
+          if find clean -type f \( -name '*.pem' -o -name '*.key' -o -name '.env*' -o -name '.npmrc' -o -name '.netrc' \) | grep -q .; then
+            echo "::error::Schluessel- oder Umgebungsdatei im zu veroeffentlichenden Stand gefunden."
+            fail=1
+          fi
+          [ "$fail" -eq 0 ] || exit 1
+
+      - name: Dateistand ins oeffentliche Repo uebernehmen
+        run: |
+          set -euo pipefail
+          # Ziel leerraeumen (ausser .git), damit privat geloeschte Dateien
+          # auch oeffentlich verschwinden. Danach den sauberen Stand kopieren.
+          find public-repo -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -a clean/. public-repo/
+
+      - name: Commit und Push
+        working-directory: public-repo
+        env:
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: |
+          set -euo pipefail
+          git config user.name  "herotax publish bot"
+          git config user.email "orhan.kahraman@iu-study.org"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Keine Aenderungen — nichts zu veroeffentlichen."
+            exit 0
+          fi
+          git commit -m "Sync Quellcode aus dem privaten Repo (${SOURCE_SHA::7})"
+          git push origin "HEAD:${PUBLIC_BRANCH}"
