@@ -1,9 +1,8 @@
 # robots.txt · herotax.de
 # ---------------------------------------------------------------------------
-# Maßnahme M7 der Sicherheitsanalyse vom 12.08.2026.
 # Hinweis: robots.txt ist eine Bitte, keine Sperre. Crawler, die sich als
 # "fake PerplexityBot" o. Ä. ausgeben, halten sich nicht daran — dafür greifen
-# die Regeln in public/.htaccess.
+# serverseitige Regeln.
 
 # ── Reguläre Suchmaschinen: ausdrücklich erwünscht ─────────────────────────
 User-agent: Googlebot

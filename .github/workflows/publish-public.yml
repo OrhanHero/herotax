@@ -40,6 +40,7 @@ env:
     .github
     DEPLOYMENT.md
     README.public.md
+    .gitignore.public
     docs/IONOS-CHECKLISTE.md
     docs/SICHERHEIT.md
     public/.htaccess
@@ -107,7 +108,7 @@ jobs:
             echo "  entfernt: $p"
           done <<< "$PRIVATE_PATHS"
 
-      - name: README fuer das oeffentliche Repo einsetzen
+      - name: Oeffentliche Fassungen von README und .gitignore einsetzen
         run: |
           set -euo pipefail
           # Die private README beschreibt Hoster, Deploy-Pipeline und
@@ -117,6 +118,16 @@ jobs:
             echo "README.public.md als README.md uebernommen."
           else
             echo "::error::private/README.public.md fehlt. Ohne diese Datei wuerde die interne README mit Hoster- und Deploy-Details veroeffentlicht."
+            exit 1
+          fi
+
+          # Die private .gitignore zaehlt die Dateitypen auf, mit denen die
+          # Auslieferung an den Hoster arbeitet — das ist Doku des Uploads.
+          if [ -f private/.gitignore.public ]; then
+            cp private/.gitignore.public clean/.gitignore
+            echo ".gitignore.public als .gitignore uebernommen."
+          else
+            echo "::error::private/.gitignore.public fehlt. Ohne diese Datei wuerde die interne .gitignore mit der Aufzaehlung der Zugangsdaten-Dateitypen veroeffentlicht."
             exit 1
           fi
 
@@ -183,9 +194,21 @@ jobs:
             fi
           done
 
-          # Die private README darf nicht durchrutschen.
-          if grep -qiE 'SFTP|FTPS|IONOS' clean/README.md; then
-            echo "::error::clean/README.md nennt noch Hoster- oder Deploy-Details."
+          # Kein Wort ueber die Auslieferung an den Hoster im veroeffentlichten
+          # Stand — weder in Code noch in Kommentaren oder Konfiguration.
+          if grep -rniE 'winscp|sftp|ftps|\.ppk|sftp-config|deploy\.mjs|DEPLOYMENT\.md|htaccess|\.htpasswd' clean --exclude-dir=node_modules; then
+            echo "::error::Der zu veroeffentlichende Stand dokumentiert noch den Upload zum Hoster (Treffer oben)."
+            fail=1
+          fi
+
+          # 'IONOS' darf nur dort stehen, wo die Datenschutzerklaerung den
+          # Hoster nennen muss — das ist rechtlich gefordert und steht ohnehin
+          # oeffentlich auf der Seite.
+          ionos_ok='clean/src/components/pages/DatenschutzPage.jsx'
+          ionos_hits=$(grep -rli 'ionos' clean --exclude-dir=node_modules | grep -vxF "$ionos_ok" || true)
+          if [ -n "$ionos_hits" ]; then
+            echo "::error::'IONOS' steht ausserhalb der Datenschutzerklaerung im zu veroeffentlichenden Stand:"
+            echo "$ionos_hits"
             fail=1
           fi
 

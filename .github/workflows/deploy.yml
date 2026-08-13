@@ -43,8 +43,9 @@ jobs:
       - name: SFTP-Verbindung und Zielverzeichnis prüfen
         run: node scripts/deploy.mjs --check
         env:
-          # Sicherer Zusammenbau aus den einzelnen Secrets für den Verbindungstest
-          SFTP_URL: sftp://${{ secrets.SFTP_USER }}:${{ secrets.SFTP_PASS }};fingerprint=ssh-ed25519-1gx2w8Rtv3wCgi7Jh8myf_KVd72cRQbow03UP8P095Q;x-name=${{ secrets.SFTP_HOST }};x-proxyport=0@${{ secrets.SFTP_HOST }}/${{ secrets.SFTP_PATH }}/
+          # Zusammenbau aus den einzelnen Secrets für den Verbindungstest.
+          # Format laut scripts/deploy.mjs: sftp://BENUTZER:PASSWORT@HOST/ZIELVERZEICHNIS/
+          SFTP_URL: sftp://${{ secrets.SFTP_USER }}:${{ secrets.SFTP_PASS }}@${{ secrets.SFTP_HOST }}/${{ secrets.SFTP_PATH }}/
 
   build-and-deploy:
     if: github.event_name != 'workflow_dispatch' || inputs.mode != 'check'
@@ -73,5 +74,6 @@ jobs:
       - name: Deploy to IONOS (SFTP/FTPS Auto-Connect Engine)
         run: node scripts/deploy.mjs
         env:
-          # Sicherer Zusammenbau aus den einzelnen Secrets für den echten Upload
-          SFTP_URL: sftp://${{ secrets.SFTP_USER }}:${{ secrets.SFTP_PASS }};fingerprint=ssh-ed25519-1gx2w8Rtv3wCgi7Jh8myf_KVd72cRQbow03UP8P095Q;x-name=${{ secrets.SFTP_HOST }};x-proxyport=0@${{ secrets.SFTP_HOST }}/${{ secrets.SFTP_PATH }}/
+          # Zusammenbau aus den einzelnen Secrets für den echten Upload.
+          # Format laut scripts/deploy.mjs: sftp://BENUTZER:PASSWORT@HOST/ZIELVERZEICHNIS/
+          SFTP_URL: sftp://${{ secrets.SFTP_USER }}:${{ secrets.SFTP_PASS }}@${{ secrets.SFTP_HOST }}/${{ secrets.SFTP_PATH }}/

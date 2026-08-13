@@ -23,7 +23,7 @@ import ImpressumPage from "./components/pages/ImpressumPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 
 /** Umbenannte Routen: alte Adresse → neue Adresse.
-    Auf herotax.de erledigt das die .htaccess per 301. Diese Karte greift
+    Auf herotax.de erledigt das der Server per 301. Diese Karte greift
     für den Dev-Server ohne Apache und für Verläufe, die noch die alte
     Adresse im History-Stack haben. */
 const ROUTE_REDIRECTS = {

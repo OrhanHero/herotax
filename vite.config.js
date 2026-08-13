@@ -7,9 +7,8 @@ import { sitemapPlugin } from './scripts/sitemap.mjs'
 export default defineConfig({
   plugins: [react(), tailwindcss(), sitemapPlugin()],
   define: {
-    /* Zeitpunkt des Builds. Der Deploy-Workflow baut bei jedem Push und
-       zusätzlich alle 4 Stunden per Cron, damit entspricht dieser Wert
-       dem Stand der ausgelieferten Webseite. */
+    /* Zeitpunkt des Builds — die Seite zeigt damit an, auf welchem Stand
+       die ausgelieferte Fassung ist. */
     __BUILD_TIME__: JSON.stringify(Date.now()),
   },
 })

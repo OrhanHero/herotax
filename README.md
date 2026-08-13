@@ -99,8 +99,18 @@ npm-Skripte und die SFTP-Abhängigkeiten werden aus der veröffentlichten
 > prüft die Liste vor dem Push ein zweites Mal und baut den öffentlichen Stand
 > zur Gegenprobe einmal komplett durch.
 
-Die öffentliche README steht in [README.public.md](./README.public.md) und
-ersetzt beim Spiegeln diese Datei.
+Auch der Wortlaut wird geprüft: Der veröffentlichte Stand darf `SFTP`, `FTPS`,
+`WinSCP`, `.htaccess` & Co. nirgends erwähnen — auch nicht in Kommentaren.
+`IONOS` ist nur in der Datenschutzerklärung erlaubt, wo der Hoster genannt
+werden muss.
+
+Zwei Dateien haben deshalb eine öffentliche Zweitfassung, die beim Spiegeln
+das Original ersetzt:
+
+| privat | öffentlich | Grund |
+|---|---|---|
+| `README.md` | [`README.public.md`](./README.public.md) | nennt Hoster, Pipeline und Betriebs-Skripte |
+| `.gitignore` | [`.gitignore.public`](./.gitignore.public) | zählt die Dateitypen der Zugangsdaten auf |
 
 ## Sicherheit
 
