@@ -18,6 +18,12 @@ on:
     types: [completed]
     branches: [GoogleAntigravityIDE]
   workflow_dispatch:
+    inputs:
+      reset_history:
+        description: 'Historie des oeffentlichen Repos verwerfen und mit einem einzigen sauberen Commit neu beginnen'
+        required: false
+        default: false
+        type: boolean
 
 # Nur Lesen im eigenen Repo. Der Push ins oeffentliche Repo laeuft ueber
 # das PAT in PUBLIC_REPO_TOKEN, nicht ueber GITHUB_TOKEN — der gilt immer
@@ -247,10 +253,25 @@ jobs:
         working-directory: public-repo
         env:
           SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          RESET_HISTORY: ${{ inputs.reset_history }}
         run: |
           set -euo pipefail
           git config user.name  "herotax publish bot"
-          git config user.email "orhan.kahraman@iu-study.org"
+          git config user.email "noreply@herotax.de"
+
+          if [ "$RESET_HISTORY" = "true" ]; then
+            # Einmal-Aktion: Die bisherige Historie des oeffentlichen Repos
+            # wird verworfen. Noetig, wenn dort einmal etwas gelandet ist, das
+            # ein spaeterer Commit zwar geloescht hat, 'git log' aber weiterhin
+            # zeigt — ein Loeschen im Dateibaum entfernt keine alten Objekte.
+            echo "::warning::Historie wird verworfen und durch einen einzelnen Commit ersetzt."
+            git checkout --orphan neustart
+            git add -A
+            git commit -m "Quellcode von herotax.de (Stand ${SOURCE_SHA::7})"
+            git push --force origin "HEAD:${PUBLIC_BRANCH}"
+            exit 0
+          fi
+
           git add -A
           if git diff --cached --quiet; then
             echo "Keine Aenderungen — nichts zu veroeffentlichen."
