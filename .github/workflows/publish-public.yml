@@ -16,21 +16,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Prepare Clean Directory
+      - name: Delete Sensitive Files Directly
         run: |
-          # Wir erstellen einen sauberen Workspace-Ordner ohne sensible Daten
-          mkdir ../clean-code
-          # Kopiere alle Dateien außer dem geheimen .github-Ordner und den Skripten
-          rsync -arv --exclude='.github' --exclude='scripts/deploy.mjs' --exclude='frontend/scripts/deploy.mjs' . ../clean-code/
+          # Löscht die geschützten Daten direkt im aktuellen Ordner
+          rm -rf .github/
+          rm -f scripts/deploy.mjs
+          rm -f public/.htaccess
+          rm -f DEPLOYMENT.md
 
       - name: Push to Public Repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PUBLIC_REPO_TOKEN }}
         with:
-          # Wir pushen nur den absolut sauberen, gefilterten Ordner!
-          source-directory: '../clean-code'
+          # Wir nutzen einfach den aktuellen Standard-Ordner "."
+          source-directory: '.'
           destination-github-username: 'OrhanHero'
-          destination-repository-name: 'herotax-code' # Für AIActEU hier 'AIActEU-code' eintragen
+          destination-repository-name: 'herotax-code'
           user-email: 'orhan.kahraman@iu-study.org'
           target-branch: 'main'
