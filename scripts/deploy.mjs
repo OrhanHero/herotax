@@ -81,18 +81,13 @@ if ((!server || !password) && raw && raw !== "sftp://:@//" && !raw.startsWith("s
 const CHECK_ONLY = process.env.DEPLOY_CHECK === "1" || process.argv.includes("--check");
 
 if (!server || !password) {
-  // Im Prüfmodus ist ein fehlendes Secret ein Fehlschlag, kein Grund zum
-  // Überspringen: Eine Prüfung, die nicht laufen konnte, darf nicht grün
-  // melden. Im Deploy-Modus bleibt das Überspringen richtig, damit Forks und
-  // Pull Requests ohne Secret nicht scheitern.
-  if (CHECK_ONLY) {
-    console.error("❌ Secret SFTP_URL fehlt oder ist unvollständig — es konnte nichts geprüft werden.");
-    console.error("   In GitHub unter Settings → Secrets and variables → Actions hinterlegen,");
-    console.error("   Format: sftp://BENUTZER:PASSWORT@HOST/ZIELVERZEICHNIS/");
-    process.exit(1);
-  }
-  console.log("⚠️ Secret SFTP_URL nicht gefunden. Deployment wird übersprungen.");
-  process.exit(0);
+  console.error("❌ FEHLER: Keine SFTP-Zugangsdaten in GitHub Secrets gefunden!");
+  console.error("   Bitte unter Repository Settings → Secrets and variables → Actions prüfen, dass folgende Secrets vorhanden sind:");
+  console.error("   • SFTP_USER (oder SFTP_URL)");
+  console.error("   • SFTP_PASS");
+  console.error("   • SFTP_HOST");
+  console.error("   • SFTP_PATH");
+  process.exit(1);
 }
 
 const distDir = path.resolve(__dirname, "../dist");
