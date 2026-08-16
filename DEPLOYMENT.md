@@ -15,7 +15,7 @@ So wird aktuell automatisch deployt:
 2. **GitHub Actions Workflow (.github/workflows/deploy.yml)**:
    - Führt automatisch `npm run build` aus.
    - Baut das Vite/React-Bundle in den `dist/`-Ordner.
-   - Lädt den Inhalt per `scripts/deploy.mjs` direkt auf den IONOS-Webspace hoch (verwendet das GitHub Secret `SFTP_URL` mit automatischer SFTP/FTPS Dual-Engine).
+   - Lädt den Inhalt per `scripts/deploy.mjs` direkt auf den IONOS-Webspace hoch (verwendet die GitHub Secrets `SFTP_USER`, `SFTP_PASS`, `SFTP_HOST`, `SFTP_PATH` mit automatischer SFTP/FTPS Dual-Engine).
 3. **Ergebnis live verifizieren** auf [herotax.de](https://herotax.de).
 4. **Sicherheits-Smoketest** (`.github/workflows/security-check.yml`) läuft
    automatisch nach jedem Deployment und alle 6 Stunden.
@@ -131,11 +131,13 @@ index-*.js/css     → "max-age=31536000" (1 Jahr, versioned)
 ### CI/CD mit GitHub Actions (IONOS Dual-Engine Deployment)
 
 #### 1. In GitHub Repository Secrets anlegen
-Vergib unter **Settings ➔ Secrets and variables ➔ Actions** das Secret:
-- **Name:** `SFTP_URL`
-- **Wert-Format:** `sftp://BENUTZERNAME:PASSWORT@HOST/ZIEL_ORDNER/`
-- **Beispiel IONOS:** `sftp://BENUTZER:PASSWORT@access-XXXXXXXXXX.webspace-host.com/herotax/`
-*(Sonderzeichen im Passwort wie `#` als `%23` kodieren, IONOS `;fingerprint=...` Filter läuft automatisch)*
+Vergib unter **Settings ➔ Secrets and variables ➔ Actions** die folgenden Secrets:
+- **`SFTP_USER`**: SFTP-Benutzername bei IONOS (z. B. `access-XXXXXXXXXX`)
+- **`SFTP_PASS`**: SFTP-Passwort bei IONOS
+- **`SFTP_HOST`**: SFTP-Server-Host (z. B. `access-XXXXXXXXXX.webspace-host.com` oder `herotax.de`)
+- **`SFTP_PATH`**: Zielverzeichnis der Domain bei IONOS (z. B. `/herotax`)
+
+*(Alternativ wird auch weiterhin ein zusammenhängendes `SFTP_URL` Secret im Format `sftp://BENUTZER:PASSWORT@HOST/ZIELVERZEICHNIS/` unterstützt).*
 
 #### 2. Funktionsweise
 - **Dual-Engine:** Versucht automatisch zuerst **SFTP (SSH Port 22)** und wechsle bei verschlossenen Ports nahtlos auf **FTPS (TLS Port 21)**.

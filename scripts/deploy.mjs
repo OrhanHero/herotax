@@ -28,19 +28,20 @@ if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.en
   raw = raw.slice(1, -1).trim();
 }
 
-let server = process.env.DIRECT_SERVER || "";
-let username = process.env.DIRECT_USERNAME || "";
-let password = process.env.DIRECT_PASSWORD || "";
+let server = (process.env.SFTP_HOST || process.env.DIRECT_SERVER || "").trim();
+let username = (process.env.SFTP_USER || process.env.DIRECT_USERNAME || "").trim();
+let password = (process.env.SFTP_PASS || process.env.DIRECT_PASSWORD || "").trim();
 let port = parseInt(process.env.DIRECT_PORT || "22", 10);
-// Zielverzeichnis der Domain laut IONOS (Domains & SSL → herotax.de → Ziel).
-// Greift nur, wenn SFTP_URL keinen Pfad mitbringt.
-let remoteDir = (process.env.DIRECT_DIR || "/herotax").replace(/\/+$/, "") || "/herotax";
+
+let rawPath = (process.env.SFTP_PATH || process.env.DIRECT_DIR || "/herotax").trim();
+let remoteDir = rawPath ? (rawPath.startsWith("/") ? rawPath : "/" + rawPath).replace(/\/+$/, "") || "/herotax" : "/herotax";
 
 function safeDecode(str) {
   try { return decodeURIComponent(str); } catch { return str; }
 }
 
-if (!server && raw) {
+// SFTP_URL als Fallback parsen, falls Einzel-Secrets (SFTP_HOST, SFTP_USER, SFTP_PASS) fehlen
+if ((!server || !password) && raw && raw !== "sftp://:@//" && !raw.startsWith("sftp://:@")) {
   let clean = raw.replace(/^(sftp|ftps|ftp):\/\//i, "");
   const lastAt = clean.lastIndexOf("@");
   if (lastAt !== -1) {
