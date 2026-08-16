@@ -92,6 +92,8 @@ const warn = (msg) => { warnings++; console.log(`  ⚠️  ${msg}`); };
 const ok = (msg) => console.log(`  ✅ ${msg}`);
 
 async function probe(url, redirect = "manual") {
+  // 150ms Pause zwischen Anfragen, um IONOS Rate-Limiting / IP-Sperren zu vermeiden
+  await new Promise((r) => setTimeout(r, 150));
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   try {
