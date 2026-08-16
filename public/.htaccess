@@ -19,10 +19,7 @@ AddDefaultCharset UTF-8
   RewriteBase /
 
   # ── HTTPS erzwingen (301) ────────────────────────────────────────────────
-  # Zweite Bedingung: IONOS terminiert TLS teilweise vorgelagert, dann ist
-  # %{HTTPS} "off", obwohl die Anfrage verschlüsselt ankam.
   RewriteCond %{HTTPS} !=on
-  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # ── Nur benötigte HTTP-Methoden zulassen ─────────────────────────────────
