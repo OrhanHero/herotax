@@ -137,13 +137,28 @@ export const DEUTSCHLANDGPT_LINKS = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
+    title: "Hackerangriff auf Senatsverwaltung: IT-Systeme des Landes Berlin teilweise eingeschränkt",
+    excerpt:
+      "Nach einem schwerwiegenden Cyberangriff auf die Berliner Senatsverwaltung sind wichtige IT-Systeme und digitale Verwaltungsdienste des Landes Berlin vorsorglich eingeschränkt. Sicherheitsexperten analysieren die Lage.",
+    read: "4 Min",
+    date: "18. August 2026",
+    source: { label: "rbb24 · Politik", href: "https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html" },
+    featured: true,
+    highlight: {
+      value: "Cyberangriff",
+      compare: "IT-Systeme Berlin",
+      label: "Systeme der Senatsverwaltung vorsorglich eingeschränkt.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
     title: "Berliner Wahlen 2026: Wahl zum Abgeordnetenhaus (AGH) & den 12 Bezirksverordnetenversammlungen (BVV)",
     excerpt:
       "Am Sonntag, 20. September 2026, wählen die Berlinerinnen und Berliner das Abgeordnetenhaus von Berlin (AGH) sowie die 12 Bezirksverordnetenversammlungen (BVV). Alle offiziellen Termine, Wahlberechtigungen ab 16 Jahren und Briefwahl-Infos im Überblick.",
     read: "5 Min",
     date: "18. August 2026",
     source: { label: "Landeswahlleiterin Berlin · Offizielle Wahlseite 2026", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/" },
-    featured: true,
+    featured: false,
     highlight: {
       value: "20.09.2026",
       compare: "Wahl zum AGH & BVV",

@@ -114,6 +114,66 @@ const HeroSection = () => {
           <p className="text-base sm:text-lg leading-relaxed font-normal max-w-xl break-words" style={{ color: T.muted }}>
             {t("hero.sub")}
           </p>
+
+          {/* Hauptstory der Woche Card */}
+          <div className="pt-2 max-w-xl">
+            <div className="group relative rounded-2xl p-5 sm:p-6 transition-all duration-300 bg-slate-900/90 backdrop-blur-md border border-rose-500/35 hover:border-rose-500/60 shadow-xl overflow-hidden">
+              {/* Subtle Red/Rose Security Glow Effect */}
+              <div className="absolute -top-12 -right-12 w-44 h-44 bg-rose-500/15 rounded-full blur-2xl pointer-events-none group-hover:bg-rose-500/25 transition-all duration-500" />
+              
+              {/* Header Badges & Date */}
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 relative z-10">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 tracking-wide font-mono">
+                    <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                    HAUPTSTORY DER WOCHE 🛡️
+                  </span>
+                  <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
+                    Cybersicherheit Berlin
+                  </span>
+                </div>
+                <span className="text-xs text-slate-400 font-mono">
+                  18. August 2026
+                </span>
+              </div>
+
+              {/* Story Title */}
+              <a
+                href="https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group/link relative z-10"
+              >
+                <h3
+                  className="text-lg sm:text-xl font-bold text-white group-hover/link:text-rose-300 transition-colors leading-snug mb-2"
+                  style={{ ...fontDisplay }}
+                >
+                  Hackerangriff auf Senatsverwaltung: IT-Systeme des Landes Berlin teilweise eingeschränkt
+                </h3>
+              </a>
+
+              {/* Story Teaser */}
+              <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
+                Nach einem schwerwiegenden Cyberangriff auf die Berliner Senatsverwaltung sind wichtige IT-Systeme und digitale Verwaltungsdienste des Landes Berlin vorsorglich eingeschränkt. Sicherheitsexperten arbeiten mit Hochdruck an der Analyse und Absicherung der Infrastruktur.
+              </p>
+
+              {/* Primary Source Verification Link */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800 text-xs relative z-10">
+                <a
+                  href="https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-rose-400 hover:text-rose-300 hover:underline transition-colors"
+                >
+                  <span>Quelle: rbb24.de (Politik)</span>
+                  <ExternalLink size={13} className="shrink-0" />
+                </a>
+                <span className="text-[11px] text-slate-400 font-mono">
+                  Verifizierte Primärquelle
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
