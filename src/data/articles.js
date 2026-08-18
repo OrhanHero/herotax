@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Fallback-Stand: 13. August 2026.
+   Kuratierter Fallback-Stand: 18. August 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -9,7 +9,7 @@ export const AI_ARTICLES = [
     excerpt:
       "Art. 50 der KI-Verordnung gilt seit dem 02.08.2026. Chatbots müssen sich als Maschine zu erkennen geben, KI-generierte Texte, Bilder und Videos brauchen eine Kennzeichnung. Was das für Webseite, Newsletter und Kundenservice konkret heißt.",
     read: "6 Min",
-    date: "13. August 2026",
+    date: "18. August 2026",
     source: {
       label: "Verordnung (EU) 2024/1689, Art. 50 — EUR-Lex",
       href: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689",
@@ -21,7 +21,7 @@ export const AI_ARTICLES = [
     excerpt:
       "OCR- und Kategorisierungs-Modelle nehmen der Buchhaltung einen Großteil der Handarbeit ab. Welche Workflows sich für Solo-Gründer und Berliner KMUs lohnen — und wo menschliche Kontrolle Pflicht bleibt.",
     read: "7 Min",
-    date: "11. August 2026",
+    date: "16. August 2026",
     source: { label: "IHK Berlin — Digitalisierung", href: "https://www.ihk.de/berlin" },
     tag: "Automatisierung",
   },
@@ -30,7 +30,7 @@ export const AI_ARTICLES = [
     excerpt:
       "Nach § 88 Abs. 5 AO dürfen Finanzämter automationsgestützte Systeme zur Fallauswahl einsetzen. Was das für Abgabe-Qualität, Vorsteuer-Abzug und Plausibilität deiner Zahlen bedeutet.",
     read: "5 Min",
-    date: "09. August 2026",
+    date: "15. August 2026",
     source: { label: "§ 88 Abs. 5 AO — Gesetze im Internet", href: "https://www.gesetze-im-internet.de/ao_1977/__88.html" },
     tag: "Steuerverwaltung",
   },
@@ -141,7 +141,7 @@ export const ARTICLES = [
     excerpt:
       "Am Sonntag, 20. September 2026, wählen die Berlinerinnen und Berliner das Abgeordnetenhaus von Berlin (AGH) sowie die 12 Bezirksverordnetenversammlungen (BVV). Alle offiziellen Termine, Wahlberechtigungen ab 16 Jahren und Briefwahl-Infos im Überblick.",
     read: "5 Min",
-    date: "13. August 2026",
+    date: "18. August 2026",
     source: { label: "Landeswahlleiterin Berlin · Offizielle Wahlseite 2026", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/" },
     featured: true,
     highlight: {
@@ -152,11 +152,11 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "Briefwahl läuft seit dem 10. August: Antrag online per QR-Code, Frist bis 18. September, 15 Uhr",
+    title: "Briefwahl läuft auf Hochtouren: Online-Antrag per QR-Code, Frist bis 18. September, 15 Uhr",
     excerpt:
-      "Die Briefwahl zur Wahl am 20. September 2026 ist seit dem 10. August möglich — online per QR-Code der Wahlbenachrichtigung oder postalisch, ohne Angabe von Gründen. Anträge nimmt das Bezirkswahlamt bis Freitag, 18. September 2026, 15:00 Uhr an; die ausgefüllten Unterlagen müssen bis Sonntag, 20. September 2026, 18:00 Uhr vorliegen.",
+      "Die Briefwahl zur Wahl am 20. September 2026 läuft seit dem 10. August — online per QR-Code der Wahlbenachrichtigung oder postalisch. Anträge nimmt das Bezirkswahlamt bis Freitag, 18. September 2026, 15:00 Uhr an; ausgefüllte Unterlagen müssen bis Sonntag, 20. September, 18:00 Uhr vorliegen.",
     read: "4 Min",
-    date: "10. August 2026",
+    date: "18. August 2026",
     source: { label: "Landeswahlleiterin Berlin · Start der Briefwahl", href: "https://www.berlin.de/wahlen/pressemitteilungen/2026/pressemitteilung.1701223.php" },
     highlight: {
       value: "18.09.2026",
@@ -166,52 +166,52 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "2,4 Millionen Wahlbenachrichtigungen: Zustellung bis spätestens 30. August 2026",
+    title: "2,4 Millionen Wahlbenachrichtigungen: Zustellung im Endspurt bis spätestens 30. August 2026",
     excerpt:
-      "Seit dem 10. August werden die Wahlbenachrichtigungen gedruckt, kuvertiert und versandt. Bis spätestens 30. August 2026 sollen rund 2,4 Millionen Sendungen zugestellt sein — sie enthalten die Benachrichtigung für AGH und BVV sowie das zuständige Wahllokal.",
+      "Der Großteil der rund 2,4 Millionen Wahlbenachrichtigungen für AGH und BVV ist in Zustellung. Wer bis 30. August keine Benachrichtigung erhält, sollte das örtliche Wahlamt kontaktieren.",
     read: "3 Min",
-    date: "11. August 2026",
+    date: "17. August 2026",
     source: { label: "Landeswahlleiterin Berlin · Pressemitteilungen 2026", href: "https://www.berlin.de/wahlen/pressemitteilungen/2026/" },
   },
   {
     cat: "Bund & Steuer",
     title: "E-Rechnungspflicht: Übergangsfrist endet am 31.12.2026 — ab 2027 wird es für viele ernst",
     excerpt:
-      "Wer 2026 mehr als 800.000 € Vorjahresumsatz hatte, muss B2B-Rechnungen ab dem 01.01.2027 im strukturierten Format (XRechnung / ZUGFeRD) ausstellen. Das zweite BMF-Schreiben vom 15.10.2025 hat dazu die Validierungsanforderungen konkretisiert. Ab 2028 gilt die Pflicht praktisch für alle.",
+      "Wer 2026 mehr als 800.000 € Vorjahresumsatz hatte, muss B2B-Rechnungen ab dem 01.01.2027 im strukturierten Format (XRechnung / ZUGFeRD) ausstellen. Das BMF-Schreiben präzisiert die Anforderungen. Ab 2028 gilt die Pflicht flächendeckend.",
     read: "5 Min",
     highlight: {
       value: "01.01.2027",
       compare: "> 800.000 € Vorjahresumsatz",
       label: "Ab diesem Stichtag müssen betroffene Unternehmen B2B-Rechnungen strukturiert ausstellen.",
     },
-    date: "13. August 2026",
+    date: "18. August 2026",
     source: { label: "Bundesfinanzministerium · BMF-Schreiben Umsatzsteuer", href: "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/BMF_Schreiben_Allgemeines/bmf_schreiben_allgemeines.html" },
   },
   {
     cat: "Bund & Steuer",
     title: "KI-Aufsicht in Deutschland steht: Bundesnetzagentur überwacht seit 29. Juli den KI-Markt",
     excerpt:
-      "Das KI-Marktüberwachungs- und Innovationsförderungsgesetz (KI-MIG) ist in Kraft. Zentrale Aufsichtsbehörde ist die Bundesnetzagentur — mit KI-Service-Desk und Reallabor speziell für KMU und Start-ups. Wer KI in Buchhaltung, Recruiting oder Kundenservice einsetzt, hat damit einen konkreten Ansprechpartner.",
+      "Das KI-Marktüberwachungs- und Innovationsförderungsgesetz (KI-MIG) ist in Kraft. Zentrale Aufsichtsbehörde ist die Bundesnetzagentur — mit KI-Service-Desk und Reallabor speziell für KMU und Start-ups.",
     read: "4 Min",
-    date: "12. August 2026",
+    date: "16. August 2026",
     source: { label: "BMDS · Gesetz zur Durchführung der KI-Verordnung", href: "https://bmds.bund.de/service/gesetzgebungsverfahren/gesetz-zur-durchfuehrung-der-ki-verordnung" },
   },
   {
     cat: "Bund & Steuer",
     title: "Digital Omnibus: Hochrisiko-Pflichten des EU AI Act auf Dezember 2027 verschoben",
     excerpt:
-      "Die Verordnung (EU) 2026/1744 ist am 27. Juli 2026 in Kraft getreten. Die Pflichten für Hochrisiko-KI nach Anhang III greifen erst ab dem 02.12.2027, für KI in regulierten Produkten ab dem 02.08.2028. Unverändert gilt seit dem 02.08.2026: die Transparenzpflicht nach Art. 50.",
+      "Die Verordnung (EU) 2026/1744 gilt. Pflichten für Hochrisiko-KI nach Anhang III greifen erst ab 02.12.2027. Unverändert in Kraft seit 02.08.2026: die Transparenzpflicht nach Art. 50.",
     read: "4 Min",
-    date: "11. August 2026",
+    date: "15. August 2026",
     source: { label: "EUR-Lex · Verordnung (EU) 2024/1689 (KI-VO)", href: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689" },
   },
   {
     cat: "Berlin Fokus",
-    title: "Wahl-O-Mat Berlin 2026: Veröffentlichung am 24. August gegen Mittag auf wahl-o-mat.de",
+    title: "Wahl-O-Mat Berlin 2026: Veröffentlichung am 24. August in wenigen Tagen auf wahl-o-mat.de",
     excerpt:
-      "Der Wahl-O-Mat der Bundeszentrale für politische Bildung (bpb) zur Wahl zum Abgeordnetenhaus von Berlin 2026 wird am 24. August gegen Mittag online freigeschaltet. Alle Standpunkte und Parteivergleiche vor dem 20. September.",
+      "Der Wahl-O-Mat der Bundeszentrale für politische Bildung (bpb) zur Wahl zum Abgeordnetenhaus von Berlin 2026 wird am Montag, 24. August, online freigeschaltet. Standpunkte und Parteivergleiche vor der Wahl am 20. September.",
     read: "3 Min",
-    date: "13. August 2026",
+    date: "18. August 2026",
     source: { label: "bpb · Bundeszentrale für politische Bildung (wahl-o-mat.de)", href: "https://www.bpb.de/themen/wahl-o-mat/" },
   },
   {
