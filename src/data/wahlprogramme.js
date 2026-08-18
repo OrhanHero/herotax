@@ -111,7 +111,7 @@ export const WAHLPROGRAMME_DATA = {
       tabActive: "bg-sky-600 text-white shadow-lg shadow-sky-900/30",
       website: "https://afd.berlin/",
       wahlprogrammUrl: "https://afd.berlin/abgeordnetenhauswahl/#flipbook-df_1783/1/",
-      wahlprogrammTitle: "Wahlprogramm Abgeordnetenhauswahl 2026",
+      wahlprogrammTitle: "Wahlprogramm 2026 (Flipbook)",
       candidate: {
         name: "Dr. Kristin Brinker",
         party: "AfD",

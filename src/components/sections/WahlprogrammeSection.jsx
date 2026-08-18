@@ -167,10 +167,10 @@ const WahlprogrammeSection = () => {
             </div>
 
             {/* Wahlprogramm PDF Link Action */}
-            <div className="pl-2 flex flex-wrap items-center justify-between gap-3 pt-2.5 border-t border-slate-800/80">
-              <div className="flex items-center gap-2">
-                <FileText size={15} className={party.accentColor} />
-                <span className="text-xs font-semibold text-slate-200">
+            <div className="pl-2 flex items-center justify-between gap-2.5 pt-2.5 border-t border-slate-800/80">
+              <div className="flex items-center gap-2 min-w-0 flex-1 pr-1">
+                <FileText size={15} className={`${party.accentColor} shrink-0`} />
+                <span className="text-xs font-semibold text-slate-200 truncate" title={party.wahlprogrammTitle}>
                   {party.wahlprogrammTitle}
                 </span>
               </div>
@@ -178,11 +178,11 @@ const WahlprogrammeSection = () => {
                 href={party.wahlprogrammUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all duration-200 border shadow-sm ${party.badgeBg} hover:brightness-125 cursor-pointer`}
+                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all duration-200 border shadow-sm ${party.badgeBg} hover:brightness-125 cursor-pointer whitespace-nowrap`}
               >
-                <Download size={13} />
+                <Download size={13} className="shrink-0" />
                 <span>Wahlprogramm öffnen</span>
-                <ExternalLink size={12} />
+                <ExternalLink size={12} className="shrink-0" />
               </a>
             </div>
           </div>
