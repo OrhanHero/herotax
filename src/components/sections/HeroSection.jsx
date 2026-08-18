@@ -5,6 +5,7 @@ import { T, fontDisplay, fontMono } from "../../config/tokens";
 import SiteStatusBadge from "../atoms/SiteStatusBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
+import WahlprogrammeSection from "./WahlprogrammeSection";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
@@ -173,6 +174,11 @@ const HeroSection = () => {
                 </span>
               </div>
             </div>
+          </div>
+
+          {/* Wahlprogramme & Spitzenkandidaten der Berliner Parteien 2026 */}
+          <div className="pt-3 max-w-xl">
+            <WahlprogrammeSection />
           </div>
         </div>
 
