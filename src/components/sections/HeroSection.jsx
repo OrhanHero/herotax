@@ -140,7 +140,7 @@ const HeroSection = () => {
 
               {/* Story Title */}
               <a
-                href="https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html"
+                href="https://www.rbb24.de/panorama/beitrag/2026/08/berlin-it-hackerangriff-weiterhin-probleme-verwaltung-wegner.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group/link relative z-10"
@@ -149,24 +149,24 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-rose-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  IT-Systeme der Berliner Senatsverwaltung: Stufenweise Freigabe nach Sicherheitsprüfung
+                  Hackerangriff auf Berliner Landesnetz: Ausfall bei Bürgerdiensten &amp; Wohngeld-Notfallplan
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Nach den vorsorglichen Einschränkungen durch den Cyberangriff auf die Senatsverwaltung laufen wichtige digitale Verwaltungsdienste des Landes Berlin unter verstärktem Monitoring schrittweise wieder an. Sicherheitsexperten von BSI und Land Berlin begleiten die Absicherung der Infrastruktur.
+                Der Cyberangriff auf das Berliner Landesnetz trifft Bau- und Verkehrsverwaltung sowie Bürgerdienste: Wohngeld-Auszahlungen für &gt; 50.000 Haushalte, WBS-Anträge und Geodaten sind beeinträchtigt. Bezirke wie Steglitz-Zehlendorf bereiten Notfallportale &amp; Bar-Auszahlungen vor.
               </p>
 
               {/* Primary Source Verification Link */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800 text-xs relative z-10">
                 <a
-                  href="https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html"
+                  href="https://www.rbb24.de/panorama/beitrag/2026/08/berlin-it-hackerangriff-weiterhin-probleme-verwaltung-wegner.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-rose-400 hover:text-rose-300 hover:underline transition-colors"
                 >
-                  <span>Quelle: rbb24.de (Politik)</span>
+                  <span>Quelle: rbb24.de (Panorama)</span>
                   <ExternalLink size={13} className="shrink-0" />
                 </a>
                 <span className="text-[11px] text-slate-400 font-mono">

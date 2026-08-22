@@ -152,17 +152,17 @@ export const ARTICLES = [
   },
   {
     cat: "Berlin Fokus",
-    title: "IT-Systeme der Senatsverwaltung: Stufenweise Freigabe nach Sicherheitsüberprüfung im Gange",
+    title: "Hackerangriff auf Berliner Landesnetz: Ausfall bei Bürgerdiensten & Wohngeld-Notfallplan",
     excerpt:
-      "Nach den vorsorglichen Einschränkungen durch den Cyberangriff auf die Berliner Senatsverwaltung laufen wichtige digitale Verwaltungsdienste unter erhöhtem Monitoring wieder an. BSI und Berliner IT-Experten begleiten die Wiederanlaufphase.",
-    read: "4 Min",
-    date: "21. August 2026",
-    source: { label: "rbb24 · Politik", href: "https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html" },
+      "Der Cyberangriff auf das Berliner Landesnetz betrifft Bau- und Verkehrsverwaltung sowie wichtige Bürgerdienste: Wohngeld-Auszahlungen für > 50.000 Haushalte, WBS-Anträge und Geodaten sind beeinträchtigt. Bezirke wie Steglitz-Zehlendorf bereiten Notfallportale & Bar-Auszahlungen vor.",
+    read: "5 Min",
+    date: "22. August 2026",
+    source: { label: "rbb24 · Panorama", href: "https://www.rbb24.de/panorama/beitrag/2026/08/berlin-it-hackerangriff-weiterhin-probleme-verwaltung-wegner.html" },
     featured: false,
     highlight: {
-      value: "IT-Sicherheit",
-      compare: "Wiederanlauf Berlin",
-      label: "Digitale Verwaltungsdienste der Senatsverwaltung schrittweise im Wiederanlauf.",
+      value: "Landesnetz IT",
+      compare: "Notfallplan Wohngeld",
+      label: "Wohngeld-Auszahlungen & Bürgerdienste wegen IT-Angriff eingeschränkt.",
     },
   },
   {
