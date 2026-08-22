@@ -134,7 +134,7 @@ const HeroSection = () => {
                   </span>
                 </div>
                 <span className="text-xs text-slate-400 font-mono">
-                  18. August 2026
+                  22. August 2026
                 </span>
               </div>
 
@@ -149,13 +149,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-rose-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Hackerangriff auf Senatsverwaltung: IT-Systeme des Landes Berlin teilweise eingeschränkt
+                  IT-Systeme der Berliner Senatsverwaltung: Stufenweise Freigabe nach Sicherheitsprüfung
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Nach einem schwerwiegenden Cyberangriff auf die Berliner Senatsverwaltung sind wichtige IT-Systeme und digitale Verwaltungsdienste des Landes Berlin vorsorglich eingeschränkt. Sicherheitsexperten arbeiten mit Hochdruck an der Analyse und Absicherung der Infrastruktur.
+                Nach den vorsorglichen Einschränkungen durch den Cyberangriff auf die Senatsverwaltung laufen wichtige digitale Verwaltungsdienste des Landes Berlin unter verstärktem Monitoring schrittweise wieder an. Sicherheitsexperten von BSI und Land Berlin begleiten die Absicherung der Infrastruktur.
               </p>
 
               {/* Primary Source Verification Link */}

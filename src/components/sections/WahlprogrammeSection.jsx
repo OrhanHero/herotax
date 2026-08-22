@@ -33,7 +33,7 @@ const WahlprogrammeSection = () => {
         </div>
         <span className="text-xs text-slate-400 font-mono flex items-center gap-1">
           <CalendarCheck size={12} className="text-slate-400" />
-          Stand: 18.08.2026
+          Stand: 22.08.2026
         </span>
       </div>
 

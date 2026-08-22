@@ -6,7 +6,7 @@
 export const WAHLPROGRAMME_DATA = {
   title: "Wahlprogramme & Spitzenkandidaten 2026",
   subtitle: "Berliner Abgeordnetenhauswahl · Führung im Roten Rathaus",
-  lastUpdated: "18. August 2026",
+  lastUpdated: "22. August 2026",
   wahlOMatDate: "24.08.2026",
   wahlOMatUrl: "https://www.bpb.de/themen/wahl-o-mat/",
   parties: [

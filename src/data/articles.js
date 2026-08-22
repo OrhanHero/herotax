@@ -1,15 +1,15 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Fallback-Stand: 18. August 2026.
+   Kuratierter Stand: 22. August 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
 export const AI_ARTICLES = [
   {
-    title: "Transparenzpflicht ist scharf: KI-Inhalte müssen seit dem 2. August gekennzeichnet sein",
+    title: "KI-Transparenzpflicht Art. 50: Erste Praxis-Erfahrungen und Kennzeichnungstrends 3 Wochen nach Start",
     excerpt:
-      "Art. 50 der KI-Verordnung gilt seit dem 02.08.2026. Chatbots müssen sich als Maschine zu erkennen geben, KI-generierte Texte, Bilder und Videos brauchen eine Kennzeichnung. Was das für Webseite, Newsletter und Kundenservice konkret heißt.",
+      "Seit dem 02.08.2026 gilt Art. 50 der EU-KI-Verordnung. Chatbots müssen sich klar zu erkennen geben, KI-generierte Texte, Bilder und Videos benötigen eine Kennzeichnung. Welche Best Practices sich für Webseiten, Newsletter und Kundenservice etablieren.",
     read: "6 Min",
-    date: "18. August 2026",
+    date: "22. August 2026",
     source: {
       label: "Verordnung (EU) 2024/1689, Art. 50 — EUR-Lex",
       href: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689",
@@ -137,17 +137,32 @@ export const DEUTSCHLANDGPT_LINKS = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    title: "Hackerangriff auf Senatsverwaltung: IT-Systeme des Landes Berlin teilweise eingeschränkt",
+    title: "Wahl-O-Mat Berlin 2026: Countdown läuft – Start am Montag, 24. August auf wahl-o-mat.de",
     excerpt:
-      "Nach einem schwerwiegenden Cyberangriff auf die Berliner Senatsverwaltung sind wichtige IT-Systeme und digitale Verwaltungsdienste des Landes Berlin vorsorglich eingeschränkt. Sicherheitsexperten analysieren die Lage.",
+      "In zwei Tagen schaltet die Bundeszentrale für politische Bildung (bpb) den Wahl-O-Mat zur Berliner Abgeordnetenhauswahl 2026 frei. 38 Thesen ermöglichen allen 2,4 Millionen Wahlberechtigten den direkten Parteienvergleich vor dem Wahltag am 20. September.",
     read: "4 Min",
-    date: "18. August 2026",
-    source: { label: "rbb24 · Politik", href: "https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html" },
+    date: "22. August 2026",
+    source: { label: "bpb · Bundeszentrale für politische Bildung (wahl-o-mat.de)", href: "https://www.bpb.de/themen/wahl-o-mat/" },
     featured: true,
     highlight: {
-      value: "Cyberangriff",
-      compare: "IT-Systeme Berlin",
-      label: "Systeme der Senatsverwaltung vorsorglich eingeschränkt.",
+      value: "24.08.2026",
+      compare: "Wahl-O-Mat Live",
+      label: "Offizielle Freischaltung auf wahl-o-mat.de zur Wahl zum Berliner Abgeordnetenhaus.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "IT-Systeme der Senatsverwaltung: Stufenweise Freigabe nach Sicherheitsüberprüfung im Gange",
+    excerpt:
+      "Nach den vorsorglichen Einschränkungen durch den Cyberangriff auf die Berliner Senatsverwaltung laufen wichtige digitale Verwaltungsdienste unter erhöhtem Monitoring wieder an. BSI und Berliner IT-Experten begleiten die Wiederanlaufphase.",
+    read: "4 Min",
+    date: "21. August 2026",
+    source: { label: "rbb24 · Politik", href: "https://www.rbb24.de/politik/beitrag/2026/08/berlin-senatsverwaltung-hackerangriff-cybersicherheit-systeme-eingeschraenkt.html" },
+    featured: false,
+    highlight: {
+      value: "IT-Sicherheit",
+      compare: "Wiederanlauf Berlin",
+      label: "Digitale Verwaltungsdienste der Senatsverwaltung schrittweise im Wiederanlauf.",
     },
   },
   {
