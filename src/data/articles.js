@@ -137,17 +137,32 @@ export const DEUTSCHLANDGPT_LINKS = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    title: "Wahl-O-Mat Berlin 2026: Countdown läuft – Start am Montag, 24. August auf wahl-o-mat.de",
+    title: "Fliegerbombe in Neukölln erfolgreich entschärft: 5.600 Haushalte evakuiert & Sperrkreis aufgehoben",
     excerpt:
-      "In zwei Tagen schaltet die Bundeszentrale für politische Bildung (bpb) den Wahl-O-Mat zur Berliner Abgeordnetenhauswahl 2026 frei. 38 Thesen ermöglichen allen 2,4 Millionen Wahlberechtigten den direkten Parteienvergleich vor dem Wahltag am 20. September.",
+      "Im Neuköllner Schifffahrtskanal wurde am späten Mittwochabend eine 100 kg schwere Weltkriegsbombe erfolgreich entschärft. Rund 5.600 Haushalte mussten vorübergehend evakuiert werden. Nach der Trennung des Zünders per Wasserstrahlschneider konnten die Anwohner am späten Abend zurück in ihre Wohnungen.",
     read: "4 Min",
-    date: "22. August 2026",
-    source: { label: "bpb · Bundeszentrale für politische Bildung (wahl-o-mat.de)", href: "https://www.bpb.de/themen/wahl-o-mat/" },
+    date: "26. August 2026",
+    source: { label: "rbb24 · Panorama", href: "https://www.rbb24.de/panorama/beitrag/2026/08/berlin-neukoelln-entschaerfung-bombe-sperrkreis.html" },
     featured: true,
     highlight: {
-      value: "24.08.2026",
-      compare: "Wahl-O-Mat Live",
-      label: "Offizielle Freischaltung auf wahl-o-mat.de zur Wahl zum Berliner Abgeordnetenhaus.",
+      value: "Entschärft",
+      compare: "Neukölln Sperrkreis",
+      label: "5.600 Haushalte evakuiert – Kampfmittelräumdienst beendet Einsatz erfolgreich.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Wahl-O-Mat Berlin 2026: Parteienvergleich online auf wahl-o-mat.de verfügbar",
+    excerpt:
+      "Die Bundeszentrale für politische Bildung (bpb) hat den Wahl-O-Mat zur Berliner Abgeordnetenhauswahl 2026 freigeschaltet. 38 Thesen ermöglichen allen 2,4 Millionen Wahlberechtigten den direkten Parteienvergleich vor dem Wahltag am 20. September.",
+    read: "4 Min",
+    date: "24. August 2026",
+    source: { label: "bpb · Bundeszentrale für politische Bildung (wahl-o-mat.de)", href: "https://www.bpb.de/themen/wahl-o-mat/" },
+    featured: false,
+    highlight: {
+      value: "Wahl-O-Mat",
+      compare: "38 Thesen online",
+      label: "Offizieller Parteienvergleich zur Wahl zum Berliner Abgeordnetenhaus.",
     },
   },
   {
