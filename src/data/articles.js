@@ -153,6 +153,13 @@ export const ARTICLES = [
       "Nach dem schwerwiegenden Cyberangriff auf das Berliner Landesnetz verlangt die Hackergruppe „Rhysida“ 30 Bitcoin (rund 2 Millionen Euro) und droht mit Daten-Leaks im Darknet. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen unmissverständlich klar: Berlin zahlt kein Lösegeld. BKA, LKA und BSI ermitteln unter Hochdruck.",
     read: "5 Min",
     date: "29. August 2026",
+    image: "/images/senat_statement_ransomware.jpg",
+    imageAlt: "Innensenatorin Iris Spranger (links) und Regierender Bürgermeister Kai Wegner (rechts) bei der Stellungnahme",
+    imageCaption: "Iris Spranger & Kai Wegner · Offizielle Stellungnahme zur Ransomware-Erpressung",
+    imageSource: {
+      label: "Foto: @RegBerlin (Senatskanzlei auf X)",
+      href: "https://x.com/RegBerlin/status/2093358558603551024/photo/1",
+    },
     source: { label: "Senatskanzlei Berlin · Pressemitteilung", href: "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php" },
     sources: CYBER_ERPRESSUNG_SOURCES,
     featured: true,

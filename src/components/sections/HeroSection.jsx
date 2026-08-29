@@ -154,9 +154,36 @@ const HeroSection = () => {
               </a>
 
               {/* Story Teaser */}
-              <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
+              <p className="text-sm text-slate-300 leading-relaxed mb-3 relative z-10">
                 Nach dem Cyberangriff auf das Landesnetz fordert die Gruppe „Rhysida“ 30 Bitcoin (~2 Mio. €) und droht mit Daten-Leaks. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen klar: „Das Land Berlin lässt sich nicht erpressen – wir zahlen kein Lösegeld.“
               </p>
+
+              {/* Offizielles Pressefoto des Berliner Senats */}
+              <div className="relative rounded-xl overflow-hidden mb-4 border border-slate-700/80 shadow-md group/img relative z-10">
+                <img
+                  src="/images/senat_statement_ransomware.jpg"
+                  alt="Innensenatorin Iris Spranger (links) und Regierender Bürgermeister Kai Wegner (rechts) bei der Stellungnahme zur Erpressung"
+                  className="w-full h-44 sm:h-52 object-cover object-top brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
+                <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] font-mono text-slate-200">
+                  <span className="bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                    Iris Spranger &amp; Kai Wegner
+                  </span>
+                  <a
+                    href="https://x.com/RegBerlin/status/2093358558603551024/photo/1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 text-slate-300 hover:text-white flex items-center gap-1 transition-colors"
+                  >
+                    <span>Foto: @RegBerlin (Senat auf X)</span>
+                    <ExternalLink size={10} />
+                  </a>
+                </div>
+              </div>
 
               {/* Individuell aufgelistete Primärquellen */}
               <div className="pt-3 border-t border-slate-800 text-xs relative z-10 space-y-2">
