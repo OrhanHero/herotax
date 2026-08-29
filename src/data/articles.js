@@ -134,6 +134,17 @@ export const DEUTSCHLANDGPT_LINKS = [
   },
 ];
 
+export const CYBER_ERPRESSUNG_SOURCES = [
+  { label: "Senatskanzlei Berlin", detail: "Offizielle Pressemitteilung Wegner & Spranger", href: "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php", badge: "Amtlich", primary: true },
+  { label: "heise online", detail: "30 Bitcoin oder Leak – Ransomware-Bande erpresst Berlin", href: "https://www.heise.de/news/30-Bitcoin-oder-Leak-Ransomware-Bande-erpresst-Berlin-11434325.html", badge: "Security" },
+  { label: "rbb24 (Politik)", detail: "Hacker fordern Millionen-Lösegeld in Bitcoin", href: "https://www.rbb24.de/politik/beitrag/2026/08/hacker-erpressen-land-berlin-bitcoin-millionen.html", badge: "Landespolitik" },
+  { label: "DER SPIEGEL", detail: "Cyberangriff auf die Hauptstadt: Die Hacker fordern 30 Bitcoin", href: "https://www.spiegel.de/netzwelt/berlin-cyberangriff-auf-die-hauptstadt-die-hacker-fordern-30-bitcoin-a-54af015f-7f83-411a-a39c-8b7b05cff60a", badge: "Recherche" },
+  { label: "Der Tagesspiegel", detail: "Notfallpläne und Passwörter erbeutet – Wegner weist Ultimatum zurück", href: "https://www.tagesspiegel.de/berlin/notfallplane-und-passworter-erbeutet-wegner-weist-erpresser-ultimatum-zuruck--hacker-fordern-laut-medienbericht-zwei-millionen-euro-15984600.html", badge: "Exklusiv" },
+  { label: "Berliner Morgenpost", detail: "Gehackte Berliner Verwaltung: Senat bestätigt Erpressungsversuch", href: "https://www.morgenpost.de/berlin/article412989955/gehackte-berliner-verwaltung-senat-bestaetigt-erpressungsversuch.html", badge: "Hauptstadt" },
+  { label: "DIE WELT", detail: "Erpresser verlangen zwei Millionen Euro Lösegeld", href: "https://www.welt.de/politik/deutschland/article6a919777b3df30a615529309/berliner-landesbehoerden-erpresser-verlangen-loesegeld-nach-hackerangriff-offenbar-zwei-millionen-euro-gefordert.html", badge: "Politik" },
+  { label: "rbb24 Hintergrund", detail: "Hackerangriff auf Berliner Landesnetz: Chronologie & Notfallmaßnahmen", href: "https://www.rbb24.de/politik/beitrag/2026/08/berlin-hackerangriff-landesnetz-loesegeld-forderung-erpresser.html", badge: "Chronologie" },
+];
+
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
@@ -143,6 +154,7 @@ export const ARTICLES = [
     read: "5 Min",
     date: "29. August 2026",
     source: { label: "Senatskanzlei Berlin · Pressemitteilung", href: "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php" },
+    sources: CYBER_ERPRESSUNG_SOURCES,
     featured: true,
     highlight: {
       value: "30 Bitcoin",

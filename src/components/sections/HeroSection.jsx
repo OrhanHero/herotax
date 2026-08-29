@@ -158,20 +158,91 @@ const HeroSection = () => {
                 Nach dem Cyberangriff auf das Landesnetz fordert die Gruppe „Rhysida“ 30 Bitcoin (~2 Mio. €) und droht mit Daten-Leaks. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen klar: „Das Land Berlin lässt sich nicht erpressen – wir zahlen kein Lösegeld.“
               </p>
 
-              {/* Primary Source Verification Link */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800 text-xs relative z-10">
-                <a
-                  href="https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-rose-400 hover:text-rose-300 hover:underline transition-colors"
-                >
-                  <span>Quelle: Senatskanzlei Berlin / heise / rbb24</span>
-                  <ExternalLink size={13} className="shrink-0" />
-                </a>
-                <span className="text-[11px] text-slate-400 font-mono">
-                  Verifizierte Primärquelle
-                </span>
+              {/* Individuell aufgelistete Primärquellen */}
+              <div className="pt-3 border-t border-slate-800 text-xs relative z-10 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                    Einzelquellen &amp; Berichterstattung (8):
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-mono">
+                    Verifizierte Primärquellen
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                  <a
+                    href="https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/35 text-rose-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate font-semibold">Senatskanzlei</span>
+                    <ExternalLink size={10} className="shrink-0 text-rose-400" />
+                  </a>
+                  <a
+                    href="https://www.heise.de/news/30-Bitcoin-oder-Leak-Ransomware-Bande-erpresst-Berlin-11434325.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">heise online</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.rbb24.de/politik/beitrag/2026/08/hacker-erpressen-land-berlin-bitcoin-millionen.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">rbb24 (Politik)</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.spiegel.de/netzwelt/berlin-cyberangriff-auf-die-hauptstadt-die-hacker-fordern-30-bitcoin-a-54af015f-7f83-411a-a39c-8b7b05cff60a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">DER SPIEGEL</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.tagesspiegel.de/berlin/notfallplane-und-passworter-erbeutet-wegner-weist-erpresser-ultimatum-zuruck--hacker-fordern-laut-medienbericht-zwei-millionen-euro-15984600.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">Tagesspiegel</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.morgenpost.de/berlin/article412989955/gehackte-berliner-verwaltung-senat-bestaetigt-erpressungsversuch.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">Morgenpost</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.welt.de/politik/deutschland/article6a919777b3df30a615529309/berliner-landesbehoerden-erpresser-verlangen-loesegeld-nach-hackerangriff-offenbar-zwei-millionen-euro-gefordert.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">DIE WELT</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.rbb24.de/politik/beitrag/2026/08/berlin-hackerangriff-landesnetz-loesegeld-forderung-erpresser.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">rbb24 Chronik</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

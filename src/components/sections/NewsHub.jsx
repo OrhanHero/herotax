@@ -211,111 +211,166 @@ const NewsHub = () => {
                   {featured.excerpt}
                 </p>
 
-                {/* Kleine farbliche Bulletpoint-Karten (Wahlen 2026 Schnell-Navigation) */}
-                <div className="my-6 pt-4 border-t" style={{ borderColor: T.lineSoft }}>
-                  <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ ...fontMono, color: T.faint }}>
-                    Amtliche Unterlagen & Direkt-Services:
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                    <a
-                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/allgemeine-informationen/artikel.1578239.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-blue-50/80 dark:bg-blue-500/15 hover:bg-blue-100 dark:hover:bg-blue-500/25 border-blue-200 dark:border-blue-400/25 text-blue-900 dark:text-blue-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Allgemeine Informationen</span>
-                    </a>
-                    <a
-                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahllokalsuche/artikel.1701445.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-emerald-50/80 dark:bg-emerald-500/15 hover:bg-emerald-100 dark:hover:bg-emerald-500/25 border-emerald-200 dark:border-emerald-400/25 text-emerald-900 dark:text-emerald-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Wahllokalsuche & Musterstimmzettel</span>
-                    </a>
-                    <a
-                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahlvorschlaege/artikel.1600254.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-indigo-50/80 dark:bg-indigo-500/15 hover:bg-indigo-100 dark:hover:bg-indigo-500/25 border-indigo-200 dark:border-indigo-400/25 text-indigo-900 dark:text-indigo-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Wahlvorschläge</span>
-                    </a>
-                    <a
-                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/fragen-und-antwortkatalog/artikel.1646712.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-50/80 dark:bg-amber-500/15 hover:bg-amber-100 dark:hover:bg-amber-500/25 border-amber-200 dark:border-amber-400/25 text-amber-900 dark:text-amber-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Fragen- & Antwortkatalog (FAQs)</span>
-                    </a>
-                    <a
-                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahlgebietseinteilung/artikel.1600253.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-purple-50/80 dark:bg-purple-500/15 hover:bg-purple-100 dark:hover:bg-purple-500/25 border-purple-200 dark:border-purple-400/25 text-purple-900 dark:text-purple-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Wahlgebietseinteilung</span>
-                    </a>
-                    <a
-                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/briefwahl/artikel.1700053.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-sky-50/80 dark:bg-sky-500/15 hover:bg-sky-100 dark:hover:bg-sky-500/25 border-sky-200 dark:border-sky-400/25 text-sky-900 dark:text-sky-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Briefwahl</span>
-                    </a>
-                    <a
-                      href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/unionsbuerger/artikel.1600483.php"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-rose-50/80 dark:bg-rose-500/15 hover:bg-rose-100 dark:hover:bg-rose-500/25 border-rose-200 dark:border-rose-400/25 text-rose-900 dark:text-rose-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0 animate-pulse" />
-                      <span className="truncate">Unionsbürgerinnen & Unionsbürger</span>
-                    </a>
-                    <a
-                      href="https://www.bpb.de/themen/wahl-o-mat/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      title="Der Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin wird am 24. August gegen Mittag unter wahl-o-mat.de veröffentlicht."
-                      className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-100/90 dark:bg-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/30 border-amber-300 dark:border-amber-400/40 text-amber-950 dark:text-amber-100 shadow-sm"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0 animate-ping" />
-                      <span className="truncate font-bold">Wahl-O-Mat Berlin (Ab 24. Aug. online)</span>
-                    </a>
+                {/* Dynamische Quellen- und Referenz-Kacheln */}
+                {featured.sources && featured.sources.length > 0 ? (
+                  <div className="my-6 pt-4 border-t" style={{ borderColor: T.lineSoft }}>
+                    <div className="flex items-center justify-between mb-3">
+                      <p className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5" style={{ ...fontMono, color: T.faint }}>
+                        <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                        Verifizierte Einzelquellen &amp; Berichterstattung ({featured.sources.length}):
+                      </p>
+                      <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                        Primärquellen
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                      {featured.sources.map((src) => (
+                        <a
+                          key={src.href}
+                          href={src.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className={`p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-between gap-2 transition-all hover:scale-[1.02] ${
+                            src.primary
+                              ? "bg-rose-50 dark:bg-rose-500/15 hover:bg-rose-100 dark:hover:bg-rose-500/25 border-rose-200 dark:border-rose-400/30 text-rose-900 dark:text-rose-200 shadow-sm"
+                              : "bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-700/70 text-slate-900 dark:text-slate-200"
+                          }`}
+                        >
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-1.5">
+                              <span className="font-bold truncate">{src.label}</span>
+                              {src.badge && (
+                                <span className="text-[9px] font-mono uppercase px-1.5 py-0.2 rounded bg-slate-200/80 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                                  {src.badge}
+                                </span>
+                              )}
+                            </div>
+                            {src.detail && (
+                              <span className="text-[10px] block truncate text-slate-500 dark:text-slate-400 font-normal mt-0.5">
+                                {src.detail}
+                              </span>
+                            )}
+                          </div>
+                          <ArrowUpRight size={14} className="shrink-0 text-slate-400" />
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  /* Kleine farbliche Bulletpoint-Karten (Wahlen 2026 Schnell-Navigation) */
+                  <div className="my-6 pt-4 border-t" style={{ borderColor: T.lineSoft }}>
+                    <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ ...fontMono, color: T.faint }}>
+                      Amtliche Unterlagen & Direkt-Services:
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                      <a
+                        href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/allgemeine-informationen/artikel.1578239.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-blue-50/80 dark:bg-blue-500/15 hover:bg-blue-100 dark:hover:bg-blue-500/25 border-blue-200 dark:border-blue-400/25 text-blue-900 dark:text-blue-200"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0 animate-pulse" />
+                        <span className="truncate">Allgemeine Informationen</span>
+                      </a>
+                      <a
+                        href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahllokalsuche/artikel.1701445.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-emerald-50/80 dark:bg-emerald-500/15 hover:bg-emerald-100 dark:hover:bg-emerald-500/25 border-emerald-200 dark:border-emerald-400/25 text-emerald-900 dark:text-emerald-200"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
+                        <span className="truncate">Wahllokalsuche & Musterstimmzettel</span>
+                      </a>
+                      <a
+                        href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahlvorschlaege/artikel.1600254.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-indigo-50/80 dark:bg-indigo-500/15 hover:bg-indigo-100 dark:hover:bg-indigo-500/25 border-indigo-200 dark:border-indigo-400/25 text-indigo-900 dark:text-indigo-200"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0 animate-pulse" />
+                        <span className="truncate">Wahlvorschläge</span>
+                      </a>
+                      <a
+                        href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/fragen-und-antwortkatalog/artikel.1646712.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-50/80 dark:bg-amber-500/15 hover:bg-amber-100 dark:hover:bg-amber-500/25 border-amber-200 dark:border-amber-400/25 text-amber-900 dark:text-amber-200"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0 animate-pulse" />
+                        <span className="truncate">Fragen- & Antwortkatalog (FAQs)</span>
+                      </a>
+                      <a
+                        href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahlgebietseinteilung/artikel.1600253.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-purple-50/80 dark:bg-purple-500/15 hover:bg-purple-100 dark:hover:bg-purple-500/25 border-purple-200 dark:border-purple-400/25 text-purple-900 dark:text-purple-200"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0 animate-pulse" />
+                        <span className="truncate">Wahlgebietseinteilung</span>
+                      </a>
+                      <a
+                        href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/briefwahl/artikel.1700053.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-sky-50/80 dark:bg-sky-500/15 hover:bg-sky-100 dark:hover:bg-sky-500/25 border-sky-200 dark:border-sky-400/25 text-sky-900 dark:text-sky-200"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0 animate-pulse" />
+                        <span className="truncate">Briefwahl</span>
+                      </a>
+                      <a
+                        href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/unionsbuerger/artikel.1600483.php"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-rose-50/80 dark:bg-rose-500/15 hover:bg-rose-100 dark:hover:bg-rose-500/25 border-rose-200 dark:border-rose-400/25 text-rose-900 dark:text-rose-200"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0 animate-pulse" />
+                        <span className="truncate">Unionsbürgerinnen & Unionsbürger</span>
+                      </a>
+                      <a
+                        href="https://www.bpb.de/themen/wahl-o-mat/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        title="Der Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin wird am 24. August gegen Mittag unter wahl-o-mat.de veröffentlicht."
+                        className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-100/90 dark:bg-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/30 border-amber-300 dark:border-amber-400/40 text-amber-950 dark:text-amber-100 shadow-sm"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0 animate-ping" />
+                        <span className="truncate font-bold">Wahl-O-Mat Berlin (Ab 24. Aug. online)</span>
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t" style={{ borderColor: T.lineSoft }}>
                 <Meta read={featured.read} date={featured.date} />
                 <div className="flex flex-wrap items-center gap-4">
                   <SourceLink href={featured.source.href} label={featured.source.label} />
-                  <a
-                    href="https://gdi.berlin.de/viewer/main/?LAYERS=[{%22id%22:%22hintergrund_default_grau%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_uwb%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_bwb%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_awk%22}]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    <span>🗺️ Geoportal Berlin: Wahlgebiete 2026 (AGH)</span>
-                    <ArrowUpRight size={13} />
-                  </a>
+                  {featured.sources && (
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                      ({featured.sources.length} verifizierte Quellen oben)
+                    </span>
+                  )}
+                  {featured.highlight?.compare !== "Erpressungsversuch" && (
+                    <a
+                      href="https://gdi.berlin.de/viewer/main/?LAYERS=[{%22id%22:%22hintergrund_default_grau%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_uwb%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_bwb%22},{%22id%22:%22wahlgebiete_agh2026:agh2026_awk%22}]"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      <span>🗺️ Geoportal Berlin: Wahlgebiete 2026 (AGH)</span>
+                      <ArrowUpRight size={13} />
+                    </a>
+                  )}
                 </div>
               </div>
             </a>
@@ -344,7 +399,21 @@ const NewsHub = () => {
                 </p>
                 <div className="flex flex-col gap-2 pt-3 border-t" style={{ borderColor: T.lineSoft }}>
                   <Meta read={a.read} date={a.date} />
-                  <SourceLink href={a.source.href} label={a.source.label} />
+                  {a.sources && a.sources.length > 0 ? (
+                    <div className="flex flex-wrap gap-1.5 mt-1">
+                      {a.sources.map((src) => (
+                        <span
+                          key={src.href}
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-400/25"
+                        >
+                          <span>{src.label}</span>
+                          <ArrowUpRight size={10} />
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <SourceLink href={a.source.href} label={a.source.label} />
+                  )}
                 </div>
               </div>
             </a>
