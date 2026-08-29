@@ -12,6 +12,9 @@ import { FernsehturmIcon } from "./FernsehturmBadge";
  */
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
+  // Maximal 5 top-aktuelle News im Ticker anzeigen
+  const tickerItems = (items || []).slice(0, 5);
+
   return (
     <div
       className="flex items-stretch shadow-xs"
@@ -44,7 +47,7 @@ const NewsTicker = ({ items }) => {
           {/* Inhalt doppelt rendern → nahtlose Schleife bei -50 % */}
           {[0, 1].map((copy) => (
             <div key={copy} className="flex items-center" aria-hidden={copy === 1}>
-              {items.map((a) => (
+              {tickerItems.map((a) => (
                 <a
                   key={`${copy}-${a.title}`}
                   href={a.source.href}
