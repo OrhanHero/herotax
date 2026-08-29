@@ -213,17 +213,17 @@ const NewsHub = () => {
 
                 {/* Offizielles Pressefoto bei hinterlegtem Bild */}
                 {featured.image && (
-                  <div className="relative rounded-2xl overflow-hidden mb-6 border border-slate-200 dark:border-slate-800 shadow-md group/img">
+                  <div className="relative rounded-2xl overflow-hidden mb-6 border border-slate-200 dark:border-slate-800 shadow-md group/img aspect-[16/10] sm:aspect-[16/9] bg-slate-950">
                     <img
                       src={featured.image}
                       alt={featured.imageAlt || featured.title}
-                      className="w-full h-52 sm:h-72 object-cover object-top brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
+                      className="w-full h-full object-cover object-[center_62%] brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
                       loading="lazy"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white">
-                      <span className="bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-700/60 flex items-center gap-1.5">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white z-10">
+                      <span className="bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-700/60 flex items-center gap-1.5 shadow-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                         {featured.imageCaption || "Pressekonferenz im Roten Rathaus"}
                       </span>
@@ -233,7 +233,7 @@ const NewsHub = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-700/60 text-slate-300 hover:text-white flex items-center gap-1 transition-colors"
+                          className="bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-700/60 text-slate-300 hover:text-white flex items-center gap-1 transition-colors shadow-sm"
                         >
                           <span>{featured.imageSource.label}</span>
                           <ArrowUpRight size={12} />

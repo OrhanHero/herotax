@@ -159,17 +159,17 @@ const HeroSection = () => {
               </p>
 
               {/* Offizielles Pressefoto des Berliner Senats (Verlinkt über Senatskanzlei auf X) */}
-              <div className="relative rounded-xl overflow-hidden mb-4 border border-slate-700/80 shadow-md group/img relative z-10">
+              <div className="relative rounded-xl overflow-hidden mb-4 border border-slate-700/80 shadow-md group/img relative z-10 aspect-[16/10] sm:aspect-[16/9] bg-slate-950">
                 <img
                   src="https://pbs.twimg.com/media/HQ0agsDW0AAlTuN.jpg"
                   alt="Innensenatorin Iris Spranger (links) und Regierender Bürgermeister Kai Wegner (rechts) bei der Stellungnahme zur Erpressung"
-                  className="w-full h-44 sm:h-52 object-cover object-top brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
+                  className="w-full h-full object-cover object-[center_62%] brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
-                <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] font-mono text-slate-200">
-                  <span className="bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 flex items-center gap-1.5">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/15 to-transparent pointer-events-none" />
+                <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] font-mono text-slate-200 z-10">
+                  <span className="bg-slate-900/90 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 flex items-center gap-1.5 shadow-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                     Iris Spranger &amp; Kai Wegner
                   </span>
@@ -178,7 +178,7 @@ const HeroSection = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 text-slate-300 hover:text-white flex items-center gap-1 transition-colors"
+                    className="bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 text-slate-300 hover:text-white flex items-center gap-1 transition-colors shadow-sm"
                   >
                     <span>Foto: © Senatskanzlei via X (@RegBerlin)</span>
                     <ExternalLink size={10} />
