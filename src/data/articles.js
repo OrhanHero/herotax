@@ -137,9 +137,9 @@ export const DEUTSCHLANDGPT_LINKS = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    title: "Ransomware-Bande erpresst Berlin: Senat weist Lösegeldforderung über 30 Bitcoin entschieden zurück",
+    title: "Ransomware-Bande „Rhysida“ erpresst Berlin: Senat weist Lösegeldforderung über 30 Bitcoin entschieden zurück",
     excerpt:
-      "Nach dem Cyberangriff auf das Berliner Landesnetz verlangt die Hackergruppe „Rhysida“ 30 Bitcoin (rund 2 Millionen Euro) und droht mit der Veröffentlichung erbeuteter Daten. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen unmissverständlich klar: Berlin zahlt nicht. BKA, LKA und BSI sichern die Systeme.",
+      "Nach dem schwerwiegenden Cyberangriff auf das Berliner Landesnetz verlangt die Hackergruppe „Rhysida“ 30 Bitcoin (rund 2 Millionen Euro) und droht mit Daten-Leaks im Darknet. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen unmissverständlich klar: Berlin zahlt kein Lösegeld. BKA, LKA und BSI ermitteln unter Hochdruck.",
     read: "5 Min",
     date: "29. August 2026",
     source: { label: "Senatskanzlei Berlin · Pressemitteilung", href: "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php" },
@@ -148,6 +148,36 @@ export const ARTICLES = [
       value: "30 Bitcoin",
       compare: "Erpressungsversuch",
       label: "Senat weist Lösegeldforderung von 2 Mio. € zurück: „Berlin lässt sich nicht erpressen.“",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Cyber-Forensik im Landesnetz: Ermittler analysieren Sicherheitslücke – Notfallpläne und Server isoliert",
+    excerpt:
+      "Spezialisten für Incident Response und IT-Forensik sichern die Systeme der Senatsverwaltungen für Bauen und Mobilität. BKA und LKA prüfen das Ausmaß des Datenabflusses. Sicherheitskontrollen im gesamten Landesnetz wurden verschärft, um weitere Zugriffe der Ransomware-Gruppe abzuwehren.",
+    read: "4 Min",
+    date: "29. August 2026",
+    source: { label: "Tagesspiegel · Exklusivbericht", href: "https://www.tagesspiegel.de/berlin/notfallplane-und-passworter-erbeutet-wegner-weist-erpresser-ultimatum-zuruck--hacker-fordern-laut-medienbericht-zwei-millionen-euro-15984600.html" },
+    featured: false,
+    highlight: {
+      value: "IT-Forensik",
+      compare: "BKA & LKA Einsatz",
+      label: "Systeme der Fachverwaltungen isoliert; Notfallmaßnahmen im Landesnetz aktiv.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "Auswirkungen auf Bürgerdienste: Bezirke arbeiten an Notfalllösungen für Wohngeld und Anträge",
+    excerpt:
+      "Die Trennung der Senatsverwaltungen vom Landesnetz führt zu anhaltenden Einschränkungen bei WBS-Anträgen, Geodaten und der Wohngeldauszahlung für über 50.000 Berliner Haushalte. Bezirke wie Steglitz-Zehlendorf bereiten alternative Antragsportale und manuelle Auszahlungswege vor.",
+    read: "4 Min",
+    date: "28. August 2026",
+    source: { label: "Berliner Morgenpost · Verwaltung", href: "https://www.morgenpost.de/berlin/article412989955/gehackte-berliner-verwaltung-senat-bestaetigt-erpressungsversuch.html" },
+    featured: false,
+    highlight: {
+      value: "50.000 Haushalte",
+      compare: "Notbetrieb Bezirke",
+      label: "Ausweichlösungen für Bürgerdienste und Sozialleistungen in Vorbereitung.",
     },
   },
   {
@@ -178,21 +208,6 @@ export const ARTICLES = [
       value: "Wahl-O-Mat",
       compare: "38 Thesen online",
       label: "Offizieller Parteienvergleich zur Wahl zum Berliner Abgeordnetenhaus.",
-    },
-  },
-  {
-    cat: "Berlin Fokus",
-    title: "Hackerangriff auf Berliner Landesnetz: Ausfall bei Bürgerdiensten & Wohngeld-Notfallplan",
-    excerpt:
-      "Der Cyberangriff auf das Berliner Landesnetz betrifft Bau- und Verkehrsverwaltung sowie wichtige Bürgerdienste: Wohngeld-Auszahlungen für > 50.000 Haushalte, WBS-Anträge und Geodaten sind beeinträchtigt. Bezirke wie Steglitz-Zehlendorf bereiten Notfallportale & Bar-Auszahlungen vor.",
-    read: "5 Min",
-    date: "22. August 2026",
-    source: { label: "rbb24 · Panorama", href: "https://www.rbb24.de/panorama/beitrag/2026/08/berlin-it-hackerangriff-weiterhin-probleme-verwaltung-wegner.html" },
-    featured: false,
-    highlight: {
-      value: "Landesnetz IT",
-      compare: "Notfallplan Wohngeld",
-      label: "Wohngeld-Auszahlungen & Bürgerdienste wegen IT-Angriff eingeschränkt.",
     },
   },
   {
