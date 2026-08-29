@@ -137,13 +137,28 @@ export const DEUTSCHLANDGPT_LINKS = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
+    title: "Ransomware-Bande erpresst Berlin: Senat weist Lösegeldforderung über 30 Bitcoin entschieden zurück",
+    excerpt:
+      "Nach dem Cyberangriff auf das Berliner Landesnetz verlangt die Hackergruppe „Rhysida“ 30 Bitcoin (rund 2 Millionen Euro) und droht mit der Veröffentlichung erbeuteter Daten. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen unmissverständlich klar: Berlin zahlt nicht. BKA, LKA und BSI sichern die Systeme.",
+    read: "5 Min",
+    date: "29. August 2026",
+    source: { label: "Senatskanzlei Berlin · Pressemitteilung", href: "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php" },
+    featured: true,
+    highlight: {
+      value: "30 Bitcoin",
+      compare: "Erpressungsversuch",
+      label: "Senat weist Lösegeldforderung von 2 Mio. € zurück: „Berlin lässt sich nicht erpressen.“",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
     title: "Fliegerbombe in Neukölln erfolgreich entschärft: 5.600 Haushalte evakuiert & Sperrkreis aufgehoben",
     excerpt:
       "Im Neuköllner Schifffahrtskanal wurde am späten Mittwochabend eine 100 kg schwere Weltkriegsbombe erfolgreich entschärft. Rund 5.600 Haushalte mussten vorübergehend evakuiert werden. Nach der Trennung des Zünders per Wasserstrahlschneider konnten die Anwohner am späten Abend zurück in ihre Wohnungen.",
     read: "4 Min",
     date: "26. August 2026",
     source: { label: "rbb24 · Panorama", href: "https://www.rbb24.de/panorama/beitrag/2026/08/berlin-neukoelln-entschaerfung-bombe-sperrkreis.html" },
-    featured: true,
+    featured: false,
     highlight: {
       value: "Entschärft",
       compare: "Neukölln Sperrkreis",

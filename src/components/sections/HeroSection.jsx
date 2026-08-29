@@ -127,20 +127,20 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                    HAUPTSTORY DER WOCHE 💣
+                    HAUPTSTORY DER WOCHE 🛡️
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Entschärfung Neukölln
+                    Cyber-Erpressung Berlin
                   </span>
                 </div>
                 <span className="text-xs text-slate-400 font-mono">
-                  26. August 2026
+                  29. August 2026
                 </span>
               </div>
 
               {/* Story Title */}
               <a
-                href="https://www.rbb24.de/panorama/beitrag/2026/08/berlin-neukoelln-entschaerfung-bombe-sperrkreis.html"
+                href="https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group/link relative z-10"
@@ -149,24 +149,24 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-rose-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Fliegerbombe in Neukölln erfolgreich entschärft: Sperrkreis aufgehoben
+                  Ransomware-Bande erpresst Berlin: Senat weist Lösegeldforderung über 30 Bitcoin entschieden zurück
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Im Neuköllner Schifffahrtskanal wurde eine 100 kg schwere Weltkriegsbombe am Mittwochabend erfolgreich entschärft. Rund 5.600 Haushalte mussten evakuiert werden. Der Kampfmittelräumdienst entfernte den Zünder per Wasserstrahlschneider – Anwohner kehrten am späten Abend zurück.
+                Nach dem Cyberangriff auf das Landesnetz fordert die Gruppe „Rhysida“ 30 Bitcoin (~2 Mio. €) und droht mit Daten-Leaks. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen klar: „Das Land Berlin lässt sich nicht erpressen – wir zahlen kein Lösegeld.“
               </p>
 
               {/* Primary Source Verification Link */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800 text-xs relative z-10">
                 <a
-                  href="https://www.rbb24.de/panorama/beitrag/2026/08/berlin-neukoelln-entschaerfung-bombe-sperrkreis.html"
+                  href="https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-rose-400 hover:text-rose-300 hover:underline transition-colors"
                 >
-                  <span>Quelle: rbb24.de (Panorama)</span>
+                  <span>Quelle: Senatskanzlei Berlin / heise / rbb24</span>
                   <ExternalLink size={13} className="shrink-0" />
                 </a>
                 <span className="text-[11px] text-slate-400 font-mono">
