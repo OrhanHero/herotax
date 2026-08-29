@@ -219,6 +219,7 @@ const NewsHub = () => {
                       alt={featured.imageAlt || featured.title}
                       className="w-full h-52 sm:h-72 object-cover object-top brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
                       loading="lazy"
+                      referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
                     <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white">

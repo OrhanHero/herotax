@@ -53,7 +53,7 @@ const LiveTrackerBadge = ({ type = "general", onRefresh, variant = "default" }) 
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: "#10B981" }} />
           <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: "#10B981" }} />
         </span>
-        <span>{statusText || "Live · Stand: --.--.----, --:-- Uhr (alle 4 Std.)"}</span>
+        <span>{statusText || "Live · Stand: --.--.----, --:-- Uhr"}</span>
         <button
           onClick={handleManualRefresh}
           title="Jetzt live aktualisieren"
@@ -82,7 +82,7 @@ const LiveTrackerBadge = ({ type = "general", onRefresh, variant = "default" }) 
       </span>
       
       <span className="truncate max-w-[190px] sm:max-w-none">
-        {statusText || "Live · Stand: --.--.----, --:-- Uhr (alle 4 Std.)"}
+        {statusText || "Live · Stand: --.--.----, --:-- Uhr"}
       </span>
 
       <button

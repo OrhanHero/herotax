@@ -158,13 +158,14 @@ const HeroSection = () => {
                 Nach dem Cyberangriff auf das Landesnetz fordert die Gruppe „Rhysida“ 30 Bitcoin (~2 Mio. €) und droht mit Daten-Leaks. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen klar: „Das Land Berlin lässt sich nicht erpressen – wir zahlen kein Lösegeld.“
               </p>
 
-              {/* Offizielles Pressefoto des Berliner Senats */}
+              {/* Offizielles Pressefoto des Berliner Senats (Verlinkt über Senatskanzlei auf X) */}
               <div className="relative rounded-xl overflow-hidden mb-4 border border-slate-700/80 shadow-md group/img relative z-10">
                 <img
-                  src="/images/senat_statement_ransomware.jpg"
+                  src="https://pbs.twimg.com/media/HQ0agsDW0AAlTuN.jpg"
                   alt="Innensenatorin Iris Spranger (links) und Regierender Bürgermeister Kai Wegner (rechts) bei der Stellungnahme zur Erpressung"
                   className="w-full h-44 sm:h-52 object-cover object-top brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
                   loading="lazy"
+                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
                 <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] font-mono text-slate-200">
@@ -179,7 +180,7 @@ const HeroSection = () => {
                     onClick={(e) => e.stopPropagation()}
                     className="bg-slate-900/80 hover:bg-slate-800 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 text-slate-300 hover:text-white flex items-center gap-1 transition-colors"
                   >
-                    <span>Foto: @RegBerlin (Senat auf X)</span>
+                    <span>Foto: © Senatskanzlei via X (@RegBerlin)</span>
                     <ExternalLink size={10} />
                   </a>
                 </div>

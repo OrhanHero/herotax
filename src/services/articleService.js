@@ -75,10 +75,10 @@ export const getTrackerStatusText = (type = "general") => {
   try {
     const ts = localStorage.getItem(cacheTimestampKey(type));
     const formatted = formatTrackerDate(ts || Date.now());
-    return `Live · Stand: ${formatted} (alle 4 Std.)`;
+    return `Live · Stand: ${formatted}`;
   } catch {
     const formatted = formatTrackerDate(Date.now());
-    return `Live · Stand: ${formatted} (alle 4 Std.)`;
+    return `Live · Stand: ${formatted}`;
   }
 };
 
