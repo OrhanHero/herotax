@@ -130,14 +130,14 @@ const NewsHub = () => {
               </div>
               <div className="flex flex-wrap items-center gap-3 shrink-0">
                 <a
-                  href="https://www.bpb.de/themen/wahl-o-mat/"
+                  href="https://www.wahl-o-mat.de/berlin2026/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
-                  title="Der Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin wird am 24. August gegen Mittag unter wahl-o-mat.de veröffentlicht."
+                  title="Der offizielle Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin 2026 auf wahl-o-mat.de."
                   style={{ ...fontDisplay }}
                 >
-                  <span>🗳️ Wahl-O-Mat Berlin (Ab 24. Aug.)</span>
+                  <span>🗳️ Wahl-O-Mat Berlin 2026</span>
                   <ArrowUpRight size={16} />
                 </a>
                 <a
@@ -367,15 +367,15 @@ const NewsHub = () => {
                         <span className="truncate">Unionsbürgerinnen & Unionsbürger</span>
                       </a>
                       <a
-                        href="https://www.bpb.de/themen/wahl-o-mat/"
+                        href="https://www.wahl-o-mat.de/berlin2026/"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        title="Der Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin wird am 24. August gegen Mittag unter wahl-o-mat.de veröffentlicht."
+                        title="Der offizielle Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin 2026 auf wahl-o-mat.de."
                         className="p-2.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition-all hover:scale-[1.02] bg-amber-100/90 dark:bg-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/30 border-amber-300 dark:border-amber-400/40 text-amber-950 dark:text-amber-100 shadow-sm"
                       >
                         <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0 animate-ping" />
-                        <span className="truncate font-bold">Wahl-O-Mat Berlin (Ab 24. Aug. online)</span>
+                        <span className="truncate font-bold">Wahl-O-Mat Berlin 2026</span>
                       </a>
                     </div>
                   </div>

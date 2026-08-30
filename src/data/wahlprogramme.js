@@ -8,7 +8,7 @@ export const WAHLPROGRAMME_DATA = {
   subtitle: "Berliner Abgeordnetenhauswahl · Führung im Roten Rathaus",
   lastUpdated: "22. August 2026",
   wahlOMatDate: "24.08.2026",
-  wahlOMatUrl: "https://www.bpb.de/themen/wahl-o-mat/",
+  wahlOMatUrl: "https://www.wahl-o-mat.de/berlin2026/",
   parties: [
     {
       id: "cdu",

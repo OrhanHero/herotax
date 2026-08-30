@@ -189,7 +189,7 @@ const WahlprogrammeSection = () => {
         ))}
       </div>
 
-      {/* Wahl-O-Mat Teaser Notice Banner */}
+      {/* Wahl-O-Mat Live Banner */}
       <div className="mt-5 p-3.5 rounded-xl bg-gradient-to-r from-amber-950/40 via-slate-950/80 to-blue-950/40 border border-amber-500/30 relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-start gap-2.5">
           <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 shrink-0 mt-0.5 sm:mt-0">
@@ -198,14 +198,14 @@ const WahlprogrammeSection = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold text-white font-mono">
-                Wahl-O-Mat geht am 24.08.2026 live 🗳️
+                Wahl-O-Mat Berlin 2026 jetzt online 🗳️
               </span>
               <span className="text-[10px] font-mono uppercase bg-amber-500/20 text-amber-300 px-1.5 py-0.2 rounded border border-amber-500/30">
-                BPB Hinweis
+                Offiziell Live
               </span>
             </div>
             <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
-              Weitere zur Wahl stehende Parteien folgen zum offiziellen Start des Wahl-O-Mat der Bundeszentrale für politische Bildung.
+              38 Thesen der Bundeszentrale für politische Bildung (bpb) zum direkten Parteienvergleich vor der Wahl am 20. September 2026.
             </p>
           </div>
         </div>
@@ -215,7 +215,7 @@ const WahlprogrammeSection = () => {
           rel="noopener noreferrer"
           className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold font-mono bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-md transition-all cursor-pointer"
         >
-          <span>bpb.de / Wahl-O-Mat</span>
+          <span>Wahl-O-Mat Berlin starten</span>
           <ExternalLink size={12} />
         </a>
       </div>

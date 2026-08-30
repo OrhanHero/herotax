@@ -221,7 +221,7 @@ export const ARTICLES = [
       "Die Bundeszentrale für politische Bildung (bpb) hat den Wahl-O-Mat zur Berliner Abgeordnetenhauswahl 2026 freigeschaltet. 38 Thesen ermöglichen allen 2,4 Millionen Wahlberechtigten den direkten Parteienvergleich vor dem Wahltag am 20. September.",
     read: "4 Min",
     date: "24. August 2026",
-    source: { label: "bpb · Bundeszentrale für politische Bildung (wahl-o-mat.de)", href: "https://www.bpb.de/themen/wahl-o-mat/" },
+    source: { label: "bpb · Wahl-O-Mat Berlin 2026", href: "https://www.wahl-o-mat.de/berlin2026/" },
     featured: false,
     highlight: {
       value: "Wahl-O-Mat",
@@ -306,7 +306,7 @@ export const ARTICLES = [
       "Der Wahl-O-Mat der Bundeszentrale für politische Bildung (bpb) zur Wahl zum Abgeordnetenhaus von Berlin 2026 wird am Montag, 24. August, online freigeschaltet. Standpunkte und Parteivergleiche vor der Wahl am 20. September.",
     read: "3 Min",
     date: "18. August 2026",
-    source: { label: "bpb · Bundeszentrale für politische Bildung (wahl-o-mat.de)", href: "https://www.bpb.de/themen/wahl-o-mat/" },
+    source: { label: "bpb · Wahl-O-Mat Berlin 2026", href: "https://www.wahl-o-mat.de/berlin2026/" },
   },
   {
     cat: "Berlin Fokus",
