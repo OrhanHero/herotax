@@ -6,7 +6,6 @@ import SiteStatusBadge from "../atoms/SiteStatusBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 import WahlprogrammeSection from "./WahlprogrammeSection";
-import IFATicketVault from "./IFATicketVault";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
@@ -170,7 +169,7 @@ const HeroSection = () => {
                     Verifizierte Links
                   </span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <a
                     href="https://www.ifa-berlin.com/de/ticket-b2b?utm_source=google&utm_medium=google_paid&utm_campaign=ifa26_exprom&utm_content=b2b&utm_term=performance_max"
                     target="_blank"
@@ -179,15 +178,6 @@ const HeroSection = () => {
                   >
                     <span className="truncate font-semibold">IFA Ticket B2B</span>
                     <ExternalLink size={10} className="shrink-0 text-blue-400" />
-                  </a>
-                  <a
-                    href="https://ifaberlin.seetickets.com/event/ifa-berlin-2026/messe/3635886?src=newsletter_referral&utm_source=newsletter&utm_medium=email&utm_campaign=ifa26_b2c_visprom&utm_content=tagesspiegel_freeticket"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">SeeTickets IFA</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                   <a
                     href="https://www.ifa-berlin.com/de/hallenplan"
@@ -201,9 +191,6 @@ const HeroSection = () => {
                 </div>
               </div>
             </div>
-
-            {/* Interaktiver, bot-geschützter IFA-Ticket-Tresor */}
-            <IFATicketVault />
           </div>
 
           {/* Wahlprogramme & Spitzenkandidaten der Berliner Parteien 2026 */}
