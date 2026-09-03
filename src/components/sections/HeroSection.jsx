@@ -6,6 +6,7 @@ import SiteStatusBadge from "../atoms/SiteStatusBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 import WahlprogrammeSection from "./WahlprogrammeSection";
+import IFATicketVault from "./IFATicketVault";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
@@ -117,162 +118,92 @@ const HeroSection = () => {
           </p>
 
           {/* Hauptstory der Woche Card */}
-          <div className="pt-2 max-w-xl">
-            <div className="group relative rounded-2xl p-5 sm:p-6 transition-all duration-300 bg-slate-900/90 backdrop-blur-md border border-rose-500/35 hover:border-rose-500/60 shadow-xl overflow-hidden">
-              {/* Subtle Red/Rose Security Glow Effect */}
-              <div className="absolute -top-12 -right-12 w-44 h-44 bg-rose-500/15 rounded-full blur-2xl pointer-events-none group-hover:bg-rose-500/25 transition-all duration-500" />
+          <div className="pt-2 max-w-xl space-y-4">
+            <div className="group relative rounded-2xl p-5 sm:p-6 transition-all duration-300 bg-slate-900/90 backdrop-blur-md border border-blue-500/35 hover:border-blue-500/60 shadow-xl overflow-hidden">
+              {/* Subtle Tech Glow Effect */}
+              <div className="absolute -top-12 -right-12 w-48 h-48 bg-blue-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-blue-500/25 transition-all duration-500" />
               
               {/* Header Badges & Date */}
               <div className="flex flex-wrap items-center justify-between gap-2 mb-3 relative z-10">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 tracking-wide font-mono">
-                    <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                    HAUPTSTORY DER WOCHE 🛡️
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40 tracking-wide font-mono">
+                    <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                    HAUPTSTORY DER WOCHE 📻⚡
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Cyber-Erpressung Berlin
+                    IFA Berlin 2026 · Messe Berlin
                   </span>
                 </div>
                 <span className="text-xs text-slate-400 font-mono">
-                  29. August 2026
+                  03. September 2026
                 </span>
               </div>
 
               {/* Story Title */}
               <a
-                href="https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php"
+                href="https://www.ifa-berlin.com/de/ticket-b2b?utm_source=google&utm_medium=google_paid&utm_campaign=ifa26_exprom&utm_content=b2b&utm_term=performance_max"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group/link relative z-10"
               >
                 <h3
-                  className="text-lg sm:text-xl font-bold text-white group-hover/link:text-rose-300 transition-colors leading-snug mb-2"
+                  className="text-lg sm:text-xl font-bold text-white group-hover/link:text-blue-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Ransomware-Bande erpresst Berlin: Senat weist Lösegeldforderung über 30 Bitcoin entschieden zurück
+                  IFA Berlin 2026 öffnet ihre Tore: Weltleitmesse für Consumer Electronics, Smart Living &amp; AI am Funkturm
                 </h3>
               </a>
 
               {/* Story Teaser */}
-              <p className="text-sm text-slate-300 leading-relaxed mb-3 relative z-10">
-                Nach dem Cyberangriff auf das Landesnetz fordert die Gruppe „Rhysida“ 30 Bitcoin (~2 Mio. €) und droht mit Daten-Leaks. Der Regierende Bürgermeister Kai Wegner und Innensenatorin Iris Spranger stellen klar: „Das Land Berlin lässt sich nicht erpressen – wir zahlen kein Lösegeld.“
+              <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
+                Vom 4. bis 8. September 2026 trifft sich das weltweite Tech-Ökosystem unter dem Funkturm. 102 Jahre nach der ersten Funkausstellung 1924 stehen Agentic AI im Haushalt, vernetzte Smart-Home-Standards und europäische Spitzen-Startups im IFA NEXT Hub im Mittelpunkt.
               </p>
-
-              {/* Offizielles Pressefoto des Berliner Senats (Verlinkt über Senatskanzlei auf X) */}
-              <div className="relative rounded-xl overflow-hidden mb-4 border border-slate-700/80 shadow-md group/img relative z-10 aspect-[16/10] sm:aspect-[16/9] bg-slate-950">
-                <img
-                  src="https://pbs.twimg.com/media/HQ0agsDW0AAlTuN.jpg"
-                  alt="Innensenatorin Iris Spranger (links) und Regierender Bürgermeister Kai Wegner (rechts) bei der Stellungnahme zur Erpressung"
-                  className="w-full h-full object-cover object-[center_62%] brightness-95 group-hover/img:scale-[1.02] transition-transform duration-500"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/15 to-transparent pointer-events-none" />
-                <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] font-mono text-slate-200 z-10">
-                  <span className="bg-slate-900/90 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 flex items-center gap-1.5 shadow-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-                    Iris Spranger &amp; Kai Wegner
-                  </span>
-                  <a
-                    href="https://x.com/RegBerlin/status/2093358558603551024/photo/1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md px-2 py-0.5 rounded border border-slate-700/60 text-slate-300 hover:text-white flex items-center gap-1 transition-colors shadow-sm"
-                  >
-                    <span>Foto: © Senatskanzlei via X (@RegBerlin)</span>
-                    <ExternalLink size={10} />
-                  </a>
-                </div>
-              </div>
 
               {/* Individuell aufgelistete Primärquellen */}
               <div className="pt-3 border-t border-slate-800 text-xs relative z-10 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-                    Einzelquellen &amp; Berichterstattung (8):
+                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    Offizielle Quellen &amp; Tickets:
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono">
-                    Verifizierte Primärquellen
+                    Verifizierte Links
                   </span>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   <a
-                    href="https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php"
+                    href="https://www.ifa-berlin.com/de/ticket-b2b?utm_source=google&utm_medium=google_paid&utm_campaign=ifa26_exprom&utm_content=b2b&utm_term=performance_max"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/35 text-rose-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                    className="p-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/35 text-blue-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate font-semibold">Senatskanzlei</span>
-                    <ExternalLink size={10} className="shrink-0 text-rose-400" />
+                    <span className="truncate font-semibold">IFA Ticket B2B</span>
+                    <ExternalLink size={10} className="shrink-0 text-blue-400" />
                   </a>
                   <a
-                    href="https://www.heise.de/news/30-Bitcoin-oder-Leak-Ransomware-Bande-erpresst-Berlin-11434325.html"
+                    href="https://ifaberlin.seetickets.com/event/ifa-berlin-2026/messe/3635886?src=newsletter_referral&utm_source=newsletter&utm_medium=email&utm_campaign=ifa26_b2c_visprom&utm_content=tagesspiegel_freeticket"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">heise online</span>
+                    <span className="truncate">SeeTickets IFA</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                   <a
-                    href="https://www.rbb24.de/politik/beitrag/2026/08/hacker-erpressen-land-berlin-bitcoin-millionen.html"
+                    href="https://www.ifa-berlin.com/de/hallenplan"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">rbb24 (Politik)</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.spiegel.de/netzwelt/berlin-cyberangriff-auf-die-hauptstadt-die-hacker-fordern-30-bitcoin-a-54af015f-7f83-411a-a39c-8b7b05cff60a"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">DER SPIEGEL</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.tagesspiegel.de/berlin/notfallplane-und-passworter-erbeutet-wegner-weist-erpresser-ultimatum-zuruck--hacker-fordern-laut-medienbericht-zwei-millionen-euro-15984600.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">Tagesspiegel</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.morgenpost.de/berlin/article412989955/gehackte-berliner-verwaltung-senat-bestaetigt-erpressungsversuch.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">Morgenpost</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.welt.de/politik/deutschland/article6a919777b3df30a615529309/berliner-landesbehoerden-erpresser-verlangen-loesegeld-nach-hackerangriff-offenbar-zwei-millionen-euro-gefordert.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">DIE WELT</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.rbb24.de/politik/beitrag/2026/08/berlin-hackerangriff-landesnetz-loesegeld-forderung-erpresser.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">rbb24 Chronik</span>
+                    <span className="truncate">IFA Hallenplan</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                 </div>
               </div>
             </div>
+
+            {/* Interaktiver, bot-geschützter IFA-Ticket-Tresor */}
+            <IFATicketVault />
           </div>
 
           {/* Wahlprogramme & Spitzenkandidaten der Berliner Parteien 2026 */}

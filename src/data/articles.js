@@ -145,7 +145,29 @@ export const CYBER_ERPRESSUNG_SOURCES = [
   { label: "rbb24 Hintergrund", detail: "Hackerangriff auf Berliner Landesnetz: Chronologie & Notfallmaßnahmen", href: "https://www.rbb24.de/politik/beitrag/2026/08/berlin-hackerangriff-landesnetz-loesegeld-forderung-erpresser.html", badge: "Chronologie" },
 ];
 
+export const IFA_BERLIN_SOURCES = [
+  { label: "IFA Berlin", detail: "Offizielle Ticket- und Aussteller-Plattform 2026", href: "https://www.ifa-berlin.com/de/ticket-b2b", badge: "Messe", primary: true },
+  { label: "SeeTickets IFA", detail: "Offizielles Gutschein-Einlöseportal für Freikarten", href: "https://ifaberlin.seetickets.com/event/ifa-berlin-2026/messe/3635886?src=newsletter_referral&utm_source=newsletter&utm_medium=email&utm_campaign=ifa26_b2c_visprom&utm_content=tagesspiegel_freeticket", badge: "Gutschein" },
+  { label: "IFA Hallenplan", detail: "Interaktiver Gelände- & Hallenplan 2026", href: "https://www.ifa-berlin.com/de/hallenplan", badge: "Gelände" },
+];
+
 export const ARTICLES = [
+  {
+    cat: "Berlin Fokus",
+    title: "IFA Berlin 2026 öffnet ihre Tore: Weltleitmesse für Consumer Electronics, Smart Living & AI am Berliner Funkturm",
+    excerpt:
+      "Vom 4. bis 8. September 2026 versammelt die IFA die globale Tech-Branche in Berlin. 102 Jahre nach der ersten Funkausstellung stehen Agentic AI im Smart Home, europäische Startup-Innovationen im IFA NEXT Hub und nachhaltige Elektronik im Mittelpunkt. HERO Tax – Exklusiv verlost 2 Tagestickets für Privatbesucher (Wert 43 €) über unseren IFA Ticket-Tresor!",
+    read: "4 Min",
+    date: "03. September 2026",
+    source: { label: "IFA Berlin · Offizielle Messe-Plattform", href: "https://www.ifa-berlin.com/de/ticket-b2b" },
+    sources: IFA_BERLIN_SOURCES,
+    featured: true,
+    highlight: {
+      value: "4.–8. Sept 2026",
+      compare: "IFA Berlin 2026",
+      label: "Weltleitmesse für Consumer Tech & IFA NEXT Innovation Hub an der Messe Berlin.",
+    },
+  },
   {
     cat: "Berlin Fokus",
     title: "Ransomware-Bande „Rhysida“ erpresst Berlin: Senat weist Lösegeldforderung über 30 Bitcoin entschieden zurück",
@@ -162,7 +184,7 @@ export const ARTICLES = [
     },
     source: { label: "Senatskanzlei Berlin · Pressemitteilung", href: "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2026/pressemitteilung.1708208.php" },
     sources: CYBER_ERPRESSUNG_SOURCES,
-    featured: true,
+    featured: false,
     highlight: {
       value: "30 Bitcoin",
       compare: "Erpressungsversuch",
