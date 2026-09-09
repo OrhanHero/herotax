@@ -127,20 +127,20 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                    HAUPTSTORY DER WOCHE 📻⚡
+                    HAUPTSTORY DER WOCHE 🗳️⚡
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    IFA Berlin 2026 · Messe Berlin
+                    Berlin-Wahl 2026 · rbb24 Wahlticker
                   </span>
                 </div>
                 <span className="text-xs text-slate-400 font-mono">
-                  03. September 2026
+                  10. September 2026
                 </span>
               </div>
 
               {/* Story Title */}
               <a
-                href="https://www.ifa-berlin.com/de/ticket-b2b?utm_source=google&utm_medium=google_paid&utm_campaign=ifa26_exprom&utm_content=b2b&utm_term=performance_max"
+                href="https://www.rbb24.de/politik/berlin-wahl-2026/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group/link relative z-10"
@@ -149,13 +149,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-blue-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  IFA Berlin 2026 öffnet ihre Tore: Weltleitmesse für Consumer Electronics, Smart Living &amp; AI am Funkturm
+                  Berlin-Wahl 2026 im Endspurt: Ermittlungen gegen SPD-Spitzenkandidat Krach &amp; Stimmzettel-Panne bei Briefwahl
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Vom 4. bis 8. September 2026 trifft sich das weltweite Tech-Ökosystem unter dem Funkturm. 102 Jahre nach der ersten Funkausstellung 1924 stehen Agentic AI im Haushalt, vernetzte Smart-Home-Standards und europäische Spitzen-Startups im IFA NEXT Hub im Mittelpunkt.
+                Zehn Tage vor der Wahl zum Abgeordnetenhaus und den BVV am 20. September 2026 überschlagen sich die Ereignisse: Die Staatsanwaltschaft Hannover ermittelt gegen SPD-Spitzenkandidat Steffen Krach wegen Bestechlichkeitsvorwürfen (Krach bestreitet im rbb jedes Fehlverhalten). Zugleich sorgt ein Stimmzettel-Fehldruck in Charlottenburg-Wilmersdorf für Unruhe bei der Briefwahl, während der rbb24-BerlinTrend die CDU vorn sieht.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
@@ -163,29 +163,47 @@ const HeroSection = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                    Offizielle Quellen &amp; Tickets:
+                    Offizielle Wahl-Berichterstattung (rbb24):
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono">
-                    Verifizierte Links
+                    Verifizierte Quellen
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <a
-                    href="https://www.ifa-berlin.com/de/ticket-b2b?utm_source=google&utm_medium=google_paid&utm_campaign=ifa26_exprom&utm_content=b2b&utm_term=performance_max"
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/35 text-blue-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate font-semibold">IFA Ticket B2B</span>
+                    <span className="truncate font-semibold">rbb24 Wahl-Portal</span>
                     <ExternalLink size={10} className="shrink-0 text-blue-400" />
                   </a>
                   <a
-                    href="https://www.ifa-berlin.com/de/hallenplan"
+                    href="https://www.rbb24.de/politik/beitrag/2026/09/staatsanwaltschaft-hannover-ermittlungen-steffen-krach.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">IFA Hallenplan</span>
+                    <span className="truncate">Ermittlungen Krach</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-charlottenburg-wilmersdorf-falsche-stimmzettel.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">Stimmzettel-Panne</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-trend-abgeordnetenhaus-wahl-september.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">BerlinTrend Umfrage</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                 </div>
