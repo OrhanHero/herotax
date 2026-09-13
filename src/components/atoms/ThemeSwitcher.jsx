@@ -1,5 +1,5 @@
 import { Sun, Moon } from "lucide-react";
-import { useTheme } from "../../theme";
+import { useTheme } from "../../use-theme";
 import { useLang } from "../../i18n";
 import { T, fontDisplay } from "../../config/tokens";
 
