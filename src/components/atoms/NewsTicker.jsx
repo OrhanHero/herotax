@@ -1,43 +1,64 @@
+import { Vote } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontMono } from "../../config/tokens";
-import { FernsehturmIcon } from "./FernsehturmBadge";
+
+/* Wahl zum Abgeordnetenhaus & BVV von Berlin — 20. September 2026 */
+const ELECTION_DAY = new Date(2026, 8, 20);
+const getDaysUntilElection = () => {
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.max(0, Math.round((ELECTION_DAY - startOfToday) / 86_400_000));
+};
 
 /**
- * NewsTicker — durchlaufendes Nachrichten-Band im Berliner Kiosk & Amts-Blueprint Stil.
- * · Speist sich automatisch aus ARTICLES (eine Datenquelle, kein Doppelpflegen)
+ * NewsTicker — durchlaufendes Wahlticker-Band mit Live-Meldungen zur Berlin-Wahl 2026.
+ * · Priorisiert aktuelle Meldungen zur Wahl, Briefwahl und Parteien
  * · Nahtlose Endlos-Schleife: Inhalt wird dupliziert, Animation läuft -50 %
- * · Pausiert bei Hover/Fokus (Lesbarkeit) und respektiert
- *   prefers-reduced-motion (dann horizontal scrollbar statt animiert)
- * · Jeder Eintrag verlinkt auf die Original-Quelle → neuer Tab
+ * · Pausiert bei Hover/Fokus (Lesbarkeit)
+ * · Jeder Eintrag verlinkt auf die Original-Quelle
  */
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
-  // Maximal 5 top-aktuelle News im Ticker anzeigen
-  const tickerItems = (items || []).slice(0, 5);
+  const daysLeft = getDaysUntilElection();
+
+  // Priorisiere Meldungen zur Berlin-Wahl 2026
+  const electionItems = (items || []).filter(
+    (a) =>
+      a.isElection ||
+      a.tickerTag ||
+      /wahl|stimmzettel|agh|bvv|berlintrend|krach|wegner|rotes rathaus/i.test(a.title)
+  );
+  const otherItems = (items || []).filter((a) => !electionItems.includes(a));
+  const tickerItems = [...electionItems, ...otherItems].slice(0, 8);
 
   return (
     <div
       className="flex items-stretch shadow-xs"
       style={{ backgroundColor: T.ink, borderBottom: `1px solid ${T.line}` }}
       role="region"
-      aria-label="Newsticker: aktuelle Meldungen"
+      aria-label="Wahlticker: aktuelle Meldungen zur Berlin-Wahl 2026"
       dir="ltr"
     >
-      {/* Festes Label links — Berliner Kiosk / Amts-Ticker */}
+      {/* Festes Label links — Berliner Wahl-Ticker */}
       <div
-        className="flex items-center gap-2 px-4 sm:px-5 py-2.5 shrink-0 z-10"
-        style={{ backgroundColor: T.blue }}
+        className="flex items-center gap-2 px-3 sm:px-4.5 py-2.5 shrink-0 z-10 select-none shadow-md"
+        style={{
+          background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)",
+          borderRight: "1px solid rgba(255,255,255,0.15)",
+        }}
       >
-        <FernsehturmIcon size={16} color={T.blueInk} />
-        <span className="relative flex h-2 w-2" aria-hidden="true">
+        <Vote size={15} className="text-amber-300 shrink-0" />
+        <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
           <span
-            className="ticker-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-            style={{ backgroundColor: T.blueInk }}
+            className="ticker-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-amber-400"
           />
-          <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: T.blueInk }} />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-300" />
         </span>
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ ...fontMono, color: T.blueInk }}>
+        <span className="text-xs font-bold tracking-widest uppercase font-mono text-white flex items-center gap-1.5">
           {t("ticker.label")}
+        </span>
+        <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/35 tracking-wider">
+          {daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : "WAHLTAG 🗳️"}
         </span>
       </div>
 
@@ -47,33 +68,53 @@ const NewsTicker = ({ items }) => {
           {/* Inhalt doppelt rendern → nahtlose Schleife bei -50 % */}
           {[0, 1].map((copy) => (
             <div key={copy} className="flex items-center" aria-hidden={copy === 1}>
-              {tickerItems.map((a) => (
-                <a
-                  key={`${copy}-${a.title}`}
-                  href={a.source.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  tabIndex={copy === 1 ? -1 : 0}
-                  className="inline-flex items-center gap-2.5 px-6 text-sm transition-opacity hover:opacity-75 focus:outline-none focus-visible:underline"
-                  style={{ color: T.inkText }}
-                >
-                  <span
-                    className="text-xs font-bold uppercase tracking-wider shrink-0 px-2 py-0.5 rounded"
-                    style={{
-                      ...fontMono,
-                      backgroundColor: a.cat === "Berlin Fokus" ? "rgba(143,160,255,0.18)" : "rgba(255,255,255,0.1)",
-                      color: a.cat === "Berlin Fokus" ? T.inkAccent : T.inkText,
-                    }}
+              {tickerItems.map((a) => {
+                const isElection =
+                  a.isElection ||
+                  a.tickerTag ||
+                  /wahl|stimmzettel|agh|bvv|berlintrend|krach|rotes rathaus/i.test(a.title);
+
+                return (
+                  <a
+                    key={`${copy}-${a.title}`}
+                    href={a.source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={copy === 1 ? -1 : 0}
+                    className="inline-flex items-center gap-2.5 px-6 text-sm transition-opacity hover:opacity-75 focus:outline-none focus-visible:underline"
+                    style={{ color: T.inkText }}
                   >
-                    {a.cat}
-                  </span>
-                  <span className="font-semibold">{a.title}</span>
-                  <span className="text-xs shrink-0" style={{ ...fontMono, color: T.inkMuted }}>
-                    {a.date}
-                  </span>
-                  <span aria-hidden="true" style={{ color: T.inkAccent }}>+++</span>
-                </a>
-              ))}
+                    <span
+                      className="text-[11px] font-bold uppercase tracking-wider shrink-0 px-2 py-0.5 rounded"
+                      style={{
+                        ...fontMono,
+                        backgroundColor: isElection
+                          ? "rgba(245, 158, 11, 0.18)"
+                          : a.cat === "Berlin Fokus"
+                          ? "rgba(143,160,255,0.18)"
+                          : "rgba(255,255,255,0.1)",
+                        color: isElection
+                          ? "#fbbf24"
+                          : a.cat === "Berlin Fokus"
+                          ? T.inkAccent
+                          : T.inkText,
+                        border: isElection
+                          ? "1px solid rgba(245, 158, 11, 0.35)"
+                          : "1px solid rgba(255,255,255,0.06)",
+                      }}
+                    >
+                      {a.tickerTag || (isElection ? "BERLIN-WAHL" : a.cat)}
+                    </span>
+                    <span className="font-semibold">{a.title}</span>
+                    <span className="text-xs shrink-0" style={{ ...fontMono, color: T.inkMuted }}>
+                      {a.date}
+                    </span>
+                    <span aria-hidden="true" style={{ color: isElection ? "#f59e0b" : T.inkAccent }}>
+                      +++
+                    </span>
+                  </a>
+                );
+              })}
             </div>
           ))}
         </div>

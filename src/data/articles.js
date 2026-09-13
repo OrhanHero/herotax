@@ -150,17 +150,164 @@ export const IFA_BERLIN_SOURCES = [
   { label: "IFA Hallenplan", detail: "Interaktiver Gelände- & Hallenplan 2026", href: "https://www.ifa-berlin.com/de/hallenplan", badge: "Gelände" },
 ];
 
+export const BERLIN_WAHL_SOURCES = [
+  { label: "rbb24 Wahl-Portal", detail: "Aktueller Ticker zur Berlin-Wahl 2026", href: "https://www.rbb24.de/politik/berlin-wahl-2026/", badge: "Wahlticker", primary: true },
+  { label: "rbb24 Koalitionen", detail: "Mögliche Bündnisse nach der Berlin-Wahl", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahlkampf-koalitionen-moeglichkeiten-berlintrend.html", badge: "Analyse" },
+  { label: "rbb24 Briefwahl-Endspurt", detail: "Letzte Fristen & Hinweise der Landeswahlleitung", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-landeswahlleiter-briefwahl-wahlunterlagen-stimmzettel.html", badge: "Briefwahl" },
+  { label: "rbb24 Recherche", detail: "Ermittlungen gegen Steffen Krach", href: "https://www.rbb24.de/politik/beitrag/2026/09/staatsanwaltschaft-hannover-ermittlungen-steffen-krach.html", badge: "Justiz" },
+  { label: "rbb24 BerlinTrend", detail: "Umfrage zur Abgeordnetenhauswahl 2026", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-trend-abgeordnetenhaus-wahl-september.html", badge: "Umfrage" },
+  { label: "bpb Wahl-O-Mat", detail: "Offizieller Thesenvergleich auf wahl-o-mat.de", href: "https://www.wahl-o-mat.de/berlin2026/", badge: "Wahl-O-Mat" },
+  { label: "Landeswahlleiterin Berlin", detail: "Offizielle Wahltermine & Briefwahl-Hinweise", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/", badge: "Amtlich" },
+];
+
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    title: "IFA Berlin 2026 öffnet ihre Tore: Weltleitmesse für Consumer Electronics, Smart Living & AI am Berliner Funkturm",
+    tickerTag: "WAHL-ENDSPURT",
+    isElection: true,
+    title: "Berlin-Wahl 2026 im heißen Endspurt: Nur noch 6 Tage bis zur Entscheidung im Roten Rathaus – Koalitionspoker & Briefwahl-Frist spitzen sich zu",
+    excerpt:
+      "In genau sechs Tagen, am Sonntag, 20. September 2026, wählen rund 2,4 Millionen Berlinerinnen und Berliner das Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen. Die Landeswahlleitung mahnt an die allerletzte Chance zur Briefwahl, während die Spitzenkandidaten im TV-Format „Ihr Plan für Berlin“ um jede Stimme ringen und die Umfragen ein enges Rennen um die Macht im Roten Rathaus vorhersagen.",
+    read: "5 Min",
+    date: "14. September 2026",
+    source: { label: "rbb24 · Wahl-Portal", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
+    sources: BERLIN_WAHL_SOURCES,
+    featured: true,
+    highlight: {
+      value: "6 Tage",
+      compare: "Wahltag 20. Sept.",
+      label: "Heißer Endspurt um das Rote Rathaus: Briefwahl-Endspurt & Koalitionsoptionen zwischen CDU, SPD und Grünen.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "NEUKÖLLN",
+    title: "Berlin-Neukölln: BVG-Bus prallt gegen Baum – 15 Menschen verletzt",
+    excerpt:
+      "Schwerer Unfall in Neukölln: Am späten Samstagabend kam ein BVG-Bus der Linie M46 auf der Fulhamer Allee in Britz von der Fahrbahn ab und prallte frontal gegen einen Baum. 15 Menschen wurden verletzt, sieben von ihnen mussten stationär im Krankenhaus behandelt werden. Die Feuerwehr befreite einen eingeklemmten Fahrgast mit schwerem Gerät.",
+    read: "3 Min",
+    date: "13. September 2026",
+    source: { label: "rbb24 · Panorama", href: "https://www.rbb24.de/panorama/beitrag/2026/09/berlin-neukoelln-bvg-busunfall-verletzte.html" },
+    featured: false,
+    highlight: {
+      value: "15 Verletzte",
+      compare: "BVG-Unfall Britz",
+      label: "M46-Bus auf Fulhamer Allee gegen Baum geprallt – Großeinsatz von Feuerwehr und Polizei.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "WAHL-AFFÄRE",
+    isElection: true,
+    title: "Berlin-Wahl 2026: Staatsanwaltschaft ermittelt gegen SPD-Spitzenkandidat Krach – Krach weist Vorwürfe im rbb entschieden zurück",
+    excerpt:
+      "Wenige Tage vor der Wahl zum Abgeordnetenhaus und den BVV am 20. September 2026 sorgt ein Ermittlungsverfahren der Staatsanwaltschaft Hannover gegen Steffen Krach für politische Beben im Wahlkampf. Krach bestreitet im rbb jegliches Fehlverhalten; die Berliner Parteien reagieren mit scharfer Debatte.",
+    read: "5 Min",
+    date: "10. September 2026",
+    source: { label: "rbb24 · Wahlticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
+    sources: BERLIN_WAHL_SOURCES,
+    featured: false,
+    highlight: {
+      value: "Ermittlungen",
+      compare: "Hannover & Berlin",
+      label: "Debatte um Steffen Krach im Endspurt vor der Abgeordnetenhauswahl.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "BRIEFWAHL-PANNE",
+    isElection: true,
+    title: "Stimmzettel-Panne in Charlottenburg-Wilmersdorf: Falsche Stimmzettel im Wahlkreis 6 an Briefwähler verschickt",
+    excerpt:
+      "Im Wahlkreis 6 von Charlottenburg-Wilmersdorf wurden rund 3.500 fehlerhafte Stimmzettel für das Abgeordnetenhaus per Briefwahl verschickt. Das Bezirkswahlamt hat den Fehler eingeräumt und sendet betroffenen Wählerinnen und Wählern unverzüglich korrigierte Unterlagen zu.",
+    read: "4 Min",
+    date: "09. September 2026",
+    source: { label: "rbb24 · Berlin-Wahl 2026", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-charlottenburg-wilmersdorf-falsche-stimmzettel.html" },
+    featured: false,
+    highlight: {
+      value: "3.500 Wähler",
+      compare: "Wahlkreis 6",
+      label: "Bezirksamt veranlasst Nachdruck und Neuzustellung korrigierter Stimmzettel.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "BERLINTREND",
+    isElection: true,
+    title: "rbb24-BerlinTrend zur Abgeordnetenhauswahl: CDU bei 27 % vorn – Kopf-an-Kopf-Rennen um Koalitionsoptionen im Roten Rathaus",
+    excerpt:
+      "Die jüngste Infratest-dimap-Umfrage sieht die Berliner CDU von Kai Wegner mit 27 Prozent vorn, gefolgt von SPD (20 %) und Grünen (18 %). Rechnerisch bleiben sowohl Schwarz-Rot als auch Rot-Grün-Rot oder Schwarz-Grün im Bereich des Möglichen.",
+    read: "5 Min",
+    date: "08. September 2026",
+    source: { label: "rbb24 · Infratest dimap", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-trend-abgeordnetenhaus-wahl-september.html" },
+    featured: false,
+    highlight: {
+      value: "27 % CDU",
+      compare: "BerlinTrend",
+      label: "Wegners CDU vorn – SPD und Grüne ringen um Platz 2 und Regierungsführungsanspruch.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "WAHL-O-MAT",
+    isElection: true,
+    title: "Wahl-O-Mat Berlin 2026 freigeschaltet: 38 Thesen der bpb für 2,4 Millionen Wählerinnen und Wähler",
+    excerpt:
+      "Die Bundeszentrale für politische Bildung hat den interaktiven Wahl-O-Mat zur Berliner Abgeordnetenhauswahl online gestellt. Wählerinnen und Wähler können ihre Positionen zu Mietenpolitik, Digitalisierung, Verwaltung und Verkehr mit allen zugelassenen Parteien abgleichen.",
+    read: "4 Min",
+    date: "05. September 2026",
+    source: { label: "bpb · Wahl-O-Mat Berlin 2026", href: "https://www.wahl-o-mat.de/berlin2026/" },
+    featured: false,
+    highlight: {
+      value: "38 Thesen",
+      compare: "bpb Wahl-O-Mat",
+      label: "Offizieller Thesen- und Parteienvergleich auf wahl-o-mat.de für ganz Berlin.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "BRIEFWAHL-FRIST",
+    isElection: true,
+    title: "Briefwahl-Endspurt zur Berlin-Wahl: Landeswahlleitung mahnt rechtzeitige Rücksendung bis spätestens 18. September an",
+    excerpt:
+      "Bereits über 600.000 Berlinerinnen und Berliner haben Briefwahl beantragt. Die Landeswahlleitung empfiehlt, ausgefüllte Wahlbriefe spätestens am 16. September in den Postkasten zu werfen oder direkt bis zum 20. September, 18:00 Uhr, im Bezirkswahlamt abzugeben.",
+    read: "3 Min",
+    date: "07. September 2026",
+    source: { label: "Landeswahlleiterin Berlin · Briefwahl-Hinweise", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/" },
+    featured: false,
+    highlight: {
+      value: "18.09. 15 Uhr",
+      compare: "Antragsfrist",
+      label: "Wahlbriefe rechtzeitig absenden oder direkt bei den Bezirkswahlämtern einwerfen.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "KANDIDATEN",
+    isElection: true,
+    title: "Rotes Rathaus 2026: Wahlprogramme & Spitzenkandidaten von CDU, SPD, Grünen, Linke & AfD im Dossier",
+    excerpt:
+      "Wer regiert Berlin ab Herbst? Das HERO Tax Dossier fasst die wirtschafts-, steuer- und digitalpolitischen Pläne der Berliner Parteien kompakt zusammen — inklusive direkter Links zu den offiziellen Wahlprogrammen.",
+    read: "6 Min",
+    date: "06. September 2026",
+    source: { label: "HERO Tax · Wahlradar 2026", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
+    featured: false,
+    highlight: {
+      value: "5 Programme",
+      compare: "Parteien-Dossier",
+      label: "Wirtschafts-, KI- und Finanzpläne der Berliner Spitzenkandidaten im Vergleich.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    title: "IFA Berlin 2026: Weltleitmesse für Consumer Electronics, Smart Living & AI am Berliner Funkturm",
     excerpt:
       "Vom 4. bis 8. September 2026 versammelt die IFA die globale Tech-Branche in Berlin. 102 Jahre nach der ersten Funkausstellung stehen Agentic AI im Smart Home, europäische Startup-Innovationen im IFA NEXT Hub und nachhaltige Elektronik im Mittelpunkt.",
     read: "4 Min",
     date: "03. September 2026",
     source: { label: "IFA Berlin · Offizielle Messe-Plattform", href: "https://www.ifa-berlin.com/de/ticket-b2b" },
     sources: IFA_BERLIN_SOURCES,
-    featured: true,
+    featured: false,
     highlight: {
       value: "4.–8. Sept 2026",
       compare: "IFA Berlin 2026",

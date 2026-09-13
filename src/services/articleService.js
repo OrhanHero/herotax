@@ -8,7 +8,7 @@
 
 import { BMDS_ITEMS, BSI_ITEMS, ARTICLES } from "../data/articles";
 
-const CACHE_PREFIX = "herotax_feed_v7_";
+const CACHE_PREFIX = "herotax_feed_v9_";
 export const CACHE_DURATION = 4 * 60 * 60 * 1000; // 4 Stunden — spiegelt den PHP-Cache (14400 s)
 
 /** type → welcher Feed-Proxy-Quellname abgefragt wird (siehe SOURCES in feed.php) */
@@ -111,7 +111,9 @@ const fetchLiveItems = async (type) => {
 /** Bettet Live-Meldungen des BMF-Feeds ("Bund & Steuer") in die
     kuratierten "Berlin Fokus"-Artikel ein, statt sie zu ersetzen. */
 const mergeGeneral = (liveItems) => {
-  const berlinFokus = ARTICLES.filter((a) => a.cat === "Berlin Fokus");
+  const berlinFokus = ARTICLES.filter(
+    (a) => a.cat === "Berlin Fokus" || a.isElection || a.cat?.includes("Wahl")
+  );
   const bundSteuer = liveItems.map((item) => ({
     cat: "Bund & Steuer",
     title: item.title,
