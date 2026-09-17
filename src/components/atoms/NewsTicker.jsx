@@ -21,15 +21,16 @@ const NewsTicker = ({ items }) => {
   const { t } = useLang();
   const daysLeft = getDaysUntilElection();
 
-  // Priorisiere Meldungen zur Berlin-Wahl 2026
+  // Vollständig auf Berlin-Wahl 2026 ausgerichteter Wahlticker
   const electionItems = (items || []).filter(
     (a) =>
-      a.isElection ||
-      a.tickerTag ||
-      /wahl|stimmzettel|agh|bvv|berlintrend|krach|wegner|rotes rathaus/i.test(a.title)
+      a.isElection === true ||
+      /wahl|stimmzettel|agh|bvv|berlintrend|krach|evers|eralp|brinker|lueders|graf|rotes rathaus|briefwahl|wahlarena|koalition/i.test(
+        `${a.title || ""} ${a.tickerTag || ""} ${a.cat || ""}`
+      )
   );
-  const otherItems = (items || []).filter((a) => !electionItems.includes(a));
-  const tickerItems = [...electionItems, ...otherItems].slice(0, 8);
+  // Zeige AUSSCHLIESSLICH die Berlin-Wahl-Meldungen
+  const tickerItems = electionItems.length > 0 ? electionItems : (items || []).filter((a) => a.isElection);
 
   return (
     <div

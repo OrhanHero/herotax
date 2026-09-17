@@ -130,11 +130,11 @@ const HeroSection = () => {
                     HAUPTSTORY DER WOCHE 🗳️⚡
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · rbb24 Wahlticker
+                    Berlin-Wahl 2026 · rbb24 Wahlarena
                   </span>
                 </div>
-                <span className="text-xs text-slate-400 font-mono">
-                  10. September 2026
+                <span className="text-xs text-amber-300/90 font-mono font-bold">
+                  17. September 2026 · Noch 3 Tage 🗳️
                 </span>
               </div>
 
@@ -149,13 +149,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-blue-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl 2026 im Endspurt: Ermittlungen gegen SPD-Spitzenkandidat Krach &amp; Stimmzettel-Panne bei Briefwahl
+                  rbb24 Wahlarena vor der Berlin-Wahl: Zwischen Schlagabtausch und Sondierungsgesprächen – Spitzenkandidaten im Duell
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Zehn Tage vor der Wahl zum Abgeordnetenhaus und den BVV am 20. September 2026 überschlagen sich die Ereignisse: Die Staatsanwaltschaft Hannover ermittelt gegen SPD-Spitzenkandidat Steffen Krach wegen Bestechlichkeitsvorwürfen (Krach bestreitet im rbb jedes Fehlverhalten). Zugleich sorgt ein Stimmzettel-Fehldruck in Charlottenburg-Wilmersdorf für Unruhe bei der Briefwahl, während der rbb24-BerlinTrend die CDU vorn sieht.
+                Drei Tage vor der Wahl zum 20. Abgeordnetenhaus und den 12 BVV am 20. September trafen die sechs Spitzenkandidaten in der rbb24 Wahlarena aufeinander: Stefan Evers (CDU), Steffen Krach (SPD), Werner Graf (Grüne), Elif Eralp (Linke), Kristin Brinker (AfD) und Michael Lüders (BSW) lieferten sich intensive Debatten über bezahlbares Wohnen, Vergesellschaftung, das 5-Milliarden-Euro-Haushaltsdefizit, Kiez-Sicherheit sowie mögliche Bündnisse für das Rote Rathaus.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
@@ -180,30 +180,30 @@ const HeroSection = () => {
                     <ExternalLink size={10} className="shrink-0 text-blue-400" />
                   </a>
                   <a
-                    href="https://www.rbb24.de/politik/beitrag/2026/09/staatsanwaltschaft-hannover-ermittlungen-steffen-krach.html"
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/rbb-wahlarena-liveticker-abgeordnetenhaus-parteien.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate font-semibold">Wahlarena Ticker</span>
+                    <ExternalLink size={10} className="shrink-0 text-amber-400" />
+                  </a>
+                  <a
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/wahlarena-berlin-analyse-spitzenkandidaten.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">Ermittlungen Krach</span>
+                    <span className="truncate">Wahlarena-Analyse</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                   <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-charlottenburg-wilmersdorf-falsche-stimmzettel.html"
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-2026-wahlarena-fragerunde-politiker-buerger-talk.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">Stimmzettel-Panne</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-trend-abgeordnetenhaus-wahl-september.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">BerlinTrend Umfrage</span>
+                    <span className="truncate">Sendung ansehen</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                 </div>
