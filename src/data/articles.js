@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "HOCHRECHNUNG 19:35",
+    tickerTag: "HOCHRECHNUNG 19:40",
     isElection: true,
-    title: "Berlin-Wahl um 19:35 Uhr: Über 50 % der Stimmbezirke ausgezählt – Linke festigt Führung vor CDU",
+    title: "Berlin-Wahl um 19:40 Uhr: Rund 70 % ausgezählt – Historischer Linke-Sieg zeichnet sich ab",
     excerpt:
-      "Rund 90 Minuten nach Schließung der Wahllokale sind mehr als die Hälfte aller 2.257 Berliner Stimmbezirke erfasst. Mit 27,5 % liegt Die Linke konstant an der Spitze des Feldes. Die CDU kommt auf 21,5 %, gefolgt von der SPD mit 18,9 % und den Grünen mit 16,5 %. Schwarz-Rot verliert seine parlamentarische Mehrheit deutlich.",
+      "Knapp zwei Stunden nach Schließung der Wahllokale sind rund 70 Prozent der Urnen- und Briefwahlbezirke ausgezählt. Die Linke behauptet stabil 27,6 % der Stimmen und liegt mehr als 6 Prozentpunkte vor der CDU (21,4 %). SPD und Grüne signalisieren bereits Bereitschaft für Sondierungsgespräche im Roten Rathaus.",
     read: "4 Min",
-    date: "20. September 2026 · 19:35 Uhr",
+    date: "20. September 2026 · 19:40 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "1.148 / 2.257",
+      value: "1.580 / 2.257",
       compare: "Bezirke ausgezählt",
-      label: "Über 50 % erfasst · Linke stabil auf Platz 1 (27,5 %).",
+      label: "Rund 70 % erfasst · Linke (27,6 %) steuert auf Senatsführung zu.",
     },
   },
   {

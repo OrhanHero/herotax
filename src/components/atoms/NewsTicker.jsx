@@ -59,7 +59,7 @@ const NewsTicker = ({ items }) => {
           {t("ticker.label")}
         </span>
         <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/35 tracking-wider">
-          {daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : "HOCHRECHNUNG 19:35 UHR · > 50 % 🗳️📊"}
+          {daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : "HOCHRECHNUNG 19:40 UHR · ~ 70 % 🗳️📊"}
         </span>
       </div>
 
