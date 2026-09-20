@@ -24,17 +24,19 @@ const Footer = () => {
               <span>HERO</span> <span style={{ color: T.blue }}>Tax</span>
             </a>
             <span className="font-normal" style={{ color: T.faint }}>{t("footer.made")}</span>
+            <span className="font-normal" style={{ color: T.faint }}>·</span>
             <a
               href={CONFIG.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-normal hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded"
+              className="inline-flex items-center gap-1.5 font-normal hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded"
               style={{ color: T.faint }}
+              title="Öffentliches Repository auf GitHub"
             >
               <span className="inline-flex" style={{ color: T.text }}>
                 <GithubGlyph size={13} />
               </span>
-              GitHub
+              <span>Open Source auf GitHub</span>
             </a>
             <span className="font-normal" style={{ color: T.faint }}>— Nichts zu verstecken — auch nicht im Code.</span>
           </div>

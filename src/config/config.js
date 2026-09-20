@@ -6,9 +6,8 @@ export const CONFIG = {
   youtube: "https://www.youtube.com/@herotaxberlin",
   x: "https://x.com/HeroTaxBerlin",
   linkedin: "https://www.linkedin.com/in/orhankahraman/",
-  /* Öffentlicher Code-Spiegel. Das Entwicklungs-Repo ist privat — der Link
-     muss auf herotax-code zeigen, sonst läuft der Footer ins 404. */
-  github: "https://github.com/OrhanHero/herotax-code",
+  /* Öffentliches GitHub Repository */
+  github: "https://github.com/OrhanHero/herotax",
   handle: "@herotaxberlin",
   impressumName: "Orhan Kahraman",
   contactEmail: "info@herotax.de",

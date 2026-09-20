@@ -81,12 +81,9 @@ npm run deploy:check     # SFTP-Verbindung & Zielverzeichnis prüfen (ohne Uploa
 
 Details zum automatischen CI/CD-Deployment via GitHub Actions auf IONOS (Dual-Engine SFTP/FTPS, Secret `SFTP_URL`, `.htaccess`-SPA-Routing) stehen in [DEPLOYMENT.md](./DEPLOYMENT.md).
 
-## Öffentlicher Code-Spiegel
+## Öffentliches Quellcode-Repository
 
-Dieses Repo ist das **Deployment-Repo** und bleibt privat. Nach jedem
-erfolgreichen Deploy spiegelt `.github/workflows/publish-public.yml` den reinen
-Quellcode nach [OrhanHero/herotax-code](https://github.com/OrhanHero/herotax-code)
-— als einzelner Commit, ohne die Historie dieses Repos.
+Dieses Repository ist öffentlich auf [GitHub (OrhanHero/herotax)](https://github.com/OrhanHero/herotax) zugänglich. Der gesamte Quellcode der Plattform steht transparent zur Verfügung — frei nach dem Motto: *Nichts zu verstecken — auch nicht im Code.*
 
 Alles, was zum Deployment oder Betrieb gehört, bleibt hier: die Workflows,
 `scripts/deploy.mjs`, `check-routes.mjs`, `security-check.mjs`,
