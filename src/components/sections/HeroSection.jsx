@@ -136,7 +136,7 @@ const HeroSection = () => {
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  21. September 2026 · 00:25 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
+                  21. September 2026 · 00:30 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
                 </span>
               </div>
 

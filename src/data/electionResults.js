@@ -153,13 +153,13 @@ export const ELECTION_STAGES = {
  * Quelle: Landeswahlleiterin Berlin (wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/)
  */
 export const BVV_RESULTS = {
-  time: "21.09.2026 · 00:21:00 Uhr",
-  countedAreas: "4.098 von 4.114 Gebieten (99,6 %) — Auszählung läuft",
-  turnout: "69,8 % (Urnen 41,8 % + Brief 28,0 %)",
+  time: "21.09.2026 · 00:26:53 Uhr",
+  countedAreas: "4.102 von 4.114 Gebieten (99,7 %) — Auszählung läuft",
+  turnout: "69,7 % (Urnen 41,8 % + Brief 27,9 %)",
   source: "Landeswahlleiterin Berlin · Bezirksverordnetenversammlungen",
   url: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html",
   parties: [
-    { id: "linke", name: "Die Linke", percent: 24.2, diff: +11.5, color: "#BE3075", barColor: "bg-fuchsia-600", val2023: 12.6 },
+    { id: "linke", name: "Die Linke", percent: 24.1, diff: +11.5, color: "#BE3075", barColor: "bg-fuchsia-600", val2023: 12.6 },
     { id: "cdu", name: "CDU", percent: 18.2, diff: -9.5, color: "#0054A6", barColor: "bg-blue-600", val2023: 27.7 },
     { id: "gruene", name: "Grüne", percent: 17.2, diff: -2.3, color: "#46962b", barColor: "bg-emerald-600", val2023: 19.5 },
     { id: "afd", name: "AfD", percent: 15.7, diff: +6.7, color: "#009ee0", barColor: "bg-sky-500", val2023: 9.0 },
