@@ -136,7 +136,7 @@ const HeroSection = () => {
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  21. September 2026 · 01:40 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
+                  21. September 2026 · 01:45 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl 01:40 Uhr: Auszählung auf der Zielgeraden – nur noch 2 Gebiete ausstehend, Linke führt deutlich
+                  Berlin-Wahl 01:45 Uhr: Auszählung auf der Zielgeraden – nur noch 2 Gebiete ausstehend, Linke führt deutlich
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                99,9 % der Gebiete ausgezählt (4.112 / 4.114): Die Linke führt bei AGH-Zweitstimmen mit 25,7 %, CDU bei 18,8 % (Erststimmen 20,3 %), AfD bei 16,3 %. BVV-Auszählung ebenfalls bei 4.112 / 4.114. BSW (4,7 %) verfehlt 5%-Hürde (0 Sitze). Endgültige Sitzverteilung und Koalitionsgespräche nach vollständiger Auszählung.
+                99,9 % der Gebiete ausgezählt (AGH: 4.112 / 4.114): Die Linke führt bei AGH-Zweitstimmen mit 25,7 %, CDU bei 18,8 % (Erststimmen 20,3 %), AfD bei 16,3 %. BVV-Auszählung bei 4.113 / 4.114 (nur noch 1 Gebiet). BSW (4,7 %) verfehlt 5%-Hürde (0 Sitze). Endgültige Sitzverteilung und Koalitionsgespräche nach vollständiger Auszählung.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}

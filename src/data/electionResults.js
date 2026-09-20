@@ -153,8 +153,8 @@ export const ELECTION_STAGES = {
  * Quelle: Landeswahlleiterin Berlin (wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/)
  */
 export const BVV_RESULTS = {
-  time: "21.09.2026 · 01:36:22 Uhr",
-  countedAreas: "4.112 von 4.114 Gebieten (99,9 %) — Auszählung läuft",
+  time: "21.09.2026 · 01:38:48 Uhr",
+  countedAreas: "4.113 von 4.114 Gebieten (99,98 %) — Auszählung läuft",
   turnout: "69,8 % (Urnen 41,8 % + Brief 27,9 %)",
   source: "Landeswahlleiterin Berlin · Bezirksverordnetenversammlungen",
   url: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html",
