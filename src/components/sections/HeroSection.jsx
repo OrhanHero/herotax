@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    AMTLICHES ENDERGEBNIS 100 % · 22:55 UHR 🏆
+                    AMTLICHES ENDERGEBNIS 100 % · 23:00 UHR 🏆
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
                     Berlin-Wahl 2026 · AGH &amp; BVV Endstand
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 22:55 UHR · KLIMA- &amp; ENERGIE-RADAR 🗳️
+                  20. September 2026 · 23:00 UHR · WAHLNACHT-BILANZ 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 22:55 Uhr: Energiewirtschaft blickt auf Wärmewende-Finanzierung unter R2G
+                  Berlin-Wahl um 23:00 Uhr: Die Wahlnacht-Bilanz – Historischer Wahlsieg für Die Linke in Berlin
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Die 90-Sitze-Mehrheit für Linke, Grüne und SPD rückt die Dekarbonisierung der Berliner Fernwärme und Sonderabschreibungen für Solarinvestitionen in den Fokus. Berliner Versorger und Stadtwerke fordern langfristig gesicherte Haushaltsmittel und verlässliche steuerliche Abschreibungskorridore ab 2027.
+                Mit dem amtlichen Endergebnis (Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8) endet der Berliner Wahlabend: Rot-Rot-Grün verfügt über eine komfortable Mehrheit von 90 von 159 Mandaten. IHK, Handwerk und Steuerberaterkammer appellieren an die künftige Koalition, Steuerstabilität und digitale Verwaltung zur Top-Priorität zu machen.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
