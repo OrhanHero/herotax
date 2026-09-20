@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    AUSZÄHLUNG 99,5 % · 21:15 UHR 🏙️
+                    AMTLICHES ENDERGEBNIS 100 % · 21:20 UHR 🏆
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · Amtliches Zwischenergebnis
+                    Berlin-Wahl 2026 · Amtliches Endergebnis
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 21:15 UHR · LIVE 🗳️
+                  20. September 2026 · 21:20 UHR · ENDSTAND 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 21:15 Uhr: 99,5 % ausgezählt – Linke gewinnt mit 44 Sitzen, Endergebnis unmittelbar bevorstehend
+                  Berlin-Wahl um 21:20 Uhr: 100 % ausgezählt – Amtliches vorläufiges Endergebnis: Historischer Wahlsieg der Linken bestätigt
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Mit 4.095 von 4.114 Gebieten (99,5 %) sind die Stimmen in Berlin nahezu vollständig erfasst. Die Linke ist mit 44 Sitzen stärkste Kraft im 20. Abgeordnetenhaus. Die Sitzverteilung: Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8. Damit verfügen Linke, Grüne und SPD über eine solide rot-rot-grüne Regierungsmehrheit von 90 Sitzen im Roten Rathaus.
+                Alle 4.114 Gebiete in Berlin sind vollständig ausgezählt (100 %): Die Linke triumphiert mit 44 Sitzen als stärkste Kraft im 20. Abgeordnetenhaus. Die finale Sitzverteilung: Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8. Damit verfügen Linke, Grüne und SPD über eine komfortable Regierungsmehrheit von 90 von 159 Sitzen im Roten Rathaus.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
