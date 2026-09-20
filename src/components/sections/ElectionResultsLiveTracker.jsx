@@ -1,21 +1,24 @@
-import { useState } from "react";
-import { CheckCircle2, ExternalLink, ShieldCheck, Building, Landmark, BarChart2, Layers } from "lucide-react";
+import { useState, useMemo } from "react";
+import { CheckCircle2, ExternalLink, ShieldCheck, Building, Landmark, BarChart2, Layers, PieChart } from "lucide-react";
 import { ELECTION_CONFIG, ELECTION_STAGES, BVV_RESULTS, COALITIONS } from "../../data/electionResults";
 import { fontDisplay } from "../../config/tokens";
+import ParliamentSeatChart, { DEFAULT_SEAT_DATA } from "./ParliamentSeatChart";
 
 /**
  * ElectionResultsLiveTracker:
  * Klares, aufgeräumtes und übersichtliches Wahlergebnis-Dashboard für Berlin 2026.
  * Zeigt fokussiert die amtlichen Ergebnisse der Wahl 2026.
  *
- * Architektur-Garantie gegen Überlappungen:
- * - Diagramm-Bereich (Balken & 5%-Linie) und Beschriftungs-Bereich (Parteiname, Diff, Sitze)
- *   sind strikt voneinander getrennt. Die 5%-Linie verläuft ausschließlich im Balkenbereich
- *   und kann niemals Texte oder Badges berühren.
+ * Ansichtsmodi:
+ * - 'seats': Halbkreis-Sitzverteilung (159 Sitze) nach offizieller Infratest-dimap TV-Grafik
+ * - 'bars': Säulendiagramm (Stimmen-Anteile %)
  */
 const ElectionResultsLiveTracker = () => {
   // Wahl-Ebene: 'agh' (Abgeordnetenhaus) | 'bvv' (Bezirksverordnetenversammlungen)
   const [electionLevel, setElectionLevel] = useState("agh");
+
+  // AGH Darstellungs-Modus: 'seats' (Halbkreis Sitzverteilung) | 'bars' (Säulen Stimmen)
+  const [viewMode, setViewMode] = useState("seats");
 
   // AGH Phase: 'prognose' | 'hochrechnung' | 'zwischenstand' | 'endergebnis'
   const [stageKey, setStageKey] = useState("zwischenstand");
@@ -24,6 +27,20 @@ const ElectionResultsLiveTracker = () => {
   // Stimmart bei AGH: 'zweitstimmen' | 'erststimmen'
   const [voteType, setVoteType] = useState("zweitstimmen");
   const isZweit = voteType === "zweitstimmen";
+
+  // Sitzdaten für den Halbkreisbogen (nach TV-Vorlage geordnet)
+  const seatParties = useMemo(() => {
+    const pMap = new Map(currentStage.parties.map((p) => [p.id, p]));
+    return DEFAULT_SEAT_DATA.map((base) => {
+      const live = pMap.get(base.id);
+      if (!live) return base;
+      return {
+        ...base,
+        seats: live.seats ?? base.seats,
+        diff: live.seatsDiff ?? base.diff,
+      };
+    });
+  }, [currentStage]);
 
   // Koalitionsberechnung für 2026
   const partyMap = new Map(currentStage.parties.map((p) => [p.id, p]));
@@ -199,87 +216,125 @@ const ElectionResultsLiveTracker = () => {
             </div>
           </div>
 
-          {/* ── 4. Klares 2026 Säulendiagramm mit strikter Trennung von Plot und Labels ── */}
-          <div className="relative z-10 p-3.5 sm:p-5 rounded-xl bg-slate-950/80 border border-slate-800 mb-5">
-            {/* Header mit Titel und Hürden-Legende */}
-            <div className="flex items-center justify-between gap-2 mb-4 border-b border-slate-800/80 pb-2">
-              <div className="flex items-center gap-1.5 text-xs font-bold font-mono text-white">
-                <BarChart2 size={15} className="text-amber-400" />
-                <span>ERGEBNISSE 2026 · {isZweit ? "ZWEITSTIMMEN" : "ERSTSTIMMEN"}</span>
-              </div>
-              {isZweit && (
-                <div className="flex items-center gap-1.5 text-amber-300 text-[11px] font-mono font-semibold">
-                  <span className="w-4 border-b-2 border-dashed border-amber-400" />
-                  <span>5 % Sperrklausel</span>
-                </div>
-              )}
-            </div>
-
-            {/* A) Plot-Bereich: NUR die Säulen und die 5%-Referenzlinie (Keine Text-Labels hier!) */}
-            <div className="relative h-44 w-full flex items-end justify-between gap-2 sm:gap-4 px-1">
-              {/* 5% Sperrklausel Linie (ausschließlich im Plotbereich, exakt auf 5%-Höhe) */}
-              {isZweit && (
-                <div
-                  className="absolute left-0 right-0 border-b-2 border-dashed border-amber-400/50 z-0 pointer-events-none"
-                  style={{ bottom: `${(5 / maxChartVal) * 100}%` }}
-                />
-              )}
-
-              {currentStage.parties.map((p) => {
-                const currentVal = isZweit ? p.percent : (p.erststimmen ?? p.percent);
-                const heightPercent = Math.max(6, Math.min(100, (currentVal / maxChartVal) * 100));
-
-                return (
-                  <div key={p.id} className="flex-1 flex flex-col items-center h-full justify-end relative z-10 group/col">
-                    {/* Prozentwert 2026 über dem Balken */}
-                    <div className="mb-1.5 text-center font-mono">
-                      <span className="font-black text-white text-xs sm:text-base leading-none block" style={{ ...fontDisplay }}>
-                        {currentVal.toFixed(1)}%
-                      </span>
-                    </div>
-
-                    {/* Die Säule */}
-                    <div
-                      className="w-full max-w-[44px] rounded-t-md transition-all duration-500 relative group-hover/col:brightness-110 shadow-lg"
-                      style={{
-                        height: `${heightPercent}%`,
-                        backgroundColor: p.color,
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/20 rounded-t-md" />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* B) Beschriftungs-Bereich: KOMPLETT GETRENNT unterhalb des Plots */}
-            <div className="flex justify-between gap-2 sm:gap-4 pt-3 mt-1 border-t border-slate-800 text-center px-1">
-              {currentStage.parties.map((p) => {
-                const currentVal = isZweit ? p.percent : (p.erststimmen ?? p.percent);
-                const val2023 = isZweit
-                  ? (ELECTION_CONFIG.results2023.zweitstimmen[p.id] ?? 0)
-                  : (ELECTION_CONFIG.results2023.erststimmen[p.id] ?? 0);
-                const diff = isZweit ? p.diff : (p.erststimmenDiff ?? (currentVal - val2023));
-                const diffFormatted = diff > 0 ? `+${diff.toFixed(1)}%` : `${diff.toFixed(1)}%`;
-                const diffColor = diff > 0 ? "text-emerald-400" : diff < 0 ? "text-red-400" : "text-slate-400";
-
-                return (
-                  <div key={p.id} className="flex-1 space-y-0.5">
-                    <div className="text-xs sm:text-sm font-bold text-white truncate font-mono">
-                      {p.name}
-                    </div>
-                    <div className={`text-[10px] sm:text-xs font-mono font-semibold ${diffColor}`}>
-                      {p.id !== "sonstige" ? diffFormatted : "—"}
-                    </div>
-                    <div className="text-[10px] font-mono text-slate-300 font-bold">
-                      {isZweit ? (p.seats > 0 ? `${p.seats} Sitze` : "—") : `${p.direktmandate ?? 0} Direkt`}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {/* ── 4. Ansichtsmodus: Sitzverteilung (Halbkreis) vs. Stimmen-Anteile (Säulen) ── */}
+          <div className="relative z-10 mb-4 grid grid-cols-2 gap-2 p-1.5 bg-slate-950/90 rounded-xl border border-slate-800">
+            <button
+              type="button"
+              onClick={() => setViewMode("seats")}
+              className={`py-2 px-3 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-1.5 text-center ${
+                viewMode === "seats"
+                  ? "bg-gradient-to-r from-pink-600 to-rose-600 text-white shadow-md shadow-pink-600/30"
+                  : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+              }`}
+            >
+              <PieChart size={14} className="shrink-0" />
+              <span className="truncate">🏛️ Sitzverteilung (159 Sitze)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode("bars")}
+              className={`py-2 px-3 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-1.5 text-center ${
+                viewMode === "bars"
+                  ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                  : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+              }`}
+            >
+              <BarChart2 size={14} className="shrink-0" />
+              <span className="truncate">📊 Stimmen-Anteile (Säulen)</span>
+            </button>
           </div>
+
+          {/* ── 5. Visualisierung je nach gewähltem Modus ── */}
+          {viewMode === "seats" ? (
+            <div className="relative z-10 mb-5">
+              <ParliamentSeatChart
+                parties={seatParties}
+                totalSeats={ELECTION_CONFIG.totalSeats || 159}
+                time={currentStage.time}
+                source="infratest dimap"
+                sourceUrl="https://www.tagesschau.de/inland/landtagswahlen/berlin/2026/ergebnisse"
+              />
+            </div>
+          ) : (
+            /* Klares 2026 Säulendiagramm mit strikter Trennung von Plot und Labels */
+            <div className="relative z-10 p-3.5 sm:p-5 rounded-xl bg-slate-950/80 border border-slate-800 mb-5">
+              {/* Header mit Titel und Hürden-Legende */}
+              <div className="flex items-center justify-between gap-2 mb-4 border-b border-slate-800/80 pb-2">
+                <div className="flex items-center gap-1.5 text-xs font-bold font-mono text-white">
+                  <BarChart2 size={15} className="text-amber-400" />
+                  <span>ERGEBNISSE 2026 · {isZweit ? "ZWEITSTIMMEN" : "ERSTSTIMMEN"}</span>
+                </div>
+                {isZweit && (
+                  <div className="flex items-center gap-1.5 text-amber-300 text-[11px] font-mono font-semibold">
+                    <span className="w-4 border-b-2 border-dashed border-amber-400" />
+                    <span>5 % Sperrklausel</span>
+                  </div>
+                )}
+              </div>
+
+              {/* A) Plot-Bereich: NUR die Säulen und die 5%-Referenzlinie */}
+              <div className="relative h-44 w-full flex items-end justify-between gap-2 sm:gap-4 px-1">
+                {isZweit && (
+                  <div
+                    className="absolute left-0 right-0 border-b-2 border-dashed border-amber-400/50 z-0 pointer-events-none"
+                    style={{ bottom: `${(5 / maxChartVal) * 100}%` }}
+                  />
+                )}
+
+                {currentStage.parties.map((p) => {
+                  const currentVal = isZweit ? p.percent : (p.erststimmen ?? p.percent);
+                  const heightPercent = Math.max(6, Math.min(100, (currentVal / maxChartVal) * 100));
+
+                  return (
+                    <div key={p.id} className="flex-1 flex flex-col items-center h-full justify-end relative z-10 group/col">
+                      <div className="mb-1.5 text-center font-mono">
+                        <span className="font-black text-white text-xs sm:text-base leading-none block" style={{ ...fontDisplay }}>
+                          {currentVal.toFixed(1)}%
+                        </span>
+                      </div>
+
+                      <div
+                        className="w-full max-w-[44px] rounded-t-md transition-all duration-500 relative group-hover/col:brightness-110 shadow-lg"
+                        style={{
+                          height: `${heightPercent}%`,
+                          backgroundColor: p.color,
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/20 rounded-t-md" />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* B) Beschriftungs-Bereich: KOMPLETT GETRENNT unterhalb des Plots */}
+              <div className="flex justify-between gap-2 sm:gap-4 pt-3 mt-1 border-t border-slate-800 text-center px-1">
+                {currentStage.parties.map((p) => {
+                  const currentVal = isZweit ? p.percent : (p.erststimmen ?? p.percent);
+                  const val2023 = isZweit
+                    ? (ELECTION_CONFIG.results2023.zweitstimmen[p.id] ?? 0)
+                    : (ELECTION_CONFIG.results2023.erststimmen[p.id] ?? 0);
+                  const diff = isZweit ? p.diff : (p.erststimmenDiff ?? (currentVal - val2023));
+                  const diffFormatted = diff > 0 ? `+${diff.toFixed(1)}%` : `${diff.toFixed(1)}%`;
+                  const diffColor = diff > 0 ? "text-emerald-400" : diff < 0 ? "text-red-400" : "text-slate-400";
+
+                  return (
+                    <div key={p.id} className="flex-1 space-y-0.5">
+                      <div className="text-xs sm:text-sm font-bold text-white truncate font-mono">
+                        {p.name}
+                      </div>
+                      <div className={`text-[10px] sm:text-xs font-mono font-semibold ${diffColor}`}>
+                        {p.id !== "sonstige" ? diffFormatted : "—"}
+                      </div>
+                      <div className="text-[10px] font-mono text-slate-300 font-bold">
+                        {isZweit ? (p.seats > 0 ? `${p.seats} Sitze` : "—") : `${p.direktmandate ?? 0} Direkt`}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* ── 5. Aufgeräumte Ergebnistabelle 2026 ── */}
           <div className="relative z-10 space-y-2 mb-6">
