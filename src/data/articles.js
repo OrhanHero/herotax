@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "HOCHRECHNUNG 19:55",
+    tickerTag: "ENDERGEBNIS",
     isElection: true,
-    title: "Berlin-Wahl um 19:55 Uhr: 99 % ausgezählt – Landeswahlamt erwartet vorläufiges Endergebnis in Kürze",
+    title: "Berlin-Wahl 2026: Vorläufiges amtliches Endergebnis steht fest – Die Linke gewinnt Rotes Rathaus",
     excerpt:
-      "2.235 von 2.257 Bezirken sind fertig ausgezählt. Das Endergebnis steht unmittelbar bevor: Die Linke erringt den historischen Wahlsieg mit 27,5 Prozent und 48 Sitzen vor CDU (21,5 %) und SPD (19,1 %). Das Landeswahlamt wird das vorläufige amtliche Endergebnis in wenigen Minuten offiziell verkünden.",
+      "Alle 2.257 Urnen- und Briefwahlbezirke sind vollständig ausgezählt. Die Linke erzielt mit 27,5 Prozent und 48 Mandaten ihren größten Wahlerfolg in der Geschichte der Hauptstadt. Schwarz-Rot ist abgewählt. Rot-Rot-Grün (107 Sitze) und Rot-Rot (80 Sitze) stehen als Regierungsmehrheiten bereit.",
     read: "4 Min",
-    date: "20. September 2026 · 19:55 Uhr",
+    date: "20. September 2026 · 20:00 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "2.235 / 2.257",
-      compare: "Bezirke ausgezählt",
-      label: "99 % erfasst · Linke-Wahlsieg perfekt · Endergebnis in Kürze.",
+      value: "27,5 %",
+      compare: "Die Linke (Platz 1)",
+      label: "Vorläufiges Endergebnis · 48 Sitze · Rotes Rathaus an Die Linke.",
     },
   },
   {

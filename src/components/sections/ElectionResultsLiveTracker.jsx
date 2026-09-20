@@ -9,8 +9,8 @@ import { fontDisplay } from "../../config/tokens";
  * Integriert Vorbereitung für offizielle Wahlamts-Daten (wahlen-berlin.de) und rbb24 Prognosen.
  */
 const ElectionResultsLiveTracker = () => {
-  const [stageKey, setStageKey] = useState("hochrechnung"); // 'countdown' | 'prognose' | 'hochrechnung' | 'endergebnis'
-  const currentStage = ELECTION_STAGES[stageKey] || ELECTION_STAGES.hochrechnung;
+  const [stageKey, setStageKey] = useState("endergebnis"); // 'countdown' | 'prognose' | 'hochrechnung' | 'endergebnis'
+  const currentStage = ELECTION_STAGES[stageKey] || ELECTION_STAGES.endergebnis;
 
   // Berechne Koalitionsdaten basierend auf aktuellen Parteisitze und Prozenten
   const partyMap = new Map(currentStage.parties.map((p) => [p.id, p]));
