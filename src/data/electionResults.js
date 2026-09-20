@@ -106,13 +106,13 @@ export const ELECTION_STAGES = {
   zwischenstand: {
     id: "zwischenstand",
     label: "Zwischenstand",
-    tag: "ZWISCHENERGEBNIS · 4.074 VON 4.114 GEBIETEN (99,0 %)",
-    statusBadge: "4.074 von 4.114 Gebieten ausgezählt (99,0 % · Stand 00:04 Uhr)",
+    tag: "ZWISCHENERGEBNIS · 4.075 VON 4.114 GEBIETEN (99,1 %)",
+    statusBadge: "4.075 von 4.114 Gebieten ausgezählt (99,1 % · Stand 00:07 Uhr)",
     statusColor: "amber",
-    time: "21.09.2026 · 00:04:32 Uhr",
+    time: "21.09.2026 · 00:07:07 Uhr",
     source: "Landeswahlleiterin Berlin (wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/)",
     turnout: "74,4 % (Urnen 44,1 % + Brief 30,3 %)",
-    note: "Amtliches Zwischenergebnis wahlen-berlin.de: 99,0 % der Gebiete ausgezählt. Die Linke führt deutlich. Auszählung läuft noch – 40 Gebiete ausstehend.",
+    note: "Amtliches Zwischenergebnis wahlen-berlin.de: 99,1 % der Gebiete ausgezählt. Die Linke führt deutlich. Auszählung läuft noch – 39 Gebiete ausstehend.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 25.7, diff: +13.5, seats: 48, seatsDiff: +26, erststimmen: 24.1, erststimmenDiff: +11.8, direktmandate: 30, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 18.8, diff: -9.5, seats: 34, seatsDiff: -18, erststimmen: 20.2, erststimmenDiff: -9.5, direktmandate: 22, color: "#0054A6", barColor: "bg-blue-600" },
@@ -128,13 +128,13 @@ export const ELECTION_STAGES = {
   endergebnis: {
     id: "endergebnis",
     label: "Aktuell",
-    tag: "ZWISCHENERGEBNIS · 4.074 VON 4.114 GEBIETEN (99,0 %) 🔴",
-    statusBadge: "Zwischenergebnis · 4.074 von 4.114 Gebieten (99,0 %) — Auszählung läuft",
+    tag: "ZWISCHENERGEBNIS · 4.075 VON 4.114 GEBIETEN (99,1 %) 🔴",
+    statusBadge: "Zwischenergebnis · 4.075 von 4.114 Gebieten (99,1 %) — Auszählung läuft",
     statusColor: "amber",
-    time: "21.09.2026 · 00:04:32 Uhr",
+    time: "21.09.2026 · 00:07:07 Uhr",
     source: "Landeswahlleiterin Berlin / wahlen-berlin.de",
     turnout: "74,4 % (Urnen 44,1 % + Brief 30,3 %)",
-    note: "Amtliches Zwischenergebnis: 99,0 % der Gebiete ausgezählt — 40 Gebiete noch ausstehend. Die Linke führt mit 25,7 % (Zweitstimmen). Auszählung läuft weiter.",
+    note: "Amtliches Zwischenergebnis: 99,1 % der Gebiete ausgezählt — 39 Gebiete noch ausstehend. Die Linke führt mit 25,7 % (Zweitstimmen). Auszählung läuft weiter.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 25.7, diff: +13.5, seats: 48, seatsDiff: +26, erststimmen: 24.1, erststimmenDiff: +11.8, direktmandate: 30, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 18.8, diff: -9.5, seats: 34, seatsDiff: -18, erststimmen: 20.2, erststimmenDiff: -9.5, direktmandate: 22, color: "#0054A6", barColor: "bg-blue-600" },
@@ -153,8 +153,8 @@ export const ELECTION_STAGES = {
  * Quelle: Landeswahlleiterin Berlin (wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/)
  */
 export const BVV_RESULTS = {
-  time: "21.09.2026 · 00:05:49 Uhr",
-  countedAreas: "4.092 von 4.114 Gebieten (99,5 %) — Auszählung läuft",
+  time: "21.09.2026 · 00:08:17 Uhr",
+  countedAreas: "4.094 von 4.114 Gebieten (99,5 %) — Auszählung läuft",
   turnout: "69,8 % (Urnen 41,8 % + Brief 28,0 %)",
   source: "Landeswahlleiterin Berlin · Bezirksverordnetenversammlungen",
   url: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html",
