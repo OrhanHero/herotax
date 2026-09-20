@@ -16,15 +16,19 @@ import { formatTrackerDate } from "../../services/articleService";
  * deshalb nur dieses Badge, nicht beide.
  */
 const SiteStatusBadge = () => {
+  const isDev = import.meta.env.DEV;
   const buildTime = typeof __BUILD_TIME__ !== "undefined" ? __BUILD_TIME__ : Date.now();
-  const [stand, setStand] = useState(() => formatTrackerDate(buildTime));
+  const [stand, setStand] = useState(() => formatTrackerDate(isDev ? Date.now() : buildTime));
 
-  /* Minütlich neu formatieren, damit ein über Nacht offener Tab nicht
-     mit einem eingefrorenen Wert dasteht. */
+  /* Im Dev-Modus alle 30 Sekunden neu formatieren, damit der Live-Stand
+     bei laufendem vite dev aktuell bleibt. In Produktion minütlich. */
   useEffect(() => {
-    const interval = setInterval(() => setStand(formatTrackerDate(buildTime)), 60000);
+    const interval = setInterval(
+      () => setStand(formatTrackerDate(isDev ? Date.now() : buildTime)),
+      isDev ? 30000 : 60000
+    );
     return () => clearInterval(interval);
-  }, [buildTime]);
+  }, [buildTime, isDev]);
 
   return (
     <span
