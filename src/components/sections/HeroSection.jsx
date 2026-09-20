@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    ZWISCHENERGEBNIS 98,8 % · AUSZÄHLUNG LÄUFT 🔴
+                    ZWISCHENERGEBNIS 99,0 % · AUSZÄHLUNG LÄUFT 🔴
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.069 / 4.114 Gebiete
+                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.074 / 4.114 Gebiete
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 23:55 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
+                  21. September 2026 · 00:05 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
                 </span>
               </div>
 

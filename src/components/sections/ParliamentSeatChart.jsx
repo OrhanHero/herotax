@@ -44,8 +44,8 @@ const DEFAULT_SEAT_DATA = [
     id: "cdu",
     name: "CDU",
     fullName: "CDU",
-    seats: 33,
-    diff: -19,
+    seats: 34,
+    diff: -18,
     arcColor: "#8893a4",
     pillBg: "#465469",
     tooltipBg: "#394758",
@@ -56,8 +56,8 @@ const DEFAULT_SEAT_DATA = [
     id: "spd",
     name: "SPD",
     fullName: "SPD",
-    seats: 21,
-    diff: -13,
+    seats: 22,
+    diff: -12,
     arcColor: "#f04e46",
     pillBg: "#5a2a32",
     tooltipBg: "#54242a",
@@ -68,8 +68,8 @@ const DEFAULT_SEAT_DATA = [
     id: "gruene",
     name: "Grüne",
     fullName: "Bündnis 90/Die Grünen",
-    seats: 25,
-    diff: -9,
+    seats: 26,
+    diff: -8,
     arcColor: "#8cd600",
     pillBg: "#39552b",
     tooltipBg: "#334a26",
@@ -80,8 +80,8 @@ const DEFAULT_SEAT_DATA = [
     id: "linke",
     name: "Linke",
     fullName: "Die Linke",
-    seats: 44,
-    diff: +22,
+    seats: 48,
+    diff: +26,
     arcColor: "#f46b9f",
     pillBg: "#662c4a",
     tooltipBg: "#482638",
@@ -93,24 +93,12 @@ const DEFAULT_SEAT_DATA = [
     id: "afd",
     name: "AfD",
     fullName: "AfD",
-    seats: 28,
-    diff: +11,
+    seats: 29,
+    diff: +12,
     arcColor: "#1eb8f0",
     pillBg: "#1c4e6e",
     tooltipBg: "#18445e",
     accentColor: "#1eb8f0",
-    singleLine: true,
-  },
-  {
-    id: "bsw",
-    name: "BSW",
-    fullName: "BSW",
-    seats: 8,
-    diff: +8,
-    arcColor: "#be699b",
-    pillBg: "#54314e",
-    tooltipBg: "#492942",
-    accentColor: "#be699b",
     singleLine: true,
   },
 ];
@@ -324,7 +312,7 @@ const ParliamentSeatChart = ({
       </div>
 
       {/* ── 3. Interaktive Parteien-Legende nach Vorlage ── */}
-      <div className="grid grid-cols-6 gap-1 sm:gap-2 text-center pt-5 mt-2 max-w-[460px] mx-auto">
+      <div className="grid grid-cols-5 gap-1 sm:gap-2 text-center pt-5 mt-2 max-w-[460px] mx-auto">
         {parties.map((p) => {
           const isSelected = p.id === hoveredId;
           const diffText = p.diff > 0 ? `+${p.diff}` : `${p.diff}`;
