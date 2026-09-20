@@ -214,7 +214,7 @@ const HeroSection = () => {
           </div>
 
           {/* Wahl-Zentrale: Live-Ergebnis-Tracker & Wahlprogramme */}
-          <div className="pt-3 max-w-xl space-y-3">
+          <div className="pt-3 w-full space-y-3">
             {/* View Switcher Tabs */}
             <div className="flex items-center p-1 bg-slate-900/90 backdrop-blur-md rounded-xl border border-slate-800 text-xs font-mono">
               <button
