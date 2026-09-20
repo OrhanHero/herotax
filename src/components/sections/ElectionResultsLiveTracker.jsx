@@ -6,11 +6,12 @@ import { fontDisplay } from "../../config/tokens";
 /**
  * ElectionResultsLiveTracker:
  * Klares, aufgeräumtes und übersichtliches Wahlergebnis-Dashboard für Berlin 2026.
- * Zeigt fokussiert die amtlichen Ergebnisse der Wahl 2026 (ohne überfüllte Doppel-Säulen).
+ * Zeigt fokussiert die amtlichen Ergebnisse der Wahl 2026.
  *
- * Umschaltbar zwischen:
- * 1) 20. Abgeordnetenhaus (AGH): Zweitstimmen (159 Sitze) vs. Erststimmen (78 Direktmandate)
- * 2) Bezirksverordnetenversammlungen (BVV) der 12 Bezirke
+ * Architektur-Garantie gegen Überlappungen:
+ * - Diagramm-Bereich (Balken & 5%-Linie) und Beschriftungs-Bereich (Parteiname, Diff, Sitze)
+ *   sind strikt voneinander getrennt. Die 5%-Linie verläuft ausschließlich im Balkenbereich
+ *   und kann niemals Texte oder Badges berühren.
  */
 const ElectionResultsLiveTracker = () => {
   // Wahl-Ebene: 'agh' (Abgeordnetenhaus) | 'bvv' (Bezirksverordnetenversammlungen)
@@ -46,12 +47,12 @@ const ElectionResultsLiveTracker = () => {
     };
   });
 
-  // Skalierung für Säulen (max 30 % für klare Proportionen)
+  // Skalierung für Säulen (max 30 % für harmonische Proportionen)
   const maxChartVal = 30;
 
   return (
     <div className="group relative rounded-2xl p-4 sm:p-6 transition-all duration-300 bg-slate-900/95 backdrop-blur-md border border-amber-500/35 hover:border-amber-500/55 shadow-2xl overflow-hidden text-slate-100 w-full">
-      {/* Ambient Glow */}
+      {/* Ambient Background Glow */}
       <div className="absolute -top-16 -right-16 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -198,9 +199,9 @@ const ElectionResultsLiveTracker = () => {
             </div>
           </div>
 
-          {/* ── 4. Klares 2026 Säulendiagramm (Eine Säule pro Partei, viel Raum!) ── */}
+          {/* ── 4. Klares 2026 Säulendiagramm mit strikter Trennung von Plot und Labels ── */}
           <div className="relative z-10 p-3.5 sm:p-5 rounded-xl bg-slate-950/80 border border-slate-800 mb-5">
-            {/* Header mit Titel und Hürden-Hinweis */}
+            {/* Header mit Titel und Hürden-Legende */}
             <div className="flex items-center justify-between gap-2 mb-4 border-b border-slate-800/80 pb-2">
               <div className="flex items-center gap-1.5 text-xs font-bold font-mono text-white">
                 <BarChart2 size={15} className="text-amber-400" />
@@ -208,26 +209,52 @@ const ElectionResultsLiveTracker = () => {
               </div>
               {isZweit && (
                 <div className="flex items-center gap-1.5 text-amber-300 text-[11px] font-mono font-semibold">
-                  <span className="w-3 border-b-2 border-dashed border-amber-400" />
+                  <span className="w-4 border-b-2 border-dashed border-amber-400" />
                   <span>5 % Sperrklausel</span>
                 </div>
               )}
             </div>
 
-            {/* Säulendiagramm: Reines 2026-Design ohne Gedränge */}
-            <div className="relative h-60 w-full pt-4 pb-2 px-1 flex items-end justify-between gap-2 sm:gap-4">
-              {/* 5% Sperrklausel Referenzlinie (nur Zweitstimmen) */}
+            {/* A) Plot-Bereich: NUR die Säulen und die 5%-Referenzlinie (Keine Text-Labels hier!) */}
+            <div className="relative h-44 w-full flex items-end justify-between gap-2 sm:gap-4 px-1">
+              {/* 5% Sperrklausel Linie (ausschließlich im Plotbereich, exakt auf 5%-Höhe) */}
               {isZweit && (
                 <div
-                  className="absolute left-0 right-0 border-b border-dashed border-amber-400/50 z-1 pointer-events-none"
+                  className="absolute left-0 right-0 border-b-2 border-dashed border-amber-400/50 z-0 pointer-events-none"
                   style={{ bottom: `${(5 / maxChartVal) * 100}%` }}
-                >
-                  <span className="absolute -top-3 left-0 text-[9px] font-mono font-bold text-amber-300 bg-slate-950/95 px-1 py-0.5 rounded border border-amber-400/40">
-                    5% Hürde
-                  </span>
-                </div>
+                />
               )}
 
+              {currentStage.parties.map((p) => {
+                const currentVal = isZweit ? p.percent : (p.erststimmen ?? p.percent);
+                const heightPercent = Math.max(6, Math.min(100, (currentVal / maxChartVal) * 100));
+
+                return (
+                  <div key={p.id} className="flex-1 flex flex-col items-center h-full justify-end relative z-10 group/col">
+                    {/* Prozentwert 2026 über dem Balken */}
+                    <div className="mb-1.5 text-center font-mono">
+                      <span className="font-black text-white text-xs sm:text-base leading-none block" style={{ ...fontDisplay }}>
+                        {currentVal.toFixed(1)}%
+                      </span>
+                    </div>
+
+                    {/* Die Säule */}
+                    <div
+                      className="w-full max-w-[44px] rounded-t-md transition-all duration-500 relative group-hover/col:brightness-110 shadow-lg"
+                      style={{
+                        height: `${heightPercent}%`,
+                        backgroundColor: p.color,
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/20 rounded-t-md" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* B) Beschriftungs-Bereich: KOMPLETT GETRENNT unterhalb des Plots */}
+            <div className="flex justify-between gap-2 sm:gap-4 pt-3 mt-1 border-t border-slate-800 text-center px-1">
               {currentStage.parties.map((p) => {
                 const currentVal = isZweit ? p.percent : (p.erststimmen ?? p.percent);
                 const val2023 = isZweit
@@ -237,41 +264,16 @@ const ElectionResultsLiveTracker = () => {
                 const diffFormatted = diff > 0 ? `+${diff.toFixed(1)}%` : `${diff.toFixed(1)}%`;
                 const diffColor = diff > 0 ? "text-emerald-400" : diff < 0 ? "text-red-400" : "text-slate-400";
 
-                const heightPercent = Math.max(6, Math.min(100, (currentVal / maxChartVal) * 100));
-
                 return (
-                  <div key={p.id} className="flex-1 flex flex-col items-center h-full justify-end group/col">
-                    {/* Prozentwert 2026 (Groß, klar & prominent) */}
-                    <div className="mb-2 text-center font-mono">
-                      <span className="font-black text-white text-xs sm:text-base leading-none block" style={{ ...fontDisplay }}>
-                        {currentVal.toFixed(1)}%
-                      </span>
+                  <div key={p.id} className="flex-1 space-y-0.5">
+                    <div className="text-xs sm:text-sm font-bold text-white truncate font-mono">
+                      {p.name}
                     </div>
-
-                    {/* Eine elegante, breite 2026-Säule */}
-                    <div className="w-full max-w-[48px] h-36 flex items-end justify-center relative">
-                      <div
-                        className="w-full rounded-t-md transition-all duration-700 relative group-hover/col:brightness-110 shadow-lg flex flex-col justify-end"
-                        style={{
-                          height: `${heightPercent}%`,
-                          backgroundColor: p.color,
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/20 rounded-t-md" />
-                      </div>
+                    <div className={`text-[10px] sm:text-xs font-mono font-semibold ${diffColor}`}>
+                      {p.id !== "sonstige" ? diffFormatted : "—"}
                     </div>
-
-                    {/* Parteiname & Mandate unter der Säule */}
-                    <div className="pt-2 text-center w-full border-t border-slate-800 mt-1 space-y-0.5">
-                      <div className="text-xs sm:text-sm font-bold text-white truncate font-mono">
-                        {p.name}
-                      </div>
-                      <div className={`text-[10px] sm:text-xs font-mono font-semibold ${diffColor}`}>
-                        {p.id !== "sonstige" ? diffFormatted : "—"}
-                      </div>
-                      <div className="text-[10px] font-mono text-slate-300 font-bold">
-                        {isZweit ? (p.seats > 0 ? `${p.seats} Sitze` : "—") : `${p.direktmandate ?? 0} Direkt`}
-                      </div>
+                    <div className="text-[10px] font-mono text-slate-300 font-bold">
+                      {isZweit ? (p.seats > 0 ? `${p.seats} Sitze` : "—") : `${p.direktmandate ?? 0} Direkt`}
                     </div>
                   </div>
                 );
@@ -388,7 +390,7 @@ const ElectionResultsLiveTracker = () => {
           </div>
         </>
       ) : (
-        /* ── 7. Falls BVV ausgewählt ist: Kommunalparlamente der 12 Bezirke ── */
+        /* ── 7. Falls BVV ausgewählt ist ── */
         <div className="relative z-10 space-y-4 mb-5">
           {/* Status Banner BVV */}
           <div className="rounded-xl p-3 bg-slate-950/60 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
@@ -415,38 +417,45 @@ const ElectionResultsLiveTracker = () => {
               <span className="text-[11px] font-mono text-slate-400">12 Berliner Bezirke</span>
             </div>
 
-            <div className="relative h-60 w-full pt-4 pb-2 px-1 flex items-end justify-between gap-2 sm:gap-4">
+            {/* A) Plot-Bereich BVV */}
+            <div className="relative h-44 w-full flex items-end justify-between gap-2 sm:gap-4 px-1">
               {BVV_RESULTS.parties.map((p) => {
                 const currentVal = p.percent;
-                const diff = p.diff;
-                const diffFormatted = diff > 0 ? `+${diff.toFixed(1)}%` : `${diff.toFixed(1)}%`;
-                const diffColor = diff > 0 ? "text-emerald-400" : diff < 0 ? "text-red-400" : "text-slate-400";
                 const heightPercent = Math.max(6, Math.min(100, (currentVal / maxChartVal) * 100));
 
                 return (
-                  <div key={p.id} className="flex-1 flex flex-col items-center h-full justify-end group/col">
-                    <div className="mb-2 text-center font-mono">
+                  <div key={p.id} className="flex-1 flex flex-col items-center h-full justify-end relative z-10 group/col">
+                    <div className="mb-1.5 text-center font-mono">
                       <span className="font-black text-white text-xs sm:text-base leading-none block" style={{ ...fontDisplay }}>
                         {currentVal.toFixed(1)}%
                       </span>
                     </div>
 
-                    <div className="w-full max-w-[48px] h-36 flex items-end justify-center relative">
-                      <div
-                        className="w-full rounded-t-md transition-all duration-700 relative group-hover/col:brightness-110 shadow-lg flex flex-col justify-end"
-                        style={{ height: `${heightPercent}%`, backgroundColor: p.color }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/20 rounded-t-md" />
-                      </div>
+                    <div
+                      className="w-full max-w-[44px] rounded-t-md transition-all duration-500 relative group-hover/col:brightness-110 shadow-lg"
+                      style={{ height: `${heightPercent}%`, backgroundColor: p.color }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/20 rounded-t-md" />
                     </div>
+                  </div>
+                );
+              })}
+            </div>
 
-                    <div className="pt-2 text-center w-full border-t border-slate-800 mt-1 space-y-0.5">
-                      <div className="text-xs sm:text-sm font-bold text-white truncate font-mono">
-                        {p.name}
-                      </div>
-                      <div className={`text-[10px] sm:text-xs font-mono font-semibold ${diffColor}`}>
-                        {p.id !== "sonstige" ? diffFormatted : "—"}
-                      </div>
+            {/* B) Beschriftungs-Bereich BVV */}
+            <div className="flex justify-between gap-2 sm:gap-4 pt-3 mt-1 border-t border-slate-800 text-center px-1">
+              {BVV_RESULTS.parties.map((p) => {
+                const diff = p.diff;
+                const diffFormatted = diff > 0 ? `+${diff.toFixed(1)}%` : `${diff.toFixed(1)}%`;
+                const diffColor = diff > 0 ? "text-emerald-400" : diff < 0 ? "text-red-400" : "text-slate-400";
+
+                return (
+                  <div key={p.id} className="flex-1 space-y-0.5">
+                    <div className="text-xs sm:text-sm font-bold text-white truncate font-mono">
+                      {p.name}
+                    </div>
+                    <div className={`text-[10px] sm:text-xs font-mono font-semibold ${diffColor}`}>
+                      {p.id !== "sonstige" ? diffFormatted : "—"}
                     </div>
                   </div>
                 );

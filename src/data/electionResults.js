@@ -61,7 +61,7 @@ export const ELECTION_CONFIG = {
 export const ELECTION_STAGES = {
   prognose: {
     id: "prognose",
-    label: "18:00 Uhr Prognose",
+    label: "18:00 Prognose",
     tag: "18:00 PROGNOSE · EXIT POLL 🔴",
     statusBadge: "18:00 Uhr Prognose (Infratest dimap / rbb24)",
     statusColor: "amber",
@@ -83,7 +83,7 @@ export const ELECTION_STAGES = {
 
   hochrechnung: {
     id: "hochrechnung",
-    label: "19:55 Uhr Hochrechnung",
+    label: "19:55 Hochrechnung",
     tag: "LIVE-HOCHRECHNUNG · RBB24 / RBB",
     statusBadge: "Hochrechnung · Stabile Mehrheiten gezeichnet",
     statusColor: "blue",
@@ -105,7 +105,7 @@ export const ELECTION_STAGES = {
 
   zwischenstand: {
     id: "zwischenstand",
-    label: "Amtl. Zwischenstand (20:16 Uhr)",
+    label: "Zwischenstand",
     tag: "AMTLICHES ZWISCHENERGEBNIS · 1.938 VON 4.114 GEBIETEN",
     statusBadge: "1.938 von 4.114 Gebieten ausgezählt (Stand 20:16:00 Uhr)",
     statusColor: "purple",
@@ -127,7 +127,7 @@ export const ELECTION_STAGES = {
 
   endergebnis: {
     id: "endergebnis",
-    label: "Vorl. Endergebnis (Gesamt)",
+    label: "Endergebnis",
     tag: "AMTLICHES VORL. ENDERGEBNIS · 100 % 🏆",
     statusBadge: "Amtliches vorläufiges Endergebnis · 4.114 von 4.114 Gebieten (100 %)",
     statusColor: "purple",
