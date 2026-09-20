@@ -151,32 +151,82 @@ export const IFA_BERLIN_SOURCES = [
 ];
 
 export const BERLIN_WAHL_SOURCES = [
-  { label: "rbb24 Wahl-Portal", detail: "Hauptportal zur Berlin-Wahl 2026", href: "https://www.rbb24.de/politik/berlin-wahl-2026/", badge: "Wahl-Portal", primary: true },
-  { label: "rbb24 Wahlarena Liveticker", detail: "Kompletter Ticker der Spitzenkandidaten-Debatte", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/rbb-wahlarena-liveticker-abgeordnetenhaus-parteien.html", badge: "Liveticker" },
-  { label: "rbb24 Wahlarena Analyse", detail: "Zwischen Schlagabtausch und Sondierungsgesprächen", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/wahlarena-berlin-analyse-spitzenkandidaten.html", badge: "Analyse" },
-  { label: "rbb24 Wahlarena Mediathek", detail: "Die komplette Sendung zum Nachschauen", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-2026-wahlarena-fragerunde-politiker-buerger-talk.html", badge: "Video" },
-  { label: "rbb24 BerlinTrend", detail: "Umfrage & Koalitionsoptionen zur Abgeordnetenhauswahl", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-trend-abgeordnetenhaus-wahl-september.html", badge: "Umfrage" },
-  { label: "bpb Wahl-O-Mat", detail: "Offizieller Thesenvergleich auf wahl-o-mat.de", href: "https://www.wahl-o-mat.de/berlin2026/", badge: "Wahl-O-Mat" },
-  { label: "Landeswahlleiterin Berlin", detail: "Offizielle Wahltermine, Briefwahl & Wahllokale", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/", badge: "Amtlich" },
+  { label: "rbb24 Wahltag Liveticker", detail: "Rund-um-die-Uhr-Ticker zur Berlin-Wahl", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html", badge: "Liveticker", primary: true },
+  { label: "rbb24 Wahlbeteiligung", detail: "27,9 % bis 12 Uhr (+4,5 % über 2023)", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/abgeordnetenhaus-wahltag-prognose-hochrechnungen-ergebnis.html", badge: "27,9 %", primary: true },
+  { label: "rbb24 Prognosen & Ablauf", detail: "So läuft der Wahlabend ab 18:00 Uhr ab", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/prognose-hochrechnung-ergebnis-wahlabend-rbb-berichterstattung.html", badge: "ab 18 Uhr" },
+  { label: "rbb24 Wahl-Portal", detail: "Hauptportal zur Wahl von AGH und BVV", href: "https://www.rbb24.de/politik/berlin-wahl-2026/", badge: "Wahl 2026" },
+  { label: "rbb24 Wahltag FAQ", detail: "Was Wahlberechtigte bis 18 Uhr wissen müssen", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/agh-bvv-wahl-fragen-antworten-wahltag-stimmabgabe.html", badge: "FAQ" },
+  { label: "Landeswahlleiterin Berlin", detail: "Amtliche Bekanntmachungen & Wahllokalsuche", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/", badge: "Amtlich" },
 ];
 
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "WAHLARENA",
+    tickerTag: "WAHLTAG LIVE",
     isElection: true,
-    title: "rbb24 Wahlarena vor der Berlin-Wahl: Zwischen Schlagabtausch und Sondierungsgesprächen – Spitzenkandidaten streiten um Rotes Rathaus, Mieten & Haushalt",
+    title: "Berlin wählt: Wahllokale geöffnet – Wahlbeteiligung um 12 Uhr bei 27,9 % – Erste Prognosen ab 18:00 Uhr",
     excerpt:
-      "Drei Tage vor der Wahl zum 20. Abgeordnetenhaus und den 12 BVV am 20. September trafen die sechs Spitzenkandidaten in der rbb24 Wahlarena aufeinander: Stefan Evers (CDU), Steffen Krach (SPD), Werner Graf (Grüne), Elif Eralp (Linke), Kristin Brinker (AfD) und Michael Lüders (BSW) debattierten live vor 90 Berliner Bürgerinnen und Bürgern über bezahlbares Wohnen, Vergesellschaftung, das 5-Milliarden-Euro-Haushaltsdefizit, Kiez-Sicherheit sowie Koalitionsoptionen.",
-    read: "6 Min",
-    date: "17. September 2026",
-    source: { label: "rbb24 · Wahlarena", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/rbb-wahlarena-liveticker-abgeordnetenhaus-parteien.html" },
+      "Heute entscheiden rund 2,4 Millionen Berlinerinnen und Berliner über die Zusammensetzung des 20. Abgeordnetenhauses und aller 12 Bezirksverordnetenversammlungen (BVV). Die Landeswahlleitung meldet für 12 Uhr eine Wahlbeteiligung von 27,9 Prozent – das sind 4,5 Prozentpunkte mehr als bei der Wiederholungswahl 2023. Die Spitzenkandidaten von CDU, SPD, Grünen und Linken haben bereits ihre Stimmen abgegeben. Um 18:00 Uhr schließen die Wahllokale, unmittelbar danach folgen die ersten Prognosen und Hochrechnungen für das Rote Rathaus.",
+    read: "4 Min",
+    date: "20. September 2026 · 14:00 Uhr",
+    source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Noch 3 Tage",
-      compare: "Wahlarena rbb24",
-      label: "Schlagabtausch der sechs Spitzenkandidaten vor der Wahl am 20. September: Wohnungsnot, Finanzen & Koalitionspoker.",
+      value: "27,9 %",
+      compare: "Wahlbeteiligung 12 Uhr",
+      label: "+4,5 % über 2023 · Wahllokale bis 18 Uhr geöffnet · Erste Prognosen & Hochrechnungen ab 18 Uhr.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "LIVETICKER",
+    isElection: true,
+    title: "rbb24-Liveticker zum Wahlsonntag: Spitzenkandidaten haben gewählt – Weitgehend reibungsloser Ablauf in den Wahllokalen",
+    excerpt:
+      "Vom Morgen bis in die Wahlnacht berichtet rbb24 live aus den Wahllokalen, den Parteizentralen und dem Berliner Rathaus. Nach der Stimmabgabe von Stefan Evers (CDU), Steffen Krach (SPD) und Werner Graf (Grüne) läuft die Stimmabgabe in allen 12 Bezirken geordnet und ohne größere Zwischenfälle ab.",
+    read: "Laufend aktualisiert",
+    date: "20. September 2026",
+    source: { label: "rbb24 · Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
+    featured: false,
+    highlight: {
+      value: "Live-Ticker",
+      compare: "Wahltag Berlin",
+      label: "Rund-um-die-Uhr-Berichterstattung aus allen 12 Berliner Bezirken und dem Roten Rathaus.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "PROGNOSEN 18 UHR",
+    isElection: true,
+    title: "Prognose, Hochrechnungen, Ergebnisse: So läuft der Berliner Wahlabend ab 18:00 Uhr ab",
+    excerpt:
+      "Punkt 18:00 Uhr schließen die Berliner Wahllokale. Zeitgleich veröffentlichen ARD und rbb die 18-Uhr-Prognose von Infratest dimap. Ab ca. 18:20 Uhr folgen die ersten Hochrechnungen auf Basis ausgezählter Stimmbezirke; das vorläufige amtliche Endergebnis wird für die Nacht erwartet.",
+    read: "4 Min",
+    date: "20. September 2026",
+    source: { label: "rbb24 · Wahlabend", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/prognose-hochrechnung-ergebnis-wahlabend-rbb-berichterstattung.html" },
+    featured: false,
+    highlight: {
+      value: "Ab 18:00 Uhr",
+      compare: "Prognosen & Hochrechnungen",
+      label: "Wahllokalschluss um 18 Uhr – erste Infratest-dimap-Prognose für das Rote Rathaus.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "WAHLLOKALE",
+    isElection: true,
+    title: "Bis 18 Uhr Stimme abgeben: Was Berliner Wahlberechtigte am Wahltag beachten sollten",
+    excerpt:
+      "Stimmabgabe ist bis 18:00 Uhr im zuständigen Wahllokal möglich. Wer seine Wahlbenachrichtigung verlegt hat, kann auch nur mit Personalausweis oder Reisepass wählen. Rote Wahlbriefe können noch bis 18:00 Uhr direkt beim zuständigen Bezirkswahlamt eingeworfen werden.",
+    read: "3 Min",
+    date: "20. September 2026",
+    source: { label: "rbb24 · Ratgeber Wahl", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/agh-bvv-wahl-fragen-antworten-wahltag-stimmabgabe.html" },
+    featured: false,
+    highlight: {
+      value: "Bis 18:00 Uhr",
+      compare: "Wahllokale geöffnet",
+      label: "Wählen auch ohne Wahlbenachrichtigung mit Personalausweis oder Reisepass möglich.",
     },
   },
   {

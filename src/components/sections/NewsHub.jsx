@@ -116,48 +116,53 @@ const NewsHub = () => {
                   {daysLeft >= 0 && (
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
                       {daysLeft === 0
-                        ? "🗳️ Heute ist Wahltag"
+                        ? "🗳️ Heute ist Wahltag · Wahllokale bis 18:00 Uhr geöffnet"
                         : `⏳ Noch ${daysLeft} ${daysLeft === 1 ? "Tag" : "Tage"} bis zur Wahl`}
                     </div>
                   )}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2" style={{ ...fontDisplay }}>
-                  Berliner Wahlen am 20. September 2026
+                  {daysLeft === 0
+                    ? "Berlin wählt heute: Abgeordnetenhaus & BVV 2026"
+                    : "Berliner Wahlen am 20. September 2026"}
                 </h3>
                 <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed">
-                  Wahl zum Abgeordnetenhaus von Berlin (AGH) & allen 12 Bezirksverordnetenversammlungen (BVV). Offizielle Informationen der Landeswahlleiterin Berlin.
+                  {daysLeft === 0
+                    ? "Wahl zum 20. Abgeordnetenhaus von Berlin & allen 12 Bezirksverordnetenversammlungen. Wahllokale geöffnet bis 18:00 Uhr. Erste Prognosen und Hochrechnungen ab 18:00 Uhr."
+                    : "Wahl zum Abgeordnetenhaus von Berlin (AGH) & allen 12 Bezirksverordnetenversammlungen (BVV). Offizielle Informationen der Landeswahlleiterin Berlin."}
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 shrink-0">
                 <a
-                  href="https://www.wahl-o-mat.de/berlin2026/"
+                  href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
-                  title="Der offizielle Wahl-O-Mat zur Abgeordnetenhauswahl in Berlin 2026 auf wahl-o-mat.de."
+                  title="rbb24 Wahltag Liveticker"
                   style={{ ...fontDisplay }}
                 >
-                  <span>🗳️ Wahl-O-Mat Berlin 2026</span>
+                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
+                  <span>🔴 rbb24 Wahltag-Liveticker</span>
                   <ArrowUpRight size={16} />
                 </a>
                 <a
-                  href="https://www.berlin.de/wahlen/pressemitteilungen/2026/"
+                  href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahllokalsuche/artikel.1701445.php"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
                   style={{ ...fontDisplay }}
                 >
-                  <span>Pressemitteilungen 2026</span>
+                  <span>Wahllokalsuche (bis 18 Uhr)</span>
                   <ArrowUpRight size={16} />
                 </a>
                 <a
-                  href="https://www.berlin.de/wahlen/organisation/wahlhelfende/"
+                  href="https://www.wahl-o-mat.de/berlin2026/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5"
                   style={{ ...fontDisplay }}
                 >
-                  <span>25.000 Wahlhelfende gesucht</span>
+                  <span>Wahl-O-Mat Berlin</span>
                   <ArrowUpRight size={16} />
                 </a>
               </div>

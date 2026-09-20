@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
+import { Rocket, Building2, BarChart3, ChevronRight, ExternalLink, Vote } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import SiteStatusBadge from "../atoms/SiteStatusBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import AIImageOverlay from "../atoms/AIImageOverlay";
 import WahlprogrammeSection from "./WahlprogrammeSection";
+import ElectionResultsLiveTracker from "./ElectionResultsLiveTracker";
 
 /** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
 const HeroSection = () => {
   const { t } = useLang();
   const [activeTab, setActiveTab] = useState("trends"); // 'trends' | 'hubs' | 'kpis'
+  const [electionView, setElectionView] = useState("results"); // 'results' | 'programmes'
 
   const trends = [
     {
@@ -125,85 +127,85 @@ const HeroSection = () => {
               {/* Header Badges & Date */}
               <div className="flex flex-wrap items-center justify-between gap-2 mb-3 relative z-10">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40 tracking-wide font-mono">
-                    <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                    HAUPTSTORY DER WOCHE 🗳️⚡
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                    HAUPTSTORY · LIVE AM WAHLTAG 🗳️⚡
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · rbb24 Wahlarena
+                    Berlin-Wahl 2026 · Wahllokale bis 18 Uhr
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  17. September 2026 · Noch 3 Tage 🗳️
+                  20. September 2026 · HEUTE WAHLTAG 🗳️
                 </span>
               </div>
 
               {/* Story Title */}
               <a
-                href="https://www.rbb24.de/politik/berlin-wahl-2026/"
+                href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group/link relative z-10"
               >
                 <h3
-                  className="text-lg sm:text-xl font-bold text-white group-hover/link:text-blue-300 transition-colors leading-snug mb-2"
+                  className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  rbb24 Wahlarena vor der Berlin-Wahl: Zwischen Schlagabtausch und Sondierungsgesprächen – Spitzenkandidaten im Duell
+                  Berlin wählt live: Wahllokale geöffnet – Wahlbeteiligung um 12 Uhr bei 27,9 % – Erste Prognosen ab 18:00 Uhr
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Drei Tage vor der Wahl zum 20. Abgeordnetenhaus und den 12 BVV am 20. September trafen die sechs Spitzenkandidaten in der rbb24 Wahlarena aufeinander: Stefan Evers (CDU), Steffen Krach (SPD), Werner Graf (Grüne), Elif Eralp (Linke), Kristin Brinker (AfD) und Michael Lüders (BSW) lieferten sich intensive Debatten über bezahlbares Wohnen, Vergesellschaftung, das 5-Milliarden-Euro-Haushaltsdefizit, Kiez-Sicherheit sowie mögliche Bündnisse für das Rote Rathaus.
+                Heute entscheiden rund 2,4 Millionen Berlinerinnen und Berliner über das 20. Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen (BVV). Die Wahlbeteiligung lag um 12 Uhr bei 27,9 Prozent – spürbar über dem Niveau von 2023 (+4,5 %). Die Wahllokale sind bis 18:00 Uhr geöffnet – unmittelbar nach Schließung folgen die ersten Prognosen und Hochrechnungen für das Rote Rathaus.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
               <div className="pt-3 border-t border-slate-800 text-xs relative z-10 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                    Offizielle Wahl-Berichterstattung (rbb24):
+                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
+                    Offizielle Wahl-Berichterstattung &amp; Live-Services:
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono">
-                    Verifizierte Quellen
+                    Verifizierte Quellen (rbb24)
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/35 text-blue-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate font-semibold">rbb24 Wahl-Portal</span>
-                    <ExternalLink size={10} className="shrink-0 text-blue-400" />
-                  </a>
-                  <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/rbb-wahlarena-liveticker-abgeordnetenhaus-parteien.html"
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate font-semibold">Wahlarena Ticker</span>
+                    <span className="truncate font-semibold">🔴 Wahltag-Liveticker</span>
                     <ExternalLink size={10} className="shrink-0 text-amber-400" />
                   </a>
                   <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/wahlarena-berlin-analyse-spitzenkandidaten.html"
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/abgeordnetenhaus-wahltag-prognose-hochrechnungen-ergebnis.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/35 text-blue-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate font-semibold">Wahlbeteiligung (27,9 %)</span>
+                    <ExternalLink size={10} className="shrink-0 text-blue-400" />
+                  </a>
+                  <a
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/prognose-hochrechnung-ergebnis-wahlabend-rbb-berichterstattung.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">Wahlarena-Analyse</span>
+                    <span className="truncate">Prognosen ab 18 Uhr</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                   <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-2026-wahlarena-fragerunde-politiker-buerger-talk.html"
+                    href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahllokalsuche/artikel.1701445.php"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">Sendung ansehen</span>
+                    <span className="truncate">Wahllokalsuche (bis 18h)</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                 </div>
@@ -211,9 +213,41 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Wahlprogramme & Spitzenkandidaten der Berliner Parteien 2026 */}
-          <div className="pt-3 max-w-xl">
-            <WahlprogrammeSection />
+          {/* Wahl-Zentrale: Live-Ergebnis-Tracker & Wahlprogramme */}
+          <div className="pt-3 max-w-xl space-y-3">
+            {/* View Switcher Tabs */}
+            <div className="flex items-center p-1 bg-slate-900/90 backdrop-blur-md rounded-xl border border-slate-800 text-xs font-mono">
+              <button
+                type="button"
+                onClick={() => setElectionView("results")}
+                className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-1.5 ${
+                  electionView === "results"
+                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black"
+                    : "text-slate-300 hover:text-white hover:bg-slate-800/50"
+                }`}
+              >
+                <BarChart3 size={13} />
+                <span>Live-Ergebnisse (Vorschau)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setElectionView("programmes")}
+                className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-1.5 ${
+                  electionView === "programmes"
+                    ? "bg-blue-600 text-white shadow-md shadow-blue-900/30 font-black"
+                    : "text-slate-300 hover:text-white hover:bg-slate-800/50"
+                }`}
+              >
+                <Vote size={13} />
+                <span>Wahlprogramme &amp; Kandidaten</span>
+              </button>
+            </div>
+
+            {electionView === "results" ? (
+              <ElectionResultsLiveTracker />
+            ) : (
+              <WahlprogrammeSection />
+            )}
           </div>
         </div>
 
