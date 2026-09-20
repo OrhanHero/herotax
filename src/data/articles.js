@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "SONDIERUNGEN 20:05",
+    tickerTag: "BEZIRKE & BVV",
     isElection: true,
-    title: "Berlin-Wahl um 20:05 Uhr: Linke lädt SPD und Grüne zu Sondierungsgesprächen ein – Evers räumt Niederlage ein",
+    title: "Berlin-Wahl um 20:10 Uhr: Linke gewinnt Schlüsselbezirke – SPD und Grüne bereit für Rot-Rot-Grün",
     excerpt:
-      "Nach der Verkündung des amtlichen Endergebnisses nehmen die Berliner Koalitionsgespräche Fahrt auf. Die Linke beansprucht das Rote Rathaus und lädt SPD und Grüne zu Gesprächen über eine Neuauflage von Rot-Rot-Grün ein. Bei der Berliner CDU wird über die personellen Konsequenzen der Wahlniederlage beraten.",
+      "Auch auf Bezirksebene sorgt Die Linke für Furore und erobert wichtige Bezirksbürgermeisterposten in Pankow, Mitte und Friedrichshain-Kreuzberg. Zeitgleich bekräftigen SPD-Spitzenkandidat Steffen Krach und Grünen-Fraktionschef Werner Graf den Willen zu einer schnellen Regierungsbildung unter linker Führung.",
     read: "4 Min",
-    date: "20. September 2026 · 20:05 Uhr",
+    date: "20. September 2026 · 20:10 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Sondierungen",
-      compare: "Mitte-Links",
-      label: "Linke lädt SPD & Grüne ein · Evers gratuliert · Rotes Rathaus vor Wechsel.",
+      value: "12 Bezirke",
+      compare: "BVV-Ergebnisse",
+      label: "Linke holt Schlüsselbezirke · SPD & Grüne für Rot-Rot-Grün · Senatsbildung ab morgen.",
     },
   },
   {

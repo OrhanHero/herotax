@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    WAHLABEND · REAKTIONEN &amp; SONDIERUNGEN 🏛️
+                    BVV-ERGEBNISSE &amp; BEZIRKE · 20:10 UHR 🏙️
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · Reaktionen der Parteien
+                    Berlin-Wahl 2026 · Auswertung der 12 Bezirke
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 20:05 UHR · REAKTIONEN 🗳️
+                  20. September 2026 · 20:10 UHR · BEZIRKE 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 20:05 Uhr: Nach Linke-Triumph – Spitzenpolitiker reagieren, Sondierungen für Rot-Rot-Grün starten
+                  Berlin-Wahl um 20:10 Uhr: Linke holt mehrere Bezirke, SPD und Grüne signalisieren grünes Licht für Rot-Rot-Grün
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Nach dem historischen Wahlsieg der Linken mit 27,5 Prozent zeichnet sich ein zügiger Regierungswechsel in Berlin ab. Die Linke-Spitze hat für Montagmorgen formelle Sondierungsgespräche mit SPD und Grünen angekündigt. CDU-Spitzenkandidat Evers gratulierte zur stärksten Kraft und kündigte eine konstruktive Oppositionsrolle im Abgeordnetenhaus an.
+                Neben dem Abgeordnetenhaus stehen nun auch die BVV-Ergebnisse der 12 Berliner Bezirke fest: Die Linke gewinnt in Pankow, Friedrichshain-Kreuzberg, Mitte und Lichtenberg teils deutlich hinzu. In den Parteizentralen von SPD und Grünen fällt das Votum eindeutig aus: Beide Parteien befürworten Koalitionsverhandlungen über ein rot-rot-grünes Zukunftsmodell im Roten Rathaus.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
