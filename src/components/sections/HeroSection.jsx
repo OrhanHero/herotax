@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    AUSZÄHLUNG 94 % · 21:05 UHR 🏙️
+                    AUSZÄHLUNG 98 % · 21:10 UHR 🏙️
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
                     Berlin-Wahl 2026 · Amtliches Zwischenergebnis
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 21:05 UHR · LIVE 🗳️
+                  20. September 2026 · 21:10 UHR · LIVE 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 21:05 Uhr: 94 % ausgezählt – Linke uneinholbar vorn, Rotes Rathaus stellt Weichen für Rot-Rot-Grün
+                  Berlin-Wahl um 21:10 Uhr: 98 % ausgezählt – Linke gewinnt Berlin-Wahl 2026, Rot-Rot-Grün bereitet Koalitionsgespräche vor
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Mit 3.880 von 4.114 ausgezählten Gebieten (94,3 %) ist der Wahlsieg von Die Linke in Berlin rechnerisch besiegelt. Die Sitzverteilung (159 Sitze) im 20. Abgeordnetenhaus steht: Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8. Rot-Rot-Grün verfügt mit 90 Mandaten über eine komfortable absolute Regierungsmehrheit.
+                Mit 4.020 von 4.114 ausgezählten Gebieten (97,7 %) steht das Ergebnis der Berlin-Wahl 2026 fest: Die Linke erringt 44 Sitze und wird stärkste Kraft im Abgeordnetenhaus. Die Sitzverteilung: Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8. Damit verfügen Linke, Grüne und SPD mit 90 von 159 Mandaten über eine tragfähige Regierungsmehrheit für das Rote Rathaus.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
