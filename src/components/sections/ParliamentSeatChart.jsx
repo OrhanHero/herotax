@@ -1,18 +1,16 @@
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 
 /**
  * ParliamentSeatChart:
- * Visualisiert die amtliche Sitzverteilung des 20. Berliner Abgeordnetenhauses (159 Sitze)
- * als 180°-Halbkreisbogen nach offizieller Vorlage der Infratest-dimap / Tagesschau Wahlgrafik.
+ * Interaktive Visualisierung der amtlichen Sitzverteilung (159 Sitze) des 20. Berliner Abgeordnetenhauses
+ * nach Vorlage der Infratest-dimap / Tagesschau TV-Wahlgrafik.
  *
- * Details der TV-Vorgabe:
- * - 180° Bogen von links (CDU) nach rechts (BSW)
- * - 6 Parteien: CDU (33), SPD (21), Grüne (25), Linke (44), AfD (28), BSW (8)
- * - 'Die Linke' als Wahlsiegerin radial erhaben (+12px Außenradius)
- * - '159 Sitze' zentriertes Badge im Innenkreis
- * - Dunkle, parteigefärbte Pill-Badges für die Sitze mit Diff-Werten
- * - Pinker Akzentstrich unter dem Wahlsieger Linke (+22)
- * - Stand- und Quellangabe unten links (Infratest dimap / tagesschau.de)
+ * Interaktive Features:
+ * - Dynamisches Mouseover auf jedem Bogen-Segment und in der Legende
+ * - Der aktive Balken hebt sich radial nach oben hervor ("Balken bewegt sich")
+ * - Passgenauer SVG-Tooltip mit Pfeilspitze direkt auf dem Bogen
+ * - Untere Farbakzent-Linie wandert dynamisch zur aktiven Partei
+ * - Volle Touch-Unterstützung für mobile Endgeräte
  */
 
 function polarToCartesian(cx, cy, r, angleInDegrees) {
@@ -45,51 +43,75 @@ const DEFAULT_SEAT_DATA = [
   {
     id: "cdu",
     name: "CDU",
+    fullName: "CDU",
     seats: 33,
     diff: -19,
     arcColor: "#8893a4",
     pillBg: "#465469",
+    tooltipBg: "#394758",
+    accentColor: "#8893a4",
+    singleLine: true,
   },
   {
     id: "spd",
     name: "SPD",
+    fullName: "SPD",
     seats: 21,
     diff: -13,
     arcColor: "#f04e46",
     pillBg: "#5a2a32",
+    tooltipBg: "#54242a",
+    accentColor: "#f04e46",
+    singleLine: true,
   },
   {
     id: "gruene",
     name: "Grüne",
+    fullName: "Bündnis 90/Die Grünen",
     seats: 25,
     diff: -9,
     arcColor: "#8cd600",
     pillBg: "#39552b",
+    tooltipBg: "#334a26",
+    accentColor: "#8cd600",
+    singleLine: false,
   },
   {
     id: "linke",
     name: "Linke",
+    fullName: "Die Linke",
     seats: 44,
     diff: +22,
     arcColor: "#f46b9f",
     pillBg: "#662c4a",
+    tooltipBg: "#482638",
+    accentColor: "#f46b9f",
+    singleLine: true,
     isWinner: true,
   },
   {
     id: "afd",
     name: "AfD",
+    fullName: "AfD",
     seats: 28,
     diff: +11,
     arcColor: "#1eb8f0",
     pillBg: "#1c4e6e",
+    tooltipBg: "#18445e",
+    accentColor: "#1eb8f0",
+    singleLine: true,
   },
   {
     id: "bsw",
     name: "BSW",
+    fullName: "BSW",
     seats: 8,
     diff: +8,
     arcColor: "#be699b",
     pillBg: "#54314e",
+    tooltipBg: "#492942",
+    accentColor: "#be699b",
+    singleLine: true,
   },
 ];
 
@@ -100,38 +122,87 @@ const ParliamentSeatChart = ({
   source = "infratest dimap",
   sourceUrl = "https://www.tagesschau.de/inland/landtagswahlen/berlin/2026/ergebnisse",
 }) => {
-  // Berechne Bogenwinkel für jede Partei (180° Gesamtwinkel)
+  // Aktive Partei bei Mouseover (Standard: 'linke' als Wahlsiegerin)
+  const [hoveredId, setHoveredId] = useState("linke");
+
+  const cx = 250;
+  const cy = 210;
+  const rIn = 92;
+  const rOutBase = 175;
+  const rOutElevated = 188; // Erhöhter Bogen bei aktivem Mouseover
+
+  // Berechne Bogenwinkel und Pfaddaten für jede Partei
   const slices = useMemo(() => {
     let currentAngle = 180; // Start horizontal ganz links
-    const cx = 250;
-    const cy = 210;
-    const rIn = 92;
-    const rOutBase = 175;
-    const rOutElevated = 187; // Wahlsiegerin 'Linke' ist radial erhöht
 
     return parties.map((p) => {
       const angleSpan = (p.seats / totalSeats) * 180;
       const startAngle = currentAngle;
       const endAngle = currentAngle - angleSpan;
+      const midAngle = (startAngle + endAngle) / 2;
       currentAngle = endAngle;
 
-      const isWinner = p.isWinner || p.id === "linke";
-      const rOut = isWinner ? rOutElevated : rOutBase;
+      const isHovered = p.id === hoveredId;
+      const rOut = isHovered ? rOutElevated : rOutBase;
 
       const pathData = describeArcSlice(cx, cy, rIn, rOut, startAngle, endAngle);
+      const anchor = polarToCartesian(cx, cy, rOut, midAngle);
 
       return {
         ...p,
         startAngle,
         endAngle,
+        midAngle,
+        rOut,
         pathData,
+        anchor,
+        isHovered,
       };
     });
-  }, [parties, totalSeats]);
+  }, [parties, totalSeats, hoveredId]);
+
+  // Aktive Partei für den Tooltip
+  const activeSlice = slices.find((s) => s.id === hoveredId) || slices[3];
+
+  // Tooltip Geometrie berechnen
+  const tooltipLayout = useMemo(() => {
+    if (!activeSlice) return null;
+    const isTwoLine = !activeSlice.singleLine;
+    const width = isTwoLine ? 142 : 116;
+    const height = isTwoLine ? 42 : 24;
+
+    const anchorX = activeSlice.anchor.x;
+    const anchorY = activeSlice.anchor.y;
+
+    // Horizontale Platzierung passend zur Vorlage
+    let boxX = anchorX - width / 2;
+    if (activeSlice.id === "gruene") {
+      boxX = anchorX - width * 0.72; // Pfeil rechtsbündiger wie in Vorlage 2
+    } else if (activeSlice.id === "cdu") {
+      boxX = Math.max(50, anchorX - 25);
+    } else if (activeSlice.id === "spd") {
+      boxX = Math.max(65, anchorX - width / 2);
+    } else if (activeSlice.id === "linke") {
+      boxX = anchorX - width / 2; // exakt zentriert wie in Vorlage 1
+    } else if (activeSlice.id === "afd") {
+      boxX = Math.min(320, anchorX - width * 0.65);
+    } else if (activeSlice.id === "bsw") {
+      boxX = Math.min(320, anchorX - width * 0.85);
+    }
+
+    const boxY = anchorY - 6 - height;
+    const pointerX = anchorX;
+    const pointerY = anchorY;
+
+    return { width, height, boxX, boxY, pointerX, pointerY, isTwoLine };
+  }, [activeSlice]);
 
   return (
-    <div className="rounded-2xl p-6 sm:p-8 bg-[#151e33] text-white shadow-2xl border border-slate-800/80 w-full select-none">
-      {/* ── 1. Titelzeile nach Vorlage ── */}
+    <div
+      className="rounded-2xl p-6 sm:p-8 bg-[#151e33] text-white shadow-2xl border border-slate-800/80 w-full select-none transition-colors duration-300"
+      onMouseLeave={() => setHoveredId("linke")}
+    >
+      {/* ── 1. Titelzeile nach TV-Vorlage ── */}
       <div className="mb-3 text-left">
         <span className="text-xs sm:text-sm font-sans font-medium text-slate-300 block tracking-normal">
           Abgeordnetenhauswahl Berlin 2026
@@ -141,13 +212,13 @@ const ParliamentSeatChart = ({
         </h2>
       </div>
 
-      {/* ── 2. Halbkreis-Diagramm (SVG) ── */}
-      <div className="relative w-full max-w-[480px] mx-auto my-2">
+      {/* ── 2. Interaktives Halbkreis-Diagramm (SVG) ── */}
+      <div className="relative w-full max-w-[490px] mx-auto my-2">
         <svg
-          viewBox="60 15 380 210"
+          viewBox="40 -30 420 265"
           className="w-full h-auto overflow-visible"
         >
-          {/* Slices */}
+          {/* Slices: Reagieren interaktiv auf Mouseover / Touch */}
           {slices.map((slice) => (
             <path
               key={slice.id}
@@ -156,9 +227,15 @@ const ParliamentSeatChart = ({
               stroke="#151e33"
               strokeWidth="2.5"
               strokeLinejoin="round"
-              className="transition-all duration-300 hover:brightness-110 cursor-pointer"
+              style={{
+                transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+                filter: slice.isHovered ? "brightness(1.04)" : "brightness(0.98)",
+              }}
+              className="cursor-pointer"
+              onMouseEnter={() => setHoveredId(slice.id)}
+              onClick={() => setHoveredId(slice.id)}
             >
-              <title>{`${slice.name}: ${slice.seats} Sitze (${slice.diff > 0 ? '+' : ''}${slice.diff})`}</title>
+              <title>{`${slice.name}: ${slice.seats} Sitze (${slice.diff > 0 ? "+" : ""}${slice.diff})`}</title>
             </path>
           ))}
 
@@ -181,24 +258,98 @@ const ParliamentSeatChart = ({
               {totalSeats} Sitze
             </text>
           </g>
+
+          {/* ── Interaktiver Tooltip (folgt exakt der aktiven Partei) ── */}
+          {tooltipLayout && activeSlice && (
+            <g
+              className="transition-all duration-200 pointer-events-none"
+              style={{ filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.35))" }}
+            >
+              {/* Tooltip Box Hintergrund */}
+              <rect
+                x={tooltipLayout.boxX}
+                y={tooltipLayout.boxY}
+                width={tooltipLayout.width}
+                height={tooltipLayout.height}
+                rx="4"
+                fill={activeSlice.tooltipBg}
+              />
+
+              {/* Nach unten zeigendes Dreieck zur Bogenkante */}
+              <polygon
+                points={`
+                  ${tooltipLayout.pointerX - 6},${tooltipLayout.boxY + tooltipLayout.height}
+                  ${tooltipLayout.pointerX + 6},${tooltipLayout.boxY + tooltipLayout.height}
+                  ${tooltipLayout.pointerX},${tooltipLayout.pointerY}
+                `}
+                fill={activeSlice.tooltipBg}
+              />
+
+              {/* Tooltip Beschriftung nach Vorlage */}
+              {tooltipLayout.isTwoLine ? (
+                <text fill="white" className="font-sans">
+                  <tspan
+                    x={tooltipLayout.boxX + 8}
+                    y={tooltipLayout.boxY + 16}
+                    fontSize="11"
+                    fontWeight="bold"
+                  >
+                    {activeSlice.fullName}:
+                  </tspan>
+                  <tspan
+                    x={tooltipLayout.boxX + 8}
+                    y={tooltipLayout.boxY + 32}
+                    fontSize="12"
+                    fontWeight="900"
+                  >
+                    {activeSlice.seats} Sitze
+                  </tspan>
+                </text>
+              ) : (
+                <text
+                  x={tooltipLayout.boxX + tooltipLayout.width / 2}
+                  y={tooltipLayout.boxY + 16}
+                  textAnchor="middle"
+                  fill="white"
+                  fontSize="11.5"
+                  className="font-sans"
+                >
+                  <tspan fontWeight="bold">{activeSlice.fullName}: </tspan>
+                  <tspan fontWeight="900">{activeSlice.seats} Sitze</tspan>
+                </text>
+              )}
+            </g>
+          )}
         </svg>
       </div>
 
-      {/* ── 3. Horizontale Parteien-Legende nach Vorlage ── */}
+      {/* ── 3. Interaktive Parteien-Legende nach Vorlage ── */}
       <div className="grid grid-cols-6 gap-1 sm:gap-2 text-center pt-5 mt-2 max-w-[460px] mx-auto">
         {parties.map((p) => {
-          const isWinner = p.isWinner || p.id === "linke";
+          const isSelected = p.id === hoveredId;
           const diffText = p.diff > 0 ? `+${p.diff}` : `${p.diff}`;
           return (
-            <div key={p.id} className="flex flex-col items-center">
+            <button
+              key={p.id}
+              type="button"
+              onMouseEnter={() => setHoveredId(p.id)}
+              onClick={() => setHoveredId(p.id)}
+              className="flex flex-col items-center group cursor-pointer focus:outline-hidden transition-transform duration-200"
+            >
               {/* Parteiname */}
-              <span className="text-xs sm:text-sm font-bold text-white tracking-tight block">
+              <span
+                className={`text-xs sm:text-sm font-bold tracking-tight block transition-colors duration-200 ${
+                  isSelected ? "text-white scale-105" : "text-slate-200 group-hover:text-white"
+                }`}
+              >
                 {p.name}
               </span>
 
               {/* Farbiges Sitz-Badge */}
               <div
-                className="mt-1.5 w-9 sm:w-10 h-6 rounded text-xs sm:text-[13px] font-black text-white shadow-sm flex items-center justify-center"
+                className={`mt-1.5 w-9 sm:w-10 h-6 rounded text-xs sm:text-[13px] font-black text-white shadow-sm flex items-center justify-center transition-all duration-200 ${
+                  isSelected ? "ring-2 ring-white/30 scale-105" : ""
+                }`}
                 style={{ backgroundColor: p.pillBg }}
               >
                 {p.seats}
@@ -209,18 +360,20 @@ const ParliamentSeatChart = ({
                 {diffText}
               </span>
 
-              {/* Wahlsiegerin-Unterstrich für Linke */}
+              {/* Farbakzent-Unterstrich (wandert dynamisch zur aktiven Partei) */}
               <div
-                className={`w-7 sm:w-8 h-[3px] rounded-full mt-1.5 transition-all ${
-                  isWinner ? "bg-[#f46b9f]" : "bg-transparent"
-                }`}
+                className="w-7 sm:w-8 h-[3px] rounded-full mt-1.5 transition-all duration-200"
+                style={{
+                  backgroundColor: isSelected ? p.accentColor : "transparent",
+                  boxShadow: isSelected ? `0 0 8px ${p.accentColor}80` : "none",
+                }}
               />
-            </div>
+            </button>
           );
         })}
       </div>
 
-      {/* ── 4. Fusszeile nach Vorlage (unten links) ── */}
+      {/* ── 4. Fusszeile nach TV-Vorlage (unten links) ── */}
       <div className="pt-6 mt-4 border-t border-slate-800/60 text-xs text-slate-400 text-left space-y-0.5">
         <div>Stand: {time} | Sitze</div>
         <div className="flex items-center gap-1.5">
