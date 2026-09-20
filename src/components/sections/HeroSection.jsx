@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    AMTLICHES ENDERGEBNIS 100 % · 22:20 UHR 🏆
+                    AMTLICHES ENDERGEBNIS 100 % · 22:25 UHR 🏆
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
                     Berlin-Wahl 2026 · AGH &amp; BVV Endstand
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 22:20 UHR · VERBÄNDE- &amp; WIRTSCHAFTS-RADAR 🗳️
+                  20. September 2026 · 22:25 UHR · BEZIRKS- &amp; SENATS-RADAR 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 22:20 Uhr: Wirtschaftsverbände formulieren Erwartungen an 90-Sitze-Bündnis
+                  Berlin-Wahl um 22:25 Uhr: BVV-Auswertung abgeschlossen – 5 Bezirke vor linkem Bürgermeister-Vorschlag
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Nach Bestätigung des amtlichen Endergebnisses (Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8) mahnen IHK, DEHOGA und Handelsverband Berlin Planungssicherheit an: Neben der Stabilität des Gewerbesteuerhebesatzes (410 %) stehen unbürokratische Genehmigungsverfahren und die Sicherung gewerblicher Mietflächen im Zentrum.
+                Nach dem amtlichen Endergebnis festigt Die Linke neben 44 AGH-Sitzen Spitzenpositionen in fünf Berliner Bezirken (u. a. Lichtenberg, Friedrichshain-Kreuzberg, Mitte). Parallel dazu bereiten Linke, Grüne und SPD den Zeitplan für die konstituierende Sitzung des 20. Abgeordnetenhauses vor.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
