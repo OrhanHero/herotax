@@ -131,10 +131,10 @@ export const ELECTION_STAGES = {
     tag: "AMTLICHES VORL. ENDERGEBNIS · 100 % 🏆",
     statusBadge: "Amtliches vorläufiges Endergebnis · 4.114 von 4.114 Gebieten (100 %)",
     statusColor: "purple",
-    time: "20.09.2026 · 22:25:00 Uhr",
+    time: "20.09.2026 · 22:30:00 Uhr",
     source: "Landeswahlleiterin Berlin / Amt für Statistik Berlin-Brandenburg",
     turnout: "68,2 % (Endstand, 1.637.420 Wählende)",
-    note: "Amtlicher Endstand: Die Linke gewinnt 44 Mandate im AGH sowie 5 Bezirksbürgermeister-Mehrheiten in den BVV. Rot-Rot-Grün bereitet Konstituierung des Abgeordnetenhauses vor. Gewerbe- und Grundsteuer-Regelungen im Koalitionsfokus.",
+    note: "Amtlicher Endstand: Die Linke (44 Sitze) bereitet mit Grünen (25) und SPD (21) den Sondierungsfahrplan für Montag 10:00 Uhr vor. Finanzverwaltung signalisiert solide Haushaltsbasis; Steuerberater fordern forcierten Bürokratieabbau.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 26.0, diff: +13.8, seats: 44, seatsDiff: +22, erststimmen: 24.4, erststimmenDiff: +12.1, direktmandate: 30, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 18.4, diff: -9.8, seats: 33, seatsDiff: -19, erststimmen: 19.9, erststimmenDiff: -9.8, direktmandate: 22, color: "#0054A6", barColor: "bg-blue-600" },
@@ -153,7 +153,7 @@ export const ELECTION_STAGES = {
  * Quelle: Landeswahlleiterin Berlin (wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/)
  */
 export const BVV_RESULTS = {
-  time: "20.09.2026 · 22:25:00 Uhr",
+  time: "20.09.2026 · 22:30:00 Uhr",
   countedAreas: "4.114 von 4.114 Gebieten (100 %)",
   turnout: "68,1 % (Endstand, 1.635.890 Wählende)",
   source: "Landeswahlleiterin Berlin · Bezirksverordnetenversammlungen",
