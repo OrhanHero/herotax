@@ -24,16 +24,55 @@ const NewsTicker = ({ items }) => {
   const daysLeft = getDaysUntilElection();
   const currentAgh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
 
+  // Extrahiere Prozent & Gebiete dynamisch aus dem amtlichen Stand
+  const matchPercent = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[\.,]\d+\s*%)/);
+  const currentPercent = matchPercent ? matchPercent[1] : "99,9 %";
+
+  const matchAreas = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[\.,\d]*\s*von\s*\d+[\.,\d]*\s*Gebieten)/i);
+  const currentAreasText = matchAreas ? matchAreas[1] : "4.110 von 4.114 Gebieten";
+
   // Dynamische Live-Ticker-Meldungen direkt aus den amtlichen Wahldaten
   const liveElectionItems = useMemo(() => {
     const agh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
     const bvv = BVV_RESULTS;
+    const timeStr = agh.time ? agh.time.split("·")[1]?.trim() : "01:11 Uhr";
+
+    // Parteien-Prozente formatieren
+    const pStr = (id, fallback) => {
+      const p = agh.parties?.find((x) => x.id === id);
+      return p ? `${p.percent.toFixed(1).replace(".", ",")}%` : fallback;
+    };
+    const linkeStr = pStr("linke", "25,7 %");
+    const cduStr = pStr("cdu", "18,8 %");
+    const afdStr = pStr("afd", "16,3 %");
+    const grueneStr = pStr("gruene", "14,3 %");
+    const spdStr = pStr("spd", "12,1 %");
+    const bswP = agh.parties?.find((x) => x.id === "bsw")?.percent?.toFixed(1).replace(".", ",") || "4,7";
+
+    // Sitze formatieren
+    const sStr = (id, fallback) => {
+      const p = agh.parties?.find((x) => x.id === id);
+      return p?.seats !== undefined ? p.seats : fallback;
+    };
+    const linkeSeats = sStr("linke", 48);
+    const cduSeats = sStr("cdu", 34);
+    const afdSeats = sStr("afd", 29);
+    const grueneSeats = sStr("gruene", 26);
+    const spdSeats = sStr("spd", 22);
+    const r2gSeats = linkeSeats + spdSeats + grueneSeats;
+
+    // BVV Parteien formatieren
+    const bvvPStr = (id, fallback) => {
+      const p = bvv.parties?.find((x) => x.id === id);
+      return p ? `${p.percent.toFixed(1).replace(".", ",")}%` : fallback;
+    };
+
     return [
       {
         cat: "Berlin Fokus",
         tickerTag: "🔴 LIVE-STAND AGH",
         isElection: true,
-        title: `Amtliches Zwischenergebnis (${agh.time ? agh.time.split("·")[1]?.trim() : "01:04 Uhr"}): 4.103 von 4.114 Gebieten (99,7 %) ausgezählt — Linke 25,7 %, CDU 18,8 %, AfD 16,2 %, Grüne 14,3 %, SPD 12,1 %`,
+        title: `Amtliches Zwischenergebnis (${timeStr}): ${currentAreasText} (${currentPercent}) ausgezählt — Linke ${linkeStr}, CDU ${cduStr}, AfD ${afdStr}, Grüne ${grueneStr}, SPD ${spdStr}`,
         date: "21.09.2026",
         source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html" },
       },
@@ -41,7 +80,7 @@ const NewsTicker = ({ items }) => {
         cat: "Berlin Fokus",
         tickerTag: "🗳️ SITZVERTEILUNG",
         isElection: true,
-        title: "159 Sitze im 20. AGH: Linke 48, CDU 34, AfD 29, Grüne 26, SPD 22 · BSW scheitert an 5%-Hürde (4,7 % = 0 Sitze) · Rot-Rot-Grün verfügt über 96 Sitze",
+        title: `159 Sitze im 20. AGH: Linke ${linkeSeats}, CDU ${cduSeats}, AfD ${afdSeats}, Grüne ${grueneSeats}, SPD ${spdSeats} · BSW scheitert an 5%-Hürde (${bswP} % = 0 Sitze) · Rot-Rot-Grün verfügt über ${r2gSeats} Sitze`,
         date: "21.09.2026",
         source: { label: "tagesschau.de", href: "https://www.tagesschau.de/inland/landtagswahlen/berlin/2026/ergebnisse" },
       },
@@ -49,12 +88,12 @@ const NewsTicker = ({ items }) => {
         cat: "Berlin Fokus",
         tickerTag: "🏙️ BEZIRKE & BVV",
         isElection: true,
-        title: `Bezirksverordnetenversammlungen (BVV): ${bvv.countedAreas || "4.108 / 4.114 Gebiete"} — Linke 24,1 %, CDU 18,2 %, Grüne 17,2 %, AfD 15,7 %, SPD 12,2 %`,
+        title: `Bezirksverordnetenversammlungen (BVV): ${bvv.countedAreas || "4.110 von 4.114 Gebieten (99,9 %)"} — Linke ${bvvPStr("linke", "24,1 %")}, CDU ${bvvPStr("cdu", "18,2 %")}, Grüne ${bvvPStr("gruene", "17,2 %")}, AfD ${bvvPStr("afd", "15,7 %")}, SPD ${bvvPStr("spd", "12,2 %")}`,
         date: "21.09.2026",
         source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html" },
       },
     ];
-  }, []);
+  }, [currentAgh, currentAreasText, currentPercent]);
 
   // Vollständig auf Berlin-Wahl 2026 ausgerichteter Wahlticker
   const electionItems = (items || []).filter(
@@ -67,8 +106,8 @@ const NewsTicker = ({ items }) => {
   // Live-Meldungen voranstellen
   const tickerItems = [...liveElectionItems, ...electionItems];
 
-  const timeOnly = currentAgh.time ? currentAgh.time.split("·")[1]?.replace("Uhr", "").trim() : "01:04";
-  const badgeText = daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : `LIVE 99,7 % · ${timeOnly} UHR 🗳️`;
+  const timeOnly = currentAgh.time ? currentAgh.time.split("·")[1]?.replace("Uhr", "").trim() : "01:11";
+  const badgeText = daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : `LIVE ${currentPercent} · ${timeOnly} UHR 🗳️`;
 
   return (
     <div
