@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "ENDERGEBNIS",
+    tickerTag: "SONDIERUNGEN 20:05",
     isElection: true,
-    title: "Berlin-Wahl 2026: Vorläufiges amtliches Endergebnis steht fest – Die Linke gewinnt Rotes Rathaus",
+    title: "Berlin-Wahl um 20:05 Uhr: Linke lädt SPD und Grüne zu Sondierungsgesprächen ein – Evers räumt Niederlage ein",
     excerpt:
-      "Alle 2.257 Urnen- und Briefwahlbezirke sind vollständig ausgezählt. Die Linke erzielt mit 27,5 Prozent und 48 Mandaten ihren größten Wahlerfolg in der Geschichte der Hauptstadt. Schwarz-Rot ist abgewählt. Rot-Rot-Grün (107 Sitze) und Rot-Rot (80 Sitze) stehen als Regierungsmehrheiten bereit.",
+      "Nach der Verkündung des amtlichen Endergebnisses nehmen die Berliner Koalitionsgespräche Fahrt auf. Die Linke beansprucht das Rote Rathaus und lädt SPD und Grüne zu Gesprächen über eine Neuauflage von Rot-Rot-Grün ein. Bei der Berliner CDU wird über die personellen Konsequenzen der Wahlniederlage beraten.",
     read: "4 Min",
-    date: "20. September 2026 · 20:00 Uhr",
+    date: "20. September 2026 · 20:05 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "27,5 %",
-      compare: "Die Linke (Platz 1)",
-      label: "Vorläufiges Endergebnis · 48 Sitze · Rotes Rathaus an Die Linke.",
+      value: "Sondierungen",
+      compare: "Mitte-Links",
+      label: "Linke lädt SPD & Grüne ein · Evers gratuliert · Rotes Rathaus vor Wechsel.",
     },
   },
   {
