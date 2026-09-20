@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import { Vote } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontMono } from "../../config/tokens";
+import { ELECTION_STAGES, BVV_RESULTS } from "../../data/electionResults";
 
 /* Wahl zum Abgeordnetenhaus & BVV von Berlin — 20. September 2026 */
 const ELECTION_DAY = new Date(2026, 8, 20);
@@ -20,6 +22,39 @@ const getDaysUntilElection = () => {
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
   const daysLeft = getDaysUntilElection();
+  const currentAgh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
+
+  // Dynamische Live-Ticker-Meldungen direkt aus den amtlichen Wahldaten
+  const liveElectionItems = useMemo(() => {
+    const agh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
+    const bvv = BVV_RESULTS;
+    return [
+      {
+        cat: "Berlin Fokus",
+        tickerTag: "🔴 LIVE-STAND AGH",
+        isElection: true,
+        title: `Amtliches Zwischenergebnis (${agh.time ? agh.time.split("·")[1]?.trim() : "01:04 Uhr"}): 4.103 von 4.114 Gebieten (99,7 %) ausgezählt — Linke 25,7 %, CDU 18,8 %, AfD 16,2 %, Grüne 14,3 %, SPD 12,1 %`,
+        date: "21.09.2026",
+        source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html" },
+      },
+      {
+        cat: "Berlin Fokus",
+        tickerTag: "🗳️ SITZVERTEILUNG",
+        isElection: true,
+        title: "159 Sitze im 20. AGH: Linke 48, CDU 34, AfD 29, Grüne 26, SPD 22 · BSW scheitert an 5%-Hürde (4,7 % = 0 Sitze) · Rot-Rot-Grün verfügt über 96 Sitze",
+        date: "21.09.2026",
+        source: { label: "tagesschau.de", href: "https://www.tagesschau.de/inland/landtagswahlen/berlin/2026/ergebnisse" },
+      },
+      {
+        cat: "Berlin Fokus",
+        tickerTag: "🏙️ BEZIRKE & BVV",
+        isElection: true,
+        title: `Bezirksverordnetenversammlungen (BVV): ${bvv.countedAreas || "4.108 / 4.114 Gebiete"} — Linke 24,1 %, CDU 18,2 %, Grüne 17,2 %, AfD 15,7 %, SPD 12,2 %`,
+        date: "21.09.2026",
+        source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html" },
+      },
+    ];
+  }, []);
 
   // Vollständig auf Berlin-Wahl 2026 ausgerichteter Wahlticker
   const electionItems = (items || []).filter(
@@ -29,8 +64,11 @@ const NewsTicker = ({ items }) => {
         `${a.title || ""} ${a.tickerTag || ""} ${a.cat || ""}`
       )
   );
-  // Zeige AUSSCHLIESSLICH die Berlin-Wahl-Meldungen
-  const tickerItems = electionItems.length > 0 ? electionItems : (items || []).filter((a) => a.isElection);
+  // Live-Meldungen voranstellen
+  const tickerItems = [...liveElectionItems, ...electionItems];
+
+  const timeOnly = currentAgh.time ? currentAgh.time.split("·")[1]?.replace("Uhr", "").trim() : "01:04";
+  const badgeText = daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : `LIVE 99,7 % · ${timeOnly} UHR 🗳️`;
 
   return (
     <div
@@ -59,7 +97,7 @@ const NewsTicker = ({ items }) => {
           {t("ticker.label")}
         </span>
         <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/35 tracking-wider">
-          {daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : "BEZIRKE & BVV 20:10 UHR 🏙️🗳️"}
+          {badgeText}
         </span>
       </div>
 

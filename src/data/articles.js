@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "BEZIRKE & BVV",
+    tickerTag: "BERLIN-WAHL 2026",
     isElection: true,
-    title: "Berlin-Wahl um 20:10 Uhr: Linke gewinnt Schlüsselbezirke – SPD und Grüne bereit für Rot-Rot-Grün",
+    title: "Berlin-Wahl um 01:05 Uhr: 99,7 % ausgezählt – Linke siegt klar, BSW verfehlt 5%-Hürde, Rot-Rot-Grün mit 96 Sitzen",
     excerpt:
-      "Auch auf Bezirksebene sorgt Die Linke für Furore und erobert wichtige Bezirksbürgermeisterposten in Pankow, Mitte und Friedrichshain-Kreuzberg. Zeitgleich bekräftigen SPD-Spitzenkandidat Steffen Krach und Grünen-Fraktionschef Werner Graf den Willen zu einer schnellen Regierungsbildung unter linker Führung.",
+      "Mit 4.102 von 4.114 ausgezählten Gebieten steht der Wahlsieg von Die Linke (25,7 %) fest. CDU folgt mit 18,8 %, AfD mit 16,2 %, Grüne mit 14,3 % und SPD mit 12,1 %. Das Bündnis Sahra Wagenknecht (BSW) scheitert mit 4,7 % an der 5%-Sperrklausel und erhält keine Sitze im 20. Abgeordnetenhaus. Rot-Rot-Grün verfügt mit 96 von 159 Sitzen über eine stabile Mehrheit.",
     read: "4 Min",
-    date: "20. September 2026 · 20:10 Uhr",
+    date: "21. September 2026 · 01:05 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "12 Bezirke",
-      compare: "BVV-Ergebnisse",
-      label: "Linke holt Schlüsselbezirke · SPD & Grüne für Rot-Rot-Grün · Senatsbildung ab morgen.",
+      value: "99,7 %",
+      compare: "4.103 Gebiete",
+      label: "Linke stärkste Kraft · BSW unter 5% (0 Sitze) · Rot-Rot-Grün bei 96 Sitzen.",
     },
   },
   {
