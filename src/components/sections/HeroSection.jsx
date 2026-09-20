@@ -132,11 +132,11 @@ const HeroSection = () => {
                     ZWISCHENERGEBNIS 99,9 % · AUSZÄHLUNG LÄUFT 🔴
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.110 / 4.114 Gebiete
+                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.111 / 4.114 Gebiete
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  21. September 2026 · 01:15 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
+                  21. September 2026 · 01:35 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl 01:15 Uhr: Auszählung auf der Zielgeraden – nur noch 4 Gebiete ausstehend, Linke führt deutlich
+                  Berlin-Wahl 01:35 Uhr: Auszählung auf der Zielgeraden – nur noch 3 Gebiete ausstehend, Linke führt deutlich
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                99,9 % der Gebiete ausgezählt: Die Linke führt bei AGH-Zweitstimmen mit 25,7 %, CDU bei 18,8 %, AfD bei 16,3 %. BVV-Auszählung bei 99,9 % (4.110 / 4.114). BSW (4,7 %) verfehlt 5%-Hürde (0 Sitze). Endgültige Sitzverteilung und Koalitionsgespräche nach vollständiger Auszählung.
+                99,9 % der Gebiete ausgezählt (4.111 / 4.114): Die Linke führt bei AGH-Zweitstimmen mit 25,7 %, CDU bei 18,8 % (Erststimmen 20,3 %), AfD bei 16,3 %. BVV-Auszählung bei 4.110 / 4.114. BSW (4,7 %) verfehlt 5%-Hürde (0 Sitze). Endgültige Sitzverteilung und Koalitionsgespräche nach vollständiger Auszählung.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
