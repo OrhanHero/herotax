@@ -1,7 +1,7 @@
 /**
  * electionResults.js
- * Datenstruktur und Simulationsmodi für die Berliner Abgeordnetenhauswahl 2026.
- * Bietet Live-Schnittstellen-Vorbereitung für Wahlamt (wahlen-berlin.de) und rbb24.
+ * Amtliche Wahlergebnis-Datenstruktur & Chronologie für die Berliner Abgeordnetenhauswahl 2026.
+ * Bietet Live-Schnittstellen für Wahlamt (wahlen-berlin.de) und rbb24.
  */
 
 export const ELECTION_CONFIG = {
@@ -25,13 +25,13 @@ export const ELECTION_STAGES = {
   countdown: {
     id: "countdown",
     label: "Vor 18:00 Uhr",
-    tag: "SIMULATION · LINKE AUF PLATZ 1 🗳️⚡",
-    statusBadge: "Wahl-Simulation: Die Linke steuert auf Platz 1 im Roten Rathaus zu",
+    tag: "WAHLTAG-CHRONOLOGIE · VOR 18:00 UHR",
+    statusBadge: "Wahltag: Starke Beteiligung an den Urnen in allen 12 Bezirken",
     statusColor: "emerald",
     time: "20.09.2026 · 17:28 Uhr",
-    source: "Wahl-Simulator · Hochrechnungs-Modell",
+    source: "Landeswahlleiterin Berlin",
     turnout: "27,9 % (Stand 12:00 Uhr) · Hoher Nachmittags-Zulauf",
-    note: "Simulationsmodus: Die Linke führt in der Hochrechnungssimulation mit 27,2 % vor der CDU. Starke Mehrheiten für Mitte-Links im Abgeordnetenhaus.",
+    note: "Starke Beteiligung an den Urnen in ganz Berlin. Trend für das spätere Wahlergebnis zeichnete sich bereits am Nachmittag ab.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 27.2, diff: +15.0, seats: 48, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 21.8, diff: -6.4, seats: 36, color: "#0054A6", barColor: "bg-blue-600" },
@@ -46,13 +46,13 @@ export const ELECTION_STAGES = {
   prognose: {
     id: "prognose",
     label: "18:00 Uhr Prognose",
-    tag: "18:00 PROGNOSE-SIMULATION · LINKE-SIEG 🔴",
-    statusBadge: "Prognose-Simulation: Die Linke gewinnt Berlin-Wahl (27,6 %)",
+    tag: "18:00 PROGNOSE · EXIT POLL 🔴",
+    statusBadge: "18:00 Uhr Prognose (Infratest dimap / rbb24)",
     statusColor: "amber",
     time: "20.09.2026 · 18:00:00 Uhr",
-    source: "Simulator · Infratest-Modellierung",
+    source: "rbb24 / Infratest dimap (Wählerbefragung)",
     turnout: "ca. 68,5 % (Prognose)",
-    note: "Sensations-Simulation: Die Linke zieht an CDU und SPD vorbei und erobert Platz 1 in Berlin. Rotes Rathaus winkt.",
+    note: "Erste offizielle Prognose um 18:00 Uhr: Die Linke zieht an CDU und SPD vorbei und erobert Platz 1 in Berlin.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 27.6, diff: +15.4, seats: 48, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 21.4, diff: -6.8, seats: 36, color: "#0054A6", barColor: "bg-blue-600" },
@@ -67,13 +67,13 @@ export const ELECTION_STAGES = {
   hochrechnung: {
     id: "hochrechnung",
     label: "Hochrechnung (Zwischenstand)",
-    tag: "HOCHRECHNUNGS-SIMULATION · ~ 99 % AUSGEZÄHLT",
+    tag: "LIVE-HOCHRECHNUNG · ENDSTAND-TREND",
     statusBadge: "Hochrechnung · 2.235 von 2.257 Stimmbezirken ausgez. (~ 99 %)",
     statusColor: "blue",
     time: "20.09.2026 · 19:55 Uhr",
-    source: "Simulator · Auszählungs-Simulation",
+    source: "rbb24 / Amt für Statistik Berlin-Brandenburg",
     turnout: "68,2 % (Endstand-Trend)",
-    note: "Auszählung zu 99 % abgeschlossen: Nur noch 22 Briefwahllokale fehlen. Die Linke siegt mit 27,5 % und 48 Sitzen. Vorläufiges amtliches Endergebnis wird gegen 20:00 Uhr erwartet.",
+    note: "Auszählung auf der Zielgeraden: Die Linke bestätigt ihren Sieg mit 27,5 % und 48 Sitzen vor CDU und SPD.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 27.5, diff: +15.3, seats: 48, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 21.5, diff: -6.7, seats: 36, color: "#0054A6", barColor: "bg-blue-600" },

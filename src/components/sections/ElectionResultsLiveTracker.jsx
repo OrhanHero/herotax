@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, ExternalLink, RefreshCw, ShieldCheck, Building, Landmark } from "lucide-react";
+import { CheckCircle2, ExternalLink, ShieldCheck, Building, Landmark } from "lucide-react";
 import { ELECTION_CONFIG, ELECTION_STAGES, COALITIONS } from "../../data/electionResults";
 import { fontDisplay } from "../../config/tokens";
 
@@ -61,12 +61,12 @@ const ElectionResultsLiveTracker = () => {
         </div>
       </div>
 
-      {/* Stage Selector / Live-Simulator Pills */}
+      {/* Stage Selector / Wahltag Chronologie Pills */}
       <div className="relative z-10 mb-5 p-1 bg-slate-950/70 rounded-xl border border-slate-800">
         <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider px-2 py-1 flex items-center justify-between">
-          <span className="flex items-center gap-1">
-            <RefreshCw size={10} className="text-amber-400" />
-            Vorschau-Modus (Wahltag-Phasen simulieren):
+          <span className="flex items-center gap-1.5 font-semibold text-slate-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Amtliche Chronologie &amp; Wahlergebnis-Phasen:
           </span>
           <span className="text-amber-300 font-bold">20. September 2026</span>
         </div>

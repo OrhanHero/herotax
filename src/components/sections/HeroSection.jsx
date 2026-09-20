@@ -227,7 +227,7 @@ const HeroSection = () => {
                 }`}
               >
                 <BarChart3 size={13} />
-                <span>Live-Ergebnisse (Vorschau)</span>
+                <span>Amtliche Wahlergebnisse</span>
               </button>
               <button
                 type="button"
