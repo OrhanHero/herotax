@@ -67,13 +67,13 @@ export const ELECTION_STAGES = {
   hochrechnung: {
     id: "hochrechnung",
     label: "Hochrechnung (Zwischenstand)",
-    tag: "HOCHRECHNUNGS-SIMULATION · ~ 95 % AUSGEZÄHLT",
-    statusBadge: "Hochrechnung · 2.140 von 2.257 Stimmbezirken ausgez. (~ 95 %)",
+    tag: "HOCHRECHNUNGS-SIMULATION · ~ 99 % AUSGEZÄHLT",
+    statusBadge: "Hochrechnung · 2.235 von 2.257 Stimmbezirken ausgez. (~ 99 %)",
     statusColor: "blue",
-    time: "20.09.2026 · 19:50 Uhr",
+    time: "20.09.2026 · 19:55 Uhr",
     source: "Simulator · Auszählungs-Simulation",
-    turnout: "68,2 % (Zwischenstand)",
-    note: "Fast 95 % aller Stimmbezirke ausgezählt: Nur noch wenige Briefwahllokale offen. Die Linke siegt triumphal mit 27,5 % (48 Sitze). SPD und Grüne kündigen Sondierungsgespräche für Montag an.",
+    turnout: "68,2 % (Endstand-Trend)",
+    note: "Auszählung zu 99 % abgeschlossen: Nur noch 22 Briefwahllokale fehlen. Die Linke siegt mit 27,5 % und 48 Sitzen. Vorläufiges amtliches Endergebnis wird gegen 20:00 Uhr erwartet.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 27.5, diff: +15.3, seats: 48, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 21.5, diff: -6.7, seats: 36, color: "#0054A6", barColor: "bg-blue-600" },

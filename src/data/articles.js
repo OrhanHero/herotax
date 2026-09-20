@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "HOCHRECHNUNG 19:50",
+    tickerTag: "HOCHRECHNUNG 19:55",
     isElection: true,
-    title: "Berlin-Wahl um 19:50 Uhr: Fast 95 % ausgezählt – Rot-Rot-Grün plant bereits Senatsbildung",
+    title: "Berlin-Wahl um 19:55 Uhr: 99 % ausgezählt – Landeswahlamt erwartet vorläufiges Endergebnis in Kürze",
     excerpt:
-      "Über 2.100 Bezirke sind ausgezählt. Die Linke siegt mit 27,5 % vor der CDU (21,5 %) und SPD (19,1 %). Nach dem klaren Wählervotum haben die Spitzen der Linken, SPD und Grünen bereits erste Sondierungsrunden im Roten Rathaus für die kommende Woche angekündigt.",
+      "2.235 von 2.257 Bezirken sind fertig ausgezählt. Das Endergebnis steht unmittelbar bevor: Die Linke erringt den historischen Wahlsieg mit 27,5 Prozent und 48 Sitzen vor CDU (21,5 %) und SPD (19,1 %). Das Landeswahlamt wird das vorläufige amtliche Endergebnis in wenigen Minuten offiziell verkünden.",
     read: "4 Min",
-    date: "20. September 2026 · 19:50 Uhr",
+    date: "20. September 2026 · 19:55 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "2.140 / 2.257",
+      value: "2.235 / 2.257",
       compare: "Bezirke ausgezählt",
-      label: "Fast 95 % erfasst · Linke-Sieg fest · Sondierungen ab Montag.",
+      label: "99 % erfasst · Linke-Wahlsieg perfekt · Endergebnis in Kürze.",
     },
   },
   {

@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    WAHLABEND LIVE · ~ 95 % AUSGEZÄHLT 🗳️📊
+                    WAHLABEND LIVE · ~ 99 % AUSGEZÄHLT 🗳️📊
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · 2.140 von 2.257 Bezirken
+                    Berlin-Wahl 2026 · 2.235 von 2.257 Bezirken
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 19:50 UHR · LIVE 🗳️
+                  20. September 2026 · 19:55 UHR · LIVE 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 19:50 Uhr: 95 % der Bezirke ausgezählt – Linke triumphiert, Sondierungs-Fahrplan steht
+                  Berlin-Wahl um 19:55 Uhr: 99 % der Bezirke ausgezählt – Vorläufiges Endergebnis unmittelbar bevorstehend
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Die Berliner Stimmauszählung steht kurz vor dem Abschluss: 2.140 von 2.257 Bezirken sind fertig ausgezählt. Die Linke erringt 27,5 Prozent der Stimmen und 48 Mandate. SPD (19,1 %) und Grüne (16,6 %) haben bereits für Montagmorgen erste Sondierungstreffen für eine rot-rot-grüne Koalition vereinbart.
+                Die Berliner Stimmauszählung ist zu 99 Prozent beendet: Nur noch 22 von 2.257 Stimmbezirken stehen aus. Die Linke siegt mit 27,5 Prozent der Stimmen und 48 Mandaten vor CDU (21,5 %) und SPD (19,1 %). Die Landeswahlleitung bereitet die Bekanntgabe des vorläufigen amtlichen Endergebnisses im Roten Rathaus vor.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
