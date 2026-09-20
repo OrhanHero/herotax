@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    HAUPTSTORY · LIVE AM WAHLTAG 🗳️⚡
+                    WAHLTAG-ENDSPURT · NOCH BIS 18 UHR 🗳️⚡
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · Wahllokale bis 18 Uhr
+                    Berlin-Wahl 2026 · Wahllokale geöffnet
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · HEUTE WAHLTAG 🗳️
+                  20. September 2026 · NOCH 70 MIN BIS 18 UHR 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin wählt live: Wahllokale geöffnet – Wahlbeteiligung um 12 Uhr bei 27,9 % – Erste Prognosen ab 18:00 Uhr
+                  Berlin-Wahl im Endspurt: Letzte Chance zur Stimmabgabe bis 18:00 Uhr – 18-Uhr-Prognose in Kürze
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Heute entscheiden rund 2,4 Millionen Berlinerinnen und Berliner über das 20. Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen (BVV). Die Wahlbeteiligung lag um 12 Uhr bei 27,9 Prozent – spürbar über dem Niveau von 2023 (+4,5 %). Die Wahllokale sind bis 18:00 Uhr geöffnet – unmittelbar nach Schließung folgen die ersten Prognosen und Hochrechnungen für das Rote Rathaus.
+                Nur noch rund 70 Minuten bis zur Schließung der Berliner Wahllokale um 18:00 Uhr. Rund 2,4 Millionen Berlinerinnen und Berliner können über das 20. Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen (BVV) entscheiden. Die Polizei meldet einen weitgehend störungsfreien Verlauf bei höherer Beteiligung als 2023. Punkt 18:00 Uhr schließen die Urnen, unmittelbar gefolgt von der 18-Uhr-Prognose von Infratest dimap für das Rote Rathaus.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}

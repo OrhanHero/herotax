@@ -162,20 +162,37 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "WAHLTAG LIVE",
+    tickerTag: "WAHL-ENDSPURT",
     isElection: true,
-    title: "Berlin wählt: Wahllokale geöffnet – Wahlbeteiligung um 12 Uhr bei 27,9 % – Erste Prognosen ab 18:00 Uhr",
+    title: "Berlin-Wahl im Endspurt: Letzte Chance zur Stimmabgabe bis 18:00 Uhr – 18-Uhr-Prognose in Kürze",
     excerpt:
-      "Heute entscheiden rund 2,4 Millionen Berlinerinnen und Berliner über die Zusammensetzung des 20. Abgeordnetenhauses und aller 12 Bezirksverordnetenversammlungen (BVV). Die Landeswahlleitung meldet für 12 Uhr eine Wahlbeteiligung von 27,9 Prozent – das sind 4,5 Prozentpunkte mehr als bei der Wiederholungswahl 2023. Die Spitzenkandidaten von CDU, SPD, Grünen und Linken haben bereits ihre Stimmen abgegeben. Um 18:00 Uhr schließen die Wahllokale, unmittelbar danach folgen die ersten Prognosen und Hochrechnungen für das Rote Rathaus.",
+      "Noch rund 70 Minuten bis zur Schließung der Berliner Wahllokale um 18:00 Uhr. Rund 2,4 Millionen Berlinerinnen und Berliner können über das 20. Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen (BVV) entscheiden. Die Polizei meldet einen weitgehend störungsfreien Verlauf bei höherer Beteiligung als 2023. Punkt 18:00 Uhr schließen die Urnen, unmittelbar gefolgt von der 18-Uhr-Prognose von Infratest dimap und rbb für das Rote Rathaus.",
     read: "4 Min",
-    date: "20. September 2026 · 14:00 Uhr",
+    date: "20. September 2026 · 16:50 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "27,9 %",
-      compare: "Wahlbeteiligung 12 Uhr",
-      label: "+4,5 % über 2023 · Wahllokale bis 18 Uhr geöffnet · Erste Prognosen & Hochrechnungen ab 18 Uhr.",
+      value: "Bis 18:00 Uhr",
+      compare: "Letzte 70 Min",
+      label: "Wahllokale bis 18 Uhr geöffnet · Erste offizielle 18-Uhr-Prognose von Infratest dimap in Kürze.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "SICHERHEIT",
+    isElection: true,
+    title: "Polizei zieht positive Zwischenbilanz: Wahlsonntag in Berlin bislang weitgehend störungsfrei",
+    excerpt:
+      "Rund 1.100 zusätzliche Einsatzkräfte der Berliner Polizei sichern die mehr als 2.500 Wahllokale und Regierungsgebäude ab. Bis auf vereinzelte Sachbeschädigungen wie verklebte Schlösser in Schöneberg und Steglitz, die schnell behoben wurden, verläuft der Wahlgang in allen 12 Bezirken ruhig und geordnet.",
+    read: "3 Min",
+    date: "20. September 2026 · 16:30 Uhr",
+    source: { label: "rbb24 · Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
+    featured: false,
+    highlight: {
+      value: "1.100 Beamte",
+      compare: "Polizei-Bilanz",
+      label: "Weitgehend störungsfreier Ablauf an über 2.500 Wahllokalen in ganz Berlin.",
     },
   },
   {
