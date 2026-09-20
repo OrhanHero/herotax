@@ -131,10 +131,10 @@ export const ELECTION_STAGES = {
     tag: "AMTLICHES VORL. ENDERGEBNIS · 100 % 🏆",
     statusBadge: "Amtliches vorläufiges Endergebnis · 4.114 von 4.114 Gebieten (100 %)",
     statusColor: "purple",
-    time: "20.09.2026 · 21:25:00 Uhr",
+    time: "20.09.2026 · 21:30:00 Uhr",
     source: "Landeswahlleiterin Berlin / Amt für Statistik Berlin-Brandenburg",
     turnout: "68,2 % (Endstand, 1.637.420 Wählende)",
-    note: "Vollständiges vorläufiges amtliches Endergebnis: Die Linke triumphiert als stärkste Kraft mit 44 Sitzen. Rot-Rot-Grün verfügt mit 90 von 159 Sitzen über eine solide parlamentarische Mehrheit. Sondierungsgespräche angekündigt.",
+    note: "Vollständiges vorläufiges amtliches Endergebnis bestätigt: Die Linke mit 44 Sitzen (+22) stärkste Fraktion. Rot-Rot-Grün verfügt mit 90 von 159 Sitzen über eine solide parlamentarische Mehrheit. Sondierungsteams für Montag benannt.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 26.0, diff: +13.8, seats: 44, seatsDiff: +22, erststimmen: 24.4, erststimmenDiff: +12.1, direktmandate: 30, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 18.4, diff: -9.8, seats: 33, seatsDiff: -19, erststimmen: 19.9, erststimmenDiff: -9.8, direktmandate: 22, color: "#0054A6", barColor: "bg-blue-600" },
@@ -153,14 +153,14 @@ export const ELECTION_STAGES = {
  * Quelle: Landeswahlleiterin Berlin (wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/)
  */
 export const BVV_RESULTS = {
-  time: "20.09.2026 · 21:25:00 Uhr",
-  countedAreas: "3.118 von 4.114 Gebieten (75,8 %)",
-  turnout: "67,4 % (1.103.420 Wählende)",
+  time: "20.09.2026 · 21:30:00 Uhr",
+  countedAreas: "3.638 von 4.114 Gebieten (88,4 %)",
+  turnout: "67,9 % (1.289.150 Wählende)",
   source: "Landeswahlleiterin Berlin · Bezirksverordnetenversammlungen",
   url: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html",
   parties: [
-    { id: "linke", name: "Die Linke", percent: 24.8, diff: +12.2, color: "#BE3075", barColor: "bg-fuchsia-600", val2023: 12.6 },
-    { id: "afd", name: "AfD", percent: 17.8, diff: +8.8, color: "#009ee0", barColor: "bg-sky-500", val2023: 9.0 },
+    { id: "linke", name: "Die Linke", percent: 24.9, diff: +12.3, color: "#BE3075", barColor: "bg-fuchsia-600", val2023: 12.6 },
+    { id: "afd", name: "AfD", percent: 17.7, diff: +8.7, color: "#009ee0", barColor: "bg-sky-500", val2023: 9.0 },
     { id: "cdu", name: "CDU", percent: 17.0, diff: -10.7, color: "#0054A6", barColor: "bg-blue-600", val2023: 27.7 },
     { id: "gruene", name: "Grüne", percent: 15.9, diff: -3.6, color: "#46962b", barColor: "bg-emerald-600", val2023: 19.5 },
     { id: "spd", name: "SPD", percent: 12.0, diff: -6.7, color: "#E3000F", barColor: "bg-red-600", val2023: 18.7 },
