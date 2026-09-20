@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    AMTLICHES ENDERGEBNIS 100 % · 21:40 UHR 🏆
+                    AMTLICHES ENDERGEBNIS 100 % · 21:45 UHR 🏆
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · AGH &amp; BVV 100 %
+                    Berlin-Wahl 2026 · AGH &amp; BVV Endstand
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 21:40 UHR · BEZIRKS- &amp; AGH-ENDSTAND 🗳️
+                  20. September 2026 · 21:45 UHR · ANALYSE &amp; AUSBLICK 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 21:40 Uhr: Auch BVV zu 100 % ausgezählt – Doppelsieg für Die Linke in Senat &amp; Bezirken
+                  Berlin-Wahl um 21:45 Uhr: Vorläufiges Endergebnis steht fest – Rotes Rathaus vor Regierungswechsel zu R2G
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Historischer Wahlabend komplett: Nach dem Abgeordnetenhaus (Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8) liegen um 21:40 Uhr auch alle 4.114 Bezirksgebiete vor (100 %). Die Linke triumphiert doppelt als stärkste Kraft im Parlament und gewinnt 6 der 12 Berliner Bezirke. Rot-Rot-Grün bereitet Sondierungen mit 90 Sitzen vor.
+                Mit 100 % Auszählung im Abgeordnetenhaus (Linke 44, CDU 33, AfD 28, Grüne 25, SPD 21, BSW 8) und in allen 12 Bezirken geht der Wahlabend zu Ende. Die Linke verbucht einen historischen Zuwachs von +22 Mandaten. Rot-Rot-Grün verfügt über 90 von 159 Sitzen; erste Sondierungsgespräche starten am Montagmorgen.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
