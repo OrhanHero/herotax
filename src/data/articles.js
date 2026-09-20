@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "HOCHRECHNUNG 19:40",
+    tickerTag: "HOCHRECHNUNG 19:45",
     isElection: true,
-    title: "Berlin-Wahl um 19:40 Uhr: Rund 70 % ausgezählt – Historischer Linke-Sieg zeichnet sich ab",
+    title: "Berlin-Wahl um 19:45 Uhr: 85 % ausgezählt – Linke feiert historischen Wahlsieg in Berlin",
     excerpt:
-      "Knapp zwei Stunden nach Schließung der Wahllokale sind rund 70 Prozent der Urnen- und Briefwahlbezirke ausgezählt. Die Linke behauptet stabil 27,6 % der Stimmen und liegt mehr als 6 Prozentpunkte vor der CDU (21,4 %). SPD und Grüne signalisieren bereits Bereitschaft für Sondierungsgespräche im Roten Rathaus.",
+      "Mit 1.920 von 2.257 ausgezählten Wahlbezirken steht das Resultat praktisch fest: Die Linke gewinnt die Berlin-Wahl 2026 mit 27,5 Prozent der Stimmen und stellt die stärkste Fraktion im Abgeordnetenhaus. Die bisherige Regierungskoalition aus CDU und SPD ist klar abgewählt.",
     read: "4 Min",
-    date: "20. September 2026 · 19:40 Uhr",
+    date: "20. September 2026 · 19:45 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "1.580 / 2.257",
+      value: "1.920 / 2.257",
       compare: "Bezirke ausgezählt",
-      label: "Rund 70 % erfasst · Linke (27,6 %) steuert auf Senatsführung zu.",
+      label: "Rund 85 % erfasst · Linke (27,5 %) siegt · CDU & SPD gratulieren.",
     },
   },
   {

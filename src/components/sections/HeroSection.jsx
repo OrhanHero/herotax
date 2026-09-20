@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    WAHLABEND LIVE · ~ 70 % AUSGEZÄHLT 🗳️📊
+                    WAHLABEND LIVE · ~ 85 % AUSGEZÄHLT 🗳️📊
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · 1.580 von 2.257 Bezirken
+                    Berlin-Wahl 2026 · 1.920 von 2.257 Bezirken
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 19:40 UHR · LIVE 🗳️
+                  20. September 2026 · 19:45 UHR · LIVE 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 19:40 Uhr: Rund 70 % der Bezirke ausgezählt – Linke-Wahlsieg zeichnet sich klar ab
+                  Berlin-Wahl um 19:45 Uhr: Rund 85 % ausgezählt – Linke-Sieg rechnerisch besiegelt, Parteispitzen reagieren
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Endspurt bei der Stimmenzählung: Knapp 1.600 von 2.257 Stimmbezirken sind ausgezählt. Mit 27,6 Prozent liegt Die Linke uneinholbar vor der CDU (21,4 %) und der SPD (18,9 %). In der Karl-Liebknecht-Straße wird gefeiert. Rot-Rot-Grün und Rot-Rot besitzen stabile parlamentarische Mehrheiten für das Rote Rathaus.
+                Die Auszählung biegt auf die Zielgerade ein: Fast 2.000 von 2.257 Wahlbezirken sind gemeldet. Die Linke liegt mit 27,5 Prozent uneinholbar vorn. CDU-Spitzenkandidat gratuliert zur stärksten Kraft. Erste Vorgespräche für ein Linke-geführtes Senatsbündnis im Roten Rathaus beginnen.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
