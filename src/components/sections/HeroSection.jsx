@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    AMTLICHES ENDERGEBNIS 100 % · 21:55 UHR 🏆
+                    AMTLICHES ENDERGEBNIS 100 % · 22:00 UHR 🏆
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
                     Berlin-Wahl 2026 · AGH &amp; BVV Endstand
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 21:55 UHR · BUNDESWEITE REAKTIONEN 🗳️
+                  20. September 2026 · 22:00 UHR · ENDSTAND &amp; BILANZ 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl um 21:55 Uhr: Bundesweites Echo auf Berliner Machtwechsel – Sondierungsstart am Montag
+                  Berlin-Wahl um 22:00 Uhr: Amtlicher Endstand fixiert – Rot-Rot-Grün mit 90 Sitzen vor Sondierungsstart
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Der historische Wahlabend schlägt bundesweit hohe Wellen: Die Linke feiert ihren ersten Wahlsieg bei einer Landtagswahl seit Jahren (44 Sitze) und bereitet ab Montag 10:00 Uhr die Regierungsbildung für Rot-Rot-Grün (90 Sitze) vor. In der Berliner Wirtschaft überwiegt der Wunsch nach schneller Klärung und stabiler Haushaltspolitik.
+                Vier Stunden nach Wahlschluss ist die Berliner Wahlnacht offiziell beendet: Das 20. Abgeordnetenhaus zählt 159 Abgeordnete. Mit 44 Sitzen führt Die Linke den historischen Linksrutsch an. Ab Montagmorgen verhandeln Linke, Grüne und SPD über die Neuauflage von Rot-Rot-Grün (90 Sitze) im Roten Rathaus.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
