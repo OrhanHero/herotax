@@ -132,11 +132,11 @@ const HeroSection = () => {
                     ZWISCHENERGEBNIS 99,5 % · AUSZÄHLUNG LÄUFT 🔴
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.093 / 4.114 Gebiete
+                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.095 / 4.114 Gebiete
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  21. September 2026 · 00:50 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
+                  21. September 2026 · 00:55 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
                 </span>
               </div>
 
@@ -151,7 +151,7 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl 00:50 Uhr: Auszählung auf der Zielgeraden – 21 Gebiete ausstehend, Linke führt deutlich
+                  Berlin-Wahl 00:55 Uhr: Auszählung auf der Zielgeraden – 19 Gebiete ausstehend, Linke führt deutlich
                 </h3>
               </a>
 
