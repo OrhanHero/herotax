@@ -21,8 +21,8 @@ const ElectionResultsLiveTracker = () => {
   const [viewMode, setViewMode] = useState("seats");
 
   // AGH Phase: 'prognose' | 'hochrechnung' | 'zwischenstand' | 'endergebnis'
-  const [stageKey, setStageKey] = useState("zwischenstand");
-  const currentStage = ELECTION_STAGES[stageKey] || ELECTION_STAGES.zwischenstand;
+  const [stageKey, setStageKey] = useState("endergebnis");
+  const currentStage = ELECTION_STAGES[stageKey] || ELECTION_STAGES.endergebnis;
 
   // Stimmart bei AGH: 'zweitstimmen' | 'erststimmen'
   const [voteType, setVoteType] = useState("zweitstimmen");
