@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "HOCHRECHNUNG",
+    tickerTag: "HOCHRECHNUNG 19:35",
     isElection: true,
-    title: "Berlin-Wahl um 19:30 Uhr: Urnen geschlossen, Auszählung auf Hochtouren – Hochrechnungen verfestigen sich",
+    title: "Berlin-Wahl um 19:35 Uhr: Über 50 % der Stimmbezirke ausgezählt – Linke festigt Führung vor CDU",
     excerpt:
-      "Seit 18:00 Uhr wird in allen 12 Berliner Bezirken ausgezählt. Erste Hochrechnungen von Infratest dimap und dem Landeswahlamt fließen kontinuierlich ein. Die Wahlbeteiligung liegt bei über 67 Prozent. Die Ergebnis-Zentrale und die Koalitionsbarometer werden laufend mit den neuesten Auszählungsständen aktualisiert.",
+      "Rund 90 Minuten nach Schließung der Wahllokale sind mehr als die Hälfte aller 2.257 Berliner Stimmbezirke erfasst. Mit 27,5 % liegt Die Linke konstant an der Spitze des Feldes. Die CDU kommt auf 21,5 %, gefolgt von der SPD mit 18,9 % und den Grünen mit 16,5 %. Schwarz-Rot verliert seine parlamentarische Mehrheit deutlich.",
     read: "4 Min",
-    date: "20. September 2026 · 19:30 Uhr",
+    date: "20. September 2026 · 19:35 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "19:30 Uhr",
-      compare: "Hochrechnung",
-      label: "Auszählung in 2.257 Bezirken läuft · Fortlaufende Aktualisierung aller Zahlen.",
+      value: "1.148 / 2.257",
+      compare: "Bezirke ausgezählt",
+      label: "Über 50 % erfasst · Linke stabil auf Platz 1 (27,5 %).",
     },
   },
   {

@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    WAHLABEND LIVE · HOCHRECHNUNGEN 🗳️📊
+                    WAHLABEND LIVE · &gt; 50 % AUSGEZÄHLT 🗳️📊
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · Auszählung läuft
+                    Berlin-Wahl 2026 · 1.148 von 2.257 Bezirken
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 19:30 UHR · LIVE 🗳️
+                  20. September 2026 · 19:35 UHR · LIVE 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl am Abend: Urnen geschlossen, Auszählung läuft auf Hochtouren – Hochrechnungen stabilisieren sich
+                  Berlin-Wahl um 19:35 Uhr: Über 50 % der Stimmbezirke ausgezählt – Linke festigt Führung vor CDU
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Seit 18:00 Uhr sind die Berliner Wahllokale geschlossen. In allen 12 Bezirken läuft die Auszählung der 2.257 Stimmbezirke und Briefwahlbündel auf Hochtouren. Die Hochrechnungen zeichnen ein historisches Rennen um das Rote Rathaus mit hoher Wahlbeteiligung von über 67 Prozent. Wir halten die Ergebniszentrale und die Koalitionsbarometer im 5-Minuten-Takt aktuell.
+                Halbzeit bei der Stimmauszählung: Über 1.100 von 2.257 Stimmbezirken sind im Landeswahlamt erfasst. Die Linke behauptet Platz 1 mit 27,5 Prozent vor der CDU (21,5 %) und der SPD (18,9 %). Eine Regierungsbildung unter linker Führung zeichnet sich ab. Der Koalitionsrechner zeigt stabile Mehrheiten für Rot-Rot-Grün und Rot-Rot.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
