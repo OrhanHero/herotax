@@ -132,11 +132,11 @@ const HeroSection = () => {
                     ZWISCHENERGEBNIS 99,1 % · AUSZÄHLUNG LÄUFT 🔴
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.075 / 4.114 Gebiete
+                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.078 / 4.114 Gebiete
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  21. September 2026 · 00:08 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
+                  21. September 2026 · 00:15 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
                 </span>
               </div>
 
