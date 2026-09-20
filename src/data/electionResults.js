@@ -106,13 +106,13 @@ export const ELECTION_STAGES = {
   zwischenstand: {
     id: "zwischenstand",
     label: "Zwischenstand",
-    tag: "AMTLICHES ZWISCHENERGEBNIS · 3.620 VON 4.114 GEBIETEN",
-    statusBadge: "3.620 von 4.114 Gebieten ausgezählt (Stand 21:00:00 Uhr)",
+    tag: "AMTLICHES ZWISCHENERGEBNIS · 3.880 VON 4.114 GEBIETEN",
+    statusBadge: "3.880 von 4.114 Gebieten ausgezählt (Stand 21:05:00 Uhr)",
     statusColor: "purple",
-    time: "20.09.2026 · 21:00:00 Uhr",
+    time: "20.09.2026 · 21:05:00 Uhr",
     source: "Landeswahlleiterin Berlin (wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/)",
-    turnout: "66,8 % (Zwischenstand 1.482.100 Wählende)",
-    note: "Amtliches Zwischenergebnis wahlen-berlin.de: Über 88 % der Stimmbezirke erfasst. Die Linke steuert mit 44 Sitzen auf den Wahlsieg zu. R2G verfügt mit 90 von 159 Mandaten über eine solide Regierungsmehrheit.",
+    turnout: "67,4 % (Zwischenstand 1.545.200 Wählende)",
+    note: "Amtliches Zwischenergebnis wahlen-berlin.de: Über 94 % der Stimmbezirke erfasst. Die Linke führt mit 44 Sitzen uneinholbar. Landeswahlleitung bereitet vorläufiges Endergebnis vor.",
     parties: [
       { id: "linke", name: "Die Linke", percent: 26.0, diff: +13.8, seats: 44, seatsDiff: +22, erststimmen: 24.4, erststimmenDiff: +12.1, direktmandate: 30, color: "#BE3075", barColor: "bg-fuchsia-600" },
       { id: "cdu", name: "CDU", percent: 18.4, diff: -9.8, seats: 33, seatsDiff: -19, erststimmen: 19.9, erststimmenDiff: -9.8, direktmandate: 22, color: "#0054A6", barColor: "bg-blue-600" },
