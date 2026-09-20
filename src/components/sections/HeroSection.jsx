@@ -129,14 +129,14 @@ const HeroSection = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 tracking-wide font-mono">
                     <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                    WAHLTAG-FINALE · NOCH &lt; 50 MIN BIS 18 UHR 🗳️⚡
+                    WAHLABEND LIVE · HOCHRECHNUNGEN 🗳️📊
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · Wahllokale geöffnet
+                    Berlin-Wahl 2026 · Auszählung läuft
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  20. September 2026 · 17:10 UHR · ENDSPURT 🗳️
+                  20. September 2026 · 19:30 UHR · LIVE 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl vor 18:00 Uhr: Letzte 50 Minuten – Wer bis 18 Uhr ansteht, darf noch wählen!
+                  Berlin-Wahl am Abend: Urnen geschlossen, Auszählung läuft auf Hochtouren – Hochrechnungen stabilisieren sich
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Nur noch knapp 50 Minuten bis zur Schließung der Berliner Wahllokale um 18:00 Uhr. Die Landeswahlleitung erinnert an die gesetzliche Regelung: Alle Wählerinnen und Wähler, die sich bis 18:00 Uhr im Wahllokal oder der Warteschlange einfinden, dürfen ihre Stimme noch regulär abgeben. Punkt 18:00 Uhr schließen die Urnen und die 18-Uhr-Prognose von Infratest dimap für das Rote Rathaus wird live ausgestrahlt.
+                Seit 18:00 Uhr sind die Berliner Wahllokale geschlossen. In allen 12 Bezirken läuft die Auszählung der 2.257 Stimmbezirke und Briefwahlbündel auf Hochtouren. Die Hochrechnungen zeichnen ein historisches Rennen um das Rote Rathaus mit hoher Wahlbeteiligung von über 67 Prozent. Wir halten die Ergebniszentrale und die Koalitionsbarometer im 5-Minuten-Takt aktuell.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}

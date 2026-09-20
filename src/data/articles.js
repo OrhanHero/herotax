@@ -162,20 +162,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "WAHL-FINALE",
+    tickerTag: "HOCHRECHNUNG",
     isElection: true,
-    title: "Berlin-Wahl vor 18:00 Uhr: Letzte 50 Minuten – Wer bis 18 Uhr ansteht, darf noch wählen!",
+    title: "Berlin-Wahl um 19:30 Uhr: Urnen geschlossen, Auszählung auf Hochtouren – Hochrechnungen verfestigen sich",
     excerpt:
-      "Endspurt an den Berliner Wahlurnen: Nur noch knapp 50 Minuten bis zur Schließung der rund 2.250 Wahllokale um 18:00 Uhr. Die Landeswahlleitung betont: Alle Bürgerinnen und Bürger, die sich bis 18:00 Uhr im Wahlraum oder in der Warteschlange einfinden, dürfen ihre Stimme noch regulär abgeben. Unmittelbar um 18:00 Uhr veröffentlichen rbb und Infratest dimap die erste offizielle Prognose für das Abgeordnetenhaus.",
+      "Seit 18:00 Uhr wird in allen 12 Berliner Bezirken ausgezählt. Erste Hochrechnungen von Infratest dimap und dem Landeswahlamt fließen kontinuierlich ein. Die Wahlbeteiligung liegt bei über 67 Prozent. Die Ergebnis-Zentrale und die Koalitionsbarometer werden laufend mit den neuesten Auszählungsständen aktualisiert.",
     read: "4 Min",
-    date: "20. September 2026 · 17:10 Uhr",
+    date: "20. September 2026 · 19:30 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Noch < 50 Min",
-      compare: "Countdown 18:00",
-      label: "Wahllokale bis 18 Uhr geöffnet · Wer ansteht, darf wählen · Erste Prognose punkt 18:00 Uhr.",
+      value: "19:30 Uhr",
+      compare: "Hochrechnung",
+      label: "Auszählung in 2.257 Bezirken läuft · Fortlaufende Aktualisierung aller Zahlen.",
     },
   },
   {
