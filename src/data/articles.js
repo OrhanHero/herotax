@@ -162,20 +162,37 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "WAHL-ENDSPURT",
+    tickerTag: "WAHL-FINALE",
     isElection: true,
-    title: "Berlin-Wahl im Endspurt: Letzte Chance zur Stimmabgabe bis 18:00 Uhr – 18-Uhr-Prognose in Kürze",
+    title: "Berlin-Wahl vor 18:00 Uhr: Letzte 50 Minuten – Wer bis 18 Uhr ansteht, darf noch wählen!",
     excerpt:
-      "Noch rund 70 Minuten bis zur Schließung der Berliner Wahllokale um 18:00 Uhr. Rund 2,4 Millionen Berlinerinnen und Berliner können über das 20. Abgeordnetenhaus und alle 12 Bezirksverordnetenversammlungen (BVV) entscheiden. Die Polizei meldet einen weitgehend störungsfreien Verlauf bei höherer Beteiligung als 2023. Punkt 18:00 Uhr schließen die Urnen, unmittelbar gefolgt von der 18-Uhr-Prognose von Infratest dimap und rbb für das Rote Rathaus.",
+      "Endspurt an den Berliner Wahlurnen: Nur noch knapp 50 Minuten bis zur Schließung der rund 2.250 Wahllokale um 18:00 Uhr. Die Landeswahlleitung betont: Alle Bürgerinnen und Bürger, die sich bis 18:00 Uhr im Wahlraum oder in der Warteschlange einfinden, dürfen ihre Stimme noch regulär abgeben. Unmittelbar um 18:00 Uhr veröffentlichen rbb und Infratest dimap die erste offizielle Prognose für das Abgeordnetenhaus.",
     read: "4 Min",
-    date: "20. September 2026 · 16:50 Uhr",
+    date: "20. September 2026 · 17:10 Uhr",
     source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Bis 18:00 Uhr",
-      compare: "Letzte 70 Min",
-      label: "Wahllokale bis 18 Uhr geöffnet · Erste offizielle 18-Uhr-Prognose von Infratest dimap in Kürze.",
+      value: "Noch < 50 Min",
+      compare: "Countdown 18:00",
+      label: "Wahllokale bis 18 Uhr geöffnet · Wer ansteht, darf wählen · Erste Prognose punkt 18:00 Uhr.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "WAHLRECHT",
+    isElection: true,
+    title: "Wahlrecht-Hinweis um 17:10 Uhr: Schlange am Wahllokal vor 18:00 Uhr? So ist die Rechtslage",
+    excerpt:
+      "Wer kurz vor 18:00 Uhr am Wahllokal eintrifft und eine Warteschlange vorfindet, muss sich keine Sorgen machen: Nach § 36 Landeswahlgesetz wird um Punkt 18:00 Uhr das Ende der Schlange markiert. Alle Personen, die sich bis zu diesem Zeitpunkt angestellt haben, dürfen ihre Stimme noch ungestört abgeben.",
+    read: "2 Min",
+    date: "20. September 2026 · 17:05 Uhr",
+    source: { label: "Landeswahlleiterin Berlin", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/" },
+    featured: false,
+    highlight: {
+      value: "§ 36 LWG",
+      compare: "Wahlrecht Berlin",
+      label: "Wer bis 18:00 Uhr in der Schlange steht, darf noch wählen – Wahlvorstände sichern Stimmabgabe.",
     },
   },
   {

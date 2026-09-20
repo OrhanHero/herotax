@@ -25,13 +25,13 @@ export const ELECTION_STAGES = {
   countdown: {
     id: "countdown",
     label: "Vor 18:00 Uhr",
-    tag: "WAHLTAG · URNEN OFFEN",
-    statusBadge: "Wahllokale bis 18:00 Uhr geöffnet",
+    tag: "WAHLTAG-FINALE · NOCH < 50 MIN",
+    statusBadge: "Endspurt: Wahllokale bis 18:00 Uhr geöffnet (Wer ansteht, wählt noch)",
     statusColor: "emerald",
-    time: "20.09.2026 · 14:00 Uhr",
+    time: "20.09.2026 · 17:10 Uhr",
     source: "Landeswahlleiterin Berlin · Wahlbeteiligungs-Trend",
-    turnout: "27,9 % (Stand 12:00 Uhr, +4,5 % ggü. 2023)",
-    note: "Die amtlichen Wahllokale in allen 12 Bezirken sind bis 18:00 Uhr geöffnet. Erste Prognose um punkt 18:00 Uhr.",
+    turnout: "27,9 % (Stand 12:00 Uhr, +4,5 % ggü. 2023) · Hoher Nachmittags-Zulauf",
+    note: "Endspurt in allen 12 Bezirken: Wer bis 18:00 Uhr in der Schlange steht, darf noch wählen. Punkt 18:00 Uhr folgt die erste Prognose von Infratest dimap / rbb.",
     parties: [
       { id: "cdu", name: "CDU", percent: 27.0, diff: -1.2, seats: 46, color: "#0054A6", barColor: "bg-blue-600" },
       { id: "spd", name: "SPD", percent: 19.5, diff: +1.1, seats: 33, color: "#E3000F", barColor: "bg-red-600" },
