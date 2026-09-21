@@ -25,17 +25,18 @@ const NewsTicker = ({ items }) => {
   const currentAgh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
 
   // Extrahiere Prozent & Gebiete dynamisch aus dem amtlichen Stand
-  const matchPercent = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[\.,]\d+\s*%)/);
-  const currentPercent = matchPercent ? matchPercent[1] : "99,9 %";
+  const isFinal = (currentAgh.tag || currentAgh.statusBadge || "").includes("100");
+  const matchPercent = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[\.,]?\d*\s*%)/);
+  const currentPercent = isFinal ? "100 %" : (matchPercent ? matchPercent[1] : "100 %");
 
   const matchAreas = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[\.,\d]*\s*von\s*\d+[\.,\d]*\s*Gebieten)/i);
-  const currentAreasText = matchAreas ? matchAreas[1] : "4.110 von 4.114 Gebieten";
+  const currentAreasText = isFinal ? "4.114 von 4.114 Gebieten" : (matchAreas ? matchAreas[1] : "4.114 von 4.114 Gebieten");
 
   // Dynamische Live-Ticker-Meldungen direkt aus den amtlichen Wahldaten
   const liveElectionItems = useMemo(() => {
     const agh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
     const bvv = BVV_RESULTS;
-    const timeStr = agh.time ? agh.time.split("·")[1]?.trim() : "01:11 Uhr";
+    const timeStr = agh.time ? agh.time.split("·")[1]?.trim() : "01:56 Uhr";
 
     // Parteien-Prozente formatieren
     const pStr = (id, fallback) => {
@@ -70,9 +71,9 @@ const NewsTicker = ({ items }) => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🔴 LIVE-STAND AGH",
+        tickerTag: isFinal ? "🏆 AMTLICHES ENDERGEBNIS" : "🔴 LIVE-STAND AGH",
         isElection: true,
-        title: `Amtliches Zwischenergebnis (${timeStr}): ${currentAreasText} (${currentPercent}) ausgezählt — Linke ${linkeStr}, CDU ${cduStr}, AfD ${afdStr}, Grüne ${grueneStr}, SPD ${spdStr}`,
+        title: `${isFinal ? "Vorläufiges amtliches Endergebnis" : "Amtliches Zwischenergebnis"} (${timeStr}): ${isFinal ? "Alle " : ""}${currentAreasText} (${currentPercent}) ausgezählt — Linke ${linkeStr}, CDU ${cduStr}, AfD ${afdStr}, Grüne ${grueneStr}, SPD ${spdStr}`,
         date: "21.09.2026",
         source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html" },
       },
@@ -88,12 +89,12 @@ const NewsTicker = ({ items }) => {
         cat: "Berlin Fokus",
         tickerTag: "🏙️ BEZIRKE & BVV",
         isElection: true,
-        title: `Bezirksverordnetenversammlungen (BVV): ${bvv.countedAreas || "4.110 von 4.114 Gebieten (99,9 %)"} — Linke ${bvvPStr("linke", "24,1 %")}, CDU ${bvvPStr("cdu", "18,2 %")}, Grüne ${bvvPStr("gruene", "17,2 %")}, AfD ${bvvPStr("afd", "15,7 %")}, SPD ${bvvPStr("spd", "12,2 %")}`,
+        title: `Bezirksverordnetenversammlungen (BVV): ${bvv.countedAreas || "4.114 von 4.114 Gebieten (100,0 %)"} — Linke ${bvvPStr("linke", "24,1 %")}, CDU ${bvvPStr("cdu", "18,2 %")}, Grüne ${bvvPStr("gruene", "17,2 %")}, AfD ${bvvPStr("afd", "15,7 %")}, SPD ${bvvPStr("spd", "12,2 %")}`,
         date: "21.09.2026",
         source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html" },
       },
     ];
-  }, [currentAgh, currentAreasText, currentPercent]);
+  }, [currentAgh, currentAreasText, currentPercent, isFinal]);
 
   // Vollständig auf Berlin-Wahl 2026 ausgerichteter Wahlticker
   const electionItems = (items || []).filter(
@@ -106,8 +107,8 @@ const NewsTicker = ({ items }) => {
   // Live-Meldungen voranstellen
   const tickerItems = [...liveElectionItems, ...electionItems];
 
-  const timeOnly = currentAgh.time ? currentAgh.time.split("·")[1]?.replace("Uhr", "").trim() : "01:11";
-  const badgeText = daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : `LIVE ${currentPercent} · ${timeOnly} UHR 🗳️`;
+  const timeOnly = currentAgh.time ? currentAgh.time.split("·")[1]?.replace("Uhr", "").trim() : "01:56";
+  const badgeText = daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : isFinal ? `ENDERGEBNIS 100 % · ${timeOnly} UHR 🏆` : `LIVE ${currentPercent} · ${timeOnly} UHR 🗳️`;
 
   return (
     <div
