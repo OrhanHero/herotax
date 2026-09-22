@@ -1,132 +1,55 @@
 import { useMemo } from "react";
-import { Vote } from "lucide-react";
+import { Radio } from "lucide-react";
 import { useLang } from "../../i18n";
-import { T, fontMono } from "../../config/tokens";
-import { ELECTION_STAGES, BVV_RESULTS } from "../../data/electionResults";
-
-/* Wahl zum Abgeordnetenhaus & BVV von Berlin — 20. September 2026 */
-const ELECTION_DAY = new Date(2026, 8, 20);
-const getDaysUntilElection = () => {
-  const now = new Date();
-  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  return Math.max(0, Math.round((ELECTION_DAY - startOfToday) / 86_400_000));
-};
+import { T } from "../../config/tokens";
 
 /**
- * NewsTicker — durchlaufendes Wahlticker-Band mit Live-Meldungen zur Berlin-Wahl 2026.
- * · Priorisiert aktuelle Meldungen zur Wahl, Briefwahl und Parteien
+ * NewsTicker — durchlaufendes Live-Ticker-Band mit aktuellen Meldungen zu Steuern,
+ * FinTech, AI-Regulierung, Berlin-Startups und aktuellen Wirtschaftsentwicklungen.
  * · Nahtlose Endlos-Schleife: Inhalt wird dupliziert, Animation läuft -50 %
  * · Pausiert bei Hover/Fokus (Lesbarkeit)
  * · Jeder Eintrag verlinkt auf die Original-Quelle
  */
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
-  const daysLeft = getDaysUntilElection();
-  const currentAgh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
 
-  // Extrahiere Prozent & Gebiete dynamisch aus dem amtlichen Stand
-  const isFinal = (currentAgh.tag || currentAgh.statusBadge || "").includes("100");
-  const matchPercent = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[.,]?\d*\s*%)/);
-  const currentPercent = isFinal ? "100 %" : (matchPercent ? matchPercent[1] : "100 %");
-
-  const matchAreas = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[.,\d]*\s*von\s*\d+[.,\d]*\s*Gebieten)/i);
-  const currentAreasText = isFinal ? "4.114 von 4.114 Gebieten" : (matchAreas ? matchAreas[1] : "4.114 von 4.114 Gebieten");
-
-  // Dynamische Live-Ticker-Meldungen direkt aus den amtlichen Wahldaten
-  const liveElectionItems = useMemo(() => {
-    const agh = currentAgh;
-    const bvv = BVV_RESULTS;
-    const timeStr = agh.time ? agh.time.split("·")[1]?.trim() : "01:56 Uhr";
-
-    // Parteien-Prozente formatieren
-    const pStr = (id, fallback) => {
-      const p = agh.parties?.find((x) => x.id === id);
-      return p ? `${p.percent.toFixed(1).replace(".", ",")}%` : fallback;
-    };
-    const linkeStr = pStr("linke", "25,7 %");
-    const cduStr = pStr("cdu", "18,8 %");
-    const afdStr = pStr("afd", "16,3 %");
-    const grueneStr = pStr("gruene", "14,3 %");
-    const spdStr = pStr("spd", "12,1 %");
-    const bswP = agh.parties?.find((x) => x.id === "bsw")?.percent?.toFixed(1).replace(".", ",") || "4,7";
-
-    // Sitze formatieren
-    const sStr = (id, fallback) => {
-      const p = agh.parties?.find((x) => x.id === id);
-      return p?.seats !== undefined ? p.seats : fallback;
-    };
-    const linkeSeats = sStr("linke", 48);
-    const cduSeats = sStr("cdu", 34);
-    const afdSeats = sStr("afd", 29);
-    const grueneSeats = sStr("gruene", 26);
-    const spdSeats = sStr("spd", 22);
-    const r2gSeats = linkeSeats + spdSeats + grueneSeats;
-
-    // BVV Parteien formatieren
-    const bvvPStr = (id, fallback) => {
-      const p = bvv.parties?.find((x) => x.id === id);
-      return p ? `${p.percent.toFixed(1).replace(".", ",")}%` : fallback;
-    };
-
+  // Aktuelle Sondierungs- & Wirtschafts-Updates
+  const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: isFinal ? "🏆 AMTLICHES ENDERGEBNIS" : "🔴 LIVE-STAND AGH",
+        tickerTag: "🏛️ SONDIERUNGEN",
         isElection: true,
-        title: `${isFinal ? "Vorläufiges amtliches Endergebnis" : "Amtliches Zwischenergebnis"} (${timeStr}): ${isFinal ? "Alle " : ""}${currentAreasText} (${currentPercent}) ausgezählt — Linke ${linkeStr}, CDU ${cduStr}, AfD ${afdStr}, Grüne ${grueneStr}, SPD ${spdStr}`,
-        date: "21.09.2026",
-        source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html" },
-      },
-      {
-        cat: "Berlin Fokus",
-        tickerTag: "🏛️ SONDIERUNGEN 2026",
-        isElection: true,
-        title: `Nach Berlin-Wahl: Sondierungsgespräche im Roten Rathaus starten · Rot-Rot-Grün (${r2gSeats} Sitze) und Schwarz-Rot (${cduSeats + spdSeats} Sitze) rechnerisch als Optionen`,
+        title: "Nach der Berlin-Wahl: Sondierungsgespräche im Roten Rathaus starten · Rot-Rot-Grün (96 Sitze) und Schwarz-Rot (56 Sitze) rechnerisch möglich",
         date: "22.09.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
         cat: "Berlin Fokus",
-        tickerTag: "🗳️ SITZVERTEILUNG",
+        tickerTag: "🏆 AMTL. ENDERGEBNIS",
         isElection: true,
-        title: `159 Sitze im 20. AGH: Linke ${linkeSeats}, CDU ${cduSeats}, AfD ${afdSeats}, Grüne ${grueneSeats}, SPD ${spdSeats} · BSW scheitert an 5%-Hürde (${bswP} % = 0 Sitze) · Rot-Rot-Grün verfügt über ${r2gSeats} Sitze`,
+        title: "Amtliches Endergebnis (100 %): Linke 25,7 % (48 Sitze), CDU 18,8 % (34 Sitze), AfD 16,3 % (29 Sitze), Grüne 14,3 % (26 Sitze), SPD 12,1 % (22 Sitze)",
         date: "21.09.2026",
-        source: { label: "tagesschau.de", href: "https://www.tagesschau.de/inland/landtagswahlen/berlin/2026/ergebnisse" },
-      },
-      {
-        cat: "Berlin Fokus",
-        tickerTag: "🏙️ BEZIRKE & BVV",
-        isElection: true,
-        title: `Bezirksverordnetenversammlungen (BVV): ${bvv.countedAreas || "4.114 von 4.114 Gebieten (100,0 %)"} — Linke ${bvvPStr("linke", "24,1 %")}, CDU ${bvvPStr("cdu", "18,2 %")}, Grüne ${bvvPStr("gruene", "17,2 %")}, AfD ${bvvPStr("afd", "15,7 %")}, SPD ${bvvPStr("spd", "12,2 %")}`,
-        date: "21.09.2026",
-        source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html" },
+        source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html" },
       },
     ];
-  }, [currentAgh, currentAreasText, currentPercent, isFinal]);
+  }, []);
 
-  // Vollständig auf Berlin-Wahl 2026 ausgerichteter Wahlticker
-  const electionItems = (items || []).filter(
-    (a) =>
-      a.isElection === true ||
-      /wahl|stimmzettel|agh|bvv|berlintrend|krach|evers|eralp|brinker|lueders|graf|rotes rathaus|briefwahl|wahlarena|koalition/i.test(
-        `${a.title || ""} ${a.tickerTag || ""} ${a.cat || ""}`
-      )
-  );
-  // Live-Meldungen voranstellen
-  const tickerItems = [...liveElectionItems, ...electionItems];
-
-  const timeOnly = currentAgh.time ? currentAgh.time.split("·")[1]?.replace("Uhr", "").trim() : "01:56";
-  const badgeText = daysLeft > 0 ? `NOCH ${daysLeft} TAGE 🗳️` : isFinal ? `ENDERGEBNIS 100 % · ${timeOnly} UHR 🏆` : `LIVE ${currentPercent} · ${timeOnly} UHR 🗳️`;
+  // Zeige aktuelle Top-Updates zusammen mit allen weiteren Artikeln (Steuern, KI, FinTech)
+  const tickerItems = useMemo(() => {
+    const all = items && items.length > 0 ? items : [];
+    return [...topUpdateItems, ...all];
+  }, [items, topUpdateItems]);
 
   return (
     <div
       className="flex items-stretch shadow-xs"
       style={{ backgroundColor: T.ink, borderBottom: `1px solid ${T.line}` }}
       role="region"
-      aria-label="Wahlticker: aktuelle Meldungen zur Berlin-Wahl 2026"
+      aria-label="News-Ticker: aktuelle Meldungen zu Steuern, FinTech und Tech-Ökosystem"
       dir="ltr"
     >
-      {/* Festes Label links — Berliner Wahl-Ticker */}
+      {/* Festes Label links — HERO Tax Radar */}
       <div
         className="flex items-center gap-2 px-3 sm:px-4.5 py-2.5 shrink-0 z-10 select-none shadow-md"
         style={{
@@ -134,7 +57,7 @@ const NewsTicker = ({ items }) => {
           borderRight: "1px solid rgba(255,255,255,0.15)",
         }}
       >
-        <Vote size={15} className="text-amber-300 shrink-0" />
+        <Radio size={15} className="text-amber-300 shrink-0 animate-pulse" />
         <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
           <span
             className="ticker-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-amber-400"
@@ -145,7 +68,7 @@ const NewsTicker = ({ items }) => {
           {t("ticker.label")}
         </span>
         <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/35 tracking-wider">
-          {badgeText}
+          TAX &amp; TECH ⚡
         </span>
       </div>
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Rocket, Building2, BarChart3, ChevronRight, ExternalLink, Vote } from "lucide-react";
+import { Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import SiteStatusBadge from "../atoms/SiteStatusBadge";
@@ -13,6 +13,8 @@ const HeroSection = () => {
   const { t } = useLang();
   const [activeTab, setActiveTab] = useState("trends"); // 'trends' | 'hubs' | 'kpis'
   const [electionView, setElectionView] = useState("results"); // 'results' | 'programmes'
+
+  const [showElectionArchive, setShowElectionArchive] = useState(false);
 
   const trends = [
     {
@@ -89,12 +91,7 @@ const HeroSection = () => {
   return (
     <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-16 overflow-hidden bg-blueprint-grid">
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-full overflow-hidden">
-        {/* Left Column: Display Headline & Copy
-            justify-start: die Spalte ist seit dem Umzug des AI-Act-Blocks
-            deutlich kürzer als die Radar-Spalte. Zentriert liesse das oben
-            eine grosse Lücke, verteilt würde es Badge, Headline und Copy
-            auseinanderziehen — oben bündig stehen die beiden Badges links
-            und rechts wieder auf einer Linie. */}
+        {/* Left Column: Display Headline & Copy */}
         <div className="lg:col-span-7 space-y-5 flex flex-col justify-start max-w-full overflow-hidden">
           {/* Parallel Eyebrow Badge Left: Live-Stand der Webseite */}
           <div className="flex items-center gap-3 max-w-full overflow-hidden">
@@ -127,22 +124,22 @@ const HeroSection = () => {
               {/* Header Badges & Date */}
               <div className="flex flex-wrap items-center justify-between gap-2 mb-3 relative z-10">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 tracking-wide font-mono">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                    VORLÄUFIGES AMTLICHES ENDERGEBNIS · 100 % 🏆
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40 tracking-wide font-mono">
+                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                    HAUPTSTORY DER WOCHE ⚡
                   </span>
                   <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Berlin-Wahl 2026 · AGH &amp; BVV · 4.114 / 4.114 Gebiete (100 %)
+                    Wirtschaft &amp; Steuern 2026
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  22. September 2026 · AMTLICHES ENDERGEBNIS &amp; SONDIERUNGEN 🗳️
+                  22. September 2026 · STANDORT-RADAR 🏙️
                 </span>
               </div>
 
               {/* Story Title */}
               <a
-                href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
+                href="https://www.ihk.de/berlin"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group/link relative z-10"
@@ -151,52 +148,52 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl 2026: Vorläufiges amtliches Endergebnis bestätigt – Sondierungsgespräche im Roten Rathaus starten
+                  Berliner Wirtschaft nach der Wahl: IHK und Verbände fordern Investitionsoffensive und stabilen Gewerbesteuer-Hebesatz
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                100 % ausgezählt (4.114 / 4.114 Gebiete für AGH &amp; BVV): Die Linke triumphiert mit 25,7 % (48 Sitze), CDU bei 18,8 % (34 Sitze), AfD bei 16,3 % (29 Sitze), Grüne bei 14,3 % (26 Sitze), SPD bei 12,1 % (22 Sitze). BSW (4,7 %) und FDP (2,5 %) scheitern an der 5%-Hürde (0 Sitze). Rot-Rot-Grün verfügt über eine Mehrheit von 96 von 159 Sitzen.
+                Nach dem amtlichen Endergebnis (Die Linke 25,7 %, CDU 18,8 %, AfD 16,3 %, Grüne 14,3 %, SPD 12,1 %) starten im Roten Rathaus die Sondierungsgespräche. Berlins Wirtschaftsverbände formulieren klare Prioritäten für anstehende Koalitionsverhandlungen: Verlässliche Rahmenbedingungen für Start-ups, beschleunigte Verwaltungsprozesse, die Beibehaltung des Gewerbesteuer-Hebesatzes bei 410 % und die Vorbereitung auf die E-Rechnung 2027.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
               <div className="pt-3 border-t border-slate-800 text-xs relative z-10 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
-                    Offizielle Wahl-Berichterstattung &amp; Live-Services:
+                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    Fakten, Quellen &amp; Standorte:
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono">
-                    Verifizierte Quellen (rbb24)
+                    Verifizierte Quellen
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate font-semibold">🔴 Sondierungs-Ticker (rbb24)</span>
-                    <ExternalLink size={10} className="shrink-0 text-amber-400" />
-                  </a>
-                  <a
-                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html"
+                    href="https://www.ihk.de/berlin"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/35 text-blue-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate font-semibold">Amtl. Endergebnis (100 %)</span>
+                    <span className="truncate font-semibold">IHK Berlin · Standort</span>
                     <ExternalLink size={10} className="shrink-0 text-blue-400" />
                   </a>
                   <a
-                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html"
+                    href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/BMF_Schreiben_Allgemeines/bmf_schreiben_allgemeines.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">BVV-Ergebnisse 12 Bezirke</span>
+                    <span className="truncate">E-Rechnung 2027 (BMF)</span>
+                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
+                  </a>
+                  <a
+                    href="https://www.ibb.de/de/foerderprogramme/gruendungsbonus-plus.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
+                  >
+                    <span className="truncate">GründungsBONUS Plus</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                   <a
@@ -205,7 +202,7 @@ const HeroSection = () => {
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">Wahlbeteiligung 74,2 %</span>
+                    <span className="truncate">Wahlergebnis (100 %)</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                 </div>
@@ -213,41 +210,61 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Wahl-Zentrale: Live-Ergebnis-Tracker & Wahlprogramme */}
-          <div className="pt-3 w-full space-y-3">
-            {/* View Switcher Tabs */}
-            <div className="flex items-center p-1 bg-slate-900/90 backdrop-blur-md rounded-xl border border-slate-800 text-xs font-mono">
-              <button
-                type="button"
-                onClick={() => setElectionView("results")}
-                className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-1.5 ${
-                  electionView === "results"
-                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-black"
-                    : "text-slate-300 hover:text-white hover:bg-slate-800/50"
-                }`}
-              >
-                <BarChart3 size={13} />
-                <span>Amtliche Wahlergebnisse</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setElectionView("programmes")}
-                className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all duration-200 flex items-center justify-center gap-1.5 ${
-                  electionView === "programmes"
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-900/30 font-black"
-                    : "text-slate-300 hover:text-white hover:bg-slate-800/50"
-                }`}
-              >
-                <Vote size={13} />
-                <span>Wahlprogramme &amp; Kandidaten</span>
-              </button>
-            </div>
+          {/* Wahlergebnis-Archiv & Koalitions-Rechner (Kompakt & Aufklappbar) */}
+          <div className="pt-2 max-w-xl w-full">
+            <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 flex flex-col gap-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono font-bold text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded">
+                    Archiv · Wahl 2026
+                  </span>
+                  <span className="text-xs text-slate-300 font-mono hidden sm:inline">
+                    Amtliches Endergebnis (159 Sitze)
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowElectionArchive(!showElectionArchive)}
+                  className="text-xs font-mono font-semibold text-blue-400 hover:text-blue-300 underline cursor-pointer"
+                >
+                  {showElectionArchive ? "▲ Wahldaten verbergen" : "▼ Sitzverteilung & Wahldaten anzeigen"}
+                </button>
+              </div>
 
-            {electionView === "results" ? (
-              <ElectionResultsLiveTracker />
-            ) : (
-              <WahlprogrammeSection />
-            )}
+              {showElectionArchive && (
+                <div className="pt-3 space-y-3">
+                  <div className="flex items-center p-1 bg-slate-950/90 rounded-xl border border-slate-800 text-xs font-mono">
+                    <button
+                      type="button"
+                      onClick={() => setElectionView("results")}
+                      className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all ${
+                        electionView === "results"
+                          ? "bg-amber-500 text-slate-950 font-black shadow-sm"
+                          : "text-slate-300 hover:text-white"
+                      }`}
+                    >
+                      Amtliche Wahlergebnisse
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setElectionView("programmes")}
+                      className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all ${
+                        electionView === "programmes"
+                          ? "bg-blue-600 text-white font-black shadow-sm"
+                          : "text-slate-300 hover:text-white"
+                      }`}
+                    >
+                      Wahlprogramme &amp; Kandidaten
+                    </button>
+                  </div>
+                  {electionView === "results" ? (
+                    <ElectionResultsLiveTracker />
+                  ) : (
+                    <WahlprogrammeSection />
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

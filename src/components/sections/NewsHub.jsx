@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
@@ -11,17 +11,6 @@ import SourceLink from "../atoms/SourceLink";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import BerlinBezirkSelector from "../atoms/BerlinBezirkSelector";
-
-/* Wahl zum Abgeordnetenhaus von Berlin — 20. September 2026 (Monat ist 0-basiert). */
-const ELECTION_DAY = new Date(2026, 8, 20);
-
-/** Verbleibende Tage bis zur Wahl, ab Tagesbeginn gerechnet, damit der Wert
-    nicht von der Uhrzeit des Seitenaufrufs abhängt. Negativ nach dem Wahltag. */
-const daysUntilElection = () => {
-  const now = new Date();
-  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  return Math.round((ELECTION_DAY - startOfToday) / 86_400_000);
-};
 
 const DE_ICONS = {
   home: Home,
@@ -37,7 +26,6 @@ const NewsHub = () => {
   const { t } = useLang();
   const [filter, setFilter] = useState("Alle");
   const [articles, setArticles] = useState(ARTICLES);
-  const daysLeft = useMemo(() => daysUntilElection(), []);
 
   // Lade Artikel beim Mount (mit Caching & automatischem Update)
   useEffect(() => {
@@ -110,59 +98,52 @@ const NewsHub = () => {
               <div className="max-w-2xl">
                 <div className="inline-flex flex-wrap items-center gap-2 mb-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider">
-                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
-                    Amtliches Wahlportal 2026
+                    <span className="w-2 h-2 rounded-full bg-blue-400" />
+                    Wahlportal Berlin 2026
                   </div>
-                  {daysLeft >= 0 && (
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
-                      {daysLeft === 0
-                        ? "🗳️ Heute ist Wahltag · Wahllokale bis 18:00 Uhr geöffnet"
-                        : `⏳ Noch ${daysLeft} ${daysLeft === 1 ? "Tag" : "Tage"} bis zur Wahl`}
-                    </div>
-                  )}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-mono font-bold uppercase tracking-wider">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    🏆 Amtliches Endergebnis (100 %)
+                  </div>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2" style={{ ...fontDisplay }}>
-                  {daysLeft === 0
-                    ? "Berlin wählt heute: Abgeordnetenhaus & BVV 2026"
-                    : "Berliner Wahlen am 20. September 2026"}
+                  Berlin-Wahl 2026: Amtliches Endergebnis &amp; Sondierungen
                 </h3>
                 <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed">
-                  {daysLeft === 0
-                    ? "Wahl zum 20. Abgeordnetenhaus von Berlin & allen 12 Bezirksverordnetenversammlungen. Wahllokale geöffnet bis 18:00 Uhr. Erste Prognosen und Hochrechnungen ab 18:00 Uhr."
-                    : "Wahl zum Abgeordnetenhaus von Berlin (AGH) & allen 12 Bezirksverordnetenversammlungen (BVV). Offizielle Informationen der Landeswahlleiterin Berlin."}
+                  Die Wahl zum 20. Abgeordnetenhaus und den 12 Bezirksverordnetenversammlungen ist entschieden: Alle 4.114 Gebiete sind amtlich ausgezählt. Die Linke siegt mit 25,7 % (48 Sitze), gefolgt von CDU (18,8 %), AfD (16,3 %), Grünen (14,3 %) und SPD (12,1 %). Rot-Rot-Grün verfügt über eine Mehrheit von 96 von 159 Sitzen.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 shrink-0">
                 <a
-                  href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
+                  href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
-                  title="rbb24 Wahltag Liveticker"
+                  title="Amtliche Ergebnisse wahlen-berlin.de"
                   style={{ ...fontDisplay }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
-                  <span>🔴 rbb24 Wahltag-Liveticker</span>
+                  <span className="w-2 h-2 rounded-full bg-slate-950" />
+                  <span>Amtliche Ergebnisse (AGH 100 %)</span>
                   <ArrowUpRight size={16} />
                 </a>
                 <a
-                  href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahllokalsuche/artikel.1701445.php"
+                  href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
                   style={{ ...fontDisplay }}
                 >
-                  <span>Wahllokalsuche (bis 18 Uhr)</span>
+                  <span>rbb24 Sondierungs-Ticker</span>
                   <ArrowUpRight size={16} />
                 </a>
                 <a
-                  href="https://www.wahl-o-mat.de/berlin2026/"
+                  href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5"
                   style={{ ...fontDisplay }}
                 >
-                  <span>Wahl-O-Mat Berlin</span>
+                  <span>BVV-Ergebnisse 12 Bezirke</span>
                   <ArrowUpRight size={16} />
                 </a>
               </div>
