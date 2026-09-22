@@ -87,7 +87,7 @@ const NewsTicker = ({ items }) => {
                 return (
                   <a
                     key={`${copy}-${a.title}`}
-                    href={a.source.href}
+                    href={typeof a.source === "object" ? a.source?.href : a.source || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                     tabIndex={copy === 1 ? -1 : 0}

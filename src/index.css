@@ -144,10 +144,10 @@ html {
   will-change: transform, opacity, filter;
 }
 
-/* ── Newsticker-Laufband (Ruhige Lesegeschwindigkeit) ── */
+/* ── Newsticker-Laufband (Ruhige, gedrosselte Lesegeschwindigkeit) ── */
 .ticker-track {
   width: max-content;
-  animation: hero-ticker 150s linear infinite;
+  animation: hero-ticker 260s linear infinite;
 }
 .ticker-viewport:hover .ticker-track,
 .ticker-viewport:focus-within .ticker-track {
