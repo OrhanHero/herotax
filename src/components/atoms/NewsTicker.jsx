@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Radio } from "lucide-react";
 import { useLang } from "../../i18n";
-import { T } from "../../config/tokens";
+import { T, fontMono } from "../../config/tokens";
 
 /**
  * NewsTicker — durchlaufendes Live-Ticker-Band mit aktuellen Meldungen zu Steuern,
