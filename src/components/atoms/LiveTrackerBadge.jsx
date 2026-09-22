@@ -22,8 +22,6 @@ const LiveTrackerBadge = ({ type = "general", onRefresh, variant = "default" }) 
   }, [type]);
 
   useEffect(() => {
-    updateStatus();
-
     // Automatischer Live-Check alle 60 Sekunden (aktualisiert Relativzeit & prüft 4-Std-Intervall)
     const interval = setInterval(() => {
       updateStatus();

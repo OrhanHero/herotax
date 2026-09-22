@@ -37,7 +37,7 @@ const NewsHub = () => {
   const { t } = useLang();
   const [filter, setFilter] = useState("Alle");
   const [articles, setArticles] = useState(ARTICLES);
-  const daysLeft = useMemo(daysUntilElection, []);
+  const daysLeft = useMemo(() => daysUntilElection(), []);
 
   // Lade Artikel beim Mount (mit Caching & automatischem Update)
   useEffect(() => {

@@ -122,8 +122,9 @@ const ParliamentSeatChart = ({
   // Berechne Bogenwinkel und Pfaddaten für jede Partei
   const slices = useMemo(() => {
     let currentAngle = 180; // Start horizontal ganz links
+    const result = [];
 
-    return parties.map((p) => {
+    for (const p of parties) {
       const angleSpan = (p.seats / totalSeats) * 180;
       const startAngle = currentAngle;
       const endAngle = currentAngle - angleSpan;
@@ -136,7 +137,7 @@ const ParliamentSeatChart = ({
       const pathData = describeArcSlice(cx, cy, rIn, rOut, startAngle, endAngle);
       const anchor = polarToCartesian(cx, cy, rOut, midAngle);
 
-      return {
+      result.push({
         ...p,
         startAngle,
         endAngle,
@@ -145,8 +146,10 @@ const ParliamentSeatChart = ({
         pathData,
         anchor,
         isHovered,
-      };
-    });
+      });
+    }
+
+    return result;
   }, [parties, totalSeats, hoveredId]);
 
   // Aktive Partei für den Tooltip

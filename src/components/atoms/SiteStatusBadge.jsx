@@ -15,20 +15,24 @@ import { formatTrackerDate } from "../../services/articleService";
  * Daten aus dem Cache, dieser den Stand der Seite. In der Hero steht
  * deshalb nur dieses Badge, nicht beide.
  */
+const staticBuildTime = typeof __BUILD_TIME__ !== "undefined" ? __BUILD_TIME__ : null;
+
 const SiteStatusBadge = () => {
   const isDev = import.meta.env.DEV;
-  const buildTime = typeof __BUILD_TIME__ !== "undefined" ? __BUILD_TIME__ : Date.now();
-  const [stand, setStand] = useState(() => formatTrackerDate(isDev ? Date.now() : buildTime));
+  const [stand, setStand] = useState(() => {
+    const time = isDev ? Date.now() : (staticBuildTime ?? Date.now());
+    return formatTrackerDate(time);
+  });
 
   /* Im Dev-Modus alle 30 Sekunden neu formatieren, damit der Live-Stand
      bei laufendem vite dev aktuell bleibt. In Produktion minütlich. */
   useEffect(() => {
     const interval = setInterval(
-      () => setStand(formatTrackerDate(isDev ? Date.now() : buildTime)),
+      () => setStand(formatTrackerDate(isDev ? Date.now() : (staticBuildTime ?? Date.now()))),
       isDev ? 30000 : 60000
     );
     return () => clearInterval(interval);
-  }, [buildTime, isDev]);
+  }, [isDev]);
 
   return (
     <span

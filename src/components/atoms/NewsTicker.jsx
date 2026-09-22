@@ -26,15 +26,15 @@ const NewsTicker = ({ items }) => {
 
   // Extrahiere Prozent & Gebiete dynamisch aus dem amtlichen Stand
   const isFinal = (currentAgh.tag || currentAgh.statusBadge || "").includes("100");
-  const matchPercent = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[\.,]?\d*\s*%)/);
+  const matchPercent = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[.,]?\d*\s*%)/);
   const currentPercent = isFinal ? "100 %" : (matchPercent ? matchPercent[1] : "100 %");
 
-  const matchAreas = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[\.,\d]*\s*von\s*\d+[\.,\d]*\s*Gebieten)/i);
+  const matchAreas = (currentAgh.tag || currentAgh.statusBadge || "").match(/(\d+[.,\d]*\s*von\s*\d+[.,\d]*\s*Gebieten)/i);
   const currentAreasText = isFinal ? "4.114 von 4.114 Gebieten" : (matchAreas ? matchAreas[1] : "4.114 von 4.114 Gebieten");
 
   // Dynamische Live-Ticker-Meldungen direkt aus den amtlichen Wahldaten
   const liveElectionItems = useMemo(() => {
-    const agh = ELECTION_STAGES.endergebnis || ELECTION_STAGES.zwischenstand;
+    const agh = currentAgh;
     const bvv = BVV_RESULTS;
     const timeStr = agh.time ? agh.time.split("·")[1]?.trim() : "01:56 Uhr";
 
@@ -76,6 +76,14 @@ const NewsTicker = ({ items }) => {
         title: `${isFinal ? "Vorläufiges amtliches Endergebnis" : "Amtliches Zwischenergebnis"} (${timeStr}): ${isFinal ? "Alle " : ""}${currentAreasText} (${currentPercent}) ausgezählt — Linke ${linkeStr}, CDU ${cduStr}, AfD ${afdStr}, Grüne ${grueneStr}, SPD ${spdStr}`,
         date: "21.09.2026",
         source: { label: "wahlen-berlin.de", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html" },
+      },
+      {
+        cat: "Berlin Fokus",
+        tickerTag: "🏛️ SONDIERUNGEN 2026",
+        isElection: true,
+        title: `Nach Berlin-Wahl: Sondierungsgespräche im Roten Rathaus starten · Rot-Rot-Grün (${r2gSeats} Sitze) und Schwarz-Rot (${cduSeats + spdSeats} Sitze) rechnerisch als Optionen`,
+        date: "22.09.2026",
+        source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
         cat: "Berlin Fokus",

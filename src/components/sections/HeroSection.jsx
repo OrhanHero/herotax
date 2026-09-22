@@ -136,7 +136,7 @@ const HeroSection = () => {
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  21. September 2026 · 02:00 UHR · PRAXIS- &amp; BERATER-RADAR 🗳️
+                  22. September 2026 · AMTLICHES ENDERGEBNIS &amp; SONDIERUNGEN 🗳️
                 </span>
               </div>
 
@@ -151,13 +151,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berlin-Wahl 02:00 Uhr: Vorläufiges amtliches Endergebnis – Die Linke siegt mit 25,7 %, BSW verfehlt Einzug
+                  Berlin-Wahl 2026: Vorläufiges amtliches Endergebnis bestätigt – Sondierungsgespräche im Roten Rathaus starten
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                100 % ausgezählt (4.114 / 4.114 Gebiete für AGH &amp; BVV): Die Linke triumphiert mit 25,7 % (48 Sitze), CDU bei 18,8 % (34 Sitze), AfD bei 16,3 % (29 Sitze), Grüne bei 14,3 % (26 Sitze), SPD bei 12,1 % (22 Sitze). BSW (4,7 %) und FDP (2,5 %) scheitern an der 5%-Hürde (0 Sitze). Rot-Rot-Grün verfügt über eine deutliche Mehrheit von 96 Sitzen im 159-Sitze-Abgeordnetenhaus.
+                100 % ausgezählt (4.114 / 4.114 Gebiete für AGH &amp; BVV): Die Linke triumphiert mit 25,7 % (48 Sitze), CDU bei 18,8 % (34 Sitze), AfD bei 16,3 % (29 Sitze), Grüne bei 14,3 % (26 Sitze), SPD bei 12,1 % (22 Sitze). BSW (4,7 %) und FDP (2,5 %) scheitern an der 5%-Hürde (0 Sitze). Rot-Rot-Grün verfügt über eine Mehrheit von 96 von 159 Sitzen.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
@@ -178,34 +178,34 @@ const HeroSection = () => {
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate font-semibold">🔴 Wahltag-Liveticker</span>
+                    <span className="truncate font-semibold">🔴 Sondierungs-Ticker (rbb24)</span>
                     <ExternalLink size={10} className="shrink-0 text-amber-400" />
                   </a>
                   <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/abgeordnetenhaus-wahltag-prognose-hochrechnungen-ergebnis.html"
+                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/35 text-blue-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate font-semibold">Wahlbeteiligung (27,9 %)</span>
+                    <span className="truncate font-semibold">Amtl. Endergebnis (100 %)</span>
                     <ExternalLink size={10} className="shrink-0 text-blue-400" />
                   </a>
                   <a
-                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/prognose-hochrechnung-ergebnis-wahlabend-rbb-berichterstattung.html"
+                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">Prognosen ab 18 Uhr</span>
+                    <span className="truncate">BVV-Ergebnisse 12 Bezirke</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                   <a
-                    href="https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/wahllokalsuche/artikel.1701445.php"
+                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
                   >
-                    <span className="truncate">Wahllokalsuche (bis 18h)</span>
+                    <span className="truncate">Wahlbeteiligung 74,2 %</span>
                     <ExternalLink size={10} className="shrink-0 text-slate-400" />
                   </a>
                 </div>

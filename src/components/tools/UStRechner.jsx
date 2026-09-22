@@ -3,6 +3,21 @@ import { Calculator } from "lucide-react";
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import ToolCard from "./ToolCard";
 
+const Toggle = ({ active, onClick, children }) => (
+  <button
+    onClick={onClick}
+    className="px-3 py-1.5 rounded-full text-xs font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2"
+    style={{
+      ...fontDisplay,
+      backgroundColor: active ? T.blue : T.card,
+      color: active ? T.blueInk : T.muted,
+      border: `1px solid ${active ? T.blue : T.line}`,
+    }}
+  >
+    {children}
+  </button>
+);
+
 /** TOOL 1 · USt-Rechner — Netto ↔ Brutto, Ergebnis live via useMemo */
 const UStRechner = () => {
   const [amount, setAmount] = useState("");
@@ -22,21 +37,6 @@ const UStRechner = () => {
   }, [amount, rate, direction]);
 
   const fmt = (n) => n.toLocaleString("de-DE", { style: "currency", currency: "EUR" });
-
-  const Toggle = ({ active, onClick, children }) => (
-    <button
-      onClick={onClick}
-      className="px-3 py-1.5 rounded-full text-xs font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2"
-      style={{
-        ...fontDisplay,
-        backgroundColor: active ? T.blue : T.card,
-        color: active ? T.blueInk : T.muted,
-        border: `1px solid ${active ? T.blue : T.line}`,
-      }}
-    >
-      {children}
-    </button>
-  );
 
   return (
     <ToolCard icon={Calculator} title="USt-Rechner" subtitle="Netto ↔ Brutto · live">

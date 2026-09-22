@@ -151,31 +151,48 @@ export const IFA_BERLIN_SOURCES = [
 ];
 
 export const BERLIN_WAHL_SOURCES = [
-  { label: "rbb24 Wahltag Liveticker", detail: "Rund-um-die-Uhr-Ticker zur Berlin-Wahl", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html", badge: "Liveticker", primary: true },
-  { label: "rbb24 Wahlbeteiligung", detail: "27,9 % bis 12 Uhr (+4,5 % über 2023)", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/abgeordnetenhaus-wahltag-prognose-hochrechnungen-ergebnis.html", badge: "27,9 %", primary: true },
-  { label: "rbb24 Prognosen & Ablauf", detail: "So läuft der Wahlabend ab 18:00 Uhr ab", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/prognose-hochrechnung-ergebnis-wahlabend-rbb-berichterstattung.html", badge: "ab 18 Uhr" },
-  { label: "rbb24 Wahl-Portal", detail: "Hauptportal zur Wahl von AGH und BVV", href: "https://www.rbb24.de/politik/berlin-wahl-2026/", badge: "Wahl 2026" },
-  { label: "rbb24 Wahltag FAQ", detail: "Was Wahlberechtigte bis 18 Uhr wissen müssen", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/agh-bvv-wahl-fragen-antworten-wahltag-stimmabgabe.html", badge: "FAQ" },
-  { label: "Landeswahlleiterin Berlin", detail: "Amtliche Bekanntmachungen & Wahllokalsuche", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/", badge: "Amtlich" },
+  { label: "rbb24 Sondierungs-Ticker", detail: "Rund-um-die-Uhr-Ticker zu Sondierungen & Reaktionen", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html", badge: "Sondierung", primary: true },
+  { label: "Amtl. Endergebnis (AGH)", detail: "4.114 von 4.114 Gebieten (100 %) ausgezählt", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html", badge: "100 %", primary: true },
+  { label: "BVV-Ergebnisse 12 Bezirke", detail: "Amtliche Verteilung für alle Bezirksversammlungen", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html", badge: "BVV 100 %" },
+  { label: "rbb24 Koalitions-Optionen", detail: "Rechnerische Mehrheiten im 159-Sitze-Parlament", href: "https://www.rbb24.de/politik/berlin-wahl-2026/", badge: "Koalition" },
+  { label: "Wahlbeteiligung Berlin", detail: "74,2 % Gesamtbeteiligung (Urne 44,1 % + Brief 30,1 %)", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html", badge: "74,2 %" },
+  { label: "Landeswahlleiterin Berlin", detail: "Amtliche Bekanntmachungen & Statistiken", href: "https://www.berlin.de/wahlen/wahlen/berliner-wahlen-2026/", badge: "Amtlich" },
 ];
 
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "BERLIN-WAHL 2026",
+    tickerTag: "AMTLICHES ENDERGEBNIS",
     isElection: true,
-    title: "Berlin-Wahl um 01:05 Uhr: 99,7 % ausgezählt – Linke siegt klar, BSW verfehlt 5%-Hürde, Rot-Rot-Grün mit 96 Sitzen",
+    title: "Berlin-Wahl 2026: Vorläufiges amtliches Endergebnis zu 100 % ausgezählt – Sondierungsgespräche im Roten Rathaus starten",
     excerpt:
-      "Mit 4.102 von 4.114 ausgezählten Gebieten steht der Wahlsieg von Die Linke (25,7 %) fest. CDU folgt mit 18,8 %, AfD mit 16,2 %, Grüne mit 14,3 % und SPD mit 12,1 %. Das Bündnis Sahra Wagenknecht (BSW) scheitert mit 4,7 % an der 5%-Sperrklausel und erhält keine Sitze im 20. Abgeordnetenhaus. Rot-Rot-Grün verfügt mit 96 von 159 Sitzen über eine stabile Mehrheit.",
+      "Mit allen 4.114 von 4.114 ausgezählten Gebieten für das Abgeordnetenhaus und die 12 BVVs steht das Ergebnis fest: Die Linke triumphiert mit 25,7 % (48 Sitze), CDU folgt mit 18,8 % (34 Sitze), AfD mit 16,3 % (29 Sitze), Grüne mit 14,3 % (26 Sitze) und SPD mit 12,1 % (22 Sitze). BSW (4,7 %) und FDP (2,5 %) scheitern an der 5%-Klausel (0 Sitze). Rot-Rot-Grün verfügt mit 96 von 159 Sitzen über eine deutliche Regierungsmehrheit; erste Sondierungsgespräche sind im Roten Rathaus angelaufen.",
     read: "4 Min",
-    date: "21. September 2026 · 01:05 Uhr",
-    source: { label: "rbb24 · Wahltag Liveticker", href: "https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html" },
+    date: "22. September 2026",
+    source: { label: "Landeswahlleiterin Berlin / rbb24", href: "https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "99,7 %",
-      compare: "4.103 Gebiete",
-      label: "Linke stärkste Kraft · BSW unter 5% (0 Sitze) · Rot-Rot-Grün bei 96 Sitzen.",
+      value: "100,0 %",
+      compare: "4.114 Gebiete",
+      label: "Linke stärkste Kraft (48 Sitze) · BSW/FDP verpassen AGH · Rot-Rot-Grün mit 96 Sitzen.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
+    tickerTag: "WIRTSCHAFT & STEUERN",
+    isElection: true,
+    title: "Berliner Wirtschaft nach der Wahl: IHK und Verbände fordern Investitionsoffensive und stabilen Hebesatz",
+    excerpt:
+      "Nach der Abgeordnetenhauswahl richten Berliner Wirtschaftsverbände und die IHK klare Erwartungen an künftige Koalitionsverhandlungen: Verlässliche Rahmenbedingungen für Start-ups, beschleunigte Verwaltungsprozesse bei Gewerbeanmeldungen und die Beibehaltung des Gewerbesteuer-Hebesatzes bei 410 %.",
+    read: "3 Min",
+    date: "22. September 2026",
+    source: { label: "IHK Berlin", href: "https://www.ihk.de/berlin" },
+    featured: false,
+    highlight: {
+      value: "410 %",
+      compare: "Gewerbesteuer Berlin",
+      label: "Verlässliche Besteuerung & Bürokratieabbau stehen im Fokus der anstehenden Koalitionsverhandlungen.",
     },
   },
   {

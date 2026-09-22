@@ -31,9 +31,9 @@ const WahlprogrammeSection = () => {
             Abgeordnetenhauswahl Berlin
           </span>
         </div>
-        <span className="text-xs text-slate-400 font-mono flex items-center gap-1">
-          <CalendarCheck size={12} className="text-slate-400" />
-          Stand: 22.08.2026
+        <span className="text-xs text-amber-300 font-mono flex items-center gap-1 font-semibold">
+          <CalendarCheck size={12} className="text-amber-400" />
+          Stand: 22.09.2026 · Sondierungs-Grundlagen
         </span>
       </div>
 
@@ -47,7 +47,7 @@ const WahlprogrammeSection = () => {
           <span>Wahlprogramme &amp; Spitzenkandidaten</span>
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Das Rennen um die Führung im Roten Rathaus: Übersicht der Programme und Bewerber der Berliner Parteien (CDU, SPD, Grüne, Die Linke, AfD).
+          Programmatischer Abgleich für Sondierungs- und Koalitionsgespräche im Roten Rathaus: Kernpositionen und Steuerpläne der Berliner Parteien (Linke, CDU, Grüne, SPD, AfD).
         </p>
       </div>
 
