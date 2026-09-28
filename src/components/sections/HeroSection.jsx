@@ -133,13 +133,13 @@ const HeroSection = () => {
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  22. September 2026 · STANDORT-RADAR 🏙️
+                  28. September 2026 · STANDORT-RADAR 🏙️
                 </span>
               </div>
 
               {/* Story Title */}
               <a
-                href="https://www.ihk.de/berlin"
+                href="https://www.rbb24.de/politik/berlin-wahl-2026/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block group/link relative z-10"
@@ -148,13 +148,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Berliner Wirtschaft nach der Wahl: IHK und Verbände fordern Investitionsoffensive und stabilen Gewerbesteuer-Hebesatz
+                  Sondierungen im Roten Rathaus vertieft: Verhandlungsteams beraten über 5-Milliarden-Sparkurs und Investitionen in Berlins Tech-Standort
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Nach dem amtlichen Endergebnis (Die Linke 25,7 %, CDU 18,8 %, AfD 16,3 %, Grüne 14,3 %, SPD 12,1 %) starten im Roten Rathaus die Sondierungsgespräche. Berlins Wirtschaftsverbände formulieren klare Prioritäten für anstehende Koalitionsverhandlungen: Verlässliche Rahmenbedingungen für Start-ups, beschleunigte Verwaltungsprozesse, die Beibehaltung des Gewerbesteuer-Hebesatzes bei 410 % und die Vorbereitung auf die E-Rechnung 2027.
+                Eine Woche nach der Abgeordnetenhauswahl gehen die Sondierungsgespräche zwischen Die Linke, SPD und Bündnis 90/Die Grünen sowie parallele Gespräche der CDU in die entscheidende Phase. Im Roten Rathaus verhandeln die Arbeitsgruppen über die Schließung der prognostizierten Budgetlücke, den verlässlichen Erhalt des Gewerbesteuer-Hebesatzes bei 410 %, gezielte Innovationsförderung für FinTech- und KI-Gründer sowie die anstehenden Umsetzungsfristen zur B2B-E-Rechnung 2027.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}

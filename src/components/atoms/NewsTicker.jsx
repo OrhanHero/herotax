@@ -13,16 +13,58 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Sondierungs- & Wirtschafts-Updates
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 28.09.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🏛️ SONDIERUNGEN",
+        tickerTag: "🏛️ SONDIERUNGSRUNDE 2",
         isElection: true,
-        title: "Nach der Berlin-Wahl: Sondierungsgespräche im Roten Rathaus starten · Rot-Rot-Grün (96 Sitze) und Schwarz-Rot (56 Sitze) rechnerisch möglich",
-        date: "22.09.2026",
+        title: "Sondierungsgespräche im Roten Rathaus: Arbeitsgruppen von Linke, SPD & Grünen verhandeln über Haushaltslücke und Tech-Investitionen",
+        date: "28.09.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
+      },
+      {
+        cat: "Bund & Steuer",
+        tickerTag: "🧾 E-RECHNUNG 2027",
+        title: "BMF-Praxishilfe zur obligatorischen B2B-E-Rechnung: ZUGFeRD- & XRechnung-Validierung und GoBD-Archivierung für Unternehmen",
+        date: "28.09.2026",
+        source: { label: "BMF / ELSTER", href: "https://www.elster.de" },
+      },
+      {
+        cat: "FinTech & KI",
+        tickerTag: "🤖 KI-REALLABOR",
+        title: "Bundesnetzagentur eröffnet KI-Reallabor für den Mittelstand: KMU-Praxistests unter den Transparenzvorgaben des EU AI Act",
+        date: "27.09.2026",
+        source: { label: "Bundesnetzagentur", href: "https://bmds.bund.de/themen/kuenstliche-intelligenz" },
+      },
+      {
+        cat: "Berlin Fokus",
+        tickerTag: "💼 BERLINER WIRTSCHAFT",
+        title: "IHK Berlin mahnt bei Senatsbildung Verlässlichkeit an: Gewerbesteuerhebesatz bei 410 % belassen und Planungsverfahren beschleunigen",
+        date: "26.09.2026",
+        source: { label: "ihk.de/berlin", href: "https://www.ihk.de/berlin" },
+      },
+      {
+        cat: "Cybersecurity",
+        tickerTag: "🛡️ NIS-2 PFLICHTEN",
+        title: "BSI-Sicherheitsleitfaden für Finanzdienstleister: Strengere 24h-Meldepflichten und Notfallpläne für KMU etablieren",
+        date: "25.09.2026",
+        source: { label: "bsi.bund.de", href: "https://www.bsi.bund.de/" },
+      },
+      {
+        cat: "Bund & Steuer",
+        tickerTag: "💶 § 19 UStG",
+        title: "Kleinunternehmerregelung 2026: Bis 25.000 € Vorjahresumsatz steuerfrei fakturieren – EU-weite Regelung nutzen",
+        date: "28.09.2026",
+        source: { label: "Gesetze im Internet", href: "https://www.gesetze-im-internet.de/ustg_1980/__19.html" },
+      },
+      {
+        cat: "Berlin Fokus",
+        tickerTag: "🏛️ HAUSHALT 2027",
+        title: "Finanzsenat vor Herausforderung: 5 Milliarden Euro Konsolidierungsbedarf bei anstehender Senatsbildung",
+        date: "28.09.2026",
+        source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/" },
       },
       {
         cat: "Berlin Fokus",
@@ -35,10 +77,28 @@ const NewsTicker = ({ items }) => {
     ];
   }, []);
 
-  // Zeige aktuelle Top-Updates zusammen mit allen weiteren Artikeln (Steuern, KI, FinTech)
+  // Zeige aktuelle Top-Updates zusammen mit gefilterten Artikeln (ohne veraltete Wahltag-Meldungen)
   const tickerItems = useMemo(() => {
     const all = items && items.length > 0 ? items : [];
-    return [...topUpdateItems, ...all];
+    const valid = all.filter((a) => {
+      const text = `${a.title || ""} ${a.tickerTag || ""}`.toLowerCase();
+      // Veraltete Vorwahl- und Wahltags-Schnipsel ausschließen
+      if (
+        text.includes("schlange am wahllokal") ||
+        text.includes("bis 18 uhr") ||
+        text.includes("wahlhelfende gesucht") ||
+        text.includes("antragsfrist endet") ||
+        text.includes("wahlarena") ||
+        text.includes("berlintrend vor der wahl") ||
+        text.includes("so läuft der berliner wahlabend") ||
+        text.includes("polizei zieht positive zwischenbilanz") ||
+        text.includes("spitzenkandidaten haben gewählt")
+      ) {
+        return false;
+      }
+      return true;
+    });
+    return [...topUpdateItems, ...valid];
   }, [items, topUpdateItems]);
 
   return (
