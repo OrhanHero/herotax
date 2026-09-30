@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Stand: 28. September 2026.
+   Kuratierter Stand: 1. Oktober 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -174,6 +174,72 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
+    tickerTag: "KOALITIONSVERHANDLUNGEN",
+    isElection: true,
+    title: "Sondierungsabschluss im Roten Rathaus: Rot-Rot-Grün startet offizielle Koalitionsverhandlungen – Gewerbesteuer 410 % bleibt fix",
+    excerpt:
+      "Mit Beginn des 4. Quartals 2026 haben Die Linke, SPD und Bündnis 90/Die Grünen nach erfolgreichen Sondierungsgesprächen die Aufnahme formeller Koalitionsverhandlungen beschlossen (96 von 159 Sitzen). Das gemeinsame Sondierungspapier setzt Prioritäten für die Berliner Wirtschaft: Das 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuerhebesatz von 410 % wird garantiert und die Mittel für KI-, FinTech- und Verwaltungsdigitalisierung bleiben gesichert.",
+    read: "4 Min",
+    date: "01. Oktober 2026",
+    source: { label: "rbb24 · Landespolitik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
+    sources: BERLIN_WAHL_SOURCES,
+    featured: true,
+    highlight: {
+      value: "Koalitionsfahrplan",
+      compare: "96 Sitze R2G",
+      label: "Rot-Rot-Grün einigt sich auf Sondierungspapier: Stabiler Hebesatz 410 % & Konsolidierung ohne Steuererhöhung.",
+    },
+  },
+  {
+    cat: "Bund & Steuer",
+    tickerTag: "Q4 STEUER-COUNTDOWN",
+    title: "Q4 2026 Steuerfahrplan: USt-Voranmeldung Frist 10. Oktober, Investitionsabzugsbetrag & Jahresend-Check",
+    excerpt:
+      "Mit dem 1. Oktober startet das Schlussquartal 2026: Bis zum 10. Oktober ist die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal fällig (mit Dauerfristverlängerung bis 10. November). Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren.",
+    read: "5 Min",
+    date: "01. Oktober 2026",
+    source: { label: "Bundesfinanzministerium / ELSTER", href: "https://www.elster.de" },
+    featured: false,
+    highlight: {
+      value: "Frist 10.10.2026",
+      compare: "USt-Voranmeldung Q3",
+      label: "Fälligkeiten, Fristverlängerung und IAB-Planung (§ 7g EStG) zum Start in das 4. Quartal.",
+    },
+  },
+  {
+    cat: "Bund & Steuer",
+    tickerTag: "E-RECHNUNG 2027",
+    title: "Noch 3 Monate bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
+    excerpt:
+      "Der Countdown läuft: Ab dem 1. Januar 2027 müssen inländische Betriebe mit mehr als 800.000 Euro Vorjahresumsatz B2B-Rechnungen obligatorisch als ZUGFeRD oder XRechnung versenden. Das BMF stellt klar: Reines PDF genügt nicht mehr; GoBD-konforme revisionssichere Archivierung und XML-Validierung müssen jetzt in ERP-Systeme integriert werden.",
+    read: "5 Min",
+    date: "30. September 2026",
+    source: { label: "Bundesfinanzministerium · E-Rechnung", href: "https://www.bundesfinanzministerium.de" },
+    featured: false,
+    highlight: {
+      value: "Noch 3 Monate",
+      compare: "Stichtag 01.01.2027",
+      label: "B2B-Pflicht für Betriebe über 800.000 € Umsatz: ERP-Systeme jetzt rechtssicher umstellen.",
+    },
+  },
+  {
+    cat: "FinTech & KI",
+    tickerTag: "KI-REALLABOR",
+    title: "Bundesnetzagentur startet erste Pilotkohorte im KI-Reallabor: Berliner Start-ups testen Agentensysteme",
+    excerpt:
+      "Mit Beginn des Oktobers 2026 nimmt das regulatorische KI-Reallabor der Bundesnetzagentur nach dem KI-MIG die ersten Praxistests auf. Kleine und mittlere Berliner Start-ups evaluieren generative Sprachmodelle und KI-Agenten auf Konformität mit Art. 50 und Sicherheitsstandards des EU AI Act unter behördlicher Begleitung.",
+    read: "4 Min",
+    date: "01. Oktober 2026",
+    source: { label: "Bundesnetzagentur / BMDS", href: "https://bmds.bund.de/themen/kuenstliche-intelligenz" },
+    featured: false,
+    highlight: {
+      value: "Pilotkohorte Q4",
+      compare: "KI-MIG Reallabor",
+      label: "Rechtssichere Praxiserprobung autonomer Agentensysteme im Berliner FinTech-Sektor.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
     tickerTag: "SONDIERUNGSRUNDE 2",
     isElection: true,
     title: "Sondierungsgespräche im Roten Rathaus vertieft: Arbeitsgruppen beraten über 5-Milliarden-Sparkurs und Standort-Investitionen",
@@ -183,7 +249,7 @@ export const ARTICLES = [
     date: "28. September 2026",
     source: { label: "rbb24 · Politik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
     sources: BERLIN_WAHL_SOURCES,
-    featured: true,
+    featured: false,
     highlight: {
       value: "5 Mrd. € Konsolidierung",
       compare: "Sondierungsrunde 2",

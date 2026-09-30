@@ -13,43 +13,50 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 28.09.2026)
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 01.10.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🏛️ SONDIERUNGSRUNDE 2",
+        tickerTag: "🏛️ KOALITIONSVERHANDLUNGEN",
         isElection: true,
-        title: "Sondierungsgespräche im Roten Rathaus: Arbeitsgruppen von Linke, SPD & Grünen verhandeln über Haushaltslücke und Tech-Investitionen",
-        date: "28.09.2026",
+        title: "Rot-Rot-Grün beschließt Koalitionsverhandlungen: Sondierungspapier sichert Gewerbesteuerhebesatz bei 410 % und Investitionen in Tech-Hubs",
+        date: "01.10.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
         cat: "Bund & Steuer",
+        tickerTag: "📅 Q4 STEUERFRISTEN",
+        title: "Start in Q4 2026: USt-Voranmeldung für September/Q3 bis 10. Oktober fällig (Dauerfristverlängerung bis 10.11.)",
+        date: "01.10.2026",
+        source: { label: "ELSTER", href: "https://www.elster.de" },
+      },
+      {
+        cat: "Bund & Steuer",
         tickerTag: "🧾 E-RECHNUNG 2027",
-        title: "BMF-Praxishilfe zur obligatorischen B2B-E-Rechnung: ZUGFeRD- & XRechnung-Validierung und GoBD-Archivierung für Unternehmen",
-        date: "28.09.2026",
+        title: "Noch 3 Monate bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
+        date: "30.09.2026",
         source: { label: "BMF / ELSTER", href: "https://www.elster.de" },
       },
       {
         cat: "FinTech & KI",
         tickerTag: "🤖 KI-REALLABOR",
-        title: "Bundesnetzagentur eröffnet KI-Reallabor für den Mittelstand: KMU-Praxistests unter den Transparenzvorgaben des EU AI Act",
-        date: "27.09.2026",
+        title: "Bundesnetzagentur startet erste Pilotkohorte im KI-Reallabor für Start-ups & KMU unter EU-AI-Act-Kriterien",
+        date: "01.10.2026",
         source: { label: "Bundesnetzagentur", href: "https://bmds.bund.de/themen/kuenstliche-intelligenz" },
       },
       {
         cat: "Berlin Fokus",
-        tickerTag: "💼 BERLINER WIRTSCHAFT",
-        title: "IHK Berlin mahnt bei Senatsbildung Verlässlichkeit an: Gewerbesteuerhebesatz bei 410 % belassen und Planungsverfahren beschleunigen",
-        date: "26.09.2026",
+        tickerTag: "💼 STANDORT BERLIN",
+        title: "Wirtschaftsverbände begrüßen Hebesatz-Garantie: 410 % sichern Wettbewerbsfähigkeit der Berliner Gründerszene",
+        date: "30.09.2026",
         source: { label: "ihk.de/berlin", href: "https://www.ihk.de/berlin" },
       },
       {
         cat: "Cybersecurity",
         tickerTag: "🛡️ NIS-2 PFLICHTEN",
         title: "BSI-Sicherheitsleitfaden für Finanzdienstleister: Strengere 24h-Meldepflichten und Notfallpläne für KMU etablieren",
-        date: "25.09.2026",
+        date: "29.09.2026",
         source: { label: "bsi.bund.de", href: "https://www.bsi.bund.de/" },
       },
       {
@@ -58,13 +65,6 @@ const NewsTicker = ({ items }) => {
         title: "Kleinunternehmerregelung 2026: Bis 25.000 € Vorjahresumsatz steuerfrei fakturieren – EU-weite Regelung nutzen",
         date: "28.09.2026",
         source: { label: "Gesetze im Internet", href: "https://www.gesetze-im-internet.de/ustg_1980/__19.html" },
-      },
-      {
-        cat: "Berlin Fokus",
-        tickerTag: "🏛️ HAUSHALT 2027",
-        title: "Finanzsenat vor Herausforderung: 5 Milliarden Euro Konsolidierungsbedarf bei anstehender Senatsbildung",
-        date: "28.09.2026",
-        source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/" },
       },
       {
         cat: "Berlin Fokus",

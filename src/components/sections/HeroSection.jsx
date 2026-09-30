@@ -133,7 +133,7 @@ const HeroSection = () => {
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  28. September 2026 · STANDORT-RADAR 🏙️
+                  01. Oktober 2026 · STANDORT-RADAR 🏙️
                 </span>
               </div>
 
@@ -148,13 +148,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Sondierungen im Roten Rathaus vertieft: Verhandlungsteams beraten über 5-Milliarden-Sparkurs und Investitionen in Berlins Tech-Standort
+                  Koalitionsverhandlungen im Roten Rathaus beschlossen: Rot-Rot-Grün einigt sich auf Fahrplan – Gewerbesteuerhebesatz 410 % bleibt stabil
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Eine Woche nach der Abgeordnetenhauswahl gehen die Sondierungsgespräche zwischen Die Linke, SPD und Bündnis 90/Die Grünen sowie parallele Gespräche der CDU in die entscheidende Phase. Im Roten Rathaus verhandeln die Arbeitsgruppen über die Schließung der prognostizierten Budgetlücke, den verlässlichen Erhalt des Gewerbesteuer-Hebesatzes bei 410 %, gezielte Innovationsförderung für FinTech- und KI-Gründer sowie die anstehenden Umsetzungsfristen zur B2B-E-Rechnung 2027.
+                Zum Start ins 4. Quartal 2026 haben Die Linke, SPD und Bündnis 90/Die Grünen nach erfolgreichem Sondierungsabschluss die Aufnahme offizieller Koalitionsverhandlungen beschlossen (96 von 159 Sitzen). Das gemeinsame Sondierungspapier setzt klare Leitplanken für Berlins Wirtschaft: Das prognostizierte 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuer-Hebesatz bleibt fix bei 410 % und Investitionen in KI-Infrastruktur sowie beschleunigte digitale Gewerbeverfahren werden garantiert.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}
