@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Stand: 1. Oktober 2026.
+   Kuratierter Stand: 3. Oktober 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -176,34 +176,34 @@ export const ARTICLES = [
     cat: "Berlin Fokus",
     tickerTag: "KOALITIONSVERHANDLUNGEN",
     isElection: true,
-    title: "Sondierungsabschluss im Roten Rathaus: Rot-Rot-Grün startet offizielle Koalitionsverhandlungen – Gewerbesteuer 410 % bleibt fix",
+    title: "Koalitionsverhandlungen im Roten Rathaus angelaufen: Rot-Rot-Grün vertieft Fachgruppen zu Haushaltskonsolidierung & Berliner FinTech-Standort",
     excerpt:
-      "Mit Beginn des 4. Quartals 2026 haben Die Linke, SPD und Bündnis 90/Die Grünen nach erfolgreichen Sondierungsgesprächen die Aufnahme formeller Koalitionsverhandlungen beschlossen (96 von 159 Sitzen). Das gemeinsame Sondierungspapier setzt Prioritäten für die Berliner Wirtschaft: Das 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuerhebesatz von 410 % wird garantiert und die Mittel für KI-, FinTech- und Verwaltungsdigitalisierung bleiben gesichert.",
+      "Am Tag der Deutschen Einheit und zum Start in Q4 2026 haben Die Linke, SPD und Bündnis 90/Die Grünen die Facharbeitsgruppen für offizielle Koalitionsverhandlungen aufgenommen (96 von 159 Sitzen). Das gemeinsame Sondierungspapier setzt klare Prioritäten für die Berliner Wirtschaft: Das 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuerhebesatz von 410 % bleibt fix garantiert und Förderprogramme für KI-Infrastruktur sowie FinTech-Gründer werden gesichert.",
     read: "4 Min",
-    date: "01. Oktober 2026",
+    date: "03. Oktober 2026",
     source: { label: "rbb24 · Landespolitik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
       value: "Koalitionsfahrplan",
       compare: "96 Sitze R2G",
-      label: "Rot-Rot-Grün einigt sich auf Sondierungspapier: Stabiler Hebesatz 410 % & Konsolidierung ohne Steuererhöhung.",
+      label: "Rot-Rot-Grün vertieft Arbeitsgruppen: Stabiler Hebesatz 410 % & Konsolidierung ohne Steuererhöhung.",
     },
   },
   {
     cat: "Bund & Steuer",
     tickerTag: "Q4 STEUER-COUNTDOWN",
-    title: "Q4 2026 Steuerfahrplan: USt-Voranmeldung Frist 10. Oktober, Investitionsabzugsbetrag & Jahresend-Check",
+    title: "Q4 2026 Steuerfahrplan: USt-Voranmeldung Frist 12. Oktober (Feiertagsregelung), Investitionsabzugsbetrag & Jahresend-Check",
     excerpt:
-      "Mit dem 1. Oktober startet das Schlussquartal 2026: Bis zum 10. Oktober ist die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal fällig (mit Dauerfristverlängerung bis 10. November). Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren.",
+      "Mit dem 3. Oktober (Tag der Deutschen Einheit) rückt die erste wichtige Frist in Q4 2026 näher: Da der reguläre Stichtag 10. Oktober auf einen Samstag fällt, ist die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal 2026 bis Montag, 12. Oktober fällig (mit Dauerfristverlängerung bis 10. November). Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren.",
     read: "5 Min",
-    date: "01. Oktober 2026",
+    date: "03. Oktober 2026",
     source: { label: "Bundesfinanzministerium / ELSTER", href: "https://www.elster.de" },
     featured: false,
     highlight: {
-      value: "Frist 10.10.2026",
+      value: "Frist 12.10.2026",
       compare: "USt-Voranmeldung Q3",
-      label: "Fälligkeiten, Fristverlängerung und IAB-Planung (§ 7g EStG) zum Start in das 4. Quartal.",
+      label: "Fristverlängerung durch Wochenende/Feiertag & IAB-Planung (§ 7g EStG) im 4. Quartal.",
     },
   },
   {

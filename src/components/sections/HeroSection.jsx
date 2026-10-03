@@ -133,7 +133,7 @@ const HeroSection = () => {
                   </span>
                 </div>
                 <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  01. Oktober 2026 · STANDORT-RADAR 🏙️
+                  03. Oktober 2026 · STANDORT-RADAR 🏙️
                 </span>
               </div>
 
@@ -148,13 +148,13 @@ const HeroSection = () => {
                   className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
                   style={{ ...fontDisplay }}
                 >
-                  Koalitionsverhandlungen im Roten Rathaus beschlossen: Rot-Rot-Grün einigt sich auf Fahrplan – Gewerbesteuerhebesatz 410 % bleibt stabil
+                  Koalitionsverhandlungen im Roten Rathaus angelaufen: Rot-Rot-Grün vertieft Fachgruppen zu Haushaltskonsolidierung &amp; Berliner FinTech-Standort
                 </h3>
               </a>
 
               {/* Story Teaser */}
               <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Zum Start ins 4. Quartal 2026 haben Die Linke, SPD und Bündnis 90/Die Grünen nach erfolgreichem Sondierungsabschluss die Aufnahme offizieller Koalitionsverhandlungen beschlossen (96 von 159 Sitzen). Das gemeinsame Sondierungspapier setzt klare Leitplanken für Berlins Wirtschaft: Das prognostizierte 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuer-Hebesatz bleibt fix bei 410 % und Investitionen in KI-Infrastruktur sowie beschleunigte digitale Gewerbeverfahren werden garantiert.
+                Am Tag der Deutschen Einheit und zum Start in Q4 2026 arbeiten die Facharbeitsgruppen von Linke, SPD und Grünen (96 Sitze) an den Koalitionsverträgen für das Rote Rathaus. Das Fundament steht: Das prognostizierte 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuerhebesatz bleibt fest verankert bei 410 % und gezielte Investitionen in KI-Infrastruktur, FinTech-Gründer sowie beschleunigte digitale Gewerbeverfahren werden vertraglich festgeschrieben.
               </p>
 
               {/* Individuell aufgelistete Primärquellen */}

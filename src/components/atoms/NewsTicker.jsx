@@ -13,29 +13,29 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 01.10.2026)
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 03.10.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
         tickerTag: "🏛️ KOALITIONSVERHANDLUNGEN",
         isElection: true,
-        title: "Rot-Rot-Grün beschließt Koalitionsverhandlungen: Sondierungspapier sichert Gewerbesteuerhebesatz bei 410 % und Investitionen in Tech-Hubs",
-        date: "01.10.2026",
+        title: "Rot-Rot-Grün vertieft Arbeitsgruppen im Roten Rathaus: Gewerbesteuerhebesatz 410 % und Investitionen in Tech-Hubs bleiben Konsens",
+        date: "03.10.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
         cat: "Bund & Steuer",
-        tickerTag: "📅 Q4 STEUERFRISTEN",
-        title: "Start in Q4 2026: USt-Voranmeldung für September/Q3 bis 10. Oktober fällig (Dauerfristverlängerung bis 10.11.)",
-        date: "01.10.2026",
+        tickerTag: "🇩🇪 STEUERFRISTEN Q4",
+        title: "USt-Voranmeldung September/Q3: Wegen Tag der Deutschen Einheit und Wochenende gilt Fristende Montag, 12. Oktober (Dauerfristverlängerung: 10.11.)",
+        date: "03.10.2026",
         source: { label: "ELSTER", href: "https://www.elster.de" },
       },
       {
         cat: "Bund & Steuer",
         tickerTag: "🧾 E-RECHNUNG 2027",
-        title: "Noch 3 Monate bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
-        date: "30.09.2026",
+        title: "Noch 89 Tage bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
+        date: "02.10.2026",
         source: { label: "BMF / ELSTER", href: "https://www.elster.de" },
       },
       {
@@ -49,7 +49,7 @@ const NewsTicker = ({ items }) => {
         cat: "Berlin Fokus",
         tickerTag: "💼 STANDORT BERLIN",
         title: "Wirtschaftsverbände begrüßen Hebesatz-Garantie: 410 % sichern Wettbewerbsfähigkeit der Berliner Gründerszene",
-        date: "30.09.2026",
+        date: "02.10.2026",
         source: { label: "ihk.de/berlin", href: "https://www.ihk.de/berlin" },
       },
       {
