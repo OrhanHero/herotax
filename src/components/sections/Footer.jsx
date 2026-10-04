@@ -20,7 +20,17 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm" style={{ ...fontDisplay }}>
             <a href="/" className="font-bold hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 rounded flex items-center gap-2" style={{ color: T.text }}>
-              <img src="/images/berlin_moonlight_skyline.png" alt="HERO Tax Logo - Berlin Moonlight Skyline" className="h-7 w-7 rounded-md object-cover border border-slate-300/80 shadow-xs" />
+              <div
+                className="h-7 w-7 rounded-md flex items-center justify-center font-black text-white text-xs shadow-xs shrink-0 select-none"
+                style={{
+                  background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #2563eb 100%)",
+                  letterSpacing: "-0.05em",
+                  fontFamily: "var(--font-display, sans-serif)",
+                }}
+                aria-hidden="true"
+              >
+                H
+              </div>
               <span>HERO</span> <span style={{ color: T.blue }}>Tax</span>
             </a>
             <span className="font-normal" style={{ color: T.faint }}>{t("footer.made")}</span>

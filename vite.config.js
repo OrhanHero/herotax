@@ -11,4 +11,18 @@ export default defineConfig({
        die ausgelieferte Fassung ist. */
     __BUILD_TIME__: JSON.stringify(Date.now()),
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/")) {
+            return "vendor";
+          }
+          if (id.includes("node_modules/lucide-react")) {
+            return "icons";
+          }
+        },
+      },
+    },
+  },
 })

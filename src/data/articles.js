@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Stand: 3. Oktober 2026.
+   Kuratierter Stand: 4. Oktober 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -174,20 +174,20 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "KOALITIONSVERHANDLUNGEN",
+    tickerTag: "VORGESPRÄCHE R2G",
     isElection: true,
-    title: "Koalitionsverhandlungen im Roten Rathaus angelaufen: Rot-Rot-Grün vertieft Fachgruppen zu Haushaltskonsolidierung & Berliner FinTech-Standort",
+    title: "Zweites Vorgespräch im Haus der Statistik: Linke, Grüne und SPD verständigen sich auf „weiteren gemeinsamen Weg“ – Ergebnis für KW 41 angekündigt",
     excerpt:
-      "Am Tag der Deutschen Einheit und zum Start in Q4 2026 haben Die Linke, SPD und Bündnis 90/Die Grünen die Facharbeitsgruppen für offizielle Koalitionsverhandlungen aufgenommen (96 von 159 Sitzen). Das gemeinsame Sondierungspapier setzt klare Prioritäten für die Berliner Wirtschaft: Das 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuerhebesatz von 410 % bleibt fix garantiert und Förderprogramme für KI-Infrastruktur sowie FinTech-Gründer werden gesichert.",
+      "Nach ihrem zweiten Vorgespräch am Samstag, 3. Oktober, haben Die Linke, Bündnis 90/Die Grünen und die SPD in einer knappen gemeinsamen Erklärung mitgeteilt, sich auf einen „weiteren gemeinsamen Weg“ verständigt zu haben. Inhaltliche Details nannten die Parteien nicht. Grüne und SPD hatten eine Klärung zum Umgang mit Antisemitismus, Rassismus und organisierter Kriminalität zur Voraussetzung für offizielle Sondierungen gemacht. In der kommenden Woche sollen die Gespräche zu einem Ergebnis geführt werden – erst dann entscheidet sich, ob formelle Sondierungen beginnen. Für die Berliner Wirtschaft bleiben Haushaltskurs und Standortpolitik damit vorerst offen.",
     read: "4 Min",
-    date: "03. Oktober 2026",
+    date: "04. Oktober 2026",
     source: { label: "rbb24 · Landespolitik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Koalitionsfahrplan",
-      compare: "96 Sitze R2G",
-      label: "Rot-Rot-Grün vertieft Arbeitsgruppen: Stabiler Hebesatz 410 % & Konsolidierung ohne Steuererhöhung.",
+      value: "Vorgespräch Nr. 2",
+      compare: "Ergebnis in KW 41",
+      label: "Linke, Grüne und SPD wollen gemeinsam weitermachen – formelle Sondierungen noch nicht beschlossen.",
     },
   },
   {
@@ -209,7 +209,7 @@ export const ARTICLES = [
   {
     cat: "Bund & Steuer",
     tickerTag: "E-RECHNUNG 2027",
-    title: "Noch 3 Monate bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
+    title: "Noch 89 Tage bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
     excerpt:
       "Der Countdown läuft: Ab dem 1. Januar 2027 müssen inländische Betriebe mit mehr als 800.000 Euro Vorjahresumsatz B2B-Rechnungen obligatorisch als ZUGFeRD oder XRechnung versenden. Das BMF stellt klar: Reines PDF genügt nicht mehr; GoBD-konforme revisionssichere Archivierung und XML-Validierung müssen jetzt in ERP-Systeme integriert werden.",
     read: "5 Min",
@@ -217,7 +217,7 @@ export const ARTICLES = [
     source: { label: "Bundesfinanzministerium · E-Rechnung", href: "https://www.bundesfinanzministerium.de" },
     featured: false,
     highlight: {
-      value: "Noch 3 Monate",
+      value: "Noch 89 Tage",
       compare: "Stichtag 01.01.2027",
       label: "B2B-Pflicht für Betriebe über 800.000 € Umsatz: ERP-Systeme jetzt rechtssicher umstellen.",
     },
@@ -239,21 +239,19 @@ export const ARTICLES = [
     },
   },
   {
-    cat: "Berlin Fokus",
-    tickerTag: "SONDIERUNGSRUNDE 2",
-    isElection: true,
-    title: "Sondierungsgespräche im Roten Rathaus vertieft: Arbeitsgruppen beraten über 5-Milliarden-Sparkurs und Standort-Investitionen",
+    cat: "Bund & Steuer",
+    tickerTag: "JStG 2026 · ZINSEN",
+    title: "Jahressteuergesetz 2026: Steuerzinsen sollen sich ab 2027 verdoppeln – 0,3 % statt 0,15 % pro Monat",
     excerpt:
-      "Eine Woche nach der Wahl zum Berliner Abgeordnetenhaus vertiefen Die Linke, SPD und Bündnis 90/Die Grünen ihre Sondierungsgespräche über ein rot-rot-grünes Regierungsbündnis (96 von 159 Sitzen). Im Fokus der Finanz-Arbeitsgruppe steht der Abbau des prognostizierten strukturellen Defizits von rund 5 Milliarden Euro pro Jahr. Wirtschafts- und Gründerverbände fordern, Investitionen in Bildung, Digitalisierung und den FinTech-Hub Berlin trotz Sparzwang zu sichern.",
+      "Der Regierungsentwurf zum Jahressteuergesetz 2026 (BT-Drs. 21/8283) sieht vor, die Nachzahlungs- und Erstattungszinsen nach § 233a AO für Verzinsungszeiträume ab dem 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat anzuheben – also von 1,8 % auf 3,6 % pro Jahr. Begründet wird das mit dem gestiegenen Zinsniveau. Das Gesetzgebungsverfahren läuft noch; Bundestag und Bundesrat müssen zustimmen. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen, damit nach Ablauf der 15-monatigen Karenzzeit keine teuren Zinsen auflaufen.",
     read: "4 Min",
-    date: "28. September 2026",
-    source: { label: "rbb24 · Politik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
-    sources: BERLIN_WAHL_SOURCES,
+    date: "04. Oktober 2026",
+    source: { label: "Deutscher Bundestag · Drucksache 21/8283", href: "https://www.bundestag.de" },
     featured: false,
     highlight: {
-      value: "5 Mrd. € Konsolidierung",
-      compare: "Sondierungsrunde 2",
-      label: "Rot-Rot-Grün verhandelt im Roten Rathaus über Investitionspfade und Budgetausgleich.",
+      value: "3,6 % p. a.",
+      compare: "bisher 1,8 % p. a.",
+      label: "Geplante Verdopplung der Steuerzinsen nach § 233a AO ab 01.01.2027 – noch nicht beschlossen.",
     },
   },
   {

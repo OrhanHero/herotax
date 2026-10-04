@@ -9,7 +9,6 @@ import Meta from "../atoms/Meta";
 import SourceLink from "../atoms/SourceLink";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import BrandenburgerTorBadge from "../atoms/BrandenburgerTorBadge";
-import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Säule 01 · KI im Steuerrecht & Prozess-Intelligence */
 const AISection = () => {
@@ -102,25 +101,26 @@ const AISection = () => {
             </span>
             <div>
               <h3 className="text-xl sm:text-2xl font-black tracking-tight" style={{ ...fontDisplay, color: "#FFFFFF" }}>
-                KI-Sicherheit & Regulierung · Bund 🌙
+                KI-Sicherheit &amp; Regulierung · Bund
               </h3>
               <p className="text-xs" style={{ ...fontMono, color: "rgba(255,255,255,0.65)" }}>
-                Offizielle Quellen: BMDS (Digitalpolitik & Regulierung) · BSI (Cyber- & KI-Sicherheit)
+                Offizielle Quellen: BMDS (Digitalpolitik &amp; Regulierung) · BSI (Cyber- &amp; KI-Sicherheit)
               </p>
             </div>
           </div>
-          <div className="lg:col-span-5 flex items-center justify-end gap-3">
-            <AIImageOverlay
-              src="/images/berlin_moonlight_brandenburg.png"
-              alt="Berlin Brandenburger Tor Moonlight Tech Visual"
-              className="hidden sm:block rounded-xl border border-white/20 shadow-md"
-              imgClassName="w-48 h-20 object-cover rounded-xl"
-            />
+          <div className="lg:col-span-5 flex flex-col sm:flex-row items-start sm:items-center justify-end gap-3">
+            <div
+              className="hidden sm:flex flex-col px-3.5 py-2 rounded-xl text-left"
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.12)", border: "1px solid rgba(255, 255, 255, 0.2)" }}
+            >
+              <span className="text-[10px] font-mono uppercase tracking-widest text-white/70">Prüfstandard 2026/27</span>
+              <span className="text-xs font-bold text-white font-mono">BSI TR-03161 · GoBD Rn. 151</span>
+            </div>
             <a
               href="https://bmds.bund.de/aktuelles"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 shrink-0 shadow-sm"
               style={{ ...fontDisplay, backgroundColor: "#FFFFFF", color: "#2337E8" }}
             >
               Alle BMDS-Meldungen

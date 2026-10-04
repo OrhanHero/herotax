@@ -13,29 +13,36 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 03.10.2026)
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 04.10.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🏛️ KOALITIONSVERHANDLUNGEN",
+        tickerTag: "🏛️ VORGESPRÄCHE R2G",
         isElection: true,
-        title: "Rot-Rot-Grün vertieft Arbeitsgruppen im Roten Rathaus: Gewerbesteuerhebesatz 410 % und Investitionen in Tech-Hubs bleiben Konsens",
-        date: "03.10.2026",
+        title: "Linke, Grüne und SPD verständigen sich nach 2. Vorgespräch auf „weiteren gemeinsamen Weg“ – Ergebnis soll in KW 41 stehen",
+        date: "04.10.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
         cat: "Bund & Steuer",
-        tickerTag: "🇩🇪 STEUERFRISTEN Q4",
-        title: "USt-Voranmeldung September/Q3: Wegen Tag der Deutschen Einheit und Wochenende gilt Fristende Montag, 12. Oktober (Dauerfristverlängerung: 10.11.)",
-        date: "03.10.2026",
+        tickerTag: "📅 STEUERFRISTEN Q4",
+        title: "USt-Voranmeldung September/Q3: Stichtag 10.10. fällt auf Samstag – Fristende ist Montag, 12. Oktober (Dauerfristverlängerung: 10.11.)",
+        date: "04.10.2026",
         source: { label: "ELSTER", href: "https://www.elster.de" },
+      },
+      {
+        cat: "Bund & Steuer",
+        tickerTag: "📈 JStG 2026",
+        title: "Regierungsentwurf Jahressteuergesetz 2026: Nachzahlungs- und Erstattungszinsen sollen ab 2027 von 0,15 % auf 0,3 % pro Monat steigen",
+        date: "04.10.2026",
+        source: { label: "bundestag.de", href: "https://www.bundestag.de" },
       },
       {
         cat: "Bund & Steuer",
         tickerTag: "🧾 E-RECHNUNG 2027",
         title: "Noch 89 Tage bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
-        date: "02.10.2026",
+        date: "04.10.2026",
         source: { label: "BMF / ELSTER", href: "https://www.elster.de" },
       },
       {
@@ -44,13 +51,6 @@ const NewsTicker = ({ items }) => {
         title: "Bundesnetzagentur startet erste Pilotkohorte im KI-Reallabor für Start-ups & KMU unter EU-AI-Act-Kriterien",
         date: "01.10.2026",
         source: { label: "Bundesnetzagentur", href: "https://bmds.bund.de/themen/kuenstliche-intelligenz" },
-      },
-      {
-        cat: "Berlin Fokus",
-        tickerTag: "💼 STANDORT BERLIN",
-        title: "Wirtschaftsverbände begrüßen Hebesatz-Garantie: 410 % sichern Wettbewerbsfähigkeit der Berliner Gründerszene",
-        date: "02.10.2026",
-        source: { label: "ihk.de/berlin", href: "https://www.ihk.de/berlin" },
       },
       {
         cat: "Cybersecurity",

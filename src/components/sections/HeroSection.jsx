@@ -1,452 +1,383 @@
 import { useState } from "react";
-import { Rocket, Building2, BarChart3, ChevronRight, ExternalLink } from "lucide-react";
-import { useLang } from "../../i18n";
-import { T, fontDisplay, fontMono } from "../../config/tokens";
+import { 
+  ChevronRight, 
+  Calculator, 
+  ShieldCheck, 
+  ArrowRight,
+  FileText,
+  Clock,
+  Landmark
+} from "lucide-react";
+import { CONFIG } from "../../config/config";
+import { T, fontDisplay } from "../../config/tokens";
 import SiteStatusBadge from "../atoms/SiteStatusBadge";
-import FernsehturmBadge from "../atoms/FernsehturmBadge";
-import AIImageOverlay from "../atoms/AIImageOverlay";
-import WahlprogrammeSection from "./WahlprogrammeSection";
-import ElectionResultsLiveTracker from "./ElectionResultsLiveTracker";
+import WhatsAppGlyph from "../atoms/WhatsAppGlyph";
 
-/** Hero Section: HERO Tax — Berlin Startup & Ecosystem Radar 2026 (Mit verifizierten Original-Quellen) */
+/**
+ * Hero Section: HERO Tax · Professionelles Enterprise-Portal für Berliner Unternehmer & Gründer
+ * 100% Anti-Slop: Keine KI-Bilder, keine pulsierenden Monde/Halos, keine Gaming-Optik.
+ * Konzentrierte Fachinhalte, echte Gewerbesteuer- und E-Rechnungs-Daten, ruhiges Grid.
+ */
 const HeroSection = () => {
-  const { t } = useLang();
-  const [activeTab, setActiveTab] = useState("trends"); // 'trends' | 'hubs' | 'kpis'
-  const [electionView, setElectionView] = useState("results"); // 'results' | 'programmes'
+  const [activeTab, setActiveTab] = useState("fristen"); // 'fristen' | 'gewerbesteuer' | 'gobd'
 
-  const [showElectionArchive, setShowElectionArchive] = useState(false);
+  const navigate = (path, e) => {
+    if (e && (e.metaKey || e.ctrlKey)) return;
+    if (e) e.preventDefault();
+    window.history.pushState({}, "", path);
+    window.dispatchEvent(new Event("popstate"));
+  };
 
-  const trends = [
+  /* Echte Q4/2026 & 2027 Gesetzesfristen nach BMF & AO */
+  const taxDeadlines = [
     {
-      title: "Agentic AI & FinTech Boom",
-      desc: "KI-Beleganalyse und Tax Automation sind 2026 die Wachstumsfelder der Berliner Tech-Szene — begleitet vom KI Bundesverband mit Sitz in Berlin.",
-      tag: "Tech #1 in DE",
-      source: "KI Bundesverband e.V.",
-      href: "https://ki-verband.de/",
+      date: "12. Okt 2026",
+      title: "USt-Voranmeldung & LSt (Sep / Q3)",
+      law: "§ 18 Abs. 1 UStG · § 41a EStG",
+      status: "Fällig",
+      critical: true,
+      note: "Verschiebung durch Feiertag & Wochenende (Dauerfristverlängerung: 10. Nov)",
     },
     {
-      title: "22.306 Gewerbeanmeldungen in H1 2026",
-      desc: "Berlins Gründungsgeschehen bleibt auf Vorjahresniveau — amtlich gemeldet für das 1. Halbjahr 2026.",
-      tag: "−0,5 % ggü. Vorjahr",
-      source: "Amt für Statistik Berlin-Brandenburg",
-      href: "https://www.statistik-berlin-brandenburg.de/gewerbeanzeigen/",
+      date: "10. Nov 2026",
+      title: "USt-Voranmeldung Oktober 2026",
+      law: "§ 18 UStG · Schonfrist bis 13.11.",
+      status: "Regulär",
+      critical: false,
+      note: "Gilt für Monatszahler ohne Fristverlängerung",
     },
     {
-      title: "CleanTech & Smart Energy",
-      desc: "Starker Fokus auf nachhaltige Energiewende & Mobility am EUREF-Campus & Adlershof.",
-      tag: "Green Tech",
-      source: "EUREF-Campus Berlin",
-      href: "https://euref.de/",
+      date: "01. Jan 2027",
+      title: "E-Rechnungspflicht B2B (Wachstumschancengesetz)",
+      law: "§ 14 UStG n.F. · BMF 15.10.2024",
+      status: "Gesetzlicher Stichtag",
+      critical: true,
+      note: "Empfangspflicht für alle inländischen Unternehmer ab 01.01.2025; Übergangsfrist für eigene Ausgabe bis 800k € Umsatz",
     },
   ];
 
-  const hubs = [
-    {
-      title: "Merantix AI Hub Mitte",
-      desc: "Europas führendes Ökosystem für KI-Startups, Risikokapital & KI-Governance in Berlin-Mitte.",
-      tag: "AI Capital",
-      source: "Merantix AI Hub",
-      href: "https://www.merantix.com/",
-    },
-    {
-      title: "Factory Berlin Ecosystem",
-      desc: "Kreative Tech-Community, Smart City Initiativen und internationale Gründer-Netzwerke.",
-      tag: "Innovations-Hub",
-      source: "Factory Berlin",
-      href: "https://factoryberlin.com/",
-    },
-    {
-      title: "WISTA Adlershof Science Park",
-      desc: "Europas modernster Technologiepark für High-Tech, Photonik & Quantencomputing.",
-      tag: "DeepTech Hub",
-      source: "WISTA Management Adlershof",
-      href: "https://www.adlershof.de/",
-    },
+  /* Echte Berliner Gewerbesteuer-Hebesätze & Umland-Vergleich */
+  const gewerbesteuerRates = [
+    { district: "Berlin (Alle 12 Bezirke)", rate: "410 %", effective: "14,35 %", note: "Konstant seit 2021" },
+    { district: "Potsdam (Brandenburg)", rate: "455 %", effective: "15,93 %", note: "Landeshauptstadt Brandenburg" },
+    { district: "Schönefeld (Flughafenumfeld)", rate: "240 %", effective: "8,40 %", note: "Niedrigster Hebesatz in der Metropolregion" },
+    { district: "Königs Wusterhausen", rate: "360 %", effective: "12,60 %", note: "Wirtschaftsachse Südost" },
   ];
 
-  const kpis = [
+  /* GoBD & KI-Prozesse Fakten */
+  const gobdCheckpoints = [
     {
-      label: "Risikokapital (H1 2026)",
-      value: "1,7 Mrd. €",
-      detail: "+10 % · Platz 1 in Deutschland",
-      source: "EY Startup-Barometer, Juli 2026",
-      href: "https://www.ey.com/de_de/newsroom/2026/07/ey-startup-barometer-deutschland-juli-2026",
+      title: "Verfahrensdokumentation (§§ 146, 147 AO)",
+      desc: "Beim Einsatz von KI-Tools zur Belegerfassung (z. B. OCR/LLM) muss die lückenlose Nachvollziehbarkeit und Unveränderbarkeit dokumentiert sein.",
+      law: "GoBD Rn. 151 ff.",
     },
     {
-      label: "IBB GründungsBONUS Plus",
-      value: "50.000 €",
-      detail: "Zuschuss ohne Eigenkapitalzwang",
-      source: "Investitionsbank Berlin (IBB)",
-      href: "https://www.ibb.de/de/foerderprogramme/gruendungsbonus-plus.html",
+      title: "Menschliche Freigabekontrolle Pflicht",
+      desc: "Vollautomatisierte Buchungssätze ohne qualifizierte Plausibilitätsprüfung verletzen die Sorgfaltspflicht der ordnungsmäßigen Buchführung.",
+      law: "BMF-Schreiben IV A 4 - S 0316",
     },
     {
-      label: "Stichtag E-Rechnung (B2B)",
-      value: "01.01.2027",
-      detail: "ab > 800.000 € Vorjahresumsatz",
-      source: "Bundesfinanzministerium · BMF-Schreiben",
-      href: "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/BMF_Schreiben_Allgemeines/bmf_schreiben_allgemeines.html",
+      title: "Revisionssichere Aufbewahrung",
+      desc: "Originale XML-Strukturen (ZUGFeRD / XRechnung) müssen unverändert im maschinenlesbaren Rohformat archiviert werden — reines PDF genügt nicht.",
+      law: "§ 14b UStG",
     },
   ];
 
   return (
-    <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-16 overflow-hidden bg-blueprint-grid">
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-full overflow-hidden">
-        {/* Left Column: Display Headline & Copy */}
-        <div className="lg:col-span-7 space-y-5 flex flex-col justify-start max-w-full overflow-hidden">
-          {/* Parallel Eyebrow Badge Left: Live-Stand der Webseite */}
-          <div className="flex items-center gap-3 max-w-full overflow-hidden">
+    <section className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-8 sm:pt-14 pb-16 overflow-hidden">
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch max-w-full">
+
+        {/* ── Linke Spalte: Seriöse Kanzlei- & Beratungsarchitektur ── */}
+        <div className="lg:col-span-7 flex flex-col justify-between max-w-full space-y-8">
+          
+          {/* Top Status */}
+          <div className="flex flex-wrap items-center gap-3">
             <SiteStatusBadge />
-          </div>
-
-          <h1
-            className="font-black tracking-tight leading-[1.03] break-words max-w-full"
-            style={{ ...fontDisplay, color: T.text, fontSize: "clamp(1.9rem, 5.2vw, 4.75rem)" }}
-          >
-            {t("hero.title1")}
-            <br />
-            {t("hero.title2pre")}
-            <span className="relative inline-block text-blue-600 dark:text-blue-400 px-1.5 underline decoration-blue-600/30 underline-offset-8">
-              Berlin
-            </span>
-            {t("hero.title2post")}
-          </h1>
-
-          <p className="text-base sm:text-lg leading-relaxed font-normal max-w-xl break-words" style={{ color: T.muted }}>
-            {t("hero.sub")}
-          </p>
-
-          {/* Hauptstory der Woche Card */}
-          <div className="pt-2 max-w-xl space-y-4">
-            <div className="group relative rounded-2xl p-5 sm:p-6 transition-all duration-300 bg-slate-900/90 backdrop-blur-md border border-blue-500/35 hover:border-blue-500/60 shadow-xl overflow-hidden">
-              {/* Subtle Tech Glow Effect */}
-              <div className="absolute -top-12 -right-12 w-48 h-48 bg-blue-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-blue-500/25 transition-all duration-500" />
-              
-              {/* Header Badges & Date */}
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 relative z-10">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40 tracking-wide font-mono">
-                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-                    HAUPTSTORY DER WOCHE ⚡
-                  </span>
-                  <span className="text-[11px] font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/70">
-                    Wirtschaft &amp; Steuern 2026
-                  </span>
-                </div>
-                <span className="text-xs text-amber-300/90 font-mono font-bold">
-                  03. Oktober 2026 · STANDORT-RADAR 🏙️
-                </span>
-              </div>
-
-              {/* Story Title */}
-              <a
-                href="https://www.rbb24.de/politik/berlin-wahl-2026/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group/link relative z-10"
-              >
-                <h3
-                  className="text-lg sm:text-xl font-bold text-white group-hover/link:text-amber-300 transition-colors leading-snug mb-2"
-                  style={{ ...fontDisplay }}
-                >
-                  Koalitionsverhandlungen im Roten Rathaus angelaufen: Rot-Rot-Grün vertieft Fachgruppen zu Haushaltskonsolidierung &amp; Berliner FinTech-Standort
-                </h3>
-              </a>
-
-              {/* Story Teaser */}
-              <p className="text-sm text-slate-300 leading-relaxed mb-4 relative z-10">
-                Am Tag der Deutschen Einheit und zum Start in Q4 2026 arbeiten die Facharbeitsgruppen von Linke, SPD und Grünen (96 Sitze) an den Koalitionsverträgen für das Rote Rathaus. Das Fundament steht: Das prognostizierte 5-Milliarden-Defizit soll ohne Steuererhöhungen konsolidiert werden, der Gewerbesteuerhebesatz bleibt fest verankert bei 410 % und gezielte Investitionen in KI-Infrastruktur, FinTech-Gründer sowie beschleunigte digitale Gewerbeverfahren werden vertraglich festgeschrieben.
-              </p>
-
-              {/* Individuell aufgelistete Primärquellen */}
-              <div className="pt-3 border-t border-slate-800 text-xs relative z-10 space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                    Fakten, Quellen &amp; Standorte:
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-mono">
-                    Verifizierte Quellen
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <a
-                    href="https://www.ihk.de/berlin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/35 text-blue-200 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate font-semibold">IHK Berlin · Standort</span>
-                    <ExternalLink size={10} className="shrink-0 text-blue-400" />
-                  </a>
-                  <a
-                    href="https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/BMF_Schreiben_Allgemeines/bmf_schreiben_allgemeines.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">E-Rechnung 2027 (BMF)</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.ibb.de/de/foerderprogramme/gruendungsbonus-plus.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">GründungsBONUS Plus</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                  <a
-                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-300 hover:text-white text-[11px] font-mono flex items-center justify-between gap-1 transition-all"
-                  >
-                    <span className="truncate">Wahlergebnis (100 %)</span>
-                    <ExternalLink size={10} className="shrink-0 text-slate-400" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Wahlergebnis-Archiv & Koalitions-Rechner (Kompakt & Aufklappbar) */}
-          <div className="pt-2 max-w-xl w-full">
-            <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-bold text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded">
-                    Archiv · Wahl 2026
-                  </span>
-                  <span className="text-xs text-slate-300 font-mono hidden sm:inline">
-                    Amtliches Endergebnis (159 Sitze)
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowElectionArchive(!showElectionArchive)}
-                  className="text-xs font-mono font-semibold text-blue-400 hover:text-blue-300 underline cursor-pointer"
-                >
-                  {showElectionArchive ? "▲ Wahldaten verbergen" : "▼ Sitzverteilung & Wahldaten anzeigen"}
-                </button>
-              </div>
-
-              {showElectionArchive && (
-                <div className="pt-3 space-y-3">
-                  <div className="flex items-center p-1 bg-slate-950/90 rounded-xl border border-slate-800 text-xs font-mono">
-                    <button
-                      type="button"
-                      onClick={() => setElectionView("results")}
-                      className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all ${
-                        electionView === "results"
-                          ? "bg-amber-500 text-slate-950 font-black shadow-sm"
-                          : "text-slate-300 hover:text-white"
-                      }`}
-                    >
-                      Amtliche Wahlergebnisse
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setElectionView("programmes")}
-                      className={`flex-1 py-1.5 px-3 rounded-lg font-bold transition-all ${
-                        electionView === "programmes"
-                          ? "bg-blue-600 text-white font-black shadow-sm"
-                          : "text-slate-300 hover:text-white"
-                      }`}
-                    >
-                      Wahlprogramme &amp; Kandidaten
-                    </button>
-                  </div>
-                  {electionView === "results" ? (
-                    <ElectionResultsLiveTracker />
-                  ) : (
-                    <WahlprogrammeSection />
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column: BERLIN STARTUP & ECOSYSTEM RADAR 2026 */}
-        <div className="lg:col-span-5 flex flex-col justify-between max-w-full overflow-hidden">
-          {/* Parallel Eyebrow Badge Right (Über dem Bild). Der Live-Stand
-              steht seit dem Umbau links im SiteStatusBadge — zweimal in
-              derselben Hero wäre doppelt. */}
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-5 max-w-full overflow-hidden">
-            <FernsehturmBadge label="BERLIN METROPOL RADAR 🌙" />
-          </div>
-
-          <div className="rounded-2xl relative overflow-hidden transition-all duration-300 shadow-lg border border-slate-200 flex-1 flex flex-col justify-between">
-            {/* Full Background: Berlin Moonlight Skyline */}
-            <AIImageOverlay
-              src="/images/berlin_moonlight_skyline.png"
-              alt="Berlin Moonlight Tech Skyline"
-              className="absolute inset-0 w-full h-full"
-              imgClassName="w-full h-full object-cover"
-            />
-            {/* Lightened Overlay for enhanced image visibility & readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/25 via-slate-950/45 to-slate-950/70" />
-
-            {/* Pulsierendes Mondschein-Aura-Licht direkt über dem Berliner Vollmond */}
-            <div
-              className="absolute top-[4%] right-[16%] sm:right-[20%] w-44 h-44 sm:w-56 sm:h-56 rounded-full pointer-events-none mix-blend-screen animate-moon-halo-pulse z-[5]"
+            <span
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-medium"
               style={{
-                background: "radial-gradient(circle, rgba(191, 219, 254, 0.75) 0%, rgba(96, 165, 250, 0.3) 45%, rgba(0, 0, 0, 0) 70%)",
+                backgroundColor: T.wash,
+                color: T.muted,
+                border: `1px solid ${T.line}`,
               }}
-            />
+            >
+              <ShieldCheck size={14} className="text-emerald-600 dark:text-emerald-400" />
+              Rechtssicher · Primärquellen BMF &amp; SenFin
+            </span>
+          </div>
 
-            {/* Content on top of background */}
-            <div className="relative z-10 p-5 sm:p-6 flex-1 flex flex-col justify-between">
+          {/* H1 Headline */}
+          <div className="space-y-4">
+            <h1
+              className="font-black tracking-tight leading-[1.08] break-words text-slate-950 dark:text-slate-50"
+              style={{ ...fontDisplay, fontSize: "clamp(2.2rem, 5.2vw, 4.2rem)" }}
+            >
+              Steuerrecht.
+              <br />
+              Automatisierte Prozesse.
+              <br />
+              <span style={{ color: T.blue }}>Präzision</span> für Berlin.
+            </h1>
 
-              {/* Interactive Control Tabs */}
-              <div className="grid grid-cols-3 gap-1.5 bg-white/10 backdrop-blur-sm p-1 rounded-lg mb-5 border border-white/15">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("trends")}
-                  className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
-                    activeTab === "trends"
-                      ? "bg-blue-600 text-white shadow-md"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  style={{ ...fontDisplay }}
-                >
-                  <Rocket size={13} /> Trends
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("hubs")}
-                  className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
-                    activeTab === "hubs"
-                      ? "bg-blue-600 text-white shadow-md"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  style={{ ...fontDisplay }}
-                >
-                  <Building2 size={13} /> Tech-Hubs
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("kpis")}
-                  className={`py-2 px-2 rounded-md text-xs font-bold flex items-center justify-center gap-1 transition-all ${
-                    activeTab === "kpis"
-                      ? "bg-blue-600 text-white shadow-md"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                  style={{ ...fontDisplay }}
-                >
-                  <BarChart3 size={13} /> KPIs
-                </button>
+            <p
+              className="text-base sm:text-lg leading-relaxed max-w-2xl font-normal"
+              style={{ color: T.muted }}
+            >
+              Fachlich fundierte Orientierung für Unternehmer, Gründer und Finanzverantwortliche. Verbindliche Fristen, steuerliche Gesetzesänderungen und GoBD-konforme KI-Prozesse — ohne Marketing-Floskeln.
+            </p>
+          </div>
+
+          {/* Primäre Aktionen */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1">
+            <a
+              href="/tools"
+              onClick={(e) => navigate("/tools", e)}
+              className="px-6 py-3.5 rounded-lg font-bold text-sm sm:text-base transition-all duration-150 hover:opacity-90 inline-flex items-center gap-2 shadow-xs"
+              style={{
+                backgroundColor: T.blue,
+                color: T.blueInk,
+                ...fontDisplay,
+              }}
+            >
+              <Calculator size={17} />
+              <span>Berechnungstools &amp; Fristen</span>
+              <ArrowRight size={16} />
+            </a>
+
+            <a
+              href="/ki"
+              onClick={(e) => navigate("/ki", e)}
+              className="px-5 py-3.5 rounded-lg font-bold text-sm sm:text-base border transition-all duration-150 hover:bg-slate-100 dark:hover:bg-slate-800/60 inline-flex items-center gap-2"
+              style={{
+                borderColor: T.line,
+                color: T.text,
+                ...fontDisplay,
+              }}
+            >
+              <FileText size={17} />
+              <span>GoBD &amp; KI-Leitfaden</span>
+            </a>
+
+            <a
+              href={CONFIG.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3.5 rounded-lg font-semibold text-xs sm:text-sm text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 inline-flex items-center gap-1.5"
+            >
+              <WhatsAppGlyph size={15} />
+              <span>Updates per Messenger</span>
+            </a>
+          </div>
+
+          {/* 3 Fach-Kacheln mit hohem Nutzwert */}
+          <div className="grid sm:grid-cols-3 gap-3.5 pt-2">
+            <a
+              href="/tools"
+              onClick={(e) => navigate("/tools", e)}
+              className="p-4 rounded-xl border transition-all hover:border-blue-500/50 hover:shadow-xs group"
+              style={{ backgroundColor: T.card, borderColor: T.line }}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-mono font-bold text-blue-600 dark:text-blue-400">§ 14 UStG</span>
+                <ChevronRight size={14} className="text-slate-400 group-hover:text-blue-600 transition-colors" />
+              </div>
+              <h3 className="font-bold text-sm mb-1 text-slate-900 dark:text-slate-100" style={{ ...fontDisplay }}>
+                E-Rechnung 2027
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Fristen-Matrix &amp; Konformitäts-Check für B2B-Umsätze nach BMF.
+              </p>
+            </a>
+
+            <a
+              href="/tools"
+              onClick={(e) => navigate("/tools", e)}
+              className="p-4 rounded-xl border transition-all hover:border-blue-500/50 hover:shadow-xs group"
+              style={{ backgroundColor: T.card, borderColor: T.line }}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-mono font-bold text-emerald-600 dark:text-emerald-400">§ 19 UStG</span>
+                <ChevronRight size={14} className="text-slate-400 group-hover:text-blue-600 transition-colors" />
+              </div>
+              <h3 className="font-bold text-sm mb-1 text-slate-900 dark:text-slate-100" style={{ ...fontDisplay }}>
+                USt- &amp; Kleinunternehmer
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Vorsteuerabzug, Netto/Brutto &amp; Schwellenwerte ab 2025/2026.
+              </p>
+            </a>
+
+            <a
+              href="/ki"
+              onClick={(e) => navigate("/ki", e)}
+              className="p-4 rounded-xl border transition-all hover:border-blue-500/50 hover:shadow-xs group"
+              style={{ backgroundColor: T.card, borderColor: T.line }}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-mono font-bold text-indigo-600 dark:text-indigo-400">GoBD Rn. 151</span>
+                <ChevronRight size={14} className="text-slate-400 group-hover:text-blue-600 transition-colors" />
+              </div>
+              <h3 className="font-bold text-sm mb-1 text-slate-900 dark:text-slate-100" style={{ ...fontDisplay }}>
+                Verfahrensdokumentation
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Prüfungssicherer Einsatz von LLM- &amp; OCR-Modellen in der Buchführung.
+              </p>
+            </a>
+          </div>
+
+          {/* Rechtlicher Transparenzhinweis */}
+          <div
+            className="p-3 rounded-lg border text-xs flex items-center justify-between gap-3"
+            style={{ backgroundColor: T.wash, borderColor: T.line }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="font-mono font-bold text-slate-500">§ 5 StBerG:</span>
+              <span className="text-slate-600 dark:text-slate-300">
+                Informations- und Analyseportal. Keine Rechts- oder Steuerberatung im Einzelfall.
+              </span>
+            </div>
+            <a
+              href="/impressum"
+              onClick={(e) => navigate("/impressum", e)}
+              className="font-medium underline hover:text-blue-600 shrink-0 text-slate-500"
+            >
+              Impressum
+            </a>
+          </div>
+        </div>
+
+        {/* ── Rechte Spalte: Seriöses Standort- & Steuer-Factsheet (Zero-Slop) ── */}
+        <div className="lg:col-span-5 flex flex-col justify-between max-w-full">
+          
+          <div
+            className="rounded-2xl p-6 border flex-1 flex flex-col justify-between space-y-6"
+            style={{
+              backgroundColor: T.card,
+              borderColor: T.line,
+              boxShadow: T.shadow,
+            }}
+          >
+            {/* Header */}
+            <div>
+              <div className="flex items-center justify-between pb-3 border-b" style={{ borderColor: T.lineSoft }}>
+                <div className="flex items-center gap-2">
+                  <Landmark size={18} className="text-blue-600" />
+                  <span className="font-bold text-sm text-slate-900 dark:text-slate-100" style={{ ...fontDisplay }}>
+                    Berliner Steuer- &amp; Standortradar
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-slate-500">Stand: Q4 / 2026</span>
               </div>
 
-              {/* TAB 1: Trends 2026 */}
-              {activeTab === "trends" && (
+              {/* Tab Selector: Fristen | Gewerbesteuer | GoBD */}
+              <div className="grid grid-cols-3 gap-1 p-1 rounded-lg my-4" style={{ backgroundColor: T.wash }}>
+                {[
+                  { id: "fristen", label: "Fristen Q4" },
+                  { id: "gewerbesteuer", label: "Gewerbesteuer" },
+                  { id: "gobd", label: "GoBD & KI" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActiveTab(tab.id)}
+                    className="py-1.5 text-xs font-semibold rounded-md transition-all text-center"
+                    style={{
+                      backgroundColor: activeTab === tab.id ? T.card : "transparent",
+                      color: activeTab === tab.id ? T.text : T.muted,
+                      boxShadow: activeTab === tab.id ? "0 1px 2px rgba(0,0,0,0.05)" : "none",
+                    }}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* TAB 1: Echte Fristen */}
+              {activeTab === "fristen" && (
                 <div className="space-y-3">
-                  {trends.map((item) => (
-                    <a
+                  {taxDeadlines.map((item) => (
+                    <div
                       key={item.title}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block p-3.5 rounded-xl bg-white/8 backdrop-blur-sm border border-white/12 hover:border-blue-400/50 hover:bg-white/14 transition-all cursor-pointer"
+                      className="p-3 rounded-lg border text-xs space-y-1.5"
+                      style={{
+                        backgroundColor: item.critical ? "rgba(35, 55, 232, 0.03)" : T.wash,
+                        borderColor: item.critical ? T.blueBorder : T.lineSoft,
+                      }}
                     >
-                      <div className="flex items-center justify-between gap-2 mb-1.5">
-                        <span className="text-[10px] font-mono uppercase font-bold text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded border border-amber-500/25">
-                          {item.tag}
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono font-bold text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
+                          <Clock size={12} />
+                          {item.date}
                         </span>
-                        <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-400 group-hover:underline">
-                          <span>Quelle: {item.source}</span>
-                          <ExternalLink size={11} className="shrink-0" />
-                        </div>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+                          {item.law}
+                        </span>
                       </div>
-                      <h4 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors" style={{ ...fontDisplay }}>
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </a>
+                      <p className="font-bold text-slate-900 dark:text-slate-100 text-sm">{item.title}</p>
+                      <p className="text-slate-500 dark:text-slate-400 leading-normal">{item.note}</p>
+                    </div>
                   ))}
                 </div>
               )}
 
-              {/* TAB 2: Berlin Tech Hubs */}
-              {activeTab === "hubs" && (
+              {/* TAB 2: Gewerbesteuer Hebesätze */}
+              {activeTab === "gewerbesteuer" && (
                 <div className="space-y-3">
-                  {hubs.map((item) => (
-                    <a
-                      key={item.title}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block p-3.5 rounded-xl bg-white/8 backdrop-blur-sm border border-white/12 hover:border-blue-400/50 hover:bg-white/14 transition-all cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between gap-2 mb-1.5">
-                        <span className="text-[10px] font-mono uppercase font-bold text-blue-400 bg-blue-500/15 px-2 py-0.5 rounded border border-blue-500/25">
-                          {item.tag}
-                        </span>
-                        <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-400 group-hover:underline">
-                          <span>Quelle: {item.source}</span>
-                          <ExternalLink size={11} className="shrink-0" />
-                        </div>
-                      </div>
-                      <h4 className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors" style={{ ...fontDisplay }}>
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              {/* TAB 3: Berlin Startup KPIs */}
-              {activeTab === "kpis" && (
-                <div className="space-y-3 text-xs">
-                  {kpis.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block p-3.5 rounded-xl bg-white/8 backdrop-blur-sm border border-white/12 hover:border-blue-400/50 hover:bg-white/14 transition-all cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between gap-2">
+                  <div className="text-xs text-slate-500 mb-2">
+                    Effektive Steuerbelastung berechnet mit Steuermesszahl 3,5 % (§ 11 Abs. 2 GewStG).
+                  </div>
+                  <div className="divide-y border rounded-lg overflow-hidden text-xs" style={{ borderColor: T.lineSoft }}>
+                    {gewerbesteuerRates.map((row) => (
+                      <div key={row.district} className="p-3 flex items-center justify-between bg-white dark:bg-slate-900">
                         <div>
-                          <div className="flex items-center gap-1 text-[11px] font-mono font-semibold text-blue-400 mb-0.5 group-hover:underline">
-                            <span>Quelle: {item.source}</span>
-                            <ExternalLink size={11} className="shrink-0" />
-                          </div>
-                          <span className="text-white font-bold block text-xs">{item.label}</span>
-                          <span className="text-slate-400 text-[11px]">{item.detail}</span>
+                          <p className="font-bold text-slate-900 dark:text-slate-100">{row.district}</p>
+                          <p className="text-[11px] text-slate-500">{row.note}</p>
                         </div>
-                        <span className="text-lg font-black text-amber-400 font-mono group-hover:scale-105 transition-transform">{item.value}</span>
+                        <div className="text-right">
+                          <span className="font-mono font-black text-sm text-slate-900 dark:text-slate-100 block">
+                            {row.rate}
+                          </span>
+                          <span className="font-mono text-[11px] text-slate-500">
+                            Effektiv {row.effective}
+                          </span>
+                        </div>
                       </div>
-                    </a>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               )}
 
-              {/* Footer Link */}
-              <div className="pt-4 mt-4 border-t border-white/15 flex items-center justify-between text-xs text-slate-400">
-                <span style={{ ...fontMono }}>herotax.de · Verifizierte Daten</span>
-                <a
-                  href="/news"
-                  onClick={(e) => {
-                    if (e && (e.metaKey || e.ctrlKey)) return;
-                    e.preventDefault();
-                    window.history.pushState({}, "", "/news");
-                    window.dispatchEvent(new Event("popstate"));
-                  }}
-                  className="text-blue-400 font-bold hover:text-blue-300 inline-flex items-center gap-1"
-                >
-                  Hauptstadt News lesen <ChevronRight size={13} />
-                </a>
-              </div>
+              {/* TAB 3: GoBD & KI Checkpoints */}
+              {activeTab === "gobd" && (
+                <div className="space-y-3">
+                  {gobdCheckpoints.map((cp) => (
+                    <div key={cp.title} className="p-3 rounded-lg border text-xs space-y-1" style={{ borderColor: T.lineSoft, backgroundColor: T.wash }}>
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-slate-900 dark:text-slate-100">{cp.title}</span>
+                        <span className="font-mono text-[10px] text-slate-500">{cp.law}</span>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{cp.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Bottom Citation & Link */}
+            <div className="pt-4 border-t flex items-center justify-between text-xs text-slate-500" style={{ borderColor: T.lineSoft }}>
+              <span className="font-mono text-[11px]">Gesetzliche Grundlagen: AO, UStG, GewStG</span>
+              <a
+                href="/news"
+                onClick={(e) => navigate("/news", e)}
+                className="font-bold text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+              >
+                Zum News-Hub <ChevronRight size={13} />
+              </a>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

@@ -5,15 +5,28 @@ import { T } from "../../config/tokens";
 /** Floating Button — erscheint nach dem Scrollen, springt sanft nach oben */
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 480);
+    const onScroll = () => {
+      setVisible(window.scrollY > 480);
+      setMenuOpen(document.body.hasAttribute("data-menu-open"));
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const observer = new MutationObserver(() => {
+      setMenuOpen(document.body.hasAttribute("data-menu-open"));
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["data-menu-open"] });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
   }, []);
 
-  if (!visible) return null;
+  if (!visible || menuOpen) return null;
 
   return (
     <button

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Sparkles, Home, Newspaper, Trophy, FileText, Scale, ClipboardCheck, BarChart2, Vote } from "lucide-react";
 import { useLang } from "../../i18n";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
 import { ARTICLES, DEUTSCHLANDGPT_LINKS } from "../../data/articles";
@@ -11,6 +11,8 @@ import SourceLink from "../atoms/SourceLink";
 import LiveTrackerBadge from "../atoms/LiveTrackerBadge";
 import FernsehturmBadge from "../atoms/FernsehturmBadge";
 import BerlinBezirkSelector from "../atoms/BerlinBezirkSelector";
+import ElectionResultsLiveTracker from "./ElectionResultsLiveTracker";
+import WahlprogrammeSection from "./WahlprogrammeSection";
 
 const DE_ICONS = {
   home: Home,
@@ -26,6 +28,8 @@ const NewsHub = () => {
   const { t } = useLang();
   const [filter, setFilter] = useState("Alle");
   const [articles, setArticles] = useState(ARTICLES);
+  const [showElectionTracker, setShowElectionTracker] = useState(false);
+  const [showWahlprogramme, setShowWahlprogramme] = useState(false);
 
   // Lade Artikel beim Mount (mit Caching & automatischem Update)
   useEffect(() => {
@@ -92,62 +96,97 @@ const NewsHub = () => {
 
         {/* Special Election Banner for Berlin Fokus */}
         {filter === "Berlin Fokus" && (
-          <div className="mb-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white border border-blue-400/30 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-              <div className="max-w-2xl">
-                <div className="inline-flex flex-wrap items-center gap-2 mb-3">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider">
-                    <span className="w-2 h-2 rounded-full bg-blue-400" />
-                    Wahlportal Berlin 2026
+          <div className="mb-8 space-y-6">
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white border border-blue-400/30 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="max-w-2xl">
+                  <div className="inline-flex flex-wrap items-center gap-2 mb-3">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider">
+                      <span className="w-2 h-2 rounded-full bg-blue-400" />
+                      Wahlportal Berlin 2026
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-mono font-bold uppercase tracking-wider">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      Amtliches Endergebnis (100 %)
+                    </div>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-mono font-bold uppercase tracking-wider">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                    🏆 Amtliches Endergebnis (100 %)
+                  <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2" style={{ ...fontDisplay }}>
+                    Berlin-Wahl 2026: Amtliches Endergebnis &amp; Sondierungen
+                  </h3>
+                  <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed mb-4">
+                    Die Wahl zum 20. Abgeordnetenhaus und den 12 Bezirksverordnetenversammlungen ist entschieden: Alle 4.114 Gebiete sind amtlich ausgezählt. Die Linke siegt mit 25,7 % (48 Sitze), gefolgt von CDU (18,8 %), AfD (16,3 %), Grünen (14,3 %) und SPD (12,1 %). Rot-Rot-Grün verfügt über eine Mehrheit von 96 von 159 Sitzen.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setShowElectionTracker(!showElectionTracker)}
+                      className="px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
+                      style={{
+                        backgroundColor: showElectionTracker ? "#F59E0B" : "#2563EB",
+                        color: showElectionTracker ? "#0F172A" : "#FFFFFF",
+                      }}
+                    >
+                      <BarChart2 size={16} />
+                      <span>{showElectionTracker ? "Wahldaten-Dashboard schließen" : "Interaktives Wahldaten-Dashboard öffnen"}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowWahlprogramme(!showWahlprogramme)}
+                      className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm transition-all inline-flex items-center gap-2 cursor-pointer"
+                    >
+                      <Vote size={16} />
+                      <span>{showWahlprogramme ? "Wahlprogramme schließen" : "Wahlprogramme & Spitzenkandidaten"}</span>
+                    </button>
                   </div>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-2" style={{ ...fontDisplay }}>
-                  Berlin-Wahl 2026: Amtliches Endergebnis &amp; Sondierungen
-                </h3>
-                <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed">
-                  Die Wahl zum 20. Abgeordnetenhaus und den 12 Bezirksverordnetenversammlungen ist entschieden: Alle 4.114 Gebiete sind amtlich ausgezählt. Die Linke siegt mit 25,7 % (48 Sitze), gefolgt von CDU (18,8 %), AfD (16,3 %), Grünen (14,3 %) und SPD (12,1 %). Rot-Rot-Grün verfügt über eine Mehrheit von 96 von 159 Sitzen.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3 shrink-0">
-                <a
-                  href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
-                  title="Amtliche Ergebnisse wahlen-berlin.de"
-                  style={{ ...fontDisplay }}
-                >
-                  <span className="w-2 h-2 rounded-full bg-slate-950" />
-                  <span>Amtliche Ergebnisse (AGH 100 %)</span>
-                  <ArrowUpRight size={16} />
-                </a>
-                <a
-                  href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
-                  style={{ ...fontDisplay }}
-                >
-                  <span>rbb24 Sondierungs-Ticker</span>
-                  <ArrowUpRight size={16} />
-                </a>
-                <a
-                  href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5"
-                  style={{ ...fontDisplay }}
-                >
-                  <span>BVV-Ergebnisse 12 Bezirke</span>
-                  <ArrowUpRight size={16} />
-                </a>
+                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                  <a
+                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/agh/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
+                    title="Amtliche Ergebnisse wahlen-berlin.de"
+                    style={{ ...fontDisplay }}
+                  >
+                    <span>Amtliche Ergebnisse (AGH 100 %)</span>
+                    <ArrowUpRight size={16} />
+                  </a>
+                  <a
+                    href="https://www.rbb24.de/politik/berlin-wahl-2026/beitraege/berlin-wahl-agh-bvv-stimmen-ergebnis-reaktionen-liveticker.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5 shadow-md"
+                    style={{ ...fontDisplay }}
+                  >
+                    <span>rbb24 Sondierungs-Ticker</span>
+                    <ArrowUpRight size={16} />
+                  </a>
+                  <a
+                    href="https://www.wahlen-berlin.de/wahlen/BE2026/Afspraes/bvv/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs sm:text-sm transition-colors inline-flex items-center gap-1.5"
+                    style={{ ...fontDisplay }}
+                  >
+                    <span>BVV-Ergebnisse 12 Bezirke</span>
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
               </div>
             </div>
+
+            {showElectionTracker && (
+              <div className="animate-in fade-in duration-300">
+                <ElectionResultsLiveTracker />
+              </div>
+            )}
+
+            {showWahlprogramme && (
+              <div className="animate-in fade-in duration-300">
+                <WahlprogrammeSection />
+              </div>
+            )}
           </div>
         )}
 

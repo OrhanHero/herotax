@@ -2,7 +2,6 @@ import { ExternalLink, Wallet, Sparkles, CheckCircle2, ArrowUpRight } from "luci
 import { T, fontDisplay, fontMono } from "../../config/tokens";
 import { EUDI_TIMELINE, EUDI_PARTNERS } from "../../data/eudiWallet";
 import Eyebrow from "../atoms/Eyebrow";
-import AIImageOverlay from "../atoms/AIImageOverlay";
 
 /** Säule 03 · EUDI-Wallet (Digitale Identität der EU)
     Eigener Bereich für Stand & Zeitplan des European Digital Identity
@@ -63,13 +62,30 @@ const EUDIWalletSection = () => (
               </p>
             </div>
           </div>
-          <div className="lg:col-span-5 flex justify-end">
-            <AIImageOverlay
-              src="/images/eudi_wallet_berlin.png"
-              alt="EUDI Wallet Berlin Digital Identity 3D Visual"
-              className="w-full rounded-2xl border border-white/20 shadow-lg overflow-hidden"
-              imgClassName="w-full h-32 object-cover rounded-2xl"
-            />
+          <div className="lg:col-span-5">
+            <div
+              className="p-5 rounded-2xl backdrop-blur-md space-y-3 text-xs text-white"
+              style={{ backgroundColor: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.22)" }}
+            >
+              <div className="flex items-center justify-between pb-2 border-b border-white/15">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-white/70">Architektur-Standard</span>
+                <span className="font-mono font-bold text-amber-300">eIDAS 2.0 (EU 2024/1183)</span>
+              </div>
+              <div className="grid grid-cols-2 gap-3 text-[11px] font-mono">
+                <div>
+                  <div className="text-white/60 text-[10px] uppercase">Verpflichtend ab</div>
+                  <div className="font-bold text-white">24. Dez 2026 (EU)</div>
+                </div>
+                <div>
+                  <div className="text-white/60 text-[10px] uppercase">DE-Launch (d-you)</div>
+                  <div className="font-bold text-white">02. Jan 2027</div>
+                </div>
+              </div>
+              <div className="pt-2 flex items-center justify-between text-[11px] font-mono border-t border-white/15">
+                <span className="text-white/70">Sicherheitsstandard:</span>
+                <span className="font-bold text-emerald-300">BSI TR-03126 (High)</span>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -43,6 +43,7 @@
   --color-ink-text: #FFFFFF;
   --color-ink-muted: #9AA3B2;
   --color-ink-accent: #8FA0FF;
+  --ticker-duration: 260s;
 }
 
 html.dark {
@@ -147,7 +148,7 @@ html {
 /* ── Newsticker-Laufband (Ruhige, gedrosselte Lesegeschwindigkeit) ── */
 .ticker-track {
   width: max-content;
-  animation: hero-ticker 260s linear infinite;
+  animation: hero-ticker var(--ticker-duration, 260s) linear infinite;
 }
 .ticker-viewport:hover .ticker-track,
 .ticker-viewport:focus-within .ticker-track {

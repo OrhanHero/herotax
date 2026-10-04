@@ -1,5 +1,6 @@
 import { Cpu, Newspaper, Wallet, Wrench, Radio, BookOpen, ArrowRight } from "lucide-react";
 import { useLang } from "../../i18n";
+import { CONFIG } from "../../config/config";
 import { T, fontDisplay, fontMono, cardBase } from "../../config/tokens";
 
 export default function StartseiteFeatureHub() {
@@ -138,6 +139,62 @@ export default function StartseiteFeatureHub() {
               </a>
             );
           })}
+        </div>
+
+        {/* Maßnahme G: Trust-Anker & Betreiber-Hinweis */}
+        <div
+          className="mt-14 pt-8 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+          style={{ borderColor: T.lineSoft }}
+        >
+          <div className="flex items-center gap-4">
+            <div
+              className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-base shrink-0 shadow-xs"
+              style={{
+                backgroundColor: T.blueDim,
+                color: T.blue,
+                border: `1px solid ${T.blueBorder}`,
+                ...fontDisplay,
+              }}
+            >
+              OK
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <p className="font-bold text-sm" style={{ ...fontDisplay, color: T.text }}>
+                  {CONFIG.impressumName}
+                </p>
+                <span
+                  className="text-[11px] font-mono px-2 py-0.5 rounded"
+                  style={{ backgroundColor: T.wash, color: T.faint, border: `1px solid ${T.lineSoft}` }}
+                >
+                  Betreiber &amp; Herausgeber
+                </span>
+              </div>
+              <p className="text-xs mt-0.5 leading-relaxed max-w-xl" style={{ color: T.muted }}>
+                Dieses Portal dient der Wissensvermittlung und Orientierung und ersetzt keine individuelle steuerliche oder rechtliche Beratung (§ 5 StBerG). Alle Inhalte mit transparenten Primärquellen.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 text-xs shrink-0 font-medium">
+            <a
+              href="/impressum"
+              onClick={(e) => navigate("/impressum", e)}
+              className="hover:underline underline-offset-4"
+              style={{ color: T.muted }}
+            >
+              Impressum &amp; Kontakt
+            </a>
+            <span style={{ color: T.lineSoft }}>•</span>
+            <a
+              href="/datenschutz"
+              onClick={(e) => navigate("/datenschutz", e)}
+              className="hover:underline underline-offset-4"
+              style={{ color: T.muted }}
+            >
+              Datenschutz
+            </a>
+          </div>
         </div>
       </div>
     </section>
