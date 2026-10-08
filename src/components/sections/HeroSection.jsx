@@ -36,7 +36,7 @@ const HeroSection = () => {
       law: "§ 18 Abs. 1 UStG · § 41a EStG",
       status: "Fällig",
       critical: true,
-      note: "Verschiebung durch Feiertag & Wochenende (Dauerfristverlängerung: 10. Nov)",
+      note: "Fällig in 4 Tagen (Verschiebung durch Wochenende · Dauerfristverlängerung: 10. Nov)",
     },
     {
       date: "10. Nov 2026",
