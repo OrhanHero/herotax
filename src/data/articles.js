@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Stand: 8. Oktober 2026.
+   Kuratierter Stand: 10. Oktober 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -174,18 +174,18 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "ENTSCHEIDUNG KW 41",
+    tickerTag: "KOALITION BERLIN",
     isElection: true,
-    title: "Koalitionsentscheidung in KW 41: Linke, Grüne und SPD vor Grundsatzbeschluss über offizielle Koalitionsverhandlungen im Roten Rathaus",
+    title: "Koalitionsverhandlungen im Blick: Linke, Grüne und SPD vor Grundsatzbeschluss im Roten Rathaus über Regierungsbildung",
     excerpt:
-      "In der laufenden 41. Kalenderwoche steuern die Beratungen zwischen Die Linke, Bündnis 90/Die Grünen und der SPD im Roten Rathaus auf die Vorentscheidung zu (96 von 159 Sitzen). Nachdem sich die drei Parteien auf einen gemeinsamen Weg verständigt haben, verhandeln die Spitzen über die letzten Knackpunkte: Die Konsolidierung des 5-Milliarden-Defizits im Landeshaushalt bei garantiert stabilem Gewerbesteuerhebesatz von 410 % sowie verbindliche Vereinbarungen zu Innerer Sicherheit und Verwaltungsdigitalisierung. Bis zum Wochenende wollen die Parteigremien entscheiden, ob die formalen Koalitionsverhandlungen beginnen.",
+      "Nach intensiven Spitzenberatungen zum Ende der 41. Kalenderwoche steuern Die Linke, Bündnis 90/Die Grünen und die SPD im Roten Rathaus auf die formelle Aufnahme von Koalitionsverhandlungen zu (96 von 159 Sitzen). Die Partei- und Fraktionsspitzen haben sich auf zentrale Eckpunkte verständigt: Der Berliner Gewerbesteuerhebesatz von 410 % bleibt als verlässliche Standortgarantie unangetastet, während die Konsolidierung des Landeshaushalts mit gezielten Zukunftsinvestitionen in Schulbau, moderne Verwaltung und Digitalisierung kombiniert wird. Die Parteigremien beraten an diesem Wochenende über die Freigabe der Koalitionsrunden.",
     read: "4 Min",
-    date: "08. Oktober 2026",
+    date: "10. Oktober 2026",
     source: { label: "rbb24 · Landespolitik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Entscheidung KW 41",
+      value: "Koalitionsfahrplan",
       compare: "96 Sitze R2G",
       label: "Linke, Grüne und SPD vor Beschluss über formelle Koalitionsverhandlungen im Roten Rathaus.",
     },
@@ -195,29 +195,29 @@ export const ARTICLES = [
     tickerTag: "Q4 STEUER-COUNTDOWN",
     title: "Q4 2026 Steuerfahrplan: USt-Voranmeldung Frist 12. Oktober – Endspurt für September/Q3, Dauerfristverlängerung & IAB-Nutzung",
     excerpt:
-      "Nur noch vier Tage bis zum ersten zentralen Steuerstichtag in Q4 2026: Da der reguläre 10. Oktober auf einen Samstag fällt, endet die Frist für die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal 2026 erst am kommenden Montag, 12. Oktober (mit Dauerfristverlängerung bis 10. November). Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren und Jahresabschluss-Vorbereitungen anzustoßen.",
+      "Nur noch zwei Tage bis zum zentralen Steuerstichtag in Q4 2026: Da der reguläre 10. Oktober auf den heutigen Samstag fällt, endet die Frist für die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal 2026 erst am kommenden Montag, 12. Oktober (§ 108 Abs. 3 AO; mit Dauerfristverlängerung bis 10. November). Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren und Jahresabschluss-Vorbereitungen anzustoßen.",
     read: "5 Min",
-    date: "08. Oktober 2026",
+    date: "10. Oktober 2026",
     source: { label: "Bundesfinanzministerium / ELSTER", href: "https://www.elster.de" },
     featured: false,
     highlight: {
       value: "Frist 12.10.2026",
-      compare: "Noch 4 Tage",
-      label: "USt-Voranmeldung Q3 fällig am Montag – Wochenendfrist & IAB-Planung (§ 7g EStG) nutzen.",
+      compare: "Noch 2 Tage",
+      label: "USt-Voranmeldung Q3 fällig am Montag – Wochenendfrist gem. § 108 AO & IAB-Planung (§ 7g EStG) nutzen.",
     },
   },
   {
     cat: "Bund & Steuer",
     tickerTag: "E-RECHNUNG 2027",
-    title: "Noch 84 Tage bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
+    title: "Noch 82 Tage bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
     excerpt:
       "Der Countdown läuft: Ab dem 1. Januar 2027 müssen inländische Betriebe mit mehr als 800.000 Euro Vorjahresumsatz B2B-Rechnungen obligatorisch als ZUGFeRD oder XRechnung versenden. Das BMF stellt klar: Reines PDF genügt nicht mehr; GoBD-konforme revisionssichere Archivierung und XML-Validierung müssen jetzt in ERP-Systeme integriert werden.",
     read: "5 Min",
-    date: "08. Oktober 2026",
+    date: "10. Oktober 2026",
     source: { label: "Bundesfinanzministerium · E-Rechnung", href: "https://www.bundesfinanzministerium.de" },
     featured: false,
     highlight: {
-      value: "Noch 84 Tage",
+      value: "Noch 82 Tage",
       compare: "Stichtag 01.01.2027",
       label: "B2B-Pflicht für Betriebe über 800.000 € Umsatz: ERP-Systeme jetzt rechtssicher umstellen.",
     },
@@ -229,7 +229,7 @@ export const ARTICLES = [
     excerpt:
       "Mit Beginn des Oktobers 2026 nimmt das regulatorische KI-Reallabor der Bundesnetzagentur nach dem KI-MIG die ersten Praxistests auf. Kleine und mittlere Berliner Start-ups evaluieren generative Sprachmodelle und KI-Agenten auf Konformität mit Art. 50 und Sicherheitsstandards des EU AI Act unter behördlicher Begleitung.",
     read: "4 Min",
-    date: "06. Oktober 2026",
+    date: "10. Oktober 2026",
     source: { label: "Bundesnetzagentur / BMDS", href: "https://bmds.bund.de/themen/kuenstliche-intelligenz" },
     featured: false,
     highlight: {
@@ -245,7 +245,7 @@ export const ARTICLES = [
     excerpt:
       "Der Regierungsentwurf zum Jahressteuergesetz 2026 (BT-Drs. 21/8283) sieht vor, die Nachzahlungs- und Erstattungszinsen nach § 233a AO für Verzinsungszeiträume ab dem 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat anzuheben – also von 1,8 % auf 3,6 % pro Jahr. Begründet wird das mit dem gestiegenen Zinsniveau. Das Gesetzgebungsverfahren läuft noch; Bundestag und Bundesrat müssen zustimmen. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen, damit nach Ablauf der 15-monatigen Karenzzeit keine teuren Zinsen auflaufen.",
     read: "4 Min",
-    date: "08. Oktober 2026",
+    date: "10. Oktober 2026",
     source: { label: "Deutscher Bundestag · Drucksache 21/8283", href: "https://www.bundestag.de" },
     featured: false,
     highlight: {

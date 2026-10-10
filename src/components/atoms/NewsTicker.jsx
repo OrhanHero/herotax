@@ -13,36 +13,36 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 08.10.2026)
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 10.10.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🏛️ ENTSCHEIDUNG KW 41",
+        tickerTag: "🏛️ KOALITION BERLIN",
         isElection: true,
-        title: "Rot-Rot-Grün vor Grundsatzbeschluss im Roten Rathaus: Linke, Grüne und SPD entscheiden diese Woche über Beginn formeller Koalitionsverhandlungen",
-        date: "08.10.2026",
+        title: "Rot-Rot-Grün nach Beratungsrunde vor Zielgerade: Linke, Grüne und SPD verständigen sich auf Fahrplan für Koalitionsverhandlungen im Roten Rathaus",
+        date: "10.10.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
         cat: "Bund & Steuer",
         tickerTag: "📅 STEUERFRISTEN Q4",
-        title: "USt-Voranmeldung September/Q3: Noch 4 Tage bis Fristende Montag, 12. Oktober (Wochenendregelung · Dauerfristverlängerung: 10.11.)",
-        date: "08.10.2026",
+        title: "USt-Voranmeldung September/Q3: Noch 2 Tage bis Fristende Montag, 12. Oktober (Wochenendverschiebung gem. § 108 AO · Dauerfristverlängerung: 10.11.)",
+        date: "10.10.2026",
         source: { label: "ELSTER", href: "https://www.elster.de" },
       },
       {
         cat: "Bund & Steuer",
         tickerTag: "📈 JStG 2026",
         title: "Jahressteuergesetz 2026 in Beratung: Nachzahlungs- und Erstattungszinsen sollen ab 2027 von 0,15 % auf 0,3 % pro Monat steigen (3,6 % p. a.)",
-        date: "08.10.2026",
+        date: "10.10.2026",
         source: { label: "bundestag.de", href: "https://www.bundestag.de" },
       },
       {
         cat: "Bund & Steuer",
         tickerTag: "🧾 E-RECHNUNG 2027",
-        title: "Noch 84 Tage bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
-        date: "08.10.2026",
+        title: "Noch 82 Tage bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
+        date: "10.10.2026",
         source: { label: "BMF / ELSTER", href: "https://www.elster.de" },
       },
       {
