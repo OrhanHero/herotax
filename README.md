@@ -130,3 +130,9 @@ Redaktionelle Inhalte — kein Steuerberatungs-Ersatz (§ 5 StBerG). Die Datensc
 - Web: [herotax.de](https://herotax.de)
 - E-Mail: info@herotax.de
 - [LinkedIn](https://www.linkedin.com/in/orhankahraman/) · [Instagram](https://instagram.com/herotaxberlin) · [TikTok](https://tiktok.com/@herotaxberlin) · [YouTube](https://www.youtube.com/@herotaxberlin) · [X](https://x.com/HeroTaxBerlin)
+
+## Entwicklungsumgebung
+
+Node.js 24.21.0 und npm 11.19.0 sind über `.nvmrc`, `.node-version` und `package.json` festgehalten. Die Website verwendet Vite 8.3.4 und den stabilen Babel React Compiler. Aus dem benachbarten `hero`-Repository können `npm run env:doctor`, `npm run env:dev` und `npm run env:check` beide Repositories gemeinsam bedienen; einen abweichenden Pfad über `HERO_WEBSITE_DIR` angeben.
+
+Die Werkzeugmodernisierung ist auf `chore/app-companion-environment` isoliert. [Separate Dokumentation und Agenten-Übergabe](docs/APP-BEGLEITPROJEKT.md).
