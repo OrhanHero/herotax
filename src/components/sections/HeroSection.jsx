@@ -31,12 +31,12 @@ const HeroSection = () => {
   /* Echte Q4/2026 & 2027 Gesetzesfristen nach BMF & AO */
   const taxDeadlines = [
     {
-      date: "12. Okt 2026",
-      title: "USt-Voranmeldung & LSt (Sep / Q3)",
-      law: "§ 18 Abs. 1 UStG · § 41a EStG",
-      status: "Fällig",
+      date: "15. Okt 2026",
+      title: "Zahlungsschonfrist USt & LSt (Sep / Q3)",
+      law: "§ 240 Abs. 3 AO · § 18 UStG · § 41a EStG",
+      status: "Schonfrist",
       critical: true,
-      note: "Fällig in 2 Tagen (Montag, 12.10. durch Wochenendverschiebung gem. § 108 Abs. 3 AO · Dauerfristverlängerung: 10. Nov)",
+      note: "Anmeldung war am 12.10. fällig · Überweisung bis Do, 15.10. ohne Säumniszuschlag (gilt nicht für Bar-/Scheckzahlung · mit Dauerfristverlängerung: 10. Nov)",
     },
     {
       date: "10. Nov 2026",

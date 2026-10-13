@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Stand: 10. Oktober 2026.
+   Kuratierter Stand: 14. Oktober 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -174,50 +174,50 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "KOALITION BERLIN",
+    tickerTag: "SONDIERUNG GESTOPPT",
     isElection: true,
-    title: "Koalitionsverhandlungen im Blick: Linke, Grüne und SPD vor Grundsatzbeschluss im Roten Rathaus über Regierungsbildung",
+    title: "Sondierungen unterbrochen: SPD und Grüne legen Gespräche mit der Linken nach Streit um Fraktionsaufnahme von Vanessa Emde auf Eis",
     excerpt:
-      "Nach intensiven Spitzenberatungen zum Ende der 41. Kalenderwoche steuern Die Linke, Bündnis 90/Die Grünen und die SPD im Roten Rathaus auf die formelle Aufnahme von Koalitionsverhandlungen zu (96 von 159 Sitzen). Die Partei- und Fraktionsspitzen haben sich auf zentrale Eckpunkte verständigt: Der Berliner Gewerbesteuerhebesatz von 410 % bleibt als verlässliche Standortgarantie unangetastet, während die Konsolidierung des Landeshaushalts mit gezielten Zukunftsinvestitionen in Schulbau, moderne Verwaltung und Digitalisierung kombiniert wird. Die Parteigremien beraten an diesem Wochenende über die Freigabe der Koalitionsrunden.",
+      "Erst am 8. Oktober hatten sich Die Linke, Bündnis 90/Die Grünen und die SPD auf die Aufnahme offizieller Sondierungsgespräche verständigt – verbunden mit einem gemeinsamen Papier gegen Antisemitismus. Am 13. Oktober nahm die neue Linksfraktion jedoch die umstrittene Neuköllner Abgeordnete Vanessa Emde auf. Nach Darstellung von SPD und Grünen widerspricht das den Absprachen; die Spitzenkandidaten Steffen Krach (SPD) und Werner Graf (Grüne) unterbrachen die Sondierungen daraufhin. Die Linke verweist auf eine von den Fraktionsmitgliedern unterzeichnete Erklärung zum Existenzrecht Israels. Ob und wann die Gespräche fortgesetzt werden, ist offen. Für die Wirtschaft verlängert sich damit die Phase der Unsicherheit über Landeshaushalt und Standortpolitik; die konstituierende Sitzung des Abgeordnetenhauses ist für den 29. Oktober angesetzt.",
     read: "4 Min",
-    date: "10. Oktober 2026",
+    date: "14. Oktober 2026",
     source: { label: "rbb24 · Landespolitik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Koalitionsfahrplan",
+      value: "Sondierung pausiert",
       compare: "96 Sitze R2G",
-      label: "Linke, Grüne und SPD vor Beschluss über formelle Koalitionsverhandlungen im Roten Rathaus.",
+      label: "SPD und Grüne prüfen, ob die Vereinbarungen mit der Linken noch gelten – Fortgang offen.",
     },
   },
   {
     cat: "Bund & Steuer",
     tickerTag: "Q4 STEUER-COUNTDOWN",
-    title: "Q4 2026 Steuerfahrplan: USt-Voranmeldung Frist 12. Oktober – Endspurt für September/Q3, Dauerfristverlängerung & IAB-Nutzung",
+    title: "Q4 2026 Steuerfahrplan: Zahlungsschonfrist für USt und LSt September/Q3 endet am 15. Oktober – Dauerfristverlängerung & IAB-Nutzung",
     excerpt:
-      "Nur noch zwei Tage bis zum zentralen Steuerstichtag in Q4 2026: Da der reguläre 10. Oktober auf den heutigen Samstag fällt, endet die Frist für die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal 2026 erst am kommenden Montag, 12. Oktober (§ 108 Abs. 3 AO; mit Dauerfristverlängerung bis 10. November). Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren und Jahresabschluss-Vorbereitungen anzustoßen.",
+      "Die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal 2026 war wegen des Wochenendes am Montag, 12. Oktober fällig (§ 108 Abs. 3 AO). Wer per Überweisung zahlt, hat noch bis Donnerstag, 15. Oktober Zeit: Innerhalb der dreitägigen Zahlungsschonfrist nach § 240 Abs. 3 AO fallen keine Säumniszuschläge an – für Bar- und Scheckzahlungen gilt sie nicht, und die Abgabe der Anmeldung selbst verlängert sie nicht. Mit Dauerfristverlängerung verschiebt sich alles auf den 10. November. Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren und Jahresabschluss-Vorbereitungen anzustoßen.",
     read: "5 Min",
-    date: "10. Oktober 2026",
+    date: "14. Oktober 2026",
     source: { label: "Bundesfinanzministerium / ELSTER", href: "https://www.elster.de" },
     featured: false,
     highlight: {
-      value: "Frist 12.10.2026",
-      compare: "Noch 2 Tage",
-      label: "USt-Voranmeldung Q3 fällig am Montag – Wochenendfrist gem. § 108 AO & IAB-Planung (§ 7g EStG) nutzen.",
+      value: "Schonfrist 15.10.2026",
+      compare: "Noch 1 Tag",
+      label: "Zahlung USt/LSt Sep/Q3 per Überweisung bis Donnerstag ohne Säumniszuschlag (§ 240 Abs. 3 AO).",
     },
   },
   {
     cat: "Bund & Steuer",
     tickerTag: "E-RECHNUNG 2027",
-    title: "Noch 82 Tage bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
+    title: "Noch 78 Tage bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
     excerpt:
       "Der Countdown läuft: Ab dem 1. Januar 2027 müssen inländische Betriebe mit mehr als 800.000 Euro Vorjahresumsatz B2B-Rechnungen obligatorisch als ZUGFeRD oder XRechnung versenden. Das BMF stellt klar: Reines PDF genügt nicht mehr; GoBD-konforme revisionssichere Archivierung und XML-Validierung müssen jetzt in ERP-Systeme integriert werden.",
     read: "5 Min",
-    date: "10. Oktober 2026",
+    date: "14. Oktober 2026",
     source: { label: "Bundesfinanzministerium · E-Rechnung", href: "https://www.bundesfinanzministerium.de" },
     featured: false,
     highlight: {
-      value: "Noch 82 Tage",
+      value: "Noch 78 Tage",
       compare: "Stichtag 01.01.2027",
       label: "B2B-Pflicht für Betriebe über 800.000 € Umsatz: ERP-Systeme jetzt rechtssicher umstellen.",
     },
@@ -241,11 +241,11 @@ export const ARTICLES = [
   {
     cat: "Bund & Steuer",
     tickerTag: "JStG 2026 · ZINSEN",
-    title: "Jahressteuergesetz 2026: Steuerzinsen sollen sich ab 2027 verdoppeln – 0,3 % statt 0,15 % pro Monat",
+    title: "Jahressteuergesetz 2026 im Bundestag: Erste Lesung erfolgt – Steuerzinsen sollen sich ab 2027 verdoppeln (0,3 % statt 0,15 % pro Monat)",
     excerpt:
-      "Der Regierungsentwurf zum Jahressteuergesetz 2026 (BT-Drs. 21/8283) sieht vor, die Nachzahlungs- und Erstattungszinsen nach § 233a AO für Verzinsungszeiträume ab dem 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat anzuheben – also von 1,8 % auf 3,6 % pro Jahr. Begründet wird das mit dem gestiegenen Zinsniveau. Das Gesetzgebungsverfahren läuft noch; Bundestag und Bundesrat müssen zustimmen. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen, damit nach Ablauf der 15-monatigen Karenzzeit keine teuren Zinsen auflaufen.",
+      "Der Bundestag hat den Regierungsentwurf zum Jahressteuergesetz 2026 (BT-Drs. 21/8283) am 8. Oktober in erster Lesung beraten und an die Ausschüsse überwiesen; federführend ist der Finanzausschuss. Der Entwurf sieht unter anderem vor, die Nachzahlungs- und Erstattungszinsen nach § 233a AO für Verzinsungszeiträume ab dem 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat anzuheben – also von 1,8 % auf 3,6 % pro Jahr. Bis zur 2./3. Lesung folgen Anhörungen und mögliche Änderungen; Bundestag und Bundesrat müssen noch zustimmen. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen, damit nach Ablauf der 15-monatigen Karenzzeit keine teuren Zinsen auflaufen.",
     read: "4 Min",
-    date: "10. Oktober 2026",
+    date: "14. Oktober 2026",
     source: { label: "Deutscher Bundestag · Drucksache 21/8283", href: "https://www.bundestag.de" },
     featured: false,
     highlight: {

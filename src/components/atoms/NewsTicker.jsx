@@ -13,36 +13,36 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 10.10.2026)
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 14.10.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🏛️ KOALITION BERLIN",
+        tickerTag: "🏛️ SONDIERUNG GESTOPPT",
         isElection: true,
-        title: "Rot-Rot-Grün nach Beratungsrunde vor Zielgerade: Linke, Grüne und SPD verständigen sich auf Fahrplan für Koalitionsverhandlungen im Roten Rathaus",
-        date: "10.10.2026",
+        title: "SPD und Grüne unterbrechen Sondierungen mit der Linken: Streit um Aufnahme der Abgeordneten Vanessa Emde in die neue Linksfraktion – Fortgang offen",
+        date: "13.10.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
         cat: "Bund & Steuer",
-        tickerTag: "📅 STEUERFRISTEN Q4",
-        title: "USt-Voranmeldung September/Q3: Noch 2 Tage bis Fristende Montag, 12. Oktober (Wochenendverschiebung gem. § 108 AO · Dauerfristverlängerung: 10.11.)",
-        date: "10.10.2026",
+        tickerTag: "📅 ZAHLUNGSSCHONFRIST",
+        title: "USt & LSt September/Q3: Zahlungsschonfrist für Überweisungen endet am Donnerstag, 15. Oktober (§ 240 Abs. 3 AO) – danach drohen Säumniszuschläge",
+        date: "14.10.2026",
         source: { label: "ELSTER", href: "https://www.elster.de" },
       },
       {
         cat: "Bund & Steuer",
         tickerTag: "📈 JStG 2026",
-        title: "Jahressteuergesetz 2026 in Beratung: Nachzahlungs- und Erstattungszinsen sollen ab 2027 von 0,15 % auf 0,3 % pro Monat steigen (3,6 % p. a.)",
-        date: "10.10.2026",
+        title: "Jahressteuergesetz 2026: Bundestag berät Entwurf in erster Lesung – Finanzausschuss federführend; Steuerzinsen sollen ab 2027 auf 0,3 % pro Monat steigen",
+        date: "08.10.2026",
         source: { label: "bundestag.de", href: "https://www.bundestag.de" },
       },
       {
         cat: "Bund & Steuer",
         tickerTag: "🧾 E-RECHNUNG 2027",
-        title: "Noch 82 Tage bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
-        date: "10.10.2026",
+        title: "Noch 78 Tage bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
+        date: "14.10.2026",
         source: { label: "BMF / ELSTER", href: "https://www.elster.de" },
       },
       {
