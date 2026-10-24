@@ -154,6 +154,36 @@ npm run build
 # Upload dist/ wieder zu IONOS
 ```
 
+### Inhaltsupdate (Redaktions-Workflow)
+
+So laufen die regelmäßigen Inhaltsupdates (Commit-Schema
+`feat(content): update site to TT.MM.JJJJ with …`):
+
+1. **Recherche** — nur Meldungen mit Primärquelle (BMF, BMDS, BSI,
+   Bundestag, IHK Berlin, Landeswahlleiterin, rbb24 …). Erst Quelle prüfen,
+   dann Text schreiben.
+2. **`src/data/articles.js`**
+   - Kopfkommentar `Kuratierter Stand:` auf das neue Datum setzen.
+   - `ARTICLES`: Leitmeldung oben mit `featured: true` (vorherige auf
+     `false`), veraltete Fristen-/Countdown-Meldungen ersetzen statt
+     stapeln, neue Meldungen oben einfügen.
+   - `BMDS_ITEMS` / `BSI_ITEMS` / `AI_ARTICLES`: neue Meldungen oben.
+3. **`src/components/atoms/NewsTicker.jsx`** — `topUpdateItems` und
+   Kommentar `(Stand TT.MM.JJJJ)` aktualisieren.
+4. **`src/components/sections/HeroSection.jsx`** — `taxDeadlines`: abgelaufene
+   Fristen entfernen, die nächsten drei eintragen (Wochenend-/Feiertags-
+   verschiebung nach § 108 Abs. 3 AO beachten).
+5. **`src/services/articleService.js`** — `CACHE_PREFIX` um eins erhöhen
+   (`herotax_feed_vNN_`), damit Browser den alten Cache verwerfen.
+6. **Countdown** E-Rechnung (01.01.2027) neu berechnen und überall
+   gleich angeben (Artikel + Ticker).
+7. **Prüfen & bauen:** `npm run lint`, `npm run check:routes`, `npm run build`.
+8. **Sync-Ordner:** Inhalt von `dist/` nach `D:\Documents\HEROTax` kopieren
+   (manueller Upload durch den Betreiber).
+9. **Commit & Push** auf `GoogleAntigravityIDE`.
+
+Protokoll der Updates: [docs/CONTENT-UPDATES.md](./docs/CONTENT-UPDATES.md)
+
 ### Dynamische Daten & Live Tracker (automatischer 4-Std-Feed-Import)
 Der NewsTicker, News-Hub ("Bund & Steuer") und das KI-Sicherheit-Panel
 (BMDS/BSI) laden ihre Meldungen automatisch über den serverseitigen

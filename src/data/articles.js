@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Stand: 14. Oktober 2026.
+   Kuratierter Stand: 24. Oktober 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -52,6 +52,18 @@ export const AI_ARTICLES = [
     (Bundesministerium für Digitales und Staatsmodernisierung). */
 export const BMDS_ITEMS = [
   {
+    title: "Online-Ausweis: PIN-Rücksetz- und Aktivierungsdienst wieder verfügbar",
+    text: "Wer die PIN des Personalausweises vergessen hat oder die Online-Funktion erst aktivieren will, kann den PIN-Rücksetzbrief wieder kostenfrei online bestellen — ohne Termin im Bürgeramt. Relevant für alle, die ELSTER, Gewerbeanmeldung oder Förderanträge per eID erledigen.",
+    date: "13. Oktober 2026",
+    source: { label: "BMDS · Pressemitteilung 67/2026", href: "https://bmds.bund.de/aktuelles/pressemitteilungen" },
+  },
+  {
+    title: "Bericht zur Staatsmodernisierung: Bund kündigt Entlastungen und schnellere Verfahren an",
+    text: "Bundesminister Karsten Wildberger hat den Jahresbericht der Bundesregierung zur Staatsmodernisierung vorgestellt: weniger Berichtspflichten, beschleunigte Planungs- und Genehmigungsverfahren und mehr digitale Verwaltungsleistungen über den „Deutschland-Stack“.",
+    date: "07. Oktober 2026",
+    source: { label: "BMDS · Staatsmodernisierung", href: "https://bmds.bund.de/aktuelles/pressemitteilungen" },
+  },
+  {
     title: "Neues KI-Gesetz in Kraft: Bundesnetzagentur wird zentrale KI-Marktüberwachungsbehörde",
     text: "Das Durchführungsgesetz zur KI-Verordnung (KI-MIG) ist am 29. Juli 2026 in Kraft getreten. Statt einer neuen Behörde bündelt der Bund die Aufsicht bei der Bundesnetzagentur — samt KI-Service-Desk als niedrigschwelliger Anlaufstelle für KMU und Start-ups sowie einem Reallabor für Tests im rechtssicheren Rahmen.",
     date: "29. Juli 2026",
@@ -81,8 +93,20 @@ export const BMDS_ITEMS = [
     (Bundesamt für Sicherheit in der Informationstechnik). */
 export const BSI_ITEMS = [
   {
-    title: "Prüfkatalog für vertrauenswürdige KI: Community Draft des A5 — Kommentierung bis 31. August",
-    text: "Mit der „AI Audit and Assurance Assessment Architecture“ (A5) legt das BSI eine modulare Prüfarchitektur für KI-Systeme vor: Robustheit, Erklärbarkeit, Leistungsfähigkeit, menschliche Aufsicht, Bias-Vermeidung und Cybersicherheit. Anmerkungen nimmt das BSI noch bis zum 31. August 2026 entgegen.",
+    title: "Kritische Schwachstellen im PHP-Kern: BSI warnt mit Warnstufe Orange — sofort patchen",
+    text: "Zwei Speicherfehler im Sprachkern von PHP (CVSS 9,2) erlauben Angreifern, ohne Anmeldung Schadcode auf Webservern auszuführen. Die PHP-Entwickler haben am 21. Oktober gepatchte Versionen veröffentlicht. Viele Hochschulen, Kliniken und Behörden nahmen ihre Webseiten vorsorglich vom Netz.",
+    date: "21. Oktober 2026",
+    source: { label: "BSI · Cyber-Sicherheitswarnung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Alle-Meldungen-News/alle-meldungen-news_node.html" },
+  },
+  {
+    title: "KI-Sicherheitsstudie 2026 von BSI und TÜV-Verband: Jedes sechste Unternehmen meldet KI-gestützte Angriffe",
+    text: "17 % der befragten Unternehmen registrierten in den letzten zwölf Monaten Angriffe oder Betrugsversuche mit KI-Bezug — 90 % davon per täuschend echter Phishing-Mail. Nur rund jedes zehnte Unternehmen hat eigene Abläufe für KI-Sicherheitsvorfälle.",
+    date: "07. Oktober 2026",
+    source: { label: "BSI · Pressemitteilung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/pressemitteilungen_node.html" },
+  },
+  {
+    title: "Prüfkatalog für vertrauenswürdige KI: Community Draft des A5 vom BSI vorgelegt",
+    text: "Mit der „AI Audit and Assurance Assessment Architecture“ (A5) legt das BSI eine modulare Prüfarchitektur für KI-Systeme vor: Robustheit, Erklärbarkeit, Leistungsfähigkeit, menschliche Aufsicht, Bias-Vermeidung und Cybersicherheit. Nach Abschluss der Community-Konsultation fließen die eingegangenen Fachstellungnahmen in die finale Fassung ein.",
     date: "06. Juli 2026",
     source: { label: "BSI · Pressemitteilung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/260706_KI_A5-Community-Draft.html" },
   },
@@ -174,52 +198,84 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
-    tickerTag: "SONDIERUNG GESTOPPT",
+    tickerTag: "SONDIERUNG ABGESCHLOSSEN",
     isElection: true,
-    title: "Sondierungen unterbrochen: SPD und Grüne legen Gespräche mit der Linken nach Streit um Fraktionsaufnahme von Vanessa Emde auf Eis",
+    title: "Rot-Rot-Grün einigt sich: Linke, Grüne und SPD legen Sondierungspapier „Mehr gemeinsam, mehr Berlin“ vor – Parteigremien entscheiden über Koalitionsverhandlungen",
     excerpt:
-      "Erst am 8. Oktober hatten sich Die Linke, Bündnis 90/Die Grünen und die SPD auf die Aufnahme offizieller Sondierungsgespräche verständigt – verbunden mit einem gemeinsamen Papier gegen Antisemitismus. Am 13. Oktober nahm die neue Linksfraktion jedoch die umstrittene Neuköllner Abgeordnete Vanessa Emde auf. Nach Darstellung von SPD und Grünen widerspricht das den Absprachen; die Spitzenkandidaten Steffen Krach (SPD) und Werner Graf (Grüne) unterbrachen die Sondierungen daraufhin. Die Linke verweist auf eine von den Fraktionsmitgliedern unterzeichnete Erklärung zum Existenzrecht Israels. Ob und wann die Gespräche fortgesetzt werden, ist offen. Für die Wirtschaft verlängert sich damit die Phase der Unsicherheit über Landeshaushalt und Standortpolitik; die konstituierende Sitzung des Abgeordnetenhauses ist für den 29. Oktober angesetzt.",
-    read: "4 Min",
-    date: "14. Oktober 2026",
+      "Nach der kurzen Unterbrechung Mitte Oktober haben Die Linke, Bündnis 90/Die Grünen und die SPD ihre Sondierungen am 17. Oktober erfolgreich abgeschlossen. Das rund 30-seitige Papier setzt Schwerpunkte bei Mieterschutz, 100.000 neuen Wohnungen und der umstrittenen Vergesellschaftung großer Wohnungskonzerne; beim Umgang mit Antisemitismus wurden klare Regeln bis hin zum Fraktionsausschluss vereinbart. Für den Haushalt – die Finanzierungslücke liegt bei rund fünf Milliarden Euro pro Jahr – skizzieren die Parteien einen Ausgabendeckel und höhere Einnahmen. Berliner Wirtschaftsverbände wie der VBKI kritisieren mögliche Gebühren- und Abgabenerhöhungen. Bevor Koalitionsverhandlungen beginnen, müssen die Gremien zustimmen; Die Linke entscheidet auf einem Parteitag am 31. Oktober. Das neue Abgeordnetenhaus konstituiert sich am 29. Oktober.",
+    read: "5 Min",
+    date: "17. Oktober 2026",
     source: { label: "rbb24 · Landespolitik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
     sources: BERLIN_WAHL_SOURCES,
     featured: true,
     highlight: {
-      value: "Sondierung pausiert",
+      value: "Sondierung abgeschlossen",
       compare: "96 Sitze R2G",
-      label: "SPD und Grüne prüfen, ob die Vereinbarungen mit der Linken noch gelten – Fortgang offen.",
+      label: "Konstituierende AGH-Sitzung am 29.10. · Linke-Parteitag zur Koalitionsfrage am 31.10.2026.",
+    },
+  },
+  {
+    cat: "Cybersecurity",
+    tickerTag: "PHP-NOTFALL",
+    title: "BSI-Warnung Orange: Kritische Lücken im PHP-Kern – Hochschulen, Kliniken und Behörden nehmen Webseiten vom Netz",
+    excerpt:
+      "Am 21. Oktober warnten das BSI und internationale Sicherheitsbehörden vor zwei hochkritischen Speicherfehlern im Kern der Programmiersprache PHP (CVSS 9,2). Angreifer können damit ohne Anmeldung und ohne Zutun der Nutzer Schadcode auf Webservern ausführen. Weil der Fehler im Sprachkern und nicht in einzelnen Plugins steckt, sind potenziell Millionen Webseiten betroffen – zahlreiche Universitäten, Kliniken und Behörden schalteten ihre Angebote vorsorglich ab. Die PHP-Entwickler stellten noch am selben Nachmittag gepatchte Versionen bereit. Praxis-Tipp für KMU: Beim Hoster prüfen, ob Webseite, Shop und Kundenportal auf einer aktualisierten PHP-Version laufen, und Server-Logs in den kommenden Wochen auf Auffälligkeiten überwachen.",
+    read: "4 Min",
+    date: "21. Oktober 2026",
+    source: { label: "BSI · Cyber-Sicherheitswarnung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Alle-Meldungen-News/alle-meldungen-news_node.html" },
+    featured: false,
+    highlight: {
+      value: "CVSS 9,2",
+      compare: "Warnstufe Orange",
+      label: "Patches seit 21.10. verfügbar – PHP-Version bei Hoster und Shop-System jetzt prüfen.",
     },
   },
   {
     cat: "Bund & Steuer",
-    tickerTag: "Q4 STEUER-COUNTDOWN",
-    title: "Q4 2026 Steuerfahrplan: Zahlungsschonfrist für USt und LSt September/Q3 endet am 15. Oktober – Dauerfristverlängerung & IAB-Nutzung",
+    tickerTag: "STEUERFAHRPLAN NOV",
+    title: "Steuerfahrplan November 2026: USt-Voranmeldung Oktober am 10.11., Gewerbe- und Grundsteuer-Vorauszahlung am 16.11.",
     excerpt:
-      "Die Umsatzsteuer-Voranmeldung für September bzw. das III. Quartal 2026 war wegen des Wochenendes am Montag, 12. Oktober fällig (§ 108 Abs. 3 AO). Wer per Überweisung zahlt, hat noch bis Donnerstag, 15. Oktober Zeit: Innerhalb der dreitägigen Zahlungsschonfrist nach § 240 Abs. 3 AO fallen keine Säumniszuschläge an – für Bar- und Scheckzahlungen gilt sie nicht, und die Abgabe der Anmeldung selbst verlängert sie nicht. Mit Dauerfristverlängerung verschiebt sich alles auf den 10. November. Für Gründer und KMU wird es zudem Zeit, geplante Anschaffungen über den Investitionsabzugsbetrag (§ 7g EStG) liquiditätsschonend zu disponieren und Jahresabschluss-Vorbereitungen anzustoßen.",
-    read: "5 Min",
-    date: "14. Oktober 2026",
+      "Die Umsatzsteuer-Voranmeldung und Lohnsteuer-Anmeldung für Oktober 2026 sind am Dienstag, 10. November fällig – ebenso die Voranmeldung für September bzw. das III. Quartal bei Dauerfristverlängerung. Die dreitägige Zahlungsschonfrist für Überweisungen nach § 240 Abs. 3 AO endet am 13. November. Die Vorauszahlungen zur Gewerbe- und Grundsteuer für das IV. Quartal werden regulär am 15. November fällig; weil dieser Tag auf einen Sonntag fällt, verschiebt sich die Frist auf Montag, 16. November (§ 108 Abs. 3 AO). Wer 2026 noch investieren will, sollte den Investitionsabzugsbetrag (§ 7g EStG) jetzt mit Blick auf den Jahresabschluss einplanen.",
+    read: "4 Min",
+    date: "24. Oktober 2026",
     source: { label: "Bundesfinanzministerium / ELSTER", href: "https://www.elster.de" },
     featured: false,
     highlight: {
-      value: "Schonfrist 15.10.2026",
-      compare: "Noch 1 Tag",
-      label: "Zahlung USt/LSt Sep/Q3 per Überweisung bis Donnerstag ohne Säumniszuschlag (§ 240 Abs. 3 AO).",
+      value: "10.11.2026",
+      compare: "Schonfrist bis 13.11.",
+      label: "USt/LSt Oktober fällig · GewSt- und GrSt-Vorauszahlung Q4 am Montag, 16.11.2026.",
     },
   },
   {
     cat: "Bund & Steuer",
     tickerTag: "E-RECHNUNG 2027",
-    title: "Noch 78 Tage bis zur Pflicht: BMF & Kammern veröffentlichen E-Rechnungs-Checkliste für den Mittelstand",
+    title: "Drittes BMF-Schreiben zur E-Rechnung: Anhänge müssen „eingebettet“ sein, Geschäftsregelfehler entschärft – noch 68 Tage bis zur Pflicht",
     excerpt:
-      "Der Countdown läuft: Ab dem 1. Januar 2027 müssen inländische Betriebe mit mehr als 800.000 Euro Vorjahresumsatz B2B-Rechnungen obligatorisch als ZUGFeRD oder XRechnung versenden. Das BMF stellt klar: Reines PDF genügt nicht mehr; GoBD-konforme revisionssichere Archivierung und XML-Validierung müssen jetzt in ERP-Systeme integriert werden.",
-    read: "5 Min",
-    date: "14. Oktober 2026",
-    source: { label: "Bundesfinanzministerium · E-Rechnung", href: "https://www.bundesfinanzministerium.de" },
+      "Das Bundesfinanzministerium hat am 15. Oktober 2026 sein drittes Anwendungsschreiben zur E-Rechnung veröffentlicht (III C 5 – S 7287-a/00019/021/017) und den UStAE angepasst. Zentrale Punkte: Die Leistungsbeschreibung im strukturierten XML-Teil muss für sich genommen ausreichen; ergänzende Unterlagen müssen in die Rechnungsdatei eingebettet sein – ein Download-Link oder eine separate PDF genügt nicht. Bloße Verstöße gegen Geschäftsregeln der EN 16931 machen eine Rechnung nicht automatisch zur „sonstigen Rechnung“. Bei bruttopreisbasierten Rechnungen genügen bis Ende 2027 Gesamtsummen je Steuersatz, für Bauleistungen gelten Erleichterungen bis Mitte 2030. Für bis zum 31. Dezember 2026 ausgestellte Rechnungen gilt eine Nichtbeanstandungsregelung. Ab dem 1. Januar 2027 müssen Betriebe mit mehr als 800.000 Euro Vorjahresumsatz B2B-Rechnungen strukturiert ausstellen.",
+    read: "6 Min",
+    date: "24. Oktober 2026",
+    source: { label: "Bundesfinanzministerium · BMF-Schreiben Umsatzsteuer", href: "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/BMF_Schreiben_Allgemeines/bmf_schreiben_allgemeines.html" },
     featured: false,
     highlight: {
-      value: "Noch 78 Tage",
+      value: "Noch 68 Tage",
       compare: "Stichtag 01.01.2027",
-      label: "B2B-Pflicht für Betriebe über 800.000 € Umsatz: ERP-Systeme jetzt rechtssicher umstellen.",
+      label: "BMF-Schreiben vom 15.10.2026: Anhänge einbetten, XML-Leistungsbeschreibung vollständig halten.",
+    },
+  },
+  {
+    cat: "FinTech & KI",
+    tickerTag: "KI-SICHERHEIT",
+    title: "KI-Sicherheitsstudie 2026: Jedes sechste Unternehmen meldet KI-gestützte Angriffe – nur jedes zehnte ist vorbereitet",
+    excerpt:
+      "BSI und TÜV-Verband haben am 7. Oktober ihre repräsentative KI-Sicherheitsstudie vorgestellt (Forsa, über 500 Unternehmen ab 20 Beschäftigten). 49 % der Unternehmen nutzen bereits KI, meist fertige Tools wie Chatbots oder Copilots. Gleichzeitig registrierten 17 % in den letzten zwölf Monaten Angriffe oder Betrugsversuche mit KI-Bezug – vor allem täuschend echte Phishing-Mails (90 %), automatisierte Angriffsskripte (40 %) und Deepfakes für CEO-Fraud (11 %). Nur rund jedes zehnte Unternehmen hat eigene Abläufe für KI-Sicherheitsvorfälle, ein Viertel hat gar keine internen Regeln. Für Buchhaltung und Zahlungsfreigaben heißt das: Vier-Augen-Prinzip und Rückruf-Verifikation bei ungewöhnlichen Überweisungsaufträgen.",
+    read: "5 Min",
+    date: "07. Oktober 2026",
+    source: { label: "BSI & TÜV-Verband · KI-Sicherheitsstudie 2026", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/pressemitteilungen_node.html" },
+    featured: false,
+    highlight: {
+      value: "17 % betroffen",
+      compare: "11 % vorbereitet",
+      label: "KI-Phishing und Deepfake-CEO-Fraud nehmen zu – klare Freigabeprozesse schützen die Finanzbuchhaltung.",
     },
   },
   {
@@ -241,11 +297,11 @@ export const ARTICLES = [
   {
     cat: "Bund & Steuer",
     tickerTag: "JStG 2026 · ZINSEN",
-    title: "Jahressteuergesetz 2026 im Bundestag: Erste Lesung erfolgt – Steuerzinsen sollen sich ab 2027 verdoppeln (0,3 % statt 0,15 % pro Monat)",
+    title: "Jahressteuergesetz 2026: Anhörung im Finanzausschuss am 2. November, Bundestagsbeschluss für 13. November geplant – Steuerzinsen sollen sich ab 2027 verdoppeln",
     excerpt:
-      "Der Bundestag hat den Regierungsentwurf zum Jahressteuergesetz 2026 (BT-Drs. 21/8283) am 8. Oktober in erster Lesung beraten und an die Ausschüsse überwiesen; federführend ist der Finanzausschuss. Der Entwurf sieht unter anderem vor, die Nachzahlungs- und Erstattungszinsen nach § 233a AO für Verzinsungszeiträume ab dem 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat anzuheben – also von 1,8 % auf 3,6 % pro Jahr. Bis zur 2./3. Lesung folgen Anhörungen und mögliche Änderungen; Bundestag und Bundesrat müssen noch zustimmen. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen, damit nach Ablauf der 15-monatigen Karenzzeit keine teuren Zinsen auflaufen.",
+      "Nach der ersten Lesung am 8. Oktober (BT-Drs. 21/8283) berät der federführende Finanzausschuss den Entwurf in einer öffentlichen Sachverständigenanhörung am Montag, 2. November. Die 2./3. Lesung im Bundestag ist für den 13. November vorgesehen, danach muss der Bundesrat zustimmen. Die Bundesregierung hat in ihrer Gegenäußerung einzelne Ländervorschläge aufgegriffen, etwa zu Earn-Out-Zahlungen und zum Verlustuntergang bei Körperschaften. Kernpunkt für KMU bleibt die geplante Anhebung der Nachzahlungs- und Erstattungszinsen nach § 233a AO ab 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat – also von 1,8 % auf 3,6 % pro Jahr. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen.",
     read: "4 Min",
-    date: "14. Oktober 2026",
+    date: "24. Oktober 2026",
     source: { label: "Deutscher Bundestag · Drucksache 21/8283", href: "https://www.bundestag.de" },
     featured: false,
     highlight: {

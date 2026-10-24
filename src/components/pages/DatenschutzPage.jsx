@@ -179,7 +179,7 @@ export default function DatenschutzPage() {
         </P>
 
         <p className="text-xs mt-14 pt-8" style={{ ...fontMono, color: T.faint, borderTop: `1px solid ${T.lineSoft}` }}>
-          Datenschutzerklärung der HERO Tax Platform · Stand: August 2026
+          Datenschutzerklärung der HERO Tax Platform · Stand: Oktober 2026
         </p>
       </div>
     </div>

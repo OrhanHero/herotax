@@ -13,37 +13,51 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 14.10.2026)
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 24.10.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🏛️ SONDIERUNG GESTOPPT",
+        tickerTag: "🏛️ SONDIERUNG ABGESCHLOSSEN",
         isElection: true,
-        title: "SPD und Grüne unterbrechen Sondierungen mit der Linken: Streit um Aufnahme der Abgeordneten Vanessa Emde in die neue Linksfraktion – Fortgang offen",
-        date: "13.10.2026",
+        title: "Rot-Rot-Grün legt Sondierungspapier „Mehr gemeinsam, mehr Berlin“ vor – AGH konstituiert sich am 29.10., Linke-Parteitag entscheidet am 31.10. über Koalitionsverhandlungen",
+        date: "17.10.2026",
         source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
       },
       {
+        cat: "Cybersecurity",
+        tickerTag: "🚨 PHP-NOTFALL",
+        title: "BSI-Warnstufe Orange: Kritische Lücken im PHP-Kern (CVSS 9,2) – Patches seit 21.10. verfügbar, Webseiten und Shops jetzt aktualisieren",
+        date: "21.10.2026",
+        source: { label: "bsi.bund.de", href: "https://www.bsi.bund.de/" },
+      },
+      {
         cat: "Bund & Steuer",
-        tickerTag: "📅 ZAHLUNGSSCHONFRIST",
-        title: "USt & LSt September/Q3: Zahlungsschonfrist für Überweisungen endet am Donnerstag, 15. Oktober (§ 240 Abs. 3 AO) – danach drohen Säumniszuschläge",
-        date: "14.10.2026",
+        tickerTag: "📅 STEUERFRISTEN NOV",
+        title: "USt & LSt Oktober am Dienstag, 10. November fällig (Schonfrist 13.11.) – Gewerbe- und Grundsteuer-Vorauszahlung Q4 am Montag, 16. November",
+        date: "24.10.2026",
         source: { label: "ELSTER", href: "https://www.elster.de" },
       },
       {
         cat: "Bund & Steuer",
-        tickerTag: "📈 JStG 2026",
-        title: "Jahressteuergesetz 2026: Bundestag berät Entwurf in erster Lesung – Finanzausschuss federführend; Steuerzinsen sollen ab 2027 auf 0,3 % pro Monat steigen",
-        date: "08.10.2026",
-        source: { label: "bundestag.de", href: "https://www.bundestag.de" },
+        tickerTag: "🧾 E-RECHNUNG 2027",
+        title: "Noch 68 Tage bis zur Pflicht: Drittes BMF-Schreiben vom 15.10. verlangt eingebettete Anhänge und vollständige XML-Leistungsbeschreibung",
+        date: "24.10.2026",
+        source: { label: "bundesfinanzministerium.de", href: "https://www.bundesfinanzministerium.de" },
       },
       {
         cat: "Bund & Steuer",
-        tickerTag: "🧾 E-RECHNUNG 2027",
-        title: "Noch 78 Tage bis zur Pflicht: BMF & IHK mahnen Betriebe über 800.000 € Umsatz zur ERP-Umstellung auf ZUGFeRD / XRechnung an",
-        date: "14.10.2026",
-        source: { label: "BMF / ELSTER", href: "https://www.elster.de" },
+        tickerTag: "📈 JStG 2026",
+        title: "Jahressteuergesetz 2026: Anhörung im Finanzausschuss am 2. November, 2./3. Lesung für 13. November geplant – Steuerzinsen sollen ab 2027 auf 0,3 % pro Monat steigen",
+        date: "24.10.2026",
+        source: { label: "bundestag.de", href: "https://www.bundestag.de" },
+      },
+      {
+        cat: "FinTech & KI",
+        tickerTag: "🤖 KI-SICHERHEIT",
+        title: "BSI & TÜV-Verband: Jedes sechste Unternehmen meldet KI-gestützte Angriffe – nur jedes zehnte hat Abläufe für KI-Sicherheitsvorfälle",
+        date: "07.10.2026",
+        source: { label: "bsi.bund.de", href: "https://www.bsi.bund.de/" },
       },
       {
         cat: "FinTech & KI",
