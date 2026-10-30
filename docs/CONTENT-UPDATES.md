@@ -2,6 +2,25 @@
 
 Workflow: [DEPLOYMENT.md → Inhaltsupdate (Redaktions-Workflow)](../DEPLOYMENT.md#inhaltsupdate-redaktions-workflow)
 
+## 30.10.2026
+
+**Geänderte Dateien:** `src/data/articles.js`, `src/components/atoms/NewsTicker.jsx`,
+`src/components/sections/WahlprogrammeSection.jsx`, `src/services/articleService.js` (`CACHE_PREFIX` v37 → v38)
+
+| Bereich | Meldung | Datum | Quelle |
+|---|---|---|---|
+| Berlin Fokus (Leitmeldung) | AGH konstituiert: Hendrikje Klein (Linke) Präsidentin, 98 Ja / 42 Nein / 9 Enth.; Linke-Parteitag 31.10. | 29.10.2026 | Abgeordnetenhaus / berlin.de |
+| Bund & Steuer | Herbst-Steuerschätzung: +43,3 Mrd. € bis 2030; Berlin +583 Mio. € (2026/27) | 22.10.2026 | Bundesregierung / SenFin Berlin |
+| Bund & Steuer | BMF-Schreiben Forschungszulage (IV C 3 – S 2020/00059/018/001) | 27.10.2026 | BMF |
+| Bund & Steuer | E-Rechnung-Countdown 68 → 62 Tage | 30.10.2026 | BMF |
+| Bund & Steuer | JStG-Anhörung: Uhrzeit/Ort ergänzt (02.11., 16–17:30 Uhr, Paul-Löbe-Haus) | 30.10.2026 | Bundestag |
+| Cybersecurity | PHP2Shell: CVE-2026-109618/-109619 und gepatchte Versionen ergänzt | 21.10.2026 | BSI |
+| BMDS-Panel | Digital-Gipfel 02./03.11. (Wilhelm Hallen); d-you Bug-Bounty | 30.10. / Okt. 2026 | BMDS |
+
+**Hero-Fristen:** unverändert gültig (10.11., 16.11., 01.01.2027).
+
+**Ersetzt:** Leitmeldung „Sondierung abgeschlossen“ → `featured: false`.
+
 ## 24.10.2026 (Komplettes Inhaltsupdate & Redaktions-Check)
 
 **Geänderte Dateien:**

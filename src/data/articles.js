@@ -1,5 +1,5 @@
 /* ── CONTENT-DATEN (CMS-ready: Arrays → API-Fetch) ─────────────────
-   Kuratierter Stand: 24. Oktober 2026.
+   Kuratierter Stand: 30. Oktober 2026.
    Jede Meldung hat eine Primärquelle. Beim Aktualisieren gilt: erst
    die Quelle prüfen, dann Datum und Text anpassen — nie umgekehrt. */
 
@@ -52,6 +52,18 @@ export const AI_ARTICLES = [
     (Bundesministerium für Digitales und Staatsmodernisierung). */
 export const BMDS_ITEMS = [
   {
+    title: "Digital-Gipfel 2026 am 2. und 3. November in Berlin: „Shaping AI: safe, sovereign, competitive“",
+    text: "Der Digital-Gipfel der Bundesregierung findet in den Wilhelm Hallen in Berlin-Reinickendorf statt. Im Mittelpunkt stehen sichere, souveräne und wettbewerbsfähige KI — für den Mittelstand relevant sind vor allem Signale zu Förderung, Datenräumen und der Umsetzung des EU AI Act.",
+    date: "30. Oktober 2026",
+    source: { label: "BMDS · Digital-Gipfel", href: "https://bmds.bund.de/aktuelles/pressemitteilungen" },
+  },
+  {
+    title: "d-you: Öffentliches Bug-Bounty-Programm für die staatliche EUDI-Wallet",
+    text: "Vor dem Launch am 2. Januar 2027 können unabhängige Sicherheitsforschende die Wallet-App „d-you“ für Android und iOS sowie das zugehörige Ökosystem auf Schwachstellen prüfen.",
+    date: "Oktober 2026",
+    source: { label: "BMDS · Pressemitteilungen", href: "https://bmds.bund.de/aktuelles/pressemitteilungen" },
+  },
+  {
     title: "Online-Ausweis: PIN-Rücksetz- und Aktivierungsdienst wieder verfügbar",
     text: "Wer die PIN des Personalausweises vergessen hat oder die Online-Funktion erst aktivieren will, kann den PIN-Rücksetzbrief wieder kostenfrei online bestellen — ohne Termin im Bürgeramt. Relevant für alle, die ELSTER, Gewerbeanmeldung oder Förderanträge per eID erledigen.",
     date: "13. Oktober 2026",
@@ -93,8 +105,8 @@ export const BMDS_ITEMS = [
     (Bundesamt für Sicherheit in der Informationstechnik). */
 export const BSI_ITEMS = [
   {
-    title: "Kritische Schwachstellen im PHP-Kern: BSI warnt mit Warnstufe Orange — sofort patchen",
-    text: "Zwei Speicherfehler im Sprachkern von PHP (CVSS 9,2) erlauben Angreifern, ohne Anmeldung Schadcode auf Webservern auszuführen. Die PHP-Entwickler haben am 21. Oktober gepatchte Versionen veröffentlicht. Viele Hochschulen, Kliniken und Behörden nahmen ihre Webseiten vorsorglich vom Netz.",
+    title: "Kritische Schwachstellen im PHP-Kern („PHP2Shell“): BSI warnt mit Warnstufe Orange — sofort patchen",
+    text: "Zwei Speicherfehler im Sprachkern von PHP (CVE-2026-109618 und CVE-2026-109619, CVSS 9,2) erlauben Angreifern, ohne Anmeldung Schadcode auf Webservern auszuführen. Abgesichert sind die Versionen 8.5.12, 8.4.27, 8.3.36 und 8.2.35; für PHP 8.1 und älter gibt es keine Updates mehr. Viele Hochschulen, Kliniken und Behörden nahmen ihre Webseiten vorsorglich vom Netz.",
     date: "21. Oktober 2026",
     source: { label: "BSI · Cyber-Sicherheitswarnung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Alle-Meldungen-News/alle-meldungen-news_node.html" },
   },
@@ -198,6 +210,56 @@ export const BERLIN_WAHL_SOURCES = [
 export const ARTICLES = [
   {
     cat: "Berlin Fokus",
+    tickerTag: "NEUES ABGEORDNETENHAUS",
+    isElection: true,
+    title: "Abgeordnetenhaus konstituiert sich: Hendrikje Klein ist die erste Linken-Politikerin an der Spitze des Berliner Landesparlaments – am Samstag entscheidet der Linke-Parteitag über Koalitionsverhandlungen",
+    excerpt:
+      "In der konstituierenden Sitzung am 29. Oktober wählte das neue Abgeordnetenhaus Hendrikje Klein (Die Linke) in geheimer Abstimmung zur Präsidentin: 98 Ja-Stimmen, 42 Nein-Stimmen und 9 Enthaltungen bei 149 anwesenden Abgeordneten. Als stärkste Fraktion hatte die Linke das Vorschlagsrecht. Klein ist nach Hanna-Renate Laurien und Cornelia Seibeld (beide CDU) erst die dritte Frau in diesem Amt; Seibeld wurde Vizepräsidentin. SPD-Landesvorstand und Grüne haben der Aufnahme von Koalitionsverhandlungen bereits zugestimmt, die Linke entscheidet auf ihrem Parteitag am 31. Oktober. Für Berliner Unternehmen bleibt die Haushaltsfrage zentral: Trotz leichter Steuer-Mehreinnahmen spricht der Senat von erheblichem Konsolidierungsbedarf.",
+    read: "4 Min",
+    date: "29. Oktober 2026",
+    source: { label: "Abgeordnetenhaus Berlin", href: "https://www.parlament-berlin.de/" },
+    sources: BERLIN_WAHL_SOURCES,
+    featured: true,
+    highlight: {
+      value: "98 Stimmen",
+      compare: "149 Abgeordnete",
+      label: "Hendrikje Klein (Linke) neue AGH-Präsidentin · Linke-Parteitag zur Koalitionsfrage am 31.10.2026.",
+    },
+  },
+  {
+    cat: "Bund & Steuer",
+    tickerTag: "STEUERSCHÄTZUNG",
+    title: "Herbst-Steuerschätzung: 43,3 Milliarden Euro mehr bis 2030 – Berlin rechnet mit 583 Millionen Euro Plus, Finanzsenator Evers sieht keinen Grund zur Entwarnung",
+    excerpt:
+      "Der Arbeitskreis „Steuerschätzungen“ hat am 22. Oktober in Saarbrücken getagt – früher als im üblichen November-Turnus, damit die Zahlen in die laufenden Haushaltsberatungen einfließen. Gegenüber der Mai-Schätzung erwartet der Gesamtstaat bis 2030 rund 43,3 Mrd. Euro mehr, für 2027 allein rund 10,9 Mrd. Euro (Bund: rund 4,1 Mrd. Euro). Für Berlin weist die regionalisierte Schätzung rund 31,3 Mrd. Euro für 2026 (+263 Mio.) und 32,4 Mrd. Euro für 2027 (+320 Mio.) aus. Finanzsenator Stefan Evers betont, dass das Plus keine freien Überschüsse schafft: Besoldungsanpassungen nach Vorgaben des Bundesverfassungsgerichts und steigende Zinslasten stehen dagegen. Für Unternehmen heißt das: Spielraum für Entlastungen auf Landesebene ist nicht in Sicht.",
+    read: "4 Min",
+    date: "22. Oktober 2026",
+    source: { label: "Senatsverwaltung für Finanzen Berlin", href: "https://www.berlin.de/sen/finanzen/" },
+    featured: false,
+    highlight: {
+      value: "+583 Mio. €",
+      compare: "Berlin 2026/27",
+      label: "Gesamtstaat +43,3 Mrd. € bis 2030 – Konsolidierungsdruck im Landeshaushalt bleibt.",
+    },
+  },
+  {
+    cat: "Bund & Steuer",
+    tickerTag: "FORSCHUNGSZULAGE",
+    title: "BMF-Schreiben vom 27. Oktober: Neue Verwaltungsanweisung zur Forschungszulage ersetzt die Fassung von 2023",
+    excerpt:
+      "Das Bundesfinanzministerium hat sein Anwendungsschreiben zum Forschungszulagengesetz (FZulG) vollständig überarbeitet (IV C 3 – S 2020/00059/018/001). Es berücksichtigt die Gesetzesänderungen der vergangenen Jahre, darunter die höhere maximale Bemessungsgrundlage für förderfähige Aufwendungen, die nach dem 31. Dezember 2025 entstehen, sowie die 20-%-Pauschale für Gemeinkosten bei FuE-Vorhaben. Für Berliner Tech-Start-ups und forschende KMU lohnt sich ein Blick, ob laufende Entwicklungsprojekte – auch Software- und KI-Entwicklung – förderfähig sind. Voraussetzung bleibt die Bescheinigung der BSFZ, bevor der Antrag beim Finanzamt gestellt wird.",
+    read: "4 Min",
+    date: "27. Oktober 2026",
+    source: { label: "Bundesfinanzministerium · BMF-Schreiben", href: "https://www.bundesfinanzministerium.de/Web/DE/Service/Publikationen/BMF_Schreiben/bmf_schreiben.html" },
+    featured: false,
+    highlight: {
+      value: "FZulG",
+      compare: "20 % Gemeinkosten",
+      label: "Neue Verwaltungsanweisung ersetzt BMF-Schreiben von 2023 – FuE-Projekte jetzt prüfen.",
+    },
+  },
+  {
+    cat: "Berlin Fokus",
     tickerTag: "SONDIERUNG ABGESCHLOSSEN",
     isElection: true,
     title: "Rot-Rot-Grün einigt sich: Linke, Grüne und SPD legen Sondierungspapier „Mehr gemeinsam, mehr Berlin“ vor – Parteigremien entscheiden über Koalitionsverhandlungen",
@@ -207,7 +269,7 @@ export const ARTICLES = [
     date: "17. Oktober 2026",
     source: { label: "rbb24 · Landespolitik", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
     sources: BERLIN_WAHL_SOURCES,
-    featured: true,
+    featured: false,
     highlight: {
       value: "Sondierung abgeschlossen",
       compare: "96 Sitze R2G",
@@ -219,7 +281,7 @@ export const ARTICLES = [
     tickerTag: "PHP-NOTFALL",
     title: "BSI-Warnung Orange: Kritische Lücken im PHP-Kern – Hochschulen, Kliniken und Behörden nehmen Webseiten vom Netz",
     excerpt:
-      "Am 21. Oktober warnten das BSI und internationale Sicherheitsbehörden vor zwei hochkritischen Speicherfehlern im Kern der Programmiersprache PHP (CVSS 9,2). Angreifer können damit ohne Anmeldung und ohne Zutun der Nutzer Schadcode auf Webservern ausführen. Weil der Fehler im Sprachkern und nicht in einzelnen Plugins steckt, sind potenziell Millionen Webseiten betroffen – zahlreiche Universitäten, Kliniken und Behörden schalteten ihre Angebote vorsorglich ab. Die PHP-Entwickler stellten noch am selben Nachmittag gepatchte Versionen bereit. Praxis-Tipp für KMU: Beim Hoster prüfen, ob Webseite, Shop und Kundenportal auf einer aktualisierten PHP-Version laufen, und Server-Logs in den kommenden Wochen auf Auffälligkeiten überwachen.",
+      "Am 21. Oktober warnten das BSI und internationale Sicherheitsbehörden vor zwei hochkritischen Speicherfehlern im Kern der Programmiersprache PHP (CVE-2026-109618 und CVE-2026-109619, CVSS 9,2). Angreifer können damit ohne Anmeldung und ohne Zutun der Nutzer Schadcode auf Webservern ausführen. Weil der Fehler im Sprachkern und nicht in einzelnen Plugins steckt, sind potenziell Millionen Webseiten betroffen – zahlreiche Universitäten, Kliniken und Behörden schalteten ihre Angebote vorsorglich ab. Die PHP-Entwickler stellten noch am selben Nachmittag die gepatchten Versionen 8.5.12, 8.4.27, 8.3.36 und 8.2.35 bereit. Praxis-Tipp für KMU: Beim Hoster prüfen, ob Webseite, Shop und Kundenportal auf einer aktualisierten PHP-Version laufen, und Server-Logs in den kommenden Wochen auf Auffälligkeiten überwachen.",
     read: "4 Min",
     date: "21. Oktober 2026",
     source: { label: "BSI · Cyber-Sicherheitswarnung", href: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Alle-Meldungen-News/alle-meldungen-news_node.html" },
@@ -249,15 +311,15 @@ export const ARTICLES = [
   {
     cat: "Bund & Steuer",
     tickerTag: "E-RECHNUNG 2027",
-    title: "Drittes BMF-Schreiben zur E-Rechnung: Anhänge müssen „eingebettet“ sein, Geschäftsregelfehler entschärft – noch 68 Tage bis zur Pflicht",
+    title: "Drittes BMF-Schreiben zur E-Rechnung: Anhänge müssen „eingebettet“ sein, Geschäftsregelfehler entschärft – noch 62 Tage bis zur Pflicht",
     excerpt:
       "Das Bundesfinanzministerium hat am 15. Oktober 2026 sein drittes Anwendungsschreiben zur E-Rechnung veröffentlicht (III C 5 – S 7287-a/00019/021/017) und den UStAE angepasst. Zentrale Punkte: Die Leistungsbeschreibung im strukturierten XML-Teil muss für sich genommen ausreichen; ergänzende Unterlagen müssen in die Rechnungsdatei eingebettet sein – ein Download-Link oder eine separate PDF genügt nicht. Bloße Verstöße gegen Geschäftsregeln der EN 16931 machen eine Rechnung nicht automatisch zur „sonstigen Rechnung“. Bei bruttopreisbasierten Rechnungen genügen bis Ende 2027 Gesamtsummen je Steuersatz, für Bauleistungen gelten Erleichterungen bis Mitte 2030. Für bis zum 31. Dezember 2026 ausgestellte Rechnungen gilt eine Nichtbeanstandungsregelung. Ab dem 1. Januar 2027 müssen Betriebe mit mehr als 800.000 Euro Vorjahresumsatz B2B-Rechnungen strukturiert ausstellen.",
     read: "6 Min",
-    date: "24. Oktober 2026",
+    date: "30. Oktober 2026",
     source: { label: "Bundesfinanzministerium · BMF-Schreiben Umsatzsteuer", href: "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/BMF_Schreiben_Allgemeines/bmf_schreiben_allgemeines.html" },
     featured: false,
     highlight: {
-      value: "Noch 68 Tage",
+      value: "Noch 62 Tage",
       compare: "Stichtag 01.01.2027",
       label: "BMF-Schreiben vom 15.10.2026: Anhänge einbetten, XML-Leistungsbeschreibung vollständig halten.",
     },
@@ -299,9 +361,9 @@ export const ARTICLES = [
     tickerTag: "JStG 2026 · ZINSEN",
     title: "Jahressteuergesetz 2026: Anhörung im Finanzausschuss am 2. November, Bundestagsbeschluss für 13. November geplant – Steuerzinsen sollen sich ab 2027 verdoppeln",
     excerpt:
-      "Nach der ersten Lesung am 8. Oktober (BT-Drs. 21/8283) berät der federführende Finanzausschuss den Entwurf in einer öffentlichen Sachverständigenanhörung am Montag, 2. November. Die 2./3. Lesung im Bundestag ist für den 13. November vorgesehen, danach muss der Bundesrat zustimmen. Die Bundesregierung hat in ihrer Gegenäußerung einzelne Ländervorschläge aufgegriffen, etwa zu Earn-Out-Zahlungen und zum Verlustuntergang bei Körperschaften. Kernpunkt für KMU bleibt die geplante Anhebung der Nachzahlungs- und Erstattungszinsen nach § 233a AO ab 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat – also von 1,8 % auf 3,6 % pro Jahr. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen.",
+      "Nach der ersten Lesung am 8. Oktober (BT-Drs. 21/8283) berät der federführende Finanzausschuss den Entwurf in einer öffentlichen Sachverständigenanhörung am Montag, 2. November (16:00 bis 17:30 Uhr, Paul-Löbe-Haus). Die 2./3. Lesung im Bundestag ist für den 13. November vorgesehen, danach muss der Bundesrat zustimmen. Die Bundesregierung hat in ihrer Gegenäußerung einzelne Ländervorschläge aufgegriffen, etwa zu Earn-Out-Zahlungen und zum Verlustuntergang bei Körperschaften. Kernpunkt für KMU bleibt die geplante Anhebung der Nachzahlungs- und Erstattungszinsen nach § 233a AO ab 1. Januar 2027 von 0,15 % auf 0,3 % pro Monat – also von 1,8 % auf 3,6 % pro Jahr. Praxis-Tipp: Vorauszahlungen realistisch anpassen und Erklärungen zügig einreichen.",
     read: "4 Min",
-    date: "24. Oktober 2026",
+    date: "30. Oktober 2026",
     source: { label: "Deutscher Bundestag · Drucksache 21/8283", href: "https://www.bundestag.de" },
     featured: false,
     highlight: {

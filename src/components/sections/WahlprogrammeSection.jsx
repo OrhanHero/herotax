@@ -33,7 +33,7 @@ const WahlprogrammeSection = () => {
         </div>
         <span className="text-xs text-amber-300 font-mono flex items-center gap-1 font-semibold">
           <CalendarCheck size={12} className="text-amber-400" />
-          Stand: 24.10.2026 · Koalitions- &amp; Sondierungsgrundlagen
+          Stand: 30.10.2026 · Koalitions- &amp; Sondierungsgrundlagen
         </span>
       </div>
 

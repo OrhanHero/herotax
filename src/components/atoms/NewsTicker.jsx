@@ -13,21 +13,42 @@ import { T, fontMono } from "../../config/tokens";
 const NewsTicker = ({ items }) => {
   const { t } = useLang();
 
-  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 24.10.2026)
+  // Aktuelle Top-News zu Steuern, Tech, Wirtschaft & Berliner Politik (Stand 30.10.2026)
   const topUpdateItems = useMemo(() => {
     return [
       {
         cat: "Berlin Fokus",
-        tickerTag: "🏛️ SONDIERUNG ABGESCHLOSSEN",
+        tickerTag: "🏛️ NEUES ABGEORDNETENHAUS",
         isElection: true,
-        title: "Rot-Rot-Grün legt Sondierungspapier „Mehr gemeinsam, mehr Berlin“ vor – AGH konstituiert sich am 29.10., Linke-Parteitag entscheidet am 31.10. über Koalitionsverhandlungen",
-        date: "17.10.2026",
-        source: { label: "rbb24.de", href: "https://www.rbb24.de/politik/berlin-wahl-2026/" },
+        title: "Abgeordnetenhaus konstituiert: Hendrikje Klein (Linke) mit 98 Stimmen zur ersten Linken-Präsidentin gewählt – Linke-Parteitag entscheidet am 31.10. über Koalitionsverhandlungen",
+        date: "29.10.2026",
+        source: { label: "berlin.de", href: "https://www.parlament-berlin.de/" },
+      },
+      {
+        cat: "Bund & Steuer",
+        tickerTag: "📊 STEUERSCHÄTZUNG",
+        title: "Herbst-Steuerschätzung: Gesamtstaat erwartet bis 2030 rund 43,3 Mrd. € mehr – Berlin plant mit 583 Mio. € Plus für 2026/27, Evers warnt vor neuen Ausgaben",
+        date: "22.10.2026",
+        source: { label: "berlin.de · Finanzen", href: "https://www.berlin.de/sen/finanzen/" },
+      },
+      {
+        cat: "Bund & Steuer",
+        tickerTag: "🧾 E-RECHNUNG 2027",
+        title: "Noch 62 Tage bis zur Pflicht: BMF-Schreiben vom 15.10. verlangt eingebettete Anhänge und vollständige XML-Leistungsbeschreibung",
+        date: "30.10.2026",
+        source: { label: "bundesfinanzministerium.de", href: "https://www.bundesfinanzministerium.de" },
+      },
+      {
+        cat: "Bund & Steuer",
+        tickerTag: "🔬 FORSCHUNGSZULAGE",
+        title: "Neues BMF-Schreiben vom 27.10. zur Forschungszulage ersetzt Fassung von 2023 – höhere Bemessungsgrundlage für FuE-Aufwand ab 2026 und Gemeinkostenpauschale",
+        date: "27.10.2026",
+        source: { label: "bundesfinanzministerium.de", href: "https://www.bundesfinanzministerium.de" },
       },
       {
         cat: "Cybersecurity",
-        tickerTag: "🚨 PHP-NOTFALL",
-        title: "BSI-Warnstufe Orange: Kritische Lücken im PHP-Kern (CVSS 9,2) – Patches seit 21.10. verfügbar, Webseiten und Shops jetzt aktualisieren",
+        tickerTag: "🚨 PHP2SHELL",
+        title: "BSI: PHP-Lücken CVE-2026-109618/-109619 (CVSS 9,2) – Updates 8.5.12, 8.4.27, 8.3.36, 8.2.35 einspielen, PHP 8.1 und älter migrieren",
         date: "21.10.2026",
         source: { label: "bsi.bund.de", href: "https://www.bsi.bund.de/" },
       },
@@ -35,22 +56,22 @@ const NewsTicker = ({ items }) => {
         cat: "Bund & Steuer",
         tickerTag: "📅 STEUERFRISTEN NOV",
         title: "USt & LSt Oktober am Dienstag, 10. November fällig (Schonfrist 13.11.) – Gewerbe- und Grundsteuer-Vorauszahlung Q4 am Montag, 16. November",
-        date: "24.10.2026",
+        date: "30.10.2026",
         source: { label: "ELSTER", href: "https://www.elster.de" },
       },
       {
         cat: "Bund & Steuer",
-        tickerTag: "🧾 E-RECHNUNG 2027",
-        title: "Noch 68 Tage bis zur Pflicht: Drittes BMF-Schreiben vom 15.10. verlangt eingebettete Anhänge und vollständige XML-Leistungsbeschreibung",
-        date: "24.10.2026",
-        source: { label: "bundesfinanzministerium.de", href: "https://www.bundesfinanzministerium.de" },
+        tickerTag: "📈 JStG 2026",
+        title: "Jahressteuergesetz 2026: Anhörung im Finanzausschuss am Montag, 2. November (16 Uhr), 2./3. Lesung für 13. November geplant – Steuerzinsen sollen ab 2027 auf 0,3 % pro Monat steigen",
+        date: "30.10.2026",
+        source: { label: "bundestag.de", href: "https://www.bundestag.de" },
       },
       {
-        cat: "Bund & Steuer",
-        tickerTag: "📈 JStG 2026",
-        title: "Jahressteuergesetz 2026: Anhörung im Finanzausschuss am 2. November, 2./3. Lesung für 13. November geplant – Steuerzinsen sollen ab 2027 auf 0,3 % pro Monat steigen",
-        date: "24.10.2026",
-        source: { label: "bundestag.de", href: "https://www.bundestag.de" },
+        cat: "FinTech & KI",
+        tickerTag: "🤖 DIGITAL-GIPFEL",
+        title: "Digital-Gipfel der Bundesregierung am 2. und 3. November in den Wilhelm Hallen Berlin – Motto „Shaping AI: safe, sovereign, competitive“",
+        date: "30.10.2026",
+        source: { label: "bmds.bund.de", href: "https://bmds.bund.de/aktuelles/pressemitteilungen" },
       },
       {
         cat: "FinTech & KI",
